@@ -316,18 +316,33 @@ export default function Home() {
             { title: "Craft", links: ["EV Body Shops", "Luxury Collision", "Restoration"] },
             { title: "Markets", links: ["Austin", "Miami", "Los Angeles", "New York", "Dubai"] },
             { title: "Insights", links: ["Comparisons", "Buying Guides", "Maintenance"] },
-            { title: "Company", links: ["About", "For Business", "Contact"] },
+            { title: "Company", links: [
+              { name: "About", href: "/about" },
+              { name: "For Business", href: "#" },
+              { name: "Contact", href: "/contact" }
+            ]},
           ].map((column, index) => (
             <div key={index}>
               <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">{column.title}</h4>
-              {column.links.map((link) => <a key={link} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link}</a>)}
+              {column.title === "Company" 
+                ? (column.links as Array<{name: string, href: string}>).map((link) => (
+                    <a key={link.name} href={link.href} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</a>
+                  ))
+                : (column.links as string[]).map((link) => (
+                    <a key={link} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link}</a>
+                  ))
+              }
             </div>
           ))}
         </div>
         <div className="flex justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)] max-w-[1200px] mx-auto">
           <div className="text-[11px] text-[#3d4a61]">© 2025 Healvanna. All rights reserved.</div>
           <div className="flex gap-6">
-            {["Privacy", "Terms", "Cookies"].map((link) => <span key={link} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link}</span>)}
+            {[
+              { name: "Privacy", href: "/privacy" },
+              { name: "Terms", href: "/terms" },
+              { name: "Cookies", href: "#" }
+            ].map((link) => <a key={link.name} href={link.href} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</a>)}
           </div>
         </div>
       </footer>
