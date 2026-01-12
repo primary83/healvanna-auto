@@ -135,7 +135,7 @@ export default function PrivacyPage() {
         <div className="flex justify-between items-center pt-8 max-w-[1200px] mx-auto">
           <div className="text-[11px] text-[#3d4a61]">© 2025 Healvanna Auto. All rights reserved.</div>
           <div className="flex gap-6">
-            {["Terms", "Contact", "About"].map((link) => (
+            {["Privacy", "Terms", "Contact", "About"].map((link) => (
               <a
                 key={link}
                 href={`/${link.toLowerCase()}`}
