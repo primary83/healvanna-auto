@@ -28,41 +28,41 @@ export default function InsightsPage() {
       slug: "tesla-vs-lucid-vs-rivian",
       title: "Tesla vs Lucid vs Rivian",
       category: "Comparison",
-      description: "The ultimate American EV showdown. We compare the top three US electric vehicle brands across performance, luxury, and value.",
+      description: "The ultimate American EV showdown. We compare the top three US electric vehicle brands across performance, luxury, range, and value.",
       image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80",
       readTime: "12 min read",
       date: "January 2025",
       available: true
     },
     {
-      slug: "#",
-      title: "EV Maintenance Guide",
+      slug: "ev-maintenance-guide",
+      title: "Complete EV Maintenance Guide",
       category: "Guide",
-      description: "Everything you need to know about maintaining your electric vehicle for peak performance. From battery care to brake maintenance, we cover it all.",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-      readTime: "10 min read",
-      date: "Coming Soon",
-      available: false
+      description: "Everything you need to know about maintaining your electric vehicle for optimal performance and longevity. From battery care to brake maintenance, we cover it all.",
+      image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80",
+      readTime: "15 min read",
+      date: "January 2025",
+      available: true
     },
     {
-      slug: "#",
+      slug: "ppf-vs-ceramic-coating",
       title: "PPF vs Ceramic Coating",
       category: "Guide",
-      description: "Should you get paint protection film or ceramic coating? We break down the pros, cons, and costs of each option to help you decide.",
-      image: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80",
-      readTime: "5 min read",
-      date: "Coming Soon",
-      available: false
+      description: "The ultimate guide to paint protection. We break down the differences between paint protection film and ceramic coating, including costs and which option is best for you.",
+      image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800&q=80",
+      readTime: "14 min read",
+      date: "January 2025",
+      available: true
     },
     {
-      slug: "#",
+      slug: "finding-trusted-body-shop",
       title: "Finding a Trusted Body Shop",
       category: "Guide",
-      description: "How to find a reputable body shop for your luxury or electric vehicle. Red flags to avoid and certifications to look for.",
+      description: "How to find a reputable body shop for your luxury or electric vehicle. Red flags to avoid, certifications to look for, and questions to ask.",
       image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80",
-      readTime: "7 min read",
-      date: "Coming Soon",
-      available: false
+      readTime: "12 min read",
+      date: "January 2025",
+      available: true
     },
   ];
 
@@ -138,8 +138,8 @@ export default function InsightsPage() {
             {articles.map((article, index) => (
               <Link
                 key={index}
-                href={article.available ? `/insights/${article.slug}` : "#"}
-                className={`bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block ${!article.available ? "opacity-70" : ""}`}
+                href={`/insights/${article.slug}`}
+                className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block"
               >
                 <div className="h-48 overflow-hidden relative">
                   <img
@@ -147,11 +147,6 @@ export default function InsightsPage() {
                     alt={article.title}
                     className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105"
                   />
-                  {!article.available && (
-                    <div className="absolute inset-0 bg-[#0a0f1a]/60 flex items-center justify-center">
-                      <span className="text-[11px] tracking-[0.15em] uppercase px-4 py-2 bg-[rgba(74,144,217,0.3)] text-[#e8edf5] rounded-full font-medium">Coming Soon</span>
-                    </div>
-                  )}
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-3">
@@ -163,7 +158,7 @@ export default function InsightsPage() {
                   <div className="flex justify-between items-center pt-4 border-t border-[rgba(74,144,217,0.1)]">
                     <span className="text-[11px] text-[#6b7a94]">{article.readTime}</span>
                     <span className="text-[11px] tracking-[0.1em] uppercase text-[#4a90d9] font-medium group-hover:underline">
-                      {article.available ? "Read Article →" : "Coming Soon"}
+                      Read Article →
                     </span>
                   </div>
                 </div>
@@ -211,10 +206,10 @@ export default function InsightsPage() {
               { name: "Restoration", href: "/craft" }
             ]},
             { title: "Markets", links: [
-              { name: "Austin", href: "/care?location=Austin" },
-              { name: "Miami", href: "/care?location=Miami" },
-              { name: "Los Angeles", href: "/care?location=Los Angeles" },
-              { name: "New York", href: "/care?location=New York" }
+              { name: "Austin", href: "/care" },
+              { name: "Miami", href: "/care" },
+              { name: "Los Angeles", href: "/care" },
+              { name: "New York", href: "/care" }
             ]},
             { title: "Insights", links: [
               { name: "Comparisons", href: "/insights" },
