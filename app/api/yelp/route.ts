@@ -14,10 +14,29 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  // Map our categories to better Yelp search terms
+  const categoryConfig: Record<string, { categories: string; term: string }> = {
+    auto_detailing: {
+      categories: "auto_detailing",
+      term: "auto detailing ceramic coating",
+    },
+    vehicle_wraps: {
+      categories: "auto_detailing,car_window_tinting",
+      term: "paint protection film PPF vinyl wrap car",
+    },
+    auto_upholstery: {
+      categories: "auto_upholstery,auto_detailing",
+      term: "car interior upholstery leather repair",
+    },
+  };
+
+  const config = categoryConfig[category] || categoryConfig.auto_detailing;
+
   try {
     const url = new URL("https://api.yelp.com/v3/businesses/search");
     url.searchParams.append("location", location);
-    url.searchParams.append("categories", category);
+    url.searchParams.append("categories", config.categories);
+    url.searchParams.append("term", config.term);
     url.searchParams.append("sort_by", "rating");
     url.searchParams.append("limit", "20");
 
