@@ -64,10 +64,10 @@ export default function Home() {
   ];
 
   const categoryCards = [
-    { title: "Electric Vehicles", subtitle: "Tesla · Rivian · Lucid · Porsche", image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&q=80" },
-    { title: "Premium Care", subtitle: "Detailing · Ceramic · PPF", image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=600&q=80" },
-    { title: "Repair & Craft", subtitle: "Body Shops · Restoration", image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=600&q=80" },
-    { title: "Market Insights", subtitle: "Guides · Comparisons · News", image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" },
+    { title: "Electric Vehicles", subtitle: "Tesla · Rivian · Lucid · Porsche", image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&q=80", link: "/insights/category/electric-vehicles" },
+    { title: "Premium Care", subtitle: "Detailing · Ceramic · PPF", image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=600&q=80", link: "/insights/category/premium-care" },
+    { title: "Repair & Craft", subtitle: "Body Shops · Restoration", image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=600&q=80", link: "/insights/category/repair-craft" },
+    { title: "Market Insights", subtitle: "Guides · Comparisons · News", image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80", link: "/insights/category/market-insights" },
   ];
 
   const navItems = [
@@ -164,14 +164,14 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1200px] mx-auto">
           {categoryCards.map((card, index) => (
-            <div key={index} className="relative h-[280px] overflow-hidden cursor-pointer group rounded">
+            <Link key={index} href={card.link} className="relative h-[280px] overflow-hidden cursor-pointer group rounded block">
               <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url('${card.image}')` }} />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1a]/95 via-[#0a0f1a]/40 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="text-lg font-medium mb-1.5">{card.title}</div>
                 <div className="text-[13px] text-[#6b7a94]">{card.subtitle}</div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
