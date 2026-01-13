@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-export default function PPFvsCeramicCoating() {
+export default function EVMaintenanceGuide() {
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       {/* Navigation */}
@@ -39,17 +39,17 @@ export default function PPFvsCeramicCoating() {
           <Link href="/insights" className="inline-flex items-center text-[#4a90d9] text-sm mb-8 hover:underline">
             ← Back to Insights
           </Link>
-          <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">Comparison Guide</div>
+          <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">Complete Guide</div>
           <h1 className="text-[clamp(32px,5vw,48px)] font-extralight tracking-tight mb-6 leading-tight">
-            PPF vs Ceramic Coating: <span className="italic text-[#4a90d9]">Which One Does Your Car Need?</span>
+            The Complete Electric Vehicle <span className="italic text-[#4a90d9]">Maintenance Guide</span>
           </h1>
           <p className="text-[17px] text-[#6b7a94] leading-relaxed mb-8">
-            The ultimate guide to paint protection. We break down the differences between paint protection film and ceramic coating, including costs, benefits, and which option is best for your vehicle.
+            Everything you need to know about maintaining your electric vehicle for optimal performance, longevity, and safety. From battery care to brake maintenance, we cover it all.
           </p>
           <div className="flex items-center gap-6 text-[13px] text-[#6b7a94]">
             <span>January 2025</span>
             <span>•</span>
-            <span>14 min read</span>
+            <span>15 min read</span>
           </div>
         </div>
       </section>
@@ -58,8 +58,8 @@ export default function PPFvsCeramicCoating() {
       <section className="px-12 pb-16">
         <div className="max-w-[900px] mx-auto">
           <img
-            src="https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1200&q=80"
-            alt="Car paint protection film installation"
+            src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1200&q=80"
+            alt="Electric vehicle charging and maintenance"
             className="w-full h-[400px] object-cover rounded-lg"
           />
         </div>
@@ -72,331 +72,248 @@ export default function PPFvsCeramicCoating() {
           {/* Introduction */}
           <div className="prose prose-invert max-w-none mb-12">
             <p className="text-[17px] text-[#a0aec0] leading-relaxed mb-6">
-              If you've recently purchased a luxury vehicle or electric car, you've probably heard about <strong className="text-[#e8edf5]">paint protection film (PPF)</strong> and <strong className="text-[#e8edf5]">ceramic coating</strong>. Both promise to protect your car's finish, but they work in fundamentally different ways. The question "<strong className="text-[#e8edf5]">is PPF worth it for a new car?</strong>" and "<strong className="text-[#e8edf5]">should I get ceramic coating or PPF?</strong>" are among the most common questions we hear from car owners.
+              If you've recently purchased an electric vehicle or are considering making the switch, you're probably wondering about <strong className="text-[#e8edf5]">how to maintain an electric car</strong> properly. The good news? Electric vehicles require significantly less maintenance than their gas-powered counterparts. However, that doesn't mean they're maintenance-free. Understanding <strong className="text-[#e8edf5]">EV maintenance requirements</strong> is crucial for maximizing your vehicle's lifespan, performance, and resale value.
             </p>
             <p className="text-[17px] text-[#a0aec0] leading-relaxed mb-6">
-              In this comprehensive guide, we'll dive deep into <strong className="text-[#e8edf5]">PPF vs ceramic coating pros and cons</strong>, help you understand the real-world differences, and guide you toward the best choice for your specific situation. Whether you're protecting a Tesla Model S, Porsche 911, or any other vehicle, this guide will give you the information you need to make an informed decision.
+              In this comprehensive guide, we'll cover everything from <strong className="text-[#e8edf5]">electric vehicle battery maintenance tips</strong> to brake care, tire rotation schedules, and software updates. Whether you own a Tesla Model 3, Rivian R1S, Lucid Air, or any other EV, this guide will help you keep your vehicle running at peak performance for years to come.
             </p>
           </div>
 
-          {/* Quick Comparison Table */}
-          <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.2)] mb-12 overflow-x-auto">
-            <h2 className="text-lg font-medium mb-4 text-[#4a90d9]">Quick Comparison: PPF vs Ceramic Coating</h2>
-            <table className="w-full text-[14px]">
-              <thead>
-                <tr className="border-b border-[rgba(74,144,217,0.2)]">
-                  <th className="text-left py-3 text-[#6b7a94]">Feature</th>
-                  <th className="text-center py-3 text-[#6b7a94]">PPF</th>
-                  <th className="text-center py-3 text-[#6b7a94]">Ceramic Coating</th>
-                </tr>
-              </thead>
-              <tbody className="text-[#a0aec0]">
-                <tr className="border-b border-[rgba(74,144,217,0.1)]">
-                  <td className="py-3">Rock Chip Protection</td>
-                  <td className="text-center text-green-400">Excellent</td>
-                  <td className="text-center text-red-400">None</td>
-                </tr>
-                <tr className="border-b border-[rgba(74,144,217,0.1)]">
-                  <td className="py-3">Scratch Resistance</td>
-                  <td className="text-center text-green-400">Excellent</td>
-                  <td className="text-center text-yellow-400">Moderate</td>
-                </tr>
-                <tr className="border-b border-[rgba(74,144,217,0.1)]">
-                  <td className="py-3">Chemical Resistance</td>
-                  <td className="text-center text-yellow-400">Good</td>
-                  <td className="text-center text-green-400">Excellent</td>
-                </tr>
-                <tr className="border-b border-[rgba(74,144,217,0.1)]">
-                  <td className="py-3">Gloss Enhancement</td>
-                  <td className="text-center text-yellow-400">Moderate</td>
-                  <td className="text-center text-green-400">Excellent</td>
-                </tr>
-                <tr className="border-b border-[rgba(74,144,217,0.1)]">
-                  <td className="py-3">Hydrophobic Properties</td>
-                  <td className="text-center text-yellow-400">Moderate</td>
-                  <td className="text-center text-green-400">Excellent</td>
-                </tr>
-                <tr className="border-b border-[rgba(74,144,217,0.1)]">
-                  <td className="py-3">Cost (Full Car)</td>
-                  <td className="text-center">$5,000-$8,000+</td>
-                  <td className="text-center">$1,000-$3,000</td>
-                </tr>
-                <tr>
-                  <td className="py-3">Longevity</td>
-                  <td className="text-center">5-10 years</td>
-                  <td className="text-center">2-5 years</td>
-                </tr>
-              </tbody>
-            </table>
+          {/* Table of Contents */}
+          <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.2)] mb-12">
+            <h2 className="text-lg font-medium mb-4 text-[#4a90d9]">What You'll Learn</h2>
+            <ul className="space-y-2 text-[15px] text-[#a0aec0]">
+              <li>• How to maintain your EV battery for maximum lifespan</li>
+              <li>• Why EVs need different brake maintenance than gas cars</li>
+              <li>• Tire care specific to electric vehicles</li>
+              <li>• Cooling system and thermal management basics</li>
+              <li>• Software updates and why they matter</li>
+              <li>• Creating your EV maintenance schedule</li>
+              <li>• Cost comparison: EV vs gas car maintenance</li>
+            </ul>
           </div>
 
-          {/* Section 1: What is PPF */}
+          {/* Section 1: Battery Maintenance */}
           <section className="mb-12">
-            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">What is Paint Protection Film (PPF)?</h2>
+            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">How to Maintain Your Electric Vehicle Battery</h2>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              <strong className="text-[#e8edf5]">Paint protection film</strong>, also known as clear bra or PPF, is a thermoplastic urethane film that's applied to the painted surfaces of your car. Originally developed for military helicopters to protect rotor blades from debris, PPF has become the gold standard for <strong className="text-[#e8edf5]">physical paint protection</strong>.
+              The battery is the heart of your electric vehicle, and proper care is essential for longevity. Many new EV owners ask, "<strong className="text-[#e8edf5]">how long do electric car batteries last?</strong>" With proper maintenance, most EV batteries can last 15-20 years or 200,000+ miles before significant degradation occurs.
             </p>
+            
+            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">Optimal Charging Habits for Battery Longevity</h3>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              Modern PPF is typically 6-8 mils thick (about 0.15-0.2mm) and features <strong className="text-[#e8edf5]">self-healing properties</strong>. This means that light scratches and swirl marks can disappear when exposed to heat, either from the sun or warm water. The film acts as a sacrificial layer, absorbing impacts from rocks, road debris, bug acids, and other hazards that would otherwise damage your paint.
-            </p>
-
-            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">How Does PPF Protect Your Car?</h3>
-            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              <strong className="text-[#e8edf5]">Does PPF prevent rock chips?</strong> Absolutely—this is its primary purpose. When a rock or piece of debris hits your car, the PPF absorbs the impact and disperses the energy across a larger area. Instead of chipping your paint, the rock might leave a mark on the film that often self-heals within hours.
+              One of the most important aspects of <strong className="text-[#e8edf5]">electric car battery care</strong> is developing good charging habits. Here's what the experts recommend:
             </p>
             <ul className="space-y-3 text-[16px] text-[#a0aec0] mb-6 ml-4">
-              <li><strong className="text-[#e8edf5]">Impact absorption:</strong> The film's thickness and elasticity absorb physical impacts that would chip or scratch bare paint</li>
-              <li><strong className="text-[#e8edf5]">Self-healing technology:</strong> Minor scratches disappear with heat exposure, keeping the film looking new</li>
-              <li><strong className="text-[#e8edf5]">UV protection:</strong> Quality PPF blocks UV rays that cause paint oxidation and fading</li>
-              <li><strong className="text-[#e8edf5]">Chemical resistance:</strong> Protects against bird droppings, bug splatter, tree sap, and road tar</li>
+              <li><strong className="text-[#e8edf5]">Keep your battery between 20-80%:</strong> Regularly charging to 100% or letting your battery drop below 20% can accelerate degradation. For daily driving, aim to keep your state of charge between 20% and 80%.</li>
+              <li><strong className="text-[#e8edf5]">Use Level 2 charging at home:</strong> While DC fast charging is convenient for road trips, <strong className="text-[#e8edf5]">frequent fast charging effects on EV battery</strong> can cause additional wear. Use slower Level 2 charging (240V) for daily use when possible.</li>
+              <li><strong className="text-[#e8edf5]">Avoid charging in extreme temperatures:</strong> If possible, charge your EV in a garage during very hot or cold weather. Extreme temperatures can stress the battery during charging.</li>
+              <li><strong className="text-[#e8edf5]">Don't let your EV sit at 100% charge:</strong> If you charge to 100% for a road trip, try to start driving soon after. Leaving the battery at full charge for extended periods can cause stress on the cells.</li>
             </ul>
 
-            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">Best PPF Brands in 2025</h3>
+            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">Temperature Management for EV Batteries</h3>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              Not all paint protection films are created equal. Here are the <strong className="text-[#e8edf5]">top PPF brands</strong> trusted by professionals:
+              <strong className="text-[#e8edf5]">How does cold weather affect electric car batteries?</strong> This is one of the most common questions from EV owners in northern climates. Cold temperatures can temporarily reduce your range by 20-40% and slow charging speeds. Here's how to minimize the impact:
             </p>
             <ul className="space-y-3 text-[16px] text-[#a0aec0] mb-6 ml-4">
-              <li><strong className="text-[#e8edf5]">XPEL Ultimate Plus:</strong> Industry leader known for excellent clarity and self-healing properties</li>
-              <li><strong className="text-[#e8edf5]">SunTek Ultra:</strong> Great optical clarity and competitive pricing</li>
-              <li><strong className="text-[#e8edf5]">3M Scotchgard Pro:</strong> Trusted brand with consistent quality</li>
-              <li><strong className="text-[#e8edf5]">Llumar Valor:</strong> Excellent warranty and professional-grade performance</li>
-              <li><strong className="text-[#e8edf5]">SteK DYNOshield:</strong> Premium option with exceptional clarity</li>
+              <li>Pre-condition your battery while plugged in before driving in cold weather</li>
+              <li>Park in a garage when possible to maintain battery temperature</li>
+              <li>Use scheduled departure features to warm the battery before your commute</li>
+              <li>In extreme heat, park in shade and use cabin overheat protection features</li>
             </ul>
           </section>
 
-          {/* Section 2: What is Ceramic Coating */}
+          {/* Section 2: Brake Maintenance */}
           <section className="mb-12">
-            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">What is Ceramic Coating?</h2>
+            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">EV Brake Maintenance: Why It's Different</h2>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              <strong className="text-[#e8edf5]">Ceramic coating</strong> is a liquid polymer that chemically bonds to your car's factory paint, creating a permanent or semi-permanent protective layer. Unlike wax or sealants that sit on top of the paint, ceramic coatings become part of your car's surface at a molecular level.
+              One of the biggest advantages of electric vehicles is <strong className="text-[#e8edf5]">regenerative braking</strong>, which uses the electric motor to slow the car while recapturing energy. This dramatically reduces wear on traditional friction brakes. Many EV owners find that their brake pads last 100,000+ miles compared to 30,000-50,000 miles on gas vehicles.
             </p>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              The primary ingredient in most ceramic coatings is silicon dioxide (SiO2), sometimes combined with titanium dioxide (TiO2). When applied correctly, this creates an incredibly hard, glass-like layer that's measured on the hardness scale as 9H—the highest rating for pencil hardness testing.
+              However, <strong className="text-[#e8edf5]">do electric cars need brake fluid changes?</strong> Absolutely yes. While your brake pads may last longer, brake fluid is hygroscopic, meaning it absorbs moisture over time. Most manufacturers recommend changing brake fluid every 2-3 years regardless of mileage.
             </p>
 
-            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">How Does Ceramic Coating Protect Your Car?</h3>
+            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">Preventing Brake Rotor Corrosion in EVs</h3>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              <strong className="text-[#e8edf5]">What does ceramic coating actually do?</strong> Unlike PPF, ceramic coating doesn't provide physical impact protection. Instead, it offers:
+              Because regenerative braking handles most of your stopping needs, your traditional brakes may not get used enough. This can actually cause problems! <strong className="text-[#e8edf5]">EV brake rotor rust and corrosion</strong> is a common issue, especially in humid climates or areas with salted winter roads.
             </p>
+            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
+              To prevent this, periodically use your friction brakes more aggressively (when safe to do so) to clean off any surface rust. Some EV owners disable regenerative braking occasionally specifically for this purpose. If you live in a coastal or high-humidity area, this is especially important.
+            </p>
+          </section>
+
+          {/* Section 3: Tire Maintenance */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">Tire Care for Electric Vehicles</h2>
+            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
+              <strong className="text-[#e8edf5]">Do electric cars wear tires faster than gas cars?</strong> Unfortunately, yes. EVs are typically heavier due to their battery packs, and they deliver instant torque which can accelerate tire wear. The good news is that proper maintenance can significantly extend tire life.
+            </p>
+
+            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">EV-Specific Tire Considerations</h3>
             <ul className="space-y-3 text-[16px] text-[#a0aec0] mb-6 ml-4">
-              <li><strong className="text-[#e8edf5]">Hydrophobic properties:</strong> Water beads up and rolls off, taking dirt with it—this is the famous "self-cleaning" effect</li>
-              <li><strong className="text-[#e8edf5]">Chemical resistance:</strong> Excellent protection against bird droppings, bug acids, tree sap, and industrial fallout</li>
-              <li><strong className="text-[#e8edf5]">UV protection:</strong> Prevents oxidation and fading from sun exposure</li>
-              <li><strong className="text-[#e8edf5]">Enhanced gloss:</strong> Creates a deep, wet-look shine that makes colors pop</li>
-              <li><strong className="text-[#e8edf5]">Easier cleaning:</strong> Dirt and grime don't bond to the surface, making washes faster and safer</li>
+              <li><strong className="text-[#e8edf5]">Use EV-specific tires:</strong> Many manufacturers now offer <strong className="text-[#e8edf5]">best tires for electric vehicles</strong> designed to handle the extra weight and torque. These tires also often have lower rolling resistance to maximize range.</li>
+              <li><strong className="text-[#e8edf5]">Rotate tires every 5,000-7,500 miles:</strong> Regular rotation is even more important for EVs due to uneven wear patterns from regenerative braking.</li>
+              <li><strong className="text-[#e8edf5]">Check tire pressure monthly:</strong> Proper inflation is crucial for range and tire longevity. Under-inflated tires reduce efficiency and wear faster.</li>
+              <li><strong className="text-[#e8edf5]">Get regular alignments:</strong> The weight of EV batteries can affect alignment. Have it checked every 12,000-15,000 miles or if you notice uneven wear.</li>
             </ul>
 
             <div className="bg-[rgba(74,144,217,0.1)] p-6 rounded-lg border border-[rgba(74,144,217,0.2)] my-8">
-              <h4 className="text-lg font-medium text-[#4a90d9] mb-3">Important: What Ceramic Coating Can't Do</h4>
+              <h4 className="text-lg font-medium text-[#4a90d9] mb-3">Pro Tip: EV Tire Rotation Pattern</h4>
               <p className="text-[15px] text-[#a0aec0]">
-                <strong className="text-[#e8edf5]">Does ceramic coating prevent rock chips?</strong> No. This is a common misconception. Ceramic coating is only a few microns thick and provides no protection against physical impacts. A rock will chip right through ceramic coating just as easily as it would chip bare paint. If rock chip protection is your priority, you need PPF.
+                For dual-motor AWD electric vehicles, use an X-pattern rotation (front left to rear right, front right to rear left). For single-motor EVs, follow the same rotation pattern you would for a front-wheel or rear-wheel drive gas car.
               </p>
             </div>
           </section>
 
-          {/* Section 3: Cost Comparison */}
+          {/* Section 4: Cooling System */}
           <section className="mb-12">
-            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">PPF vs Ceramic Coating Cost Comparison</h2>
+            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">Cooling System and Thermal Management</h2>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              One of the biggest factors in the <strong className="text-[#e8edf5]">PPF vs ceramic coating decision</strong> is cost. Let's break down what you can expect to pay:
+              While EVs don't have traditional radiators for engine cooling, they do have sophisticated <strong className="text-[#e8edf5]">thermal management systems for the battery, motor, and power electronics</strong>. Understanding <strong className="text-[#e8edf5]">how to maintain EV cooling system</strong> is important for vehicle longevity.
+            </p>
+            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
+              Most modern EVs use liquid cooling for the battery pack. This coolant typically needs to be replaced every 4-5 years or around 50,000 miles, though intervals vary by manufacturer. Tesla, for example, considers its coolant a "lifetime" fluid under normal conditions, while other manufacturers have specific replacement intervals.
             </p>
 
-            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">Paint Protection Film Costs</h3>
-            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              <strong className="text-[#e8edf5]">How much does PPF cost?</strong> Professional PPF installation typically ranges from:
-            </p>
+            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">Signs Your EV Cooling System Needs Attention</h3>
             <ul className="space-y-3 text-[16px] text-[#a0aec0] mb-6 ml-4">
-              <li><strong className="text-[#e8edf5]">Front bumper only:</strong> $400-$700</li>
-              <li><strong className="text-[#e8edf5]">Partial front (bumper, hood, fenders, mirrors):</strong> $1,500-$2,500</li>
-              <li><strong className="text-[#e8edf5]">Full front end:</strong> $2,000-$3,500</li>
-              <li><strong className="text-[#e8edf5]">Full vehicle wrap:</strong> $5,000-$8,000+</li>
-            </ul>
-            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              Prices vary based on vehicle size, complexity, and the specific PPF brand used. <strong className="text-[#e8edf5]">Tesla PPF cost</strong> tends to be on the higher end due to the complex curves and large surface areas on models like the Model S and Model X.
-            </p>
-
-            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">Ceramic Coating Costs</h3>
-            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              <strong className="text-[#e8edf5]">How much does ceramic coating cost?</strong> Professional ceramic coating typically ranges from:
-            </p>
-            <ul className="space-y-3 text-[16px] text-[#a0aec0] mb-6 ml-4">
-              <li><strong className="text-[#e8edf5]">Entry-level professional coating:</strong> $500-$1,000</li>
-              <li><strong className="text-[#e8edf5]">Mid-tier coating (2-3 year durability):</strong> $1,000-$1,500</li>
-              <li><strong className="text-[#e8edf5]">Premium coating (5+ year durability):</strong> $1,500-$3,000</li>
-              <li><strong className="text-[#e8edf5]">Ultra-premium (Ceramic Pro, Gtechniq Crystal Serum):</strong> $2,000-$5,000</li>
+              <li>Reduced charging speeds (the car may be limiting power to protect an overheating battery)</li>
+              <li>Reduced performance in hot weather</li>
+              <li>Warning messages about battery temperature</li>
+              <li>Unusual noises from cooling fans or pumps</li>
+              <li>Visible coolant leaks under the vehicle</li>
             </ul>
           </section>
 
-          {/* Section 4: Which Should You Choose */}
+          {/* Section 5: Software Updates */}
           <section className="mb-12">
-            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">PPF or Ceramic Coating: Which Should You Choose?</h2>
+            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">Software Updates: The New Oil Change</h2>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              The <strong className="text-[#e8edf5]">best paint protection for your car</strong> depends on your specific needs, driving habits, and budget. Here's our recommendation based on different scenarios:
+              One unique aspect of <strong className="text-[#e8edf5]">modern EV maintenance</strong> is software updates. Unlike traditional cars, electric vehicles can receive over-the-air (OTA) updates that improve performance, add features, fix bugs, and even increase range.
+            </p>
+            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
+              <strong className="text-[#e8edf5]">Are Tesla software updates free?</strong> Yes, most EV manufacturers provide software updates at no cost. These updates can include everything from improved regenerative braking algorithms to new entertainment features and enhanced autopilot capabilities.
+            </p>
+
+            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">Best Practices for EV Software Updates</h3>
+            <ul className="space-y-3 text-[16px] text-[#a0aec0] mb-6 ml-4">
+              <li><strong className="text-[#e8edf5]">Keep your car connected to WiFi:</strong> Updates download faster and don't use your cellular data</li>
+              <li><strong className="text-[#e8edf5]">Install updates promptly:</strong> Security patches and bug fixes are important</li>
+              <li><strong className="text-[#e8edf5]">Ensure adequate battery charge:</strong> Most updates require at least 20-50% battery</li>
+              <li><strong className="text-[#e8edf5]">Read release notes:</strong> Understand what changes are being made to your vehicle</li>
+            </ul>
+          </section>
+
+          {/* Section 6: Maintenance Schedule */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">Complete EV Maintenance Schedule</h2>
+            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
+              Here's a comprehensive <strong className="text-[#e8edf5]">electric vehicle maintenance checklist</strong> to keep your car running smoothly:
             </p>
 
             <div className="space-y-6">
               <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.15)]">
-                <h4 className="text-lg font-medium text-[#4a90d9] mb-3">Choose PPF If...</h4>
+                <h4 className="text-lg font-medium text-[#4a90d9] mb-3">Monthly</h4>
                 <ul className="space-y-2 text-[15px] text-[#a0aec0]">
-                  <li>• You drive on highways frequently and encounter road debris</li>
-                  <li>• You live in an area with gravel roads or construction zones</li>
-                  <li>• Rock chips and physical damage are your primary concern</li>
-                  <li>• You're protecting a high-value or exotic vehicle</li>
-                  <li>• You plan to keep the car long-term and want maximum resale value</li>
-                  <li>• You have a dark-colored car where chips are highly visible</li>
+                  <li>• Check tire pressure and adjust as needed</li>
+                  <li>• Inspect tires for wear or damage</li>
+                  <li>• Check windshield washer fluid level</li>
+                  <li>• Verify all lights are functioning</li>
                 </ul>
               </div>
 
               <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.15)]">
-                <h4 className="text-lg font-medium text-[#4a90d9] mb-3">Choose Ceramic Coating If...</h4>
+                <h4 className="text-lg font-medium text-[#4a90d9] mb-3">Every 7,500 Miles</h4>
                 <ul className="space-y-2 text-[15px] text-[#a0aec0]">
-                  <li>• Easy cleaning and maintenance are your top priorities</li>
-                  <li>• You want enhanced gloss and shine</li>
-                  <li>• You park outdoors and face environmental contaminants</li>
-                  <li>• Your budget is limited but you want professional protection</li>
-                  <li>• Rock chips aren't a major concern in your area</li>
-                  <li>• You want to protect the entire vehicle including wheels and glass</li>
+                  <li>• Rotate tires</li>
+                  <li>• Inspect brake pads and rotors</li>
+                  <li>• Check suspension components</li>
+                  <li>• Inspect charging port for debris</li>
                 </ul>
               </div>
 
-              <div className="bg-[rgba(74,144,217,0.15)] p-6 rounded-lg border border-[rgba(74,144,217,0.25)]">
-                <h4 className="text-lg font-medium text-[#4a90d9] mb-3">The Ultimate Solution: PPF + Ceramic Coating</h4>
-                <p className="text-[15px] text-[#a0aec0] mb-4">
-                  <strong className="text-[#e8edf5]">Can you put ceramic coating over PPF?</strong> Absolutely—and this is actually the ideal combination. Many car enthusiasts opt for PPF on high-impact areas (front end) with ceramic coating over the entire vehicle, including on top of the PPF.
-                </p>
-                <p className="text-[15px] text-[#a0aec0]">
-                  This gives you the best of both worlds: physical protection from PPF and the hydrophobic, easy-clean properties of ceramic coating. The ceramic also helps maintain the PPF's appearance and can extend its lifespan.
-                </p>
+              <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.15)]">
+                <h4 className="text-lg font-medium text-[#4a90d9] mb-3">Every 15,000 Miles</h4>
+                <ul className="space-y-2 text-[15px] text-[#a0aec0]">
+                  <li>• Replace cabin air filter</li>
+                  <li>• Inspect and clean HVAC system</li>
+                  <li>• Check wheel alignment</li>
+                  <li>• Inspect battery cooling system</li>
+                </ul>
+              </div>
+
+              <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.15)]">
+                <h4 className="text-lg font-medium text-[#4a90d9] mb-3">Every 2-3 Years</h4>
+                <ul className="space-y-2 text-[15px] text-[#a0aec0]">
+                  <li>• Replace brake fluid</li>
+                  <li>• Inspect and possibly replace wiper blades</li>
+                  <li>• Check 12V auxiliary battery</li>
+                  <li>• Full inspection by certified EV technician</li>
+                </ul>
+              </div>
+
+              <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.15)]">
+                <h4 className="text-lg font-medium text-[#4a90d9] mb-3">Every 4-5 Years</h4>
+                <ul className="space-y-2 text-[15px] text-[#a0aec0]">
+                  <li>• Replace battery coolant (if specified by manufacturer)</li>
+                  <li>• Replace 12V auxiliary battery</li>
+                  <li>• Comprehensive battery health check</li>
+                </ul>
               </div>
             </div>
           </section>
 
-          {/* Section 5: Application Process */}
+          {/* Section 7: Cost Comparison */}
           <section className="mb-12">
-            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">Professional vs DIY: Application Considerations</h2>
-            
-            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">Can You Install PPF Yourself?</h3>
+            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">EV vs Gas Car Maintenance Costs</h2>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              <strong className="text-[#e8edf5]">DIY PPF installation</strong> is technically possible, but we strongly recommend against it for most people. PPF application requires:
-            </p>
-            <ul className="space-y-3 text-[16px] text-[#a0aec0] mb-6 ml-4">
-              <li>A perfectly clean, controlled environment (dust-free)</li>
-              <li>Specialized tools and slip solutions</li>
-              <li>Significant experience with stretching and wrapping film</li>
-              <li>Knowledge of edge wrapping and seaming techniques</li>
-              <li>Hours of patience for a single panel</li>
-            </ul>
-            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              Poor PPF installation can result in bubbles, lifting edges, visible seams, and premature failure. Given the cost of quality PPF material, professional installation is almost always worth the extra expense.
+              One of the biggest advantages of EV ownership is <strong className="text-[#e8edf5]">lower maintenance costs compared to gas cars</strong>. According to studies, EV owners save an average of $4,600 in maintenance costs over the life of the vehicle.
             </p>
 
-            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">Can You Apply Ceramic Coating Yourself?</h3>
-            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              <strong className="text-[#e8edf5]">DIY ceramic coating</strong> is more feasible than DIY PPF, but still has significant challenges. Consumer-grade ceramic coatings are available, but they typically offer shorter durability (6-12 months) compared to professional-grade products (2-5+ years).
-            </p>
-            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              The most critical aspect of ceramic coating application is paint preparation. The paint must be thoroughly decontaminated and corrected (polished) before coating. Applying ceramic coating over swirl marks or contaminants will lock in those imperfections permanently.
-            </p>
-          </section>
-
-          {/* Section 6: Longevity and Maintenance */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">Longevity and Maintenance Requirements</h2>
-            
-            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">How Long Does PPF Last?</h3>
-            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              Quality paint protection film typically lasts <strong className="text-[#e8edf5]">5-10 years</strong> depending on:
-            </p>
-            <ul className="space-y-3 text-[16px] text-[#a0aec0] mb-6 ml-4">
-              <li>Quality of the film and installation</li>
-              <li>Climate (extreme heat and UV exposure accelerate degradation)</li>
-              <li>How well you maintain the vehicle</li>
-              <li>Whether the car is garaged or parked outside</li>
-            </ul>
-            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              Signs that your PPF needs replacement include yellowing, cracking at edges, significant loss of self-healing ability, and excessive orange peel texture.
-            </p>
-
-            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">How Long Does Ceramic Coating Last?</h3>
-            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              Ceramic coating longevity varies significantly based on the product:
-            </p>
-            <ul className="space-y-3 text-[16px] text-[#a0aec0] mb-6 ml-4">
-              <li><strong className="text-[#e8edf5]">Consumer-grade coatings:</strong> 6 months to 1 year</li>
-              <li><strong className="text-[#e8edf5]">Entry-level professional coatings:</strong> 1-2 years</li>
-              <li><strong className="text-[#e8edf5]">Mid-tier professional coatings:</strong> 3-5 years</li>
-              <li><strong className="text-[#e8edf5]">Premium professional coatings:</strong> 5-7+ years (with proper maintenance)</li>
-            </ul>
-
-            <h3 className="text-xl font-light text-[#e8edf5] mb-4 mt-8">Maintenance Tips for Both</h3>
-            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              Whether you have PPF, ceramic coating, or both, follow these <strong className="text-[#e8edf5]">maintenance best practices</strong>:
-            </p>
-            <ul className="space-y-3 text-[16px] text-[#a0aec0] mb-6 ml-4">
-              <li><strong className="text-[#e8edf5]">Wash with pH-neutral soap:</strong> Avoid harsh chemicals that can degrade coatings or films</li>
-              <li><strong className="text-[#e8edf5]">Use the two-bucket wash method:</strong> Prevents scratching from trapped dirt</li>
-              <li><strong className="text-[#e8edf5]">Avoid automatic car washes:</strong> Brushes can damage PPF and strip ceramic coating</li>
-              <li><strong className="text-[#e8edf5]">Remove contaminants promptly:</strong> Bird droppings and bug splatter should be cleaned within 24-48 hours</li>
-              <li><strong className="text-[#e8edf5]">Apply coating maintenance spray:</strong> Ceramic coatings benefit from periodic maintenance products</li>
-            </ul>
-          </section>
-
-          {/* Section 7: Common Questions */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">Frequently Asked Questions</h2>
-            
-            <div className="space-y-6">
-              <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.15)]">
-                <h4 className="text-lg font-medium text-[#e8edf5] mb-2">Is PPF worth it for a daily driver?</h4>
-                <p className="text-[15px] text-[#a0aec0]">
-                  Yes, especially if you drive on highways or in areas with road debris. At minimum, protecting the front bumper and hood can prevent hundreds of rock chips over the vehicle's lifetime, preserving both appearance and resale value.
-                </p>
-              </div>
-
-              <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.15)]">
-                <h4 className="text-lg font-medium text-[#e8edf5] mb-2">Does ceramic coating replace waxing?</h4>
-                <p className="text-[15px] text-[#a0aec0]">
-                  Yes! Once you have a ceramic coating, you no longer need to wax your car. In fact, applying wax over ceramic coating is generally not recommended as it can interfere with the coating's hydrophobic properties.
-                </p>
-              </div>
-
-              <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.15)]">
-                <h4 className="text-lg font-medium text-[#e8edf5] mb-2">Can PPF be removed without damaging paint?</h4>
-                <p className="text-[15px] text-[#a0aec0]">
-                  Yes, when properly installed and removed by professionals, PPF should come off cleanly without damaging the underlying paint. In fact, your paint should look exactly as it did when the film was applied, protected from years of environmental damage.
-                </p>
-              </div>
-
-              <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.15)]">
-                <h4 className="text-lg font-medium text-[#e8edf5] mb-2">Which is better for a Tesla: PPF or ceramic coating?</h4>
-                <p className="text-[15px] text-[#a0aec0]">
-                  Tesla paint is known for being relatively soft and prone to chips and scratches. For optimal protection, we recommend PPF on high-impact areas (full front end at minimum) combined with ceramic coating over the entire vehicle, including on top of the PPF.
-                </p>
-              </div>
+            <div className="bg-[rgba(15,22,40,0.8)] p-6 rounded-lg border border-[rgba(74,144,217,0.15)] mb-6">
+              <h4 className="text-lg font-medium text-[#e8edf5] mb-4">What You DON'T Need in an EV:</h4>
+              <ul className="space-y-2 text-[15px] text-[#a0aec0]">
+                <li>❌ Oil changes (saves $50-100 every 3,000-5,000 miles)</li>
+                <li>❌ Transmission fluid changes</li>
+                <li>❌ Spark plugs</li>
+                <li>❌ Timing belts</li>
+                <li>❌ Fuel filters</li>
+                <li>❌ Exhaust system repairs</li>
+                <li>❌ Emission system maintenance</li>
+              </ul>
             </div>
+
+            <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
+              <strong className="text-[#e8edf5]">How much does it cost to maintain an electric car per year?</strong> On average, EV maintenance costs between $300-600 per year compared to $1,000-1,500 for a comparable gas vehicle. This adds up to significant savings over the ownership period.
+            </p>
           </section>
 
           {/* Conclusion */}
           <section className="mb-12">
-            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">Final Verdict: Making Your Decision</h2>
+            <h2 className="text-2xl font-light text-[#e8edf5] mb-6">Final Thoughts: Keep Your EV Running Strong</h2>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              The <strong className="text-[#e8edf5]">PPF vs ceramic coating debate</strong> doesn't have to be an either/or decision. Both products serve different purposes and can work together beautifully. If budget allows, the combination of PPF on high-impact areas plus ceramic coating everywhere is the ultimate protection package.
+              Maintaining an electric vehicle is simpler and cheaper than maintaining a gas car, but it still requires attention to key areas. By following the guidelines in this <strong className="text-[#e8edf5]">comprehensive EV maintenance guide</strong>, you can ensure your electric vehicle provides reliable, efficient transportation for many years to come.
             </p>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              If you must choose one, consider your primary concerns: <strong className="text-[#e8edf5]">physical protection from rock chips</strong> points to PPF, while <strong className="text-[#e8edf5]">easy cleaning and enhanced appearance</strong> points to ceramic coating. Both are worthwhile investments that protect your vehicle and preserve its value.
+              Remember: the best maintenance is preventive maintenance. Stay on top of tire rotations, monitor your battery health, keep your software updated, and address any issues promptly. Your future self (and your wallet) will thank you.
             </p>
             <p className="text-[16px] text-[#a0aec0] leading-relaxed mb-6">
-              Whatever you choose, make sure to work with reputable installers who use quality products. The skill of the installer matters just as much as the products they use. A poorly installed premium product will underperform a well-installed mid-tier option every time.
+              Whether you're driving a <strong className="text-[#e8edf5]">Tesla Model S maintenance schedule</strong>, following a <strong className="text-[#e8edf5]">Rivian R1T maintenance checklist</strong>, or caring for any other electric vehicle, the fundamentals remain the same. Take care of your battery, watch your tires, and enjoy the simplified maintenance experience that comes with electric vehicle ownership.
             </p>
           </section>
 
           {/* CTA */}
           <div className="mt-16 p-8 bg-gradient-to-r from-[rgba(74,144,217,0.1)] to-transparent rounded-lg border border-[rgba(74,144,217,0.2)]">
-            <h3 className="text-xl font-light mb-3">Ready to Protect Your Vehicle?</h3>
-            <p className="text-[#6b7a94] mb-6">Find certified PPF installers and ceramic coating specialists in your area.</p>
-            <Link href="/care" className="inline-block px-8 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded">
-              Find Installers Near You
-            </Link>
+            <h3 className="text-xl font-light mb-3">Need Professional EV Service?</h3>
+            <p className="text-[#6b7a94] mb-6">Find certified electric vehicle service centers and detailers in your area.</p>
+            <div className="flex gap-4">
+              <Link href="/care" className="inline-block px-8 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded">
+                Find EV Detailers
+              </Link>
+              <Link href="/craft" className="inline-block px-8 py-3 text-[13px] font-medium border border-[#4a90d9] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded">
+                Find Service Centers
+              </Link>
+            </div>
           </div>
 
         </div>
