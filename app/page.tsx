@@ -25,6 +25,8 @@ export default function Home() {
       subtitle: "A curated guide to exceptional vehicles, trusted care specialists, and master craftsmen. For discerning automotive enthusiasts.",
       category: "The Curated Guide",
       image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1920&q=80",
+      exploreLink: "/cars",
+      learnMoreLink: "/insights",
     },
     {
       title: "Electric",
@@ -32,6 +34,8 @@ export default function Home() {
       subtitle: "Explore the finest EVs from Tesla, Rivian, Lucid, and beyond. In-depth guides to help you find your perfect electric vehicle.",
       category: "EV Directory",
       image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1920&q=80",
+      exploreLink: "/cars",
+      learnMoreLink: "/insights/category/electric-vehicles",
     },
     {
       title: "Trusted",
@@ -39,16 +43,18 @@ export default function Home() {
       subtitle: "Verified detailers, ceramic coating experts, and restoration craftsmen. Find premium care for your premium vehicle.",
       category: "Service Directory",
       image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1920&q=80",
+      exploreLink: "/care",
+      learnMoreLink: "/insights/category/premium-care",
     },
   ];
 
   const featuredCars = [
-    { id: 1, make: "Tesla", model: "Model S Plaid", year: "2024", category: "Electric Sedan", image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80", range: "396 mi", acceleration: "1.99s", type: "EV", link: "/cars/tesla-model-s-plaid" },
-    { id: 2, make: "Porsche", model: "Taycan Turbo S", year: "2024", category: "Electric GT", image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800&q=80", range: "280 mi", acceleration: "2.6s", type: "EV", link: "/cars/porsche-taycan-turbo-s" },
-    { id: 3, make: "Lucid", model: "Air Sapphire", year: "2024", category: "Ultra-Luxury EV", image: "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=800&q=80", range: "427 mi", acceleration: "1.89s", type: "EV", link: "/cars/lucid-air-sapphire" },
-    { id: 4, make: "Rivian", model: "R1S", year: "2024", category: "Electric SUV", image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80", range: "352 mi", acceleration: "3.0s", type: "EV", link: "/cars/rivian-r1s" },
-    { id: 5, make: "Mercedes-Benz", model: "EQS 580", year: "2024", category: "Luxury EV Flagship", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80", range: "350 mi", acceleration: "4.1s", type: "EV", link: "/cars/mercedes-eqs-580" },
-    { id: 6, make: "BMW", model: "i7 xDrive60", year: "2024", category: "Luxury EV Sedan", image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80", range: "318 mi", acceleration: "4.5s", type: "EV", link: "/cars/bmw-i7-xdrive60" },
+    { id: 1, make: "Tesla", model: "Model S Plaid", year: "2024", category: "Electric Sedan", image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80", range: "396 mi", acceleration: "1.99s", type: "EV" },
+    { id: 2, make: "Porsche", model: "Taycan Turbo S", year: "2024", category: "Electric GT", image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800&q=80", range: "280 mi", acceleration: "2.6s", type: "EV" },
+    { id: 3, make: "Lucid", model: "Air Sapphire", year: "2024", category: "Ultra-Luxury EV", image: "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=800&q=80", range: "427 mi", acceleration: "1.89s", type: "EV" },
+    { id: 4, make: "Rivian", model: "R1S", year: "2024", category: "Electric SUV", image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80", range: "352 mi", acceleration: "3.0s", type: "EV" },
+    { id: 5, make: "Mercedes-Benz", model: "EQS 580", year: "2024", category: "Luxury EV Flagship", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80", range: "350 mi", acceleration: "4.1s", type: "EV" },
+    { id: 6, make: "BMW", model: "i7 xDrive60", year: "2024", category: "Luxury EV Sedan", image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80", range: "318 mi", acceleration: "4.5s", type: "EV" },
   ];
 
   const careServices = [
@@ -126,8 +132,8 @@ export default function Home() {
                 </h1>
                 <p className="text-[15px] text-[#6b7a94] leading-relaxed mb-8 max-w-[450px]">{slide.subtitle}</p>
                 <div className="flex gap-4">
-                  <button className="px-8 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300">Explore Directory</button>
-                  <button className="px-8 py-3 text-[13px] font-medium bg-transparent border border-[rgba(232,237,245,0.25)] text-[#e8edf5] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300">Learn More</button>
+                  <Link href={slide.exploreLink} className="px-8 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300">Explore Directory</Link>
+                  <Link href={slide.learnMoreLink} className="px-8 py-3 text-[13px] font-medium bg-transparent border border-[rgba(232,237,245,0.25)] text-[#e8edf5] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300">Learn More</Link>
                 </div>
               </div>
             </div>
@@ -185,7 +191,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 max-w-[1300px] mx-auto">
           {featuredCars.map((car) => (
-            <Link key={car.id} href={car.link} className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block">
+            <div key={car.id} className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group">
               <div className="h-48 overflow-hidden">
                 <img src={car.image} alt={`${car.make} ${car.model}`} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105" />
               </div>
@@ -200,9 +206,9 @@ export default function Home() {
                   <div><span className="text-[#e8edf5] font-medium">{car.range}</span> Range</div>
                   <div><span className="text-[#e8edf5] font-medium">{car.acceleration}</span> 0-60</div>
                 </div>
-                <span className="w-full py-3 text-[11px] tracking-[0.1em] uppercase font-medium border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded block text-center">View Details</span>
+                <button className="w-full py-3 text-[11px] tracking-[0.1em] uppercase font-medium border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded">View Details</button>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
         <div className="text-center mt-12">
