@@ -294,8 +294,8 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-[1300px] mx-auto">
           {[
             { title: "US EVs vs Chinese EVs", category: "Comparison", description: "A deep dive into how American and Chinese electric vehicles stack up in range, tech, and value.", image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80", link: "/insights/us-evs-vs-chinese-evs" },
-            { title: "Best Ceramic Coatings 2024", category: "Guide", description: "We tested the top ceramic coating brands to find the best protection for your premium vehicle.", image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80", link: "#" },
-            { title: "EV Maintenance Guide", category: "Guide", description: "Everything you need to know about maintaining your electric vehicle for peak performance.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80", link: "#" },
+            { title: "Best Ceramic Coatings 2024", category: "Guide", description: "We tested the top ceramic coating brands to find the best protection for your premium vehicle.", image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80", link: "/insights/best-ceramic-coatings-2024" },
+            { title: "EV Maintenance Guide", category: "Guide", description: "Everything you need to know about maintaining your electric vehicle for peak performance.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80", link: "/insights/ev-maintenance-guide" },
           ].map((article, index) => (
             <Link key={index} href={article.link} className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block">
               <div className="h-44 overflow-hidden">
