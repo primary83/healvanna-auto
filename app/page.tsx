@@ -64,9 +64,9 @@ export default function Home() {
   ];
 
   const craftServices = [
-    { id: 1, name: "EV Collision Center", category: "EV-Certified Body Shop", city: "Austin, TX", specialties: ["Tesla Certified", "Rivian Trained", "Aluminum Repair"], verified: true, image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80", description: "Factory-certified collision repair for electric vehicles. Specialized equipment for high-voltage systems." },
-    { id: 2, name: "Prestige Auto Body", category: "Luxury Body Shop", city: "Miami, FL", specialties: ["Porsche Certified", "Ferrari Approved", "Concours Finish"], verified: true, image: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80", description: "OEM-certified repairs for European luxury brands. Show-quality paint and finishing." },
-    { id: 3, name: "Heritage Restoration", category: "Classic Restoration", city: "Scottsdale, AZ", specialties: ["Full Frame-Off", "Concours Prep", "Matching Numbers"], verified: true, image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=800&q=80", description: "Award-winning classic car restoration. From barn finds to concours winners." },
+    { id: 1, name: "EV Collision Center", category: "EV-Certified Body Shop", city: "Austin, TX", specialties: ["Tesla Certified", "Rivian Trained", "Aluminum Repair"], verified: true, image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80", description: "Factory-certified collision repair for electric vehicles. Specialized equipment for high-voltage systems.", link: "/craft/ev-collision-center" },
+    { id: 2, name: "Prestige Auto Body", category: "Luxury Body Shop", city: "Miami, FL", specialties: ["Porsche Certified", "Ferrari Approved", "Concours Finish"], verified: true, image: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80", description: "OEM-certified repairs for European luxury brands. Show-quality paint and finishing.", link: "/craft/prestige-auto-body" },
+    { id: 3, name: "Heritage Restoration", category: "Classic Restoration", city: "Scottsdale, AZ", specialties: ["Full Frame-Off", "Concours Prep", "Matching Numbers"], verified: true, image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=800&q=80", description: "Award-winning classic car restoration. From barn finds to concours winners.", link: "/craft/heritage-restoration" },
   ];
 
   const categoryCards = [
@@ -259,7 +259,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-[1300px] mx-auto">
           {craftServices.map((service) => (
-            <div key={service.id} className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group">
+            <Link key={service.id} href={service.link} className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block">
               <div className="h-44 overflow-hidden">
                 <img src={service.image} alt={service.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105" />
               </div>
@@ -274,9 +274,9 @@ export default function Home() {
                 <div className="flex gap-1.5 flex-wrap mb-5">
                   {service.specialties.map((s) => <span key={s} className="text-[9px] tracking-[0.1em] uppercase px-2.5 py-1.5 bg-[rgba(232,237,245,0.05)] text-[#6b7a94] rounded-sm">{s}</span>)}
                 </div>
-                <button className="w-full py-3 text-[11px] tracking-[0.1em] uppercase font-medium border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded">View Profile</button>
+                <span className="w-full py-3 text-[11px] tracking-[0.1em] uppercase font-medium border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded block text-center">View Profile</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="text-center mt-12">
