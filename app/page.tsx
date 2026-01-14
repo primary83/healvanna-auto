@@ -58,9 +58,9 @@ export default function Home() {
   ];
 
   const careServices = [
-    { id: 1, name: "Precision Auto Spa", category: "Premium Detailing", city: "Austin, TX", specialties: ["EV-Safe", "Ceramic Coating", "Paint Correction"], verified: true, image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80", description: "Austin's premier EV detailing specialists. Factory-trained on Tesla, Rivian, and Lucid vehicles." },
-    { id: 2, name: "Elite Ceramic Works", category: "Ceramic & PPF", city: "Miami, FL", specialties: ["XPEL PPF", "Ceramic Pro", "Gtechniq"], verified: true, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80", description: "Certified Ceramic Pro installer. Specializing in exotic and luxury vehicle protection." },
-    { id: 3, name: "Luxe Interior Studio", category: "Interior Restoration", city: "Los Angeles, CA", specialties: ["Leather Repair", "Custom Upholstery", "Vegan Leather"], verified: true, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80", description: "Bespoke interior restoration for discerning owners. Vegan leather specialists for modern EVs." },
+    { id: 1, name: "Precision Auto Spa", category: "Premium Detailing", city: "Austin, TX", specialties: ["EV-Safe", "Ceramic Coating", "Paint Correction"], verified: true, image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80", description: "Austin's premier EV detailing specialists. Factory-trained on Tesla, Rivian, and Lucid vehicles.", link: "/care/precision-auto-spa" },
+    { id: 2, name: "Elite Ceramic Works", category: "Ceramic & PPF", city: "Miami, FL", specialties: ["XPEL PPF", "Ceramic Pro", "Gtechniq"], verified: true, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80", description: "Certified Ceramic Pro installer. Specializing in exotic and luxury vehicle protection.", link: "/care/elite-ceramic-works" },
+    { id: 3, name: "Luxe Interior Studio", category: "Interior Restoration", city: "Los Angeles, CA", specialties: ["Leather Repair", "Custom Upholstery", "Vegan Leather"], verified: true, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80", description: "Bespoke interior restoration for discerning owners. Vegan leather specialists for modern EVs.", link: "/care/luxe-interior-studio" },
   ];
 
   const craftServices = [
@@ -225,7 +225,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-[1300px] mx-auto">
           {careServices.map((service) => (
-            <div key={service.id} className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group">
+            <Link key={service.id} href={service.link} className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block">
               <div className="h-44 overflow-hidden">
                 <img src={service.image} alt={service.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105" />
               </div>
@@ -240,9 +240,9 @@ export default function Home() {
                 <div className="flex gap-1.5 flex-wrap mb-5">
                   {service.specialties.map((s) => <span key={s} className="text-[9px] tracking-[0.1em] uppercase px-2.5 py-1.5 bg-[rgba(232,237,245,0.05)] text-[#6b7a94] rounded-sm">{s}</span>)}
                 </div>
-                <button className="w-full py-3 text-[11px] tracking-[0.1em] uppercase font-medium border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded">View Profile</button>
+                <span className="w-full py-3 text-[11px] tracking-[0.1em] uppercase font-medium border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded block text-center">View Profile</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="text-center mt-12">
