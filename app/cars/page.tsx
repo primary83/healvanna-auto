@@ -2,65 +2,15 @@
 
 import Link from "next/link";
 
-export default function InsightsPage() {
-  const articles = [
-    {
-      slug: "us-evs-vs-chinese-evs",
-      title: "US EVs vs Chinese EVs",
-      category: "Comparison",
-      description: "A comprehensive comparison of American and Chinese electric vehicles. We analyze range, technology, build quality, and value to help you understand the global EV landscape.",
-      image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80",
-      readTime: "8 min read",
-      date: "January 2025"
-    },
-    {
-      slug: "#",
-      title: "Best Ceramic Coatings 2025",
-      category: "Guide",
-      description: "We tested the top ceramic coating brands to find the best protection for your premium vehicle. From Ceramic Pro to Gtechniq, here's what you need to know.",
-      image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80",
-      readTime: "6 min read",
-      date: "Coming Soon"
-    },
-    {
-      slug: "#",
-      title: "EV Maintenance Guide",
-      category: "Guide",
-      description: "Everything you need to know about maintaining your electric vehicle for peak performance. From battery care to brake maintenance, we cover it all.",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-      readTime: "10 min read",
-      date: "Coming Soon"
-    },
-    {
-      slug: "#",
-      title: "Tesla vs Lucid vs Rivian",
-      category: "Comparison",
-      description: "The ultimate American EV showdown. We compare the top three US electric vehicle brands across performance, luxury, and value.",
-      image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80",
-      readTime: "12 min read",
-      date: "Coming Soon"
-    },
-    {
-      slug: "#",
-      title: "PPF vs Ceramic Coating",
-      category: "Guide",
-      description: "Should you get paint protection film or ceramic coating? We break down the pros, cons, and costs of each option to help you decide.",
-      image: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80",
-      readTime: "5 min read",
-      date: "Coming Soon"
-    },
-    {
-      slug: "#",
-      title: "Finding a Trusted Body Shop",
-      category: "Guide",
-      description: "How to find a reputable body shop for your luxury or electric vehicle. Red flags to avoid and certifications to look for.",
-      image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80",
-      readTime: "7 min read",
-      date: "Coming Soon"
-    },
+export default function CarsPage() {
+  const featuredCars = [
+    { id: 1, make: "Tesla", model: "Model S Plaid", year: "2024", category: "Electric Sedan", image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80", range: "396 mi", acceleration: "1.99s", type: "EV", link: "/cars/tesla-model-s-plaid" },
+    { id: 2, make: "Porsche", model: "Taycan Turbo S", year: "2024", category: "Electric GT", image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800&q=80", range: "280 mi", acceleration: "2.6s", type: "EV", link: "/cars/porsche-taycan-turbo-s" },
+    { id: 3, make: "Lucid", model: "Air Sapphire", year: "2024", category: "Ultra-Luxury EV", image: "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=800&q=80", range: "427 mi", acceleration: "1.89s", type: "EV", link: "/cars/lucid-air-sapphire" },
+    { id: 4, make: "Rivian", model: "R1S", year: "2024", category: "Electric SUV", image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80", range: "352 mi", acceleration: "3.0s", type: "EV", link: "/cars/rivian-r1s" },
+    { id: 5, make: "Mercedes-Benz", model: "EQS 580", year: "2024", category: "Luxury EV Flagship", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80", range: "350 mi", acceleration: "4.1s", type: "EV", link: "/cars/mercedes-eqs-580" },
+    { id: 6, make: "BMW", model: "i7 xDrive60", year: "2024", category: "Luxury EV Sedan", image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80", range: "318 mi", acceleration: "4.5s", type: "EV", link: "/cars/bmw-i7-xdrive60" },
   ];
-
-  const categories = ["All", "Comparison", "Guide", "News"];
 
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
@@ -81,7 +31,7 @@ export default function InsightsPage() {
               key={item.name}
               href={item.href}
               className={`text-xs tracking-[0.12em] cursor-pointer transition-colors duration-300 pb-2 ${
-                item.name === "INSIGHTS"
+                item.name === "CARS"
                   ? "text-[#e8edf5] border-b border-[#4a90d9]"
                   : "text-[#6b7a94] hover:text-[#e8edf5] border-b border-transparent"
               }`}
@@ -95,71 +45,45 @@ export default function InsightsPage() {
       {/* Hero */}
       <section className="pt-32 pb-16 px-12 bg-gradient-to-b from-[#0d1424] to-[#0a0f1a]">
         <div className="max-w-[1200px] mx-auto text-center">
-          <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">Insights</div>
+          <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">Vehicle Directory</div>
           <h1 className="text-[clamp(36px,5vw,56px)] font-extralight tracking-tight mb-4">
-            Market <span className="italic text-[#4a90d9]">Intelligence</span>
+            Premium <span className="italic text-[#4a90d9]">Vehicles</span>
           </h1>
           <p className="text-[15px] text-[#6b7a94] max-w-[550px] mx-auto leading-relaxed mb-12">
-            Expert analysis, in-depth comparisons, and comprehensive guides for the discerning automotive enthusiast.
+            Explore our curated selection of exceptional electric and luxury vehicles. In-depth specs, features, and honest assessments.
           </p>
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="py-8 px-12 bg-[#0a0f1a] border-b border-[rgba(74,144,217,0.1)]">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="flex flex-wrap gap-4 justify-center">
-            {categories.map((cat, index) => (
-              <button
-                key={cat}
-                className={`px-6 py-2 rounded-full border transition-all duration-300 text-[13px] ${
-                  index === 0
-                    ? "border-[#4a90d9] bg-[rgba(74,144,217,0.1)] text-[#e8edf5]"
-                    : "border-[rgba(74,144,217,0.2)] text-[#6b7a94] hover:border-[rgba(74,144,217,0.4)] hover:text-[#e8edf5]"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Articles Grid */}
+      {/* Cars Grid */}
       <section className="py-16 px-12 bg-[#0a0f1a]">
         <div className="max-w-[1300px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {articles.map((article, index) => (
+            {featuredCars.map((car) => (
               <Link
-                key={index}
-                href={article.slug === "#" ? "#" : `/insights/${article.slug}`}
-                className={`bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block ${article.slug === "#" ? "opacity-70" : ""}`}
+                key={car.id}
+                href={car.link}
+                className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block"
               >
-                <div className="h-48 overflow-hidden relative">
+                <div className="h-48 overflow-hidden">
                   <img
-                    src={article.image}
-                    alt={article.title}
+                    src={car.image}
+                    alt={`${car.make} ${car.model}`}
                     className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105"
                   />
-                  {article.slug === "#" && (
-                    <div className="absolute inset-0 bg-[#0a0f1a]/60 flex items-center justify-center">
-                      <span className="text-[11px] tracking-[0.15em] uppercase px-4 py-2 bg-[rgba(74,144,217,0.3)] text-[#e8edf5] rounded-full font-medium">Coming Soon</span>
-                    </div>
-                  )}
                 </div>
                 <div className="p-6">
-                  <div className="flex justify-between items-center mb-3">
-                    <div className="text-[9px] tracking-[0.2em] uppercase text-[#4a90d9] font-medium">{article.category}</div>
-                    <div className="text-[10px] text-[#3d4a61]">{article.date}</div>
+                  <div className="flex justify-between items-start mb-2.5">
+                    <div className="text-[9px] tracking-[0.2em] uppercase text-[#4a90d9] font-medium">{car.category}</div>
+                    <span className="text-[9px] tracking-[0.1em] uppercase px-2 py-1 bg-[rgba(74,144,217,0.15)] text-[#4a90d9] rounded-sm font-semibold">{car.type}</span>
                   </div>
-                  <h3 className="text-lg font-medium mb-2">{article.title}</h3>
-                  <p className="text-[13px] text-[#6b7a94] leading-relaxed mb-4 line-clamp-2">{article.description}</p>
-                  <div className="flex justify-between items-center pt-4 border-t border-[rgba(74,144,217,0.1)]">
-                    <span className="text-[11px] text-[#6b7a94]">{article.readTime}</span>
-                    <span className="text-[11px] tracking-[0.1em] uppercase text-[#4a90d9] font-medium group-hover:underline">
-                      {article.slug === "#" ? "Coming Soon" : "Read Article →"}
-                    </span>
+                  <div className="text-lg font-medium mb-1">{car.make} {car.model}</div>
+                  <div className="text-xs text-[#6b7a94] mb-4">{car.year}</div>
+                  <div className="flex justify-between text-[12px] text-[#6b7a94] mb-4 py-3 border-t border-b border-[rgba(74,144,217,0.1)]">
+                    <div><span className="text-[#e8edf5] font-medium">{car.range}</span> Range</div>
+                    <div><span className="text-[#e8edf5] font-medium">{car.acceleration}</span> 0-60</div>
                   </div>
+                  <span className="w-full py-3 text-[11px] tracking-[0.1em] uppercase font-medium border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded block text-center">View Details</span>
                 </div>
               </Link>
             ))}
@@ -167,18 +91,14 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      {/* Newsletter CTA */}
+      {/* CTA Section */}
       <section className="py-20 px-12 bg-[#0d1424]">
         <div className="max-w-[600px] mx-auto text-center">
-          <h2 className="text-[clamp(24px,4vw,36px)] font-extralight mb-4">Stay Informed</h2>
-          <p className="text-[15px] text-[#6b7a94] mb-8">Get the latest insights, comparisons, and guides delivered to your inbox.</p>
-          <div className="flex gap-4 max-w-[400px] mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 bg-[#0a0f1a] border border-[rgba(74,144,217,0.3)] rounded px-4 py-3 text-[14px] text-[#e8edf5] placeholder-[#3d4a61] focus:border-[#4a90d9] focus:outline-none transition-colors"
-            />
-            <button className="px-6 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded">Subscribe</button>
+          <h2 className="text-[clamp(24px,4vw,36px)] font-extralight mb-4">Can't Find Your Vehicle?</h2>
+          <p className="text-[15px] text-[#6b7a94] mb-8">We're constantly adding new vehicles to our directory. Check back soon or subscribe for updates.</p>
+          <div className="flex gap-4 justify-center">
+            <Link href="/insights" className="px-8 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded">Browse Insights</Link>
+            <Link href="/care" className="px-8 py-3 text-[13px] font-medium bg-transparent border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded">Find Care Services</Link>
           </div>
         </div>
       </section>
