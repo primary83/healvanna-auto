@@ -179,6 +179,7 @@ export default function Home() {
               </div>
             </Link>
           ))}
+
         </div>
       </section>
 
@@ -333,8 +334,8 @@ export default function Home() {
             { title: "Cars", links: [
               { name: "Electric Vehicles", href: "/cars" },
               { name: "Luxury Sedans", href: "/cars" },
-              { name: "SUVs", href: "/cars" },
-              { name: "All Brands", href: "/cars" }
+              { name: "SUVs", href: "/cars/suvs" },
+              { name: "All Brands", href: "/cars/brands" }
             ]},
             { title: "Care", links: [
               { name: "Detailing", href: "/care" },
@@ -361,7 +362,7 @@ export default function Home() {
             ]},
             { title: "Company", links: [
               { name: "About", href: "/about" },
-              { name: "For Business", href: "#" },
+              { name: "For Business", href: "/business" },
               { name: "Contact", href: "/contact" }
             ]},
           ].map((column, index) => (
