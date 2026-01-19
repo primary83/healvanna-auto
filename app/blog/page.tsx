@@ -82,10 +82,10 @@ export default function Blog() {
       title: "Top Electric Car Shows to Attend in 2026",
       excerpt: "Discover the most anticipated electric vehicle exhibitions and auto shows happening in 2026, from CES to the LA Auto Show.",
       category: "Events",
-      image: "/blog/electric-car-shows-2026.png",
+      image: "/blog/electric-car-show-2026.png",
       date: "January 15, 2026",
       readTime: "8 min read",
-      slug: "electric-car-shows-2026"
+      slug: "top-electric-car-shows-2026"
     },
     {
       id: 9,
@@ -95,7 +95,7 @@ export default function Blog() {
       image: "/blog/electrify-expo-2026.png",
       date: "January 14, 2026",
       readTime: "7 min read",
-      slug: "electrify-expo-2026"
+      slug: "what-to-expect-electrify-expo-2026"
     },
     {
       id: 10,
@@ -112,7 +112,7 @@ export default function Blog() {
       title: "Best Electric SUVs for Families in 2026",
       excerpt: "Find the perfect electric SUV for your family with our comprehensive guide covering range, safety, cargo space, and value.",
       category: "Reviews",
-      image: "/blog/best-electric-suvs-families-2026.png",
+      image: "/blog/electric-suv-family-2026.png",
       date: "January 10, 2026",
       readTime: "12 min read",
       slug: "best-electric-suvs-families-2026"
