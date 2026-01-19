@@ -40,7 +40,7 @@ export default function EVChargingEtiquette() {
           {/* Featured Image */}
           <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden mb-12">
             <img
-              src="/blog/ev-charging-etiquette.png"
+              src="/blog/top-ev-apps.png"
               alt="EV charging etiquette guide"
               className="w-full h-full object-cover"
             />
