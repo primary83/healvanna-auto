@@ -82,6 +82,7 @@ export default function Home() {
     { name: "CARE", href: "/care" },
     { name: "CRAFT", href: "/craft" },
     { name: "INSIGHTS", href: "/insights" },
+    { name: "BLOG", href: "/blog" },
   ];
 
   const goToSlide = (index: number) => setCurrentSlide(index);
