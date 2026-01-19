@@ -1,191 +1,253 @@
 "use client";
-
-import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 
-const categories = ["All", "News", "Reviews", "Events", "Guides", "Technology"];
-
-const blogPosts = [
-  {
-    id: 1,
-    slug: "top-electric-car-shows-2026",
-    title: "Top Electric Car Shows to Attend in 2026",
-    excerpt: "Discover the biggest and most exciting electric vehicle shows and expos happening in 2026. From Electrify Expo to EV Tech Expo, find out where you can test drive the latest EVs.",
-    category: "Events",
-    date: "January 18, 2026",
-    readTime: "8 min read",
-    image: "/blog/electric-car-show-2026.png",
-  },
-  {
-    id: 2,
-    slug: "what-to-expect-electrify-expo-2026",
-    title: "What to Expect at Electrify Expo 2026",
-    excerpt: "Your complete guide to North America's largest electric vehicle festival. Learn what to do, what to see, and how to make the most of your Electrify Expo experience.",
-    category: "Events",
-    date: "January 18, 2026",
-    readTime: "9 min read",
-    image: "/blog/electrify-expo-2026.png",
-  },
-  {
-    id: 3,
-    slug: "ev-battery-technology-2026",
-    title: "New EV Battery Technology: What's Coming in 2026",
-    excerpt: "Explore the cutting-edge battery innovations transforming electric vehicles. From solid-state batteries to silicon anodes, discover what's powering the future of EVs.",
-    category: "Technology",
-    date: "January 18, 2026",
-    readTime: "10 min read",
-    image: "/blog/ev-battery-technology-2026.png",
-  },
-  {
-    id: 4,
-    slug: "best-electric-suvs-families-2026",
-    title: "Best Electric SUVs for Families in 2026",
-    excerpt: "Find the perfect electric SUV for your family. We compare range, cargo space, safety features, and value across the top family-friendly EVs available in 2026.",
-    category: "Reviews",
-    date: "January 18, 2026",
-    readTime: "10 min read",
-    image: "/blog/electric-suv-family-2026.png",
-  },
-];
-
-export default function BlogPage() {
+export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = ["All", "News", "Reviews", "Events", "Guides", "Technology"];
+
+  const blogPosts = [
+    {
+      id: 1,
+      title: "How to Install a Home EV Charger: Complete Step-by-Step Guide",
+      excerpt: "Everything you need to know about home EV charger installation, from choosing the right equipment to understanding electrical requirements and costs.",
+      category: "Guides",
+      image: "/blog/home-ev-charger-installation.png",
+      date: "January 18, 2026",
+      readTime: "12 min read",
+      slug: "how-to-install-home-ev-charger"
+    },
+    {
+      id: 2,
+      title: "EV Road Trip Planning: Your Complete 2026 Guide",
+      excerpt: "Master the art of electric road trips with our comprehensive guide covering route planning, charging strategies, and essential tips for long-distance EV travel.",
+      category: "Guides",
+      image: "/blog/ev-road-trip-planning.png",
+      date: "January 18, 2026",
+      readTime: "14 min read",
+      slug: "ev-road-trip-planning-guide"
+    },
+    {
+      id: 3,
+      title: "Understanding EV Tax Credits in 2026: Complete Guide",
+      excerpt: "Navigate the complex world of EV tax credits with our comprehensive guide to federal incentives, income limits, and how to maximize your savings.",
+      category: "Guides",
+      image: "/blog/ev-tax-credits-2026.png",
+      date: "January 18, 2026",
+      readTime: "11 min read",
+      slug: "ev-tax-credits-2026"
+    },
+    {
+      id: 4,
+      title: "How to Maintain Your Electric Vehicle: Essential Guide",
+      excerpt: "Discover the simplified maintenance requirements of EVs and learn how to keep your electric vehicle running efficiently for years to come.",
+      category: "Guides",
+      image: "/blog/ev-maintenance-guide.png",
+      date: "January 18, 2026",
+      readTime: "10 min read",
+      slug: "ev-maintenance-guide"
+    },
+    {
+      id: 5,
+      title: "EV Charging Networks Compared: Tesla Supercharger vs Electrify America",
+      excerpt: "A comprehensive comparison of major EV charging networks including reliability, speed, coverage, and pricing to help you choose the best option.",
+      category: "Technology",
+      image: "/blog/ev-charging-networks-compared.png",
+      date: "January 18, 2026",
+      readTime: "13 min read",
+      slug: "ev-charging-networks-compared"
+    },
+    {
+      id: 6,
+      title: "Wireless EV Charging: Is It Ready for Prime Time?",
+      excerpt: "Explore the world of wireless EV charging technology, from how it works to current systems available and what the future holds.",
+      category: "Technology",
+      image: "/blog/wireless-ev-charging.png",
+      date: "January 18, 2026",
+      readTime: "11 min read",
+      slug: "wireless-ev-charging"
+    },
+    {
+      id: 7,
+      title: "Vehicle-to-Home (V2H) Technology: Your EV as a Backup Generator",
+      excerpt: "Learn how V2H technology transforms your electric vehicle into a home backup power system, which vehicles support it, and what equipment you need.",
+      category: "Technology",
+      image: "/blog/vehicle-to-home-v2h.png",
+      date: "January 18, 2026",
+      readTime: "12 min read",
+      slug: "vehicle-to-home-v2h"
+    },
+    {
+      id: 8,
+      title: "Top Electric Car Shows to Attend in 2026",
+      excerpt: "Discover the most anticipated electric vehicle exhibitions and auto shows happening in 2026, from CES to the LA Auto Show.",
+      category: "Events",
+      image: "/blog/electric-car-shows-2026.png",
+      date: "January 15, 2026",
+      readTime: "8 min read",
+      slug: "electric-car-shows-2026"
+    },
+    {
+      id: 9,
+      title: "What to Expect at Electrify Expo 2026",
+      excerpt: "Your complete guide to Electrify Expo 2026 - the largest outdoor electric vehicle festival featuring test drives, exhibits, and more.",
+      category: "Events",
+      image: "/blog/electrify-expo-2026.png",
+      date: "January 14, 2026",
+      readTime: "7 min read",
+      slug: "electrify-expo-2026"
+    },
+    {
+      id: 10,
+      title: "New EV Battery Technology: What's Coming in 2026",
+      excerpt: "Explore the cutting-edge battery technologies set to revolutionize electric vehicles in 2026, from solid-state to sodium-ion innovations.",
+      category: "Technology",
+      image: "/blog/ev-battery-technology-2026.png",
+      date: "January 12, 2026",
+      readTime: "10 min read",
+      slug: "ev-battery-technology-2026"
+    },
+    {
+      id: 11,
+      title: "Best Electric SUVs for Families in 2026",
+      excerpt: "Find the perfect electric SUV for your family with our comprehensive guide covering range, safety, cargo space, and value.",
+      category: "Reviews",
+      image: "/blog/best-electric-suvs-families-2026.png",
+      date: "January 10, 2026",
+      readTime: "12 min read",
+      slug: "best-electric-suvs-families-2026"
+    }
+  ];
 
   const filteredPosts = activeCategory === "All" 
     ? blogPosts 
     : blogPosts.filter(post => post.category === activeCategory);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 px-4">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent" />
-        <div className="max-w-6xl mx-auto relative">
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-sm font-medium mb-6">
-              Healvanna Blog
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Electric Vehicle{" "}
-              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                Insights
-              </span>
-            </h1>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Stay informed with the latest EV news, reviews, technology updates, and event coverage. 
-              Your trusted source for everything electric mobility.
-            </p>
+    <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0f1a]/90 backdrop-blur-md border-b border-[rgba(74,144,217,0.15)]">
+        <div className="max-w-[1200px] mx-auto px-6 py-4 flex justify-between items-center">
+          <a href="/" className="text-[22px] font-light tracking-[0.12em] cursor-pointer">
+            HEALVANNA <span className="text-[#4a90d9]">AUTO</span>
+          </a>
+          <div className="hidden md:flex items-center gap-8">
+            <a href="/" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">HOME</a>
+            <a href="/cars" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">CARS</a>
+            <a href="/care" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">CARE</a>
+            <a href="/craft" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">CRAFT</a>
+            <a href="/insights" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">INSIGHTS</a>
+            <a href="/blog" className="text-[14px] text-[#4a90d9] transition-colors duration-300">BLOG</a>
           </div>
+        </div>
+      </nav>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 px-6">
+        <div className="max-w-[1200px] mx-auto">
+          <span className="text-[#4a90d9] text-[14px] tracking-[0.2em] uppercase mb-4 block">Our Blog</span>
+          <h1 className="text-[48px] md:text-[64px] font-bold leading-[1.1] mb-6">
+            EV Insights &
+            <span className="text-[#4a90d9]"> News</span>
+          </h1>
+          <p className="text-[18px] text-[#6b7a94] max-w-[600px]">
+            Stay informed with the latest electric vehicle news, reviews, buying guides, and industry insights.
+          </p>
+        </div>
+      </section>
+
+      {/* Category Filter */}
+      <section className="px-6 pb-12">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="flex flex-wrap gap-3">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-5 py-2 rounded-full text-[14px] font-medium transition-all duration-300 ${
                   activeCategory === category
-                    ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/25"
-                    : "bg-slate-800/50 text-slate-300 hover:bg-slate-700/50 hover:text-white border border-slate-700/50"
+                    ? "bg-[#4a90d9] text-white"
+                    : "bg-[rgba(74,144,217,0.1)] text-[#6b7a94] hover:bg-[rgba(74,144,217,0.2)] hover:text-[#e8edf5]"
                 }`}
               >
                 {category}
               </button>
             ))}
           </div>
-
-          {/* Article Count */}
-          <p className="text-center text-slate-500 mb-8">
-            Showing {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"}
-          </p>
         </div>
       </section>
 
-      {/* Blog Posts Grid */}
-      <section className="px-4 pb-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
+      {/* Blog Grid */}
+      <section className="px-6 pb-20">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post) => (
-              <Link
+              <a
                 key={post.id}
                 href={`/blog/${post.slug}`}
-                className="group bg-slate-800/30 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-emerald-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/10"
+                className="group bg-[rgba(74,144,217,0.05)] rounded-2xl overflow-hidden border border-[rgba(74,144,217,0.1)] hover:border-[rgba(74,144,217,0.3)] transition-all duration-300"
               >
-                {/* Image Container */}
-                <div className="relative h-56 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10" />
-                  <Image
+                <div className="relative h-[200px] overflow-hidden">
+                  <img
                     src={post.image}
                     alt={post.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <span className="absolute top-4 left-4 z-20 px-3 py-1 bg-emerald-500/90 text-white text-xs font-semibold rounded-full">
-                    {post.category}
-                  </span>
+                  <div className="absolute top-4 left-4">
+                    <span className={`px-3 py-1 text-white text-[11px] font-medium rounded-full ${
+                      post.category === "Technology" ? "bg-[#10b981]" :
+                      post.category === "Events" ? "bg-[#8b5cf6]" :
+                      post.category === "Reviews" ? "bg-[#f59e0b]" :
+                      post.category === "Guides" ? "bg-[#4a90d9]" :
+                      "bg-[#4a90d9]"
+                    }`}>
+                      {post.category}
+                    </span>
+                  </div>
                 </div>
-
-                {/* Content */}
                 <div className="p-6">
-                  <div className="flex items-center gap-3 text-sm text-slate-500 mb-3">
+                  <div className="flex items-center gap-3 text-[12px] text-[#6b7a94] mb-3">
                     <span>{post.date}</span>
-                    <span className="w-1 h-1 rounded-full bg-slate-600" />
+                    <span>•</span>
                     <span>{post.readTime}</span>
                   </div>
-                  <h2 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors duration-300">
+                  <h3 className="text-[18px] font-semibold text-[#e8edf5] mb-3 group-hover:text-[#4a90d9] transition-colors duration-300 line-clamp-2">
                     {post.title}
-                  </h2>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                  </h3>
+                  <p className="text-[14px] text-[#6b7a94] line-clamp-2">
                     {post.excerpt}
                   </p>
-                  <div className="flex items-center text-emerald-400 text-sm font-medium">
-                    Read More
-                    <svg
-                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
       </section>
 
       {/* Newsletter Section */}
-      <section className="px-4 pb-24">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-emerald-900/30 to-cyan-900/30 rounded-3xl p-8 md:p-12 border border-emerald-500/20 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Stay Updated on EV News
-            </h2>
-            <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-              Get the latest electric vehicle news, reviews, and insights delivered to your inbox. 
-              No spam, just the content you care about.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-5 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500/50 transition-colors"
-              />
-              <button className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-emerald-500/25">
-                Subscribe
-              </button>
-            </div>
+      <section className="px-6 pb-20">
+        <div className="max-w-[800px] mx-auto bg-[rgba(74,144,217,0.1)] rounded-3xl p-12 text-center border border-[rgba(74,144,217,0.2)]">
+          <h2 className="text-[32px] font-bold mb-4">Stay Updated</h2>
+          <p className="text-[#6b7a94] mb-8">Get the latest EV news and insights delivered to your inbox weekly.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-[500px] mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 px-6 py-3 bg-[#0a0f1a] border border-[rgba(74,144,217,0.3)] rounded-full text-[#e8edf5] placeholder-[#6b7a94] focus:outline-none focus:border-[#4a90d9]"
+            />
+            <button className="px-8 py-3 bg-[#4a90d9] text-white font-medium rounded-full hover:bg-[#3a7bc8] transition-colors duration-300">
+              Subscribe
+            </button>
           </div>
         </div>
       </section>
-    </main>
+
+      {/* Footer */}
+      <footer className="bg-[#080c14] py-12 px-6 border-t border-[rgba(74,144,217,0.15)]">
+        <div className="max-w-[1200px] mx-auto text-center">
+          <p className="text-[#6b7a94] text-[14px]">© 2025 Healvanna Auto. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
   );
 }
