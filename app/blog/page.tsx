@@ -4,13 +4,73 @@ import { useState } from "react";
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const categories = ["All", "News", "Reviews", "Events", "Guides", "Technology"];
+  const categories = ["All", "News", "Reviews", "Events", "Guides", "Technology", "Insights"];
 
   const blogPosts = [
     {
+      id: 23,
+      title: "The Real Cost of Owning an Electric Car in 2026",
+      excerpt: "From purchase price to charging costs, maintenance savings, and total cost of ownership—everything you need to know about EV costs.",
+      category: "Guides",
+      image: "/blog/real-cost-owning-ev-2026.png",
+      date: "January 24, 2026",
+      readTime: "14 min read",
+      slug: "real-cost-owning-ev-2026"
+    },
+    {
+      id: 24,
+      title: "EV Range Anxiety: What Actually Matters (and What Doesn't)",
+      excerpt: "Separate fact from fiction about EV range concerns. Learn what really affects range and how to eliminate range anxiety for good.",
+      category: "Guides",
+      image: "/blog/ev-range-anxiety.png",
+      date: "January 24, 2026",
+      readTime: "12 min read",
+      slug: "ev-range-anxiety"
+    },
+    {
+      id: 25,
+      title: "Tesla Alternatives: The Best Electric Cars You're Not Hearing About",
+      excerpt: "From budget-friendly options to luxury competitors, discover the best non-Tesla EVs on the market in 2026.",
+      category: "Reviews",
+      image: "/blog/tesla-alternatives.png",
+      date: "January 24, 2026",
+      readTime: "15 min read",
+      slug: "tesla-alternatives"
+    },
+    {
+      id: 26,
+      title: "Solid-State Batteries Explained: Why Everyone's Talking About Them",
+      excerpt: "The next revolution in EV technology promises longer range, faster charging, and improved safety. Here's what you need to know.",
+      category: "Technology",
+      image: "/blog/solid-state-batteries.png",
+      date: "January 24, 2026",
+      readTime: "13 min read",
+      slug: "solid-state-batteries"
+    },
+    {
+      id: 27,
+      title: "Are Electric Cars Actually Better for the Environment?",
+      excerpt: "A comprehensive lifecycle analysis comparing EVs to gas cars—from manufacturing to disposal. The answer may surprise you.",
+      category: "Insights",
+      image: "/blog/ev-environment-impact.png",
+      date: "January 24, 2026",
+      readTime: "14 min read",
+      slug: "ev-environment-impact"
+    },
+    {
+      id: 28,
+      title: "Leasing vs Buying an EV: Which Makes Sense Today?",
+      excerpt: "Tax credits, technology evolution, and depreciation all factor into the lease vs buy decision. Here's how to choose.",
+      category: "Guides",
+      image: "/blog/leasing-vs-buying-ev.png",
+      date: "January 24, 2026",
+      readTime: "13 min read",
+      slug: "leasing-vs-buying-ev"
+    },
+    {
       id: 17,
       title: "Complete Guide to Ceramic Coating Your Tesla Model 3 in 2026",
-      excerpt: "Everything you need to know about ceramic coating for Tesla Model 3, from costs and benefits to maintenance tips and finding the right installer.",
+      excerpt: "Everything you need to know about ceramic coating for Tesla Model 3, from costs and benefits to maintenance tips.",
       category: "Guides",
       image: "/blog/ceramic-coating-tesla-model-3.png",
       date: "January 24, 2026",
@@ -20,7 +80,7 @@ export default function Blog() {
     {
       id: 18,
       title: "PPF vs Ceramic Coating: Which Protection Is Best for Luxury Cars",
-      excerpt: "Compare paint protection film and ceramic coating to find the best protection for your luxury vehicle. Costs, benefits, and when to use both.",
+      excerpt: "Compare paint protection film and ceramic coating to find the best protection for your luxury vehicle.",
       category: "Guides",
       image: "/blog/ppf-vs-ceramic-coating.png",
       date: "January 24, 2026",
@@ -30,7 +90,7 @@ export default function Blog() {
     {
       id: 19,
       title: "How to Protect Matte Paint Finish on Your Exotic Car",
-      excerpt: "Learn the specialized care techniques for matte paint finishes, including safe washing methods, ceramic coating options, and common mistakes to avoid.",
+      excerpt: "Learn the specialized care techniques for matte paint finishes, including safe washing methods and ceramic coating options.",
       category: "Guides",
       image: "/blog/matte-paint-protection.png",
       date: "January 24, 2026",
@@ -40,7 +100,7 @@ export default function Blog() {
     {
       id: 20,
       title: "Electric Vehicle Collision Repair: What Every EV Owner Should Know",
-      excerpt: "Find certified EV collision repair shops, understand repair costs, and learn why Tesla and electric cars need specialized body work.",
+      excerpt: "Find certified EV collision repair shops, understand repair costs, and learn why electric cars need specialized body work.",
       category: "Technology",
       image: "/blog/ev-collision-repair.png",
       date: "January 24, 2026",
@@ -50,7 +110,7 @@ export default function Blog() {
     {
       id: 21,
       title: "Interior Leather Restoration: Bringing Classic Car Seats Back to Life",
-      excerpt: "A comprehensive guide to restoring vintage car leather interiors, from DIY techniques to professional restoration options and costs.",
+      excerpt: "A comprehensive guide to restoring vintage car leather interiors, from DIY techniques to professional restoration.",
       category: "Guides",
       image: "/blog/leather-restoration-classic.png",
       date: "January 24, 2026",
@@ -60,7 +120,7 @@ export default function Blog() {
     {
       id: 22,
       title: "Best Paint Correction Techniques for Black Cars in 2026",
-      excerpt: "Master the art of paint correction on black vehicles. Learn how to remove swirl marks, choose the best polish, and achieve a flawless finish.",
+      excerpt: "Master the art of paint correction on black vehicles. Learn how to remove swirl marks and achieve a flawless finish.",
       category: "Guides",
       image: "/blog/paint-correction-black-cars.png",
       date: "January 24, 2026",
@@ -70,7 +130,7 @@ export default function Blog() {
     {
       id: 1,
       title: "How to Choose Your First Electric Vehicle",
-      excerpt: "A comprehensive guide for first-time EV buyers covering everything from range needs to charging infrastructure and budget considerations.",
+      excerpt: "A comprehensive guide for first-time EV buyers covering everything from range needs to charging infrastructure.",
       category: "Guides",
       image: "/blog/choose-first-ev.png",
       date: "January 19, 2026",
@@ -80,7 +140,7 @@ export default function Blog() {
     {
       id: 2,
       title: "EV vs Hybrid: Which Is Right for You?",
-      excerpt: "Compare fully electric vehicles and hybrids across cost, performance, convenience, and environmental impact to find your perfect match.",
+      excerpt: "Compare fully electric vehicles and hybrids across cost, performance, convenience, and environmental impact.",
       category: "Reviews",
       image: "/blog/ev-vs-hybrid.png",
       date: "January 19, 2026",
@@ -90,7 +150,7 @@ export default function Blog() {
     {
       id: 3,
       title: "The Future of Autonomous EVs",
-      excerpt: "Explore how self-driving technology and electric vehicles are converging to revolutionize transportation in the coming years.",
+      excerpt: "Explore how self-driving technology and electric vehicles are converging to revolutionize transportation.",
       category: "Technology",
       image: "/blog/future-autonomous-evs.png",
       date: "January 19, 2026",
@@ -110,7 +170,7 @@ export default function Blog() {
     {
       id: 5,
       title: "Top EV Apps Every Owner Needs",
-      excerpt: "Discover the essential smartphone apps for finding chargers, planning trips, monitoring your vehicle, and saving money on electricity.",
+      excerpt: "Discover the essential smartphone apps for finding chargers, planning trips, and monitoring your vehicle.",
       category: "Technology",
       image: "/blog/top-ev-apps.png",
       date: "January 19, 2026",
@@ -120,7 +180,7 @@ export default function Blog() {
     {
       id: 6,
       title: "How to Install a Home EV Charger: Complete Guide",
-      excerpt: "Everything you need to know about home EV charger installation, from choosing the right equipment to understanding electrical requirements.",
+      excerpt: "Everything you need to know about home EV charger installation, from choosing equipment to electrical requirements.",
       category: "Guides",
       image: "/blog/home-ev-charger-installation.png",
       date: "January 18, 2026",
@@ -130,7 +190,7 @@ export default function Blog() {
     {
       id: 7,
       title: "EV Road Trip Planning: Your Complete 2026 Guide",
-      excerpt: "Master the art of electric road trips with our comprehensive guide covering route planning, charging strategies, and essential tips.",
+      excerpt: "Master the art of electric road trips with our comprehensive guide covering route planning and charging strategies.",
       category: "Guides",
       image: "/blog/ev-road-trip-planning.png",
       date: "January 18, 2026",
@@ -140,7 +200,7 @@ export default function Blog() {
     {
       id: 8,
       title: "Understanding EV Tax Credits in 2026",
-      excerpt: "Navigate the complex world of EV tax credits with our guide to federal incentives, income limits, and how to maximize your savings.",
+      excerpt: "Navigate the complex world of EV tax credits with our guide to federal incentives and how to maximize savings.",
       category: "Guides",
       image: "/blog/ev-tax-credits-2026.png",
       date: "January 18, 2026",
@@ -150,7 +210,7 @@ export default function Blog() {
     {
       id: 9,
       title: "How to Maintain Your Electric Vehicle",
-      excerpt: "Discover the simplified maintenance requirements of EVs and learn how to keep your electric vehicle running efficiently for years.",
+      excerpt: "Discover the simplified maintenance requirements of EVs and learn how to keep your electric vehicle running efficiently.",
       category: "Guides",
       image: "/blog/ev-maintenance-guide.png",
       date: "January 18, 2026",
@@ -170,7 +230,7 @@ export default function Blog() {
     {
       id: 11,
       title: "Wireless EV Charging: Is It Ready for Prime Time?",
-      excerpt: "Explore the world of wireless EV charging technology, from how it works to current systems available and what the future holds.",
+      excerpt: "Explore the world of wireless EV charging technology, from how it works to current systems available.",
       category: "Technology",
       image: "/blog/wireless-ev-charging.png",
       date: "January 18, 2026",
@@ -180,7 +240,7 @@ export default function Blog() {
     {
       id: 12,
       title: "Vehicle-to-Home (V2H) Technology Explained",
-      excerpt: "Learn how V2H technology transforms your electric vehicle into a home backup power system and which vehicles support it.",
+      excerpt: "Learn how V2H technology transforms your electric vehicle into a home backup power system.",
       category: "Technology",
       image: "/blog/vehicle-to-home-v2h.png",
       date: "January 18, 2026",
@@ -190,7 +250,7 @@ export default function Blog() {
     {
       id: 13,
       title: "Top Electric Car Shows to Attend in 2026",
-      excerpt: "Discover the most anticipated electric vehicle exhibitions and auto shows happening in 2026, from CES to the LA Auto Show.",
+      excerpt: "Discover the most anticipated electric vehicle exhibitions and auto shows happening in 2026.",
       category: "Events",
       image: "/blog/electric-car-show-2026.png",
       date: "January 15, 2026",
@@ -200,7 +260,7 @@ export default function Blog() {
     {
       id: 14,
       title: "What to Expect at Electrify Expo 2026",
-      excerpt: "Your complete guide to Electrify Expo 2026 - the largest outdoor electric vehicle festival featuring test drives and exhibits.",
+      excerpt: "Your complete guide to Electrify Expo 2026 - the largest outdoor electric vehicle festival.",
       category: "Events",
       image: "/blog/electrify-expo-2026.png",
       date: "January 14, 2026",
@@ -210,7 +270,7 @@ export default function Blog() {
     {
       id: 15,
       title: "New EV Battery Technology: What's Coming in 2026",
-      excerpt: "Explore the cutting-edge battery technologies set to revolutionize electric vehicles, from solid-state to sodium-ion innovations.",
+      excerpt: "Explore the cutting-edge battery technologies set to revolutionize electric vehicles.",
       category: "Technology",
       image: "/blog/ev-battery-technology-2026.png",
       date: "January 12, 2026",
@@ -220,7 +280,7 @@ export default function Blog() {
     {
       id: 16,
       title: "Best Electric SUVs for Families in 2026",
-      excerpt: "Find the perfect electric SUV for your family with our comprehensive guide covering range, safety, cargo space, and value.",
+      excerpt: "Find the perfect electric SUV for your family with our comprehensive guide covering range, safety, and value.",
       category: "Reviews",
       image: "/blog/electric-suv-family-2026.png",
       date: "January 10, 2026",
@@ -308,6 +368,7 @@ export default function Blog() {
                       post.category === "Technology" ? "bg-[#10b981]" :
                       post.category === "Events" ? "bg-[#8b5cf6]" :
                       post.category === "Reviews" ? "bg-[#f59e0b]" :
+                      post.category === "Insights" ? "bg-[#ec4899]" :
                       post.category === "Guides" ? "bg-[#4a90d9]" :
                       "bg-[#4a90d9]"
                     }`}>
