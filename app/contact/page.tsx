@@ -49,7 +49,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       {/* Navigation - Matches rest of site */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-12 py-6 flex justify-between items-center bg-[rgba(10,15,26,0.95)] backdrop-blur-md border-b border-[rgba(74,144,217,0.1)]">
-        <Link href="/" className="text-xl tracking-wider font-extralight">Healvanna<span className="text-[#4a90d9]">.</span></Link>
+        <Link href="/" className="text-[22px] font-light tracking-[0.12em]">HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span></Link>
         <div className="flex gap-10">
           {[
             { name: "Home", href: "/" },
