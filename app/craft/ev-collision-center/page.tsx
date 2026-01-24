@@ -74,6 +74,7 @@ export default function EVCollisionCenter() {
               <div className="flex gap-4">
                 <a href="tel:+15125557890" className="px-8 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded">Call Now</a>
                 <a href="mailto:info@evcollisioncenter.com" className="px-8 py-3 text-[13px] font-medium bg-transparent border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded">Get Estimate</a>
+                <Link href="/contact?service=ev-collision-center" className="px-8 py-3 text-[13px] font-medium bg-transparent border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded">Request a Quote</Link>
               </div>
             </div>
 
