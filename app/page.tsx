@@ -74,7 +74,7 @@ export default function Home() {
     { name: "CARE", href: "/care" },
     { name: "CRAFT", href: "/craft" },
     { name: "SHOP", href: "/shop" },
-        { name: "INSIGHTS", href: "/insights" },
+    { name: "INSIGHTS", href: "/insights" },
     { name: "BLOG", href: "/blog" },
   ];
 
