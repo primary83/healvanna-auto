@@ -70,7 +70,21 @@ export default function CarePage() {
     }
   };
 
-  const renderStars = (rating: number) => {
+// Google Search function
+  const searchOnGoogle = () => {
+    const categoryLabels: { [key: string]: string } = {
+      'auto_detailing': 'car detailing',
+      'car_wash': 'car wash',
+      'auto_repair': 'auto repair',
+      'body_shops': 'auto body shop',
+      'car_dealers': 'car dealers',
+      'evcharging': 'EV charging stations'
+    };
+    const searchTerm = categoryLabels[category] || 'car detailing';
+    const query = encodeURIComponent(`${searchTerm} near ${location}`);
+    window.open(`https://www.google.com/search?q=${query}`, '_blank');
+  };  
+const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalf = rating % 1 >= 0.5;
     const stars = [];
@@ -168,6 +182,12 @@ export default function CarePage() {
                   className="w-full py-3 px-6 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded disabled:opacity-50"
                 >
                   {loading ? "Searching..." : "Find Services"}
+                </button>
+<button
+                  onClick={searchOnGoogle}
+                  className="w-full py-3 px-6 text-[13px] font-medium border border-[#4a90d9] text-[#4a90d9] hover:bg-[#4a90d9] hover:text-[#0a0f1a] transition-all duration-300 rounded"
+                >
+                  Search on Google
                 </button>
               </div>
             </div>
