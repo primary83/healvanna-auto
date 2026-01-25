@@ -27,10 +27,24 @@ export default function CarePage() {
   const [businesses, setBusinesses] = useState<Business[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [location, setLocation] = useState("Austin, TX");
+  const [location, setLocation] = useState("");
   const [category, setCategory] = useState("auto_detailing");
   const [hasSearched, setHasSearched] = useState(false);
-
+// Auto-detect user location on page load
+  useEffect(() => {
+    const detectLocation = async () => {
+      try {
+        const response = await fetch('https://ip-api.com/json/');
+        const data = await response.json();
+        if (data.status === 'success') {
+          setLocation(`${data.city}, ${data.regionName}`);
+        }
+      } catch (error) {
+        console.log('Could not detect location');
+      }
+    };
+    detectLocation();
+  }, []);
   const categories = [
     { value: "auto_detailing", label: "Auto Detailing", description: "Detailing & Ceramic Coating" },
     { value: "vehicle_wraps", label: "PPF & Wraps", description: "Paint Protection Film" },
