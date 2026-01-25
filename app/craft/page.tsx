@@ -1,101 +1,180 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
+import { useGeoLocation, calculateDistance } from "../hooks/useGeoLocation";
 
-interface Business {
+interface CraftProvider {
   id: string;
   name: string;
-  image_url: string;
-  url: string;
-  review_count: number;
-  categories: { alias: string; title: string }[];
+  category: string;
+  city: string;
+  state: string;
+  address: string;
+  specialties: string[];
+  verified: boolean;
+  image: string;
+  description: string;
   rating: number;
-  location: {
-    address1: string;
-    city: string;
-    state: string;
-    zip_code: string;
-    display_address: string[];
-  };
+  reviewCount: number;
   phone: string;
-  display_phone: string;
-  distance: number;
+  latitude: number;
+  longitude: number;
+  isOpen: boolean;
+  distance: string;
+  url: string;
+  priceRange: string;
 }
 
+// Location coordinates for distance calculation when user selects a location
+const locationCoordinates: Record<string, { lat: number; lon: number }> = {
+  "Orlando, FL": { lat: 28.5383, lon: -81.3792 },
+  "Winter Garden, FL": { lat: 28.5653, lon: -81.5862 },
+  "Tampa, FL": { lat: 27.9506, lon: -82.4572 },
+  "Jacksonville, FL": { lat: 30.3322, lon: -81.6557 },
+  "Miami, FL": { lat: 25.7617, lon: -80.1918 },
+  "Kissimmee, FL": { lat: 28.2920, lon: -81.4076 },
+  "Austin, TX": { lat: 30.2672, lon: -97.7431 },
+  "Los Angeles, CA": { lat: 34.0522, lon: -118.2437 },
+  "New York, NY": { lat: 40.7128, lon: -74.006 },
+};
+
+const categories = ["All", "Body Shops", "Auto Glass", "Collision Repair", "Auto Painting"];
+const locations = ["My Location", "Orlando, FL", "Winter Garden, FL", "Kissimmee, FL", "Tampa, FL", "Jacksonville, FL", "Miami, FL", "Austin, TX", "Los Angeles, CA", "New York, NY"];
+const sortOptions = [
+  { label: "Nearest", value: "distance" },
+  { label: "Highest Rated", value: "rating" },
+  { label: "Most Reviews", value: "reviews" },
+];
+
 export default function CraftPage() {
-  const [businesses, setBusinesses] = useState<Business[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [location, setLocation] = useState("Austin, TX");
-  const [category, setCategory] = useState("body_shops");
-  const [hasSearched, setHasSearched] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedLocation, setSelectedLocation] = useState("My Location");
+  const [sortBy, setSortBy] = useState("distance");
+  const [providers, setProviders] = useState<CraftProvider[]>([]);
+  const [isLoadingProviders, setIsLoadingProviders] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const categories = [
-    { value: "body_shops", label: "Body Shops", description: "Collision & Repair" },
-    { value: "auto_repair", label: "Auto Repair", description: "Mechanical Services" },
-    { value: "car_restoration", label: "Restoration", description: "Classic & Custom" },
-  ];
+  // IP-based geolocation
+  const { latitude: userLat, longitude: userLon, isLoading: isLoadingLocation, detectedLocation } = useGeoLocation();
 
-  const popularLocations = [
-    "Austin, TX",
-    "Miami, FL",
-    "Los Angeles, CA",
-    "New York, NY",
-    "Houston, TX",
-    "Phoenix, AZ",
-  ];
+  // Determine the center point for distance calculation
+  const { centerLat, centerLon, displayLocation } = useMemo(() => {
+    if (selectedLocation === "My Location") {
+      return {
+        centerLat: userLat,
+        centerLon: userLon,
+        displayLocation: detectedLocation,
+      };
+    }
+    const coords = locationCoordinates[selectedLocation];
+    if (coords) {
+      return {
+        centerLat: coords.lat,
+        centerLon: coords.lon,
+        displayLocation: selectedLocation,
+      };
+    }
+    return {
+      centerLat: userLat,
+      centerLon: userLon,
+      displayLocation: detectedLocation,
+    };
+  }, [selectedLocation, userLat, userLon, detectedLocation]);
 
-  const searchBusinesses = async () => {
-    setLoading(true);
-    setError("");
-    setHasSearched(true);
+  // Fetch providers from Yelp API when location changes
+  useEffect(() => {
+    const fetchProviders = async () => {
+      if (!centerLat || !centerLon) return;
 
-    try {
-      const response = await fetch(
-        `/api/craft?location=${encodeURIComponent(location)}&category=${category}`
-      );
+      setIsLoadingProviders(true);
+      setError(null);
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch businesses");
+      try {
+        // Yelp categories for body shops, collision repair, and related services
+        const categories = "bodyshops,autoglass,auto_paint";
+        const params = new URLSearchParams({
+          latitude: centerLat.toString(),
+          longitude: centerLon.toString(),
+          categories,
+          limit: "20",
+          sort_by: sortBy === "distance" ? "distance" : sortBy === "rating" ? "rating" : "review_count",
+        });
+
+        if (searchQuery) {
+          params.append("term", searchQuery);
+        }
+
+        const response = await fetch(`/api/yelp?${params.toString()}`);
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch providers");
+        }
+
+        const data = await response.json();
+        setProviders(data.providers || []);
+      } catch (err) {
+        console.error("Error fetching providers:", err);
+        setError("Unable to load shops. Please try again later.");
+      } finally {
+        setIsLoadingProviders(false);
       }
+    };
 
-      const data = await response.json();
-      setBusinesses(data.businesses || []);
-    } catch (err) {
-      setError("Unable to load services. Please try again.");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchProviders();
+  }, [centerLat, centerLon, sortBy, searchQuery]);
 
-  const renderStars = (rating: number) => {
-    const fullStars = Math.floor(rating);
-    const hasHalf = rating % 1 >= 0.5;
-    const stars = [];
+  // Filter and sort providers
+  const filteredProviders = useMemo(() => {
+    // Recalculate distances from center point
+    const providersWithDistance = providers.map((provider) => {
+      const distance = calculateDistance(
+        centerLat,
+        centerLon,
+        provider.latitude,
+        provider.longitude
+      );
+      return {
+        ...provider,
+        calculatedDistance: distance,
+        distanceText: `${distance.toFixed(1)} mi`,
+      };
+    });
 
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<span key={i} className="text-[#4a90d9]">★</span>);
-    }
-    if (hasHalf) {
-      stars.push(<span key="half" className="text-[#4a90d9]">½</span>);
-    }
-    for (let i = stars.length; i < 5; i++) {
-      stars.push(<span key={i} className="text-[#3d4a61]">★</span>);
+    let result = providersWithDistance.filter((provider) => {
+      const categoryMatch = selectedCategory === "All" ||
+        provider.category.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+        provider.specialties.some(s => s.toLowerCase().includes(selectedCategory.toLowerCase()));
+
+      return categoryMatch;
+    });
+
+    switch (sortBy) {
+      case "distance":
+        result.sort((a, b) => a.calculatedDistance - b.calculatedDistance);
+        break;
+      case "rating":
+        result.sort((a, b) => b.rating - a.rating);
+        break;
+      case "reviews":
+        result.sort((a, b) => b.reviewCount - a.reviewCount);
+        break;
     }
 
-    return stars;
-  };
+    return result;
+  }, [providers, selectedCategory, sortBy, centerLat, centerLon]);
+
+  const isLoading = isLoadingLocation || isLoadingProviders;
 
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-12 py-5 flex justify-between items-center bg-gradient-to-b from-[#0a0f1a]/95 to-transparent backdrop-blur-xl">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-[#0a0f1a]/95 backdrop-blur-xl border-b border-[rgba(74,144,217,0.1)]">
         <Link href="/" className="text-[22px] font-light tracking-[0.12em] cursor-pointer">
           HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
         </Link>
-        <div className="flex gap-10">
+        <div className="hidden md:flex gap-10">
           {[
             { name: "HOME", href: "/" },
             { name: "CARS", href: "/cars" },
@@ -118,260 +197,285 @@ export default function CraftPage() {
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="pt-32 pb-16 px-12 bg-gradient-to-b from-[#0d1424] to-[#0a0f1a]">
-        <div className="max-w-[1200px] mx-auto text-center">
-          <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">Craft Directory</div>
-          <h1 className="text-[clamp(36px,5vw,56px)] font-extralight tracking-tight mb-4">
-            Body Shops & <span className="italic text-[#4a90d9]">Restoration</span>
-          </h1>
-          <p className="text-[15px] text-[#6b7a94] max-w-[550px] mx-auto leading-relaxed mb-12">
-            Find certified collision repair specialists, expert mechanics, and master restoration craftsmen in your area.
-          </p>
-
-          {/* Search Form */}
-          <div className="bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.2)] rounded-lg p-8 max-w-[800px] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              {/* Category Selection */}
-              <div>
-                <label className="block text-[10px] tracking-[0.2em] uppercase text-[#6b7a94] mb-2 font-medium">Service Type</label>
-                <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="w-full bg-[#0a0f1a] border border-[rgba(74,144,217,0.3)] rounded px-4 py-3 text-[14px] text-[#e8edf5] focus:border-[#4a90d9] focus:outline-none transition-colors"
-                >
-                  {categories.map((cat) => (
-                    <option key={cat.value} value={cat.value}>
-                      {cat.label}
-                    </option>
-                  ))}
-                </select>
+      {/* Header */}
+      <section className="pt-32 pb-8 px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] font-medium">Craft Directory</div>
+            {displayLocation && (
+              <div className="flex items-center gap-1.5 text-[11px] text-[#6b7a94] bg-[rgba(74,144,217,0.1)] px-3 py-1 rounded-full">
+                <svg className="w-3.5 h-3.5 text-[#4a90d9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                {isLoadingLocation && selectedLocation === "My Location" ? "Detecting location..." : `Near ${displayLocation}`}
               </div>
-
-              {/* Location Input */}
-              <div>
-                <label className="block text-[10px] tracking-[0.2em] uppercase text-[#6b7a94] mb-2 font-medium">Location</label>
-                <input
-                  type="text"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  placeholder="City, State or Zip"
-                  className="w-full bg-[#0a0f1a] border border-[rgba(74,144,217,0.3)] rounded px-4 py-3 text-[14px] text-[#e8edf5] placeholder-[#3d4a61] focus:border-[#4a90d9] focus:outline-none transition-colors"
-                />
-              </div>
-
-              {/* Search Button */}
-              <div className="flex items-end">
-                <button
-                  onClick={searchBusinesses}
-                  disabled={loading}
-                  className="w-full py-3 px-6 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded disabled:opacity-50"
-                >
-                  {loading ? "Searching..." : "Find Services"}
-                </button>
-              </div>
-            </div>
-
-            {/* Popular Locations */}
-            <div className="flex flex-wrap gap-2 justify-center">
-              <span className="text-[11px] text-[#6b7a94] mr-2">Popular:</span>
-              {popularLocations.map((loc) => (
-                <button
-                  key={loc}
-                  onClick={() => setLocation(loc)}
-                  className={`text-[11px] px-3 py-1 rounded transition-colors ${
-                    location === loc
-                      ? "bg-[rgba(74,144,217,0.2)] text-[#4a90d9]"
-                      : "text-[#6b7a94] hover:text-[#e8edf5]"
-                  }`}
-                >
-                  {loc}
-                </button>
-              ))}
-            </div>
+            )}
           </div>
+          <h1 className="text-[clamp(32px,5vw,56px)] font-extralight tracking-tight mb-4">
+            Body Shops & <span className="font-semibold bg-gradient-to-r from-[#e8edf5] to-[#4a90d9] bg-clip-text text-transparent">Restoration</span>
+          </h1>
+          <p className="text-[15px] text-[#6b7a94] max-w-[600px] leading-relaxed">
+            Find certified collision repair specialists, luxury body shops, and master restoration craftsmen. Real reviews and ratings powered by Yelp.
+          </p>
         </div>
       </section>
 
-      {/* Category Pills */}
-      <section className="py-8 px-12 bg-[#0a0f1a] border-b border-[rgba(74,144,217,0.1)]">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="flex flex-wrap gap-4 justify-center">
+      {/* Search and Filters */}
+      <section className="px-6 md:px-12 pb-8">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex flex-col md:flex-row gap-4 mb-6">
+            <div className="flex-1 relative">
+              <input
+                type="text"
+                placeholder="Search by name, specialty, or certification..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-5 py-4 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.2)] rounded text-[#e8edf5] placeholder-[#3d4a61] focus:outline-none focus:border-[#4a90d9] transition-colors"
+              />
+              <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#3d4a61]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <select
+              value={selectedLocation}
+              onChange={(e) => setSelectedLocation(e.target.value)}
+              className="px-5 py-4 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.2)] rounded text-[#e8edf5] text-sm focus:outline-none focus:border-[#4a90d9] cursor-pointer min-w-[180px]"
+            >
+              {locations.map((loc) => (
+                <option key={loc} value={loc} className="bg-[#0a0f1a]">
+                  {loc === "My Location" ? `📍 ${loc}${detectedLocation ? ` (${detectedLocation})` : ""}` : loc}
+                </option>
+              ))}
+            </select>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-5 py-4 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.2)] rounded text-[#e8edf5] text-sm focus:outline-none focus:border-[#4a90d9] cursor-pointer"
+            >
+              {sortOptions.map((option) => (
+                <option key={option.value} value={option.value} className="bg-[#0a0f1a]">
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Category Pills */}
+          <div className="flex flex-wrap gap-2 mb-6">
             {categories.map((cat) => (
               <button
-                key={cat.value}
-                onClick={() => setCategory(cat.value)}
-                className={`px-6 py-3 rounded-lg border transition-all duration-300 ${
-                  category === cat.value
-                    ? "border-[#4a90d9] bg-[rgba(74,144,217,0.1)] text-[#e8edf5]"
-                    : "border-[rgba(74,144,217,0.2)] text-[#6b7a94] hover:border-[rgba(74,144,217,0.4)] hover:text-[#e8edf5]"
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 py-2 text-xs tracking-wider rounded-full transition-colors ${
+                  selectedCategory === cat
+                    ? "bg-[#4a90d9] text-[#0a0f1a] font-medium"
+                    : "bg-[rgba(74,144,217,0.1)] text-[#6b7a94] hover:text-[#e8edf5] border border-[rgba(74,144,217,0.2)]"
                 }`}
               >
-                <div className="text-[13px] font-medium">{cat.label}</div>
-                <div className="text-[10px] opacity-70">{cat.description}</div>
+                {cat}
               </button>
             ))}
           </div>
+
+          <p className="text-sm text-[#6b7a94]">
+            {isLoading ? (
+              "Loading shops..."
+            ) : error ? (
+              <span className="text-[#ef4444]">{error}</span>
+            ) : (
+              <>
+                Showing <span className="text-[#e8edf5] font-medium">{filteredProviders.length}</span> certified shops
+                {displayLocation && <span> near <span className="text-[#4a90d9]">{displayLocation}</span></span>}
+              </>
+            )}
+          </p>
         </div>
       </section>
 
-      {/* Results */}
-      <section className="py-16 px-12 bg-[#0a0f1a]">
-        <div className="max-w-[1300px] mx-auto">
-          {error && (
-            <div className="text-center py-12">
-              <p className="text-[#ff6b6b]">{error}</p>
-            </div>
-          )}
-
-          {loading && (
-            <div className="text-center py-12">
-              <div className="inline-block w-8 h-8 border-2 border-[#4a90d9] border-t-transparent rounded-full animate-spin mb-4"></div>
-              <p className="text-[#6b7a94]">Finding expert craftsmen near you...</p>
-            </div>
-          )}
-
-          {!loading && !error && hasSearched && businesses.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-[#6b7a94]">No services found in this area. Try a different location.</p>
-            </div>
-          )}
-
-          {!loading && !hasSearched && (
-            <div className="text-center py-12">
-              <div className="text-[#4a90d9] text-4xl mb-4">🔧</div>
-              <p className="text-[#6b7a94] text-lg mb-2">Ready to find expert craftsmen</p>
-              <p className="text-[#3d4a61] text-sm">Enter your location and click "Find Services" to get started</p>
-            </div>
-          )}
-
-          {!loading && businesses.length > 0 && (
-            <>
-              <div className="flex justify-between items-center mb-8">
-                <div>
-                  <h2 className="text-xl font-light">
-                    {businesses.length} Services Found
-                  </h2>
-                  <p className="text-[13px] text-[#6b7a94]">
-                    {categories.find(c => c.value === category)?.label} in {location}
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-                {businesses.map((business) => (
-                  <div
-                    key={business.id}
-                    className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group"
-                  >
-                    <div className="h-48 overflow-hidden bg-[#0d1424]">
-                      {business.image_url ? (
-                        <img
-                          src={business.image_url}
-                          alt={business.name}
-                          className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-[#3d4a61]">
-                          <span className="text-4xl">🔧</span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-6">
-                      <div className="flex justify-between items-start mb-2">
-                        <div className="text-[9px] tracking-[0.2em] uppercase text-[#4a90d9] font-medium">
-                          {business.categories[0]?.title || "Auto Service"}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          {renderStars(business.rating)}
-                        </div>
-                      </div>
-                      <h3 className="text-lg font-medium mb-1 line-clamp-1">{business.name}</h3>
-                      <p className="text-xs text-[#6b7a94] mb-3">
-                        {business.location.display_address.join(", ")}
-                      </p>
-                      <div className="flex items-center gap-4 text-[12px] text-[#6b7a94] mb-4 py-3 border-t border-b border-[rgba(74,144,217,0.1)]">
-                        <div>
-                          <span className="text-[#e8edf5] font-medium">{business.rating}</span> Rating
-                        </div>
-                        <div>
-                          <span className="text-[#e8edf5] font-medium">{business.review_count}</span> Reviews
-                        </div>
-                      </div>
-                      {business.display_phone && (
-                        <p className="text-[13px] text-[#6b7a94] mb-4">{business.display_phone}</p>
-                      )}
-                      <a
-                        href={business.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full py-3 text-[11px] tracking-[0.1em] uppercase font-medium border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded text-center"
-                      >
-                        View on Yelp
-                      </a>
+      {/* Provider Grid - Directory Style */}
+      <section className="px-6 md:px-12 pb-24">
+        <div className="max-w-[1400px] mx-auto">
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="bg-[rgba(15,22,40,0.6)] rounded-xl p-5 border border-[rgba(74,144,217,0.12)] animate-pulse">
+                  <div className="flex gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-lg bg-[rgba(74,144,217,0.1)]"></div>
+                    <div className="flex-1">
+                      <div className="h-4 bg-[rgba(74,144,217,0.1)] rounded mb-2 w-3/4"></div>
+                      <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/2"></div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </>
+                  <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/3 mb-4"></div>
+                  <div className="flex gap-2">
+                    <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-16"></div>
+                    <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-24"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : error ? (
+            <div className="text-center py-12">
+              <p className="text-[#6b7a94] mb-4">{error}</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="px-6 py-2 bg-[#4a90d9] text-[#0a0f1a] rounded hover:bg-[#6ba8eb] transition-colors"
+              >
+                Try Again
+              </button>
+            </div>
+          ) : filteredProviders.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-[#6b7a94]">No shops found in this area. Try a different location or search term.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {filteredProviders.map((provider) => (
+                <a
+                  key={provider.id}
+                  href={provider.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[rgba(15,22,40,0.6)] rounded-xl p-5 border border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.35)] transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 cursor-pointer group"
+                >
+                  {/* Top Row: Image + Info */}
+                  <div className="flex gap-4 mb-4">
+                    {/* Image Container */}
+                    <div className="w-14 h-14 rounded-lg bg-[rgba(74,144,217,0.1)] flex items-center justify-center flex-shrink-0 overflow-hidden">
+                      {provider.image ? (
+                        <img
+                          src={provider.image}
+                          alt={provider.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <svg className="w-7 h-7 text-[#4a90d9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      )}
+                    </div>
+
+                    {/* Provider Info */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-[15px] font-semibold text-[#e8edf5] mb-1 truncate group-hover:text-[#4a90d9] transition-colors">
+                        {provider.name}
+                      </h3>
+                      <p className="text-[12px] text-[#6b7a94] truncate">
+                        {provider.address}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Rating Row */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-[#f5c518] text-sm">★</span>
+                    <span className="text-[13px] font-medium text-[#e8edf5]">{provider.rating}</span>
+                    <span className="text-[12px] text-[#6b7a94]">({provider.reviewCount})</span>
+                    <span className="text-[12px] text-[#4a90d9] ml-1">{provider.distanceText}</span>
+                    {provider.priceRange && (
+                      <span className="text-[12px] text-[#6b7a94] ml-auto">{provider.priceRange}</span>
+                    )}
+                  </div>
+
+                  {/* Status & Category Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    <span className={`text-[10px] font-semibold px-3 py-1.5 rounded-md ${
+                      provider.isOpen
+                        ? "bg-[rgba(34,197,94,0.15)] text-[#22c55e]"
+                        : "bg-[rgba(239,68,68,0.15)] text-[#ef4444]"
+                    }`}>
+                      {provider.isOpen ? "Open" : "Closed"}
+                    </span>
+                    <span className="text-[10px] font-medium px-3 py-1.5 rounded-md bg-[rgba(74,144,217,0.12)] text-[#4a90d9]">
+                      {provider.category}
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
           )}
+        </div>
+      </section>
+
+      {/* Yelp Attribution */}
+      <section className="px-6 md:px-12 pb-8">
+        <div className="max-w-[1400px] mx-auto text-center">
+          <p className="text-[11px] text-[#3d4a61]">
+            Business data provided by <span className="text-[#c41200]">Yelp</span>
+          </p>
+        </div>
+      </section>
+
+      {/* Insurance Partner Section */}
+      <section className="px-6 md:px-12 pb-24">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="bg-[rgba(74,144,217,0.05)] border border-[rgba(74,144,217,0.15)] rounded-lg p-8 md:p-12">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 className="text-2xl font-light mb-4">Insurance Claim Assistance</h3>
+                <p className="text-[#6b7a94] mb-6">
+                  All our verified shops work directly with major insurance providers. Get OEM-quality repairs without the hassle of dealing with adjusters.
+                </p>
+                <div className="flex flex-wrap gap-4 text-sm text-[#6b7a94]">
+                  <span className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-[#4a90d9]" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Direct Insurance Billing
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-[#4a90d9]" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    OEM Parts Guaranteed
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-[#4a90d9]" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Lifetime Warranty
+                  </span>
+                </div>
+              </div>
+              <div className="text-center md:text-right">
+                <Link href="/contact" className="inline-block px-8 py-3 bg-[#4a90d9] text-[#0a0f1a] font-medium rounded hover:bg-[#6ba8eb] transition-colors">
+                  Find a Shop Near You
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#0a0f1a] pt-16 pb-8 px-12 border-t border-[rgba(74,144,217,0.15)]">
-        <div className="grid grid-cols-6 gap-10 max-w-[1200px] mx-auto mb-12">
+      <footer className="bg-[#0a0f1a] pt-16 pb-8 px-6 md:px-12 border-t border-[rgba(74,144,217,0.15)]">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 max-w-[1200px] mx-auto mb-12">
           {[
-            { title: "Cars", links: [
-              { name: "Electric Vehicles", href: "/cars" },
-              { name: "Luxury Sedans", href: "/cars" },
-              { name: "SUVs", href: "/cars" },
-              { name: "All Brands", href: "/cars" }
-            ]},
-            { title: "Care", links: [
-              { name: "Detailing", href: "/care" },
-              { name: "Ceramic Coating", href: "/care" },
-              { name: "PPF", href: "/care" },
-              { name: "Interior", href: "/care" }
-            ]},
-            { title: "Craft", links: [
-              { name: "Body Shops", href: "/craft" },
-              { name: "Auto Repair", href: "/craft" },
-              { name: "Restoration", href: "/craft" }
-            ]},
-            { title: "Markets", links: [
-              { name: "Austin", href: "/care?location=Austin" },
-              { name: "Miami", href: "/care?location=Miami" },
-              { name: "Los Angeles", href: "/care?location=Los Angeles" },
-              { name: "New York", href: "/care?location=New York" }
-            ]},
-            { title: "Insights", links: [
-              { name: "Comparisons", href: "/insights" },
-              { name: "Buying Guides", href: "/insights" },
-              { name: "Maintenance", href: "/insights" }
-            ]},
-            { title: "Company", links: [
-              { name: "About", href: "/about" },
-              { name: "For Business", href: "#" },
-              { name: "Contact", href: "/contact" }
-            ]},
+            { title: "Cars", links: ["Electric Vehicles", "Luxury Sedans", "SUVs", "All Brands"] },
+            { title: "Care", links: ["Detailing", "Ceramic Coating", "PPF", "Interior"] },
+            { title: "Craft", links: ["EV Body Shops", "Luxury Collision", "Restoration"] },
+            { title: "Insights", links: ["Comparisons", "Buying Guides", "Maintenance"] },
+            { title: "Company", links: ["About", "For Business", "Contact"] },
           ].map((column, index) => (
             <div key={index}>
               <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">{column.title}</h4>
               {column.links.map((link) => (
-                <Link key={link.name} href={link.href} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>
+                <a key={link} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">
+                  {link}
+                </a>
               ))}
             </div>
           ))}
         </div>
-        <div className="flex justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)] max-w-[1200px] mx-auto">
-          <div className="text-[11px] text-[#3d4a61]">© 2025 Healvanna. All rights reserved.</div>
+        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)] max-w-[1200px] mx-auto gap-4">
+          <div className="text-[11px] text-[#3d4a61]">© 2024 Healvanna Auto. All rights reserved.</div>
           <div className="flex gap-6">
-            {[
-              { name: "Privacy", href: "/privacy" },
-              { name: "Terms", href: "/terms" },
-              { name: "Cookies", href: "#" }
-            ].map((link) => <Link key={link.name} href={link.href} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>)}
+            {["Privacy", "Terms", "Cookies"].map((link) => (
+              <span key={link} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">
+                {link}
+              </span>
+            ))}
           </div>
         </div>
       </footer>
