@@ -116,19 +116,19 @@ export default function CarsPage() {
             </div>
           </Link>
 
-          {/* Coming Soon Brands */}
+          {/* View Models → Brands */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { name: "Rivian", models: "R1T · R1S · R2" },
-              { name: "BMW", models: "i4 · i7 · iX" },
-              { name: "Mercedes-Benz", models: "EQS · EQE · EQB" },
-              { name: "Porsche", models: "Taycan · Macan EV" },
+{ name: "Rivian", models: "R1T · R1S", link: "/cars/rivian" },
+{ name: "BMW", models: "i4 · i7 · iX", link: "/cars/bmw" },
+{ name: "Mercedes-Benz", models: "EQS · EQE · EQB", link: "/cars/mercedes" },
+{ name: "Porsche", models: "Taycan · Macan EV", link: "/cars/porsche" },
             ].map((brand) => (
-              <div key={brand.name} className="bg-[rgba(15,22,40,0.5)] rounded-xl p-5 border border-[rgba(74,144,217,0.1)] opacity-60">
+              <Link href={brand.link} key={brand.name} className="bg-[rgba(15,22,40,0.5)] rounded-xl p-5 border border-[rgba(74,144,217,0.1)] opacity-60">
                 <h4 className="text-base font-medium text-white mb-1">{brand.name}</h4>
                 <p className="text-[11px] text-[#6b7a94] mb-2">{brand.models}</p>
-                <span className="text-[9px] tracking-[0.1em] uppercase text-[#4a90d9]">Coming Soon</span>
-              </div>
+                <span className="text-[9px] tracking-[0.1em] uppercase text-[#4a90d9]">View Models →</span>
+              </Link>
             ))}
           </div>
         </div>
