@@ -398,7 +398,7 @@ export default function Home() {
             ]},
             { title: "Resources", links: [
               { name: "Blog", href: "/blog" },
-              { name: "SHOP", href: "/shop" },`n          { name: "INSIGHTS", href: "/insights" },
+             { name: "Insights", href: "/insights" },
               { name: "Guides", href: "/blog" }
             ]},
             { title: "Company", links: [
