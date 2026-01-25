@@ -73,7 +73,8 @@ export default function Home() {
     { name: "CARS", href: "/cars" },
     { name: "CARE", href: "/care" },
     { name: "CRAFT", href: "/craft" },
-    { name: "INSIGHTS", href: "/insights" },
+    { name: "SHOP", href: "/shop" },
+        { name: "INSIGHTS", href: "/insights" },
     { name: "BLOG", href: "/blog" },
   ];
 
@@ -397,7 +398,7 @@ export default function Home() {
             ]},
             { title: "Resources", links: [
               { name: "Blog", href: "/blog" },
-              { name: "Insights", href: "/insights" },
+              { name: "SHOP", href: "/shop" },`n          { name: "INSIGHTS", href: "/insights" },
               { name: "Guides", href: "/blog" }
             ]},
             { title: "Company", links: [
