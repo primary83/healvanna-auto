@@ -71,7 +71,7 @@ export default function CarePage() {
   };
 
 // Google Search function
-  const searchOnGoogle = () => {
+  const searchOnGoogle = () => { if (!location || location.trim() === '') { alert('Please enter your zip code or city to search'); return; }
     const categoryLabels: { [key: string]: string } = {
       'auto_detailing': 'car detailing',
       'car_wash': 'car wash',
