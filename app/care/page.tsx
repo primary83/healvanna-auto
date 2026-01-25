@@ -34,10 +34,10 @@ export default function CarePage() {
   useEffect(() => {
     const detectLocation = async () => {
       try {
-        const response = await fetch('https://ip-api.com/json/');
+        const response = await fetch('https://ipapi.co/json/');
         const data = await response.json();
-        if (data.status === 'success') {
-          setLocation(`${data.city}, ${data.regionName}`);
+        if (data.city) {
+          setLocation(`${data.city}, ${data.region}`);
         }
       } catch (error) {
         console.log('Could not detect location');
