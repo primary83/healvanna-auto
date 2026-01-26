@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import ServiceSearchBar from "./components/ServiceSearchBar";
 import { SERVICE_CATEGORIES } from "./lib/services";
 
 export default function Home() {
@@ -126,6 +127,22 @@ export default function Home() {
         <div className="absolute bottom-10 right-16 flex gap-3">
           <button onClick={prevSlide} className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">←</button>
           <button onClick={nextSlide} className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">→</button>
+        </div>
+      </section>
+
+      {/* Service Search Bar */}
+      <section className="py-16 px-6 bg-gradient-to-b from-[#0a0f1a] to-[#0d1424] relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#4a90d9]/[0.04] via-transparent to-transparent" />
+        <div className="relative">
+          <div className="text-center mb-8">
+            <h2 className="text-[clamp(24px,3.5vw,36px)] font-extralight tracking-tight mb-3">
+              Find Auto Services <span className="italic text-[#4a90d9]">Near You</span>
+            </h2>
+            <p className="text-[14px] text-[#6b7a94] max-w-[450px] mx-auto leading-relaxed">
+              Search verified detailers, body shops, wrap specialists, and more in your area.
+            </p>
+          </div>
+          <ServiceSearchBar />
         </div>
       </section>
 
