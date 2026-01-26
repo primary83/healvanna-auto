@@ -52,12 +52,13 @@ export default function ContactPage() {
         <Link href="/" className="text-[22px] font-light tracking-[0.12em]">HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span></Link>
         <div className="flex gap-10">
           {[
-            { name: "Home", href: "/" },
-            { name: "Vehicles", href: "/cars" },
-            { name: "Care", href: "/care" },
-            { name: "Craft", href: "/craft" },
-            { name: "Insights", href: "/insights" },
-          ].map((item) => (
+  { name: "Home", href: "/" },
+  { name: "Cars", href: "/cars" },
+  { name: "Care", href: "/care" },
+  { name: "Craft", href: "/craft" },
+  { name: "Shop", href: "/shop" },
+  { name: "Blog", href: "/blog" },
+].map((item) => (
             <Link key={item.name} href={item.href} className="text-[13px] tracking-wide transition-all duration-300 pb-1 text-[#6b7a94] hover:text-[#e8edf5] border-b border-transparent">{item.name}</Link>
           ))}
         </div>

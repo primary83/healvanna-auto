@@ -242,7 +242,6 @@ export default function CarsPage() {
             ]},
             { title: "Resources", links: [
               { name: "Blog", href: "/blog" },
-              { name: "Insights", href: "/insights" },
               { name: "Guides", href: "/blog" }
             ]},
             { title: "Company", links: [

@@ -175,13 +175,14 @@ export default function CarePage() {
           HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
         </Link>
         <div className="hidden md:flex gap-10">
-          {[
-            { name: "HOME", href: "/" },
-            { name: "CARS", href: "/cars" },
-            { name: "CARE", href: "/care" },
-            { name: "CRAFT", href: "/craft" },
-            { name: "INSIGHTS", href: "/insights" },
-          ].map((item) => (
+       {[
+  { name: "HOME", href: "/" },
+  { name: "CARS", href: "/cars" },
+  { name: "CARE", href: "/care" },
+  { name: "CRAFT", href: "/craft" },
+  { name: "SHOP", href: "/shop" },
+  { name: "BLOG", href: "/blog" },
+].map((item) => (
             <Link
               key={item.name}
               href={item.href}
