@@ -28,7 +28,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     seoDescription:
       "Find the best car detailing services near you. Professional auto detailing, paint correction, ceramic coating, and interior cleaning by verified specialists.",
     icon: ICONS.detailing,
-    yelpCategories: "autodetailing",
+    yelpCategories: "autodetailing,carwash,autocleaning",
     subcategories: [
       {
         slug: "ceramic-coating",
@@ -260,7 +260,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     seoDescription:
       "Find the best car wash services near you. Express wash, hand wash, touchless wash, and full-service car wash locations.",
     icon: ICONS.carWash,
-    yelpCategories: "carwash",
+    yelpCategories: "carwash,autocleaning",
     subcategories: [
       {
         slug: "hand-wash",
