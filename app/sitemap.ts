@@ -113,6 +113,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "cold-weather-ev-range",
     "winter-car-care-checklist",
     "ev-charging-cost-comparison",
+    "ev-charging-levels-explained",
+    "ev-myths-debunked",
+    "ev-maintenance-myths",
+    "how-to-remove-swirl-marks",
+    "window-tinting-guide",
+    "headlight-restoration-guide",
+    "car-waxing-schedule",
+    "ev-fleet-management-business",
+    "start-car-detailing-business",
+    "scenic-ev-road-trips",
   ];
 
   const blogPages: MetadataRoute.Sitemap = [

@@ -37,6 +37,11 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
       "ev-battery-health-check",
       "cold-weather-ev-range",
       "ev-charging-cost-comparison",
+      "ev-charging-levels-explained",
+      "ev-myths-debunked",
+      "ev-maintenance-myths",
+      "ev-fleet-management-business",
+      "scenic-ev-road-trips",
     ],
   },
   {
@@ -58,6 +63,11 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
       "hand-wash-vs-automatic-car-wash",
       "leather-restoration-classic-cars",
       "winter-car-care-checklist",
+      "how-to-remove-swirl-marks",
+      "window-tinting-guide",
+      "headlight-restoration-guide",
+      "car-waxing-schedule",
+      "start-car-detailing-business",
     ],
   },
   {
@@ -89,6 +99,7 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
       "future-autonomous-evs",
       "top-ev-apps",
       "ev-charging-networks-compared",
+      "ev-charging-levels-explained",
     ],
   },
 ];
