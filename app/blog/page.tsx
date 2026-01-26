@@ -519,6 +519,7 @@ export default function Blog() {
                     src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute top-3 left-3">
                     <span className={`px-2 py-1 text-white text-[10px] font-medium rounded-full ${

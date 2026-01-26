@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { SERVICE_CATEGORIES, MAJOR_CITIES } from "./lib/services";
+import { BLOG_CATEGORIES } from "./lib/blogCategories";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://healvanna.com";
@@ -119,5 +120,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  return [...staticPages, ...servicePages, ...locationPages, ...blogPages];
+  const blogCategoryPages: MetadataRoute.Sitemap = BLOG_CATEGORIES.map((cat) => ({
+    url: `${baseUrl}/blog/category/${cat.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...servicePages, ...locationPages, ...blogPages, ...blogCategoryPages];
 }

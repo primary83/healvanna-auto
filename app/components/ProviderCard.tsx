@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Provider } from "../lib/types";
 import QuoteRequestModal from "./QuoteRequestModal";
 
@@ -48,6 +49,7 @@ export default function ProviderCard({ provider, onCompareToggle, isCompareSelec
               src={provider.image}
               alt={provider.name}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           ) : (
             <svg
@@ -170,10 +172,8 @@ export default function ProviderCard({ provider, onCompareToggle, isCompareSelec
             Call
           </a>
         )}
-        <a
-          href={provider.url}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href={`/provider/${provider.id}`}
           onClick={(e) => e.stopPropagation()}
           className="flex items-center justify-center gap-1.5 flex-1 py-2.5 text-[11px] tracking-[0.05em] font-medium text-[#4a90d9] bg-[rgba(74,144,217,0.08)] hover:bg-[rgba(74,144,217,0.18)] border border-[rgba(74,144,217,0.2)] rounded-lg transition-all duration-200"
         >
@@ -181,7 +181,7 @@ export default function ProviderCard({ provider, onCompareToggle, isCompareSelec
             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
           </svg>
           View Details
-        </a>
+        </Link>
         <button
           onClick={(e) => {
             e.stopPropagation();
