@@ -135,15 +135,15 @@ export default function Home() {
       <section className="py-10 px-6 md:px-12 bg-[#0d1424] border-b border-[rgba(74,144,217,0.08)]">
         <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { value: "7", label: "Service Categories" },
-            { value: "20+", label: "Cities Covered" },
-            { value: "Free", label: "Business Listings" },
-            { value: "100%", label: "Verified Providers" },
+            { value: "7", label: "Service Categories", href: "/services" },
+            { value: "20+", label: "Cities Covered", href: "/car-detailing" },
+            { value: "Free", label: "Business Listings", href: "/business" },
+            { value: "100%", label: "Verified Providers", href: "/about" },
           ].map((stat) => (
-            <div key={stat.label}>
-              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1">{stat.value}</div>
-              <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium">{stat.label}</div>
-            </div>
+            <Link key={stat.label} href={stat.href} className="group">
+              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 group-hover:text-[#6ba8eb] transition-colors">{stat.value}</div>
+              <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">{stat.label}</div>
+            </Link>
           ))}
         </div>
       </section>
