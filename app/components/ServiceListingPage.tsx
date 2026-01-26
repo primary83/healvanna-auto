@@ -517,7 +517,7 @@ function ServiceListingContent({ service, subcategorySlug }: ServiceListingPageP
 
       {/* CTA */}
       <section className="px-6 md:px-12 pb-24">
-        <div className="max-w-[800px] mx-auto text-center bg-[rgba(74,144,217,0.05)] border border-[rgba(74,144,217,0.15)] rounded-lg p-12">
+        <div className="max-w-[800px] mx-auto text-center bg-[rgba(74,144,217,0.05)] border border-[rgba(74,144,217,0.15)] rounded-lg p-6 md:p-12">
           <h3 className="text-2xl font-light mb-4">
             Are You a {service.name} Provider?
           </h3>

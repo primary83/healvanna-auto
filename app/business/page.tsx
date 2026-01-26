@@ -133,7 +133,7 @@ export default function ForBusinessPage() {
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-[#4a90d9] tracking-[0.3em] text-sm mb-4">PARTNER WITH US</p>
-          <h1 className="text-5xl md:text-6xl font-extralight text-white mb-2">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extralight text-white mb-2">
             For <span className="italic text-[#4a90d9]">Business</span>
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto mt-6">
@@ -180,7 +180,7 @@ export default function ForBusinessPage() {
           <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
             We work with premium automotive service providers who share our commitment to excellence.
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {businessTypes.map((type) => (
               <div 
                 key={type.title}
@@ -203,7 +203,7 @@ export default function ForBusinessPage() {
           <h2 className="text-3xl font-extralight text-white text-center mb-12">
             Why Partner With <span className="italic text-[#4a90d9]">Healvanna</span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-[#4a90d9]/10 rounded-full flex items-center justify-center text-[#4a90d9]">
@@ -275,11 +275,11 @@ export default function ForBusinessPage() {
           <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
             Choose the plan that fits your business goals. Start free and upgrade as you grow.
           </p>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {partnershipTiers.map((tier) => (
               <div 
                 key={tier.name}
-                className={`rounded-xl p-8 border ${
+                className={`rounded-xl p-6 md:p-8 border ${
                   tier.highlighted 
                     ? 'bg-[#4a90d9]/10 border-[#4a90d9]' 
                     : 'bg-[#0d1420] border-white/5'

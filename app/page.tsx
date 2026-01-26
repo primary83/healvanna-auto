@@ -92,7 +92,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1a]/95 via-[#0a0f1a]/70 to-transparent" />
             <div className="absolute inset-0 flex items-center">
-              <div className={`ml-16 max-w-[600px] transition-all duration-1000 ${isLoaded && currentSlide === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+              <div className={`ml-6 md:ml-16 max-w-[600px] transition-all duration-1000 ${isLoaded && currentSlide === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
                 <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">{slide.category}</div>
                 <h1 className="text-[clamp(48px,7vw,72px)] font-extralight leading-[1.05] mb-6 tracking-tight">
                   {slide.title}<br />
@@ -109,7 +109,7 @@ export default function Home() {
         ))}
 
         {/* Slider Controls */}
-        <div className="absolute bottom-10 left-16 flex items-center gap-6">
+        <div className="absolute bottom-10 left-6 md:left-16 flex items-center gap-6">
           <div className="flex gap-3">
             {heroSlides.map((_, index) => (
               <button
@@ -124,7 +124,7 @@ export default function Home() {
           <span className="text-[11px] tracking-[0.1em] text-[#6b7a94] font-medium">0{currentSlide + 1} / 0{heroSlides.length}</span>
         </div>
 
-        <div className="absolute bottom-10 right-16 flex gap-3">
+        <div className="absolute bottom-10 right-6 md:right-16 flex gap-3">
           <button onClick={prevSlide} className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">←</button>
           <button onClick={nextSlide} className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">→</button>
         </div>
@@ -147,7 +147,7 @@ export default function Home() {
       </section>
 
       {/* Categories Quick Nav */}
-      <section className="py-24 px-12 bg-[#0d1424]">
+      <section className="py-24 px-6 md:px-12 bg-[#0d1424]">
         <div className="text-center mb-14">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Discover</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight">Explore Our Directory</h2>
@@ -196,7 +196,7 @@ export default function Home() {
       </section>
 
       {/* Browse by Brand Section */}
-      <section className="py-24 px-12 bg-[#0a0f1a]">
+      <section className="py-24 px-6 md:px-12 bg-[#0a0f1a]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">EV Directory</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Browse by Brand</h2>
@@ -278,7 +278,7 @@ export default function Home() {
       </section>
 
       {/* CARE Section */}
-      <section className="py-24 px-12 bg-[#0d1424]">
+      <section className="py-24 px-6 md:px-12 bg-[#0d1424]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Care</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Premium Detailing & Protection</h2>
@@ -312,7 +312,7 @@ export default function Home() {
       </section>
 
       {/* CRAFT Section */}
-      <section className="py-24 px-12 bg-[#0a0f1a]">
+      <section className="py-24 px-6 md:px-12 bg-[#0a0f1a]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Craft</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Body Shops & Restoration</h2>
@@ -346,7 +346,7 @@ export default function Home() {
       </section>
 
       {/* INSIGHTS Section */}
-      <section className="py-24 px-12 bg-[#0d1424]">
+      <section className="py-24 px-6 md:px-12 bg-[#0d1424]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Insights</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Market Intelligence</h2>

@@ -507,7 +507,7 @@ export default function Blog() {
       {/* Blog Grid */}
       <section className="px-6 pb-20">
         <div className="max-w-[1200px] mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredPosts.map((post) => (
               <Link
                 key={post.id}
@@ -555,7 +555,7 @@ export default function Blog() {
 
       {/* Newsletter Section */}
       <section className="px-6 pb-20">
-        <div className="max-w-[800px] mx-auto bg-[rgba(74,144,217,0.1)] rounded-3xl p-12 text-center border border-[rgba(74,144,217,0.2)]">
+        <div className="max-w-[800px] mx-auto bg-[rgba(74,144,217,0.1)] rounded-3xl p-6 md:p-12 text-center border border-[rgba(74,144,217,0.2)]">
           <h2 className="text-[32px] font-bold mb-4">Stay Updated</h2>
           <p className="text-[#6b7a94] mb-8">Get the latest EV news and insights delivered to your inbox weekly.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-[500px] mx-auto">

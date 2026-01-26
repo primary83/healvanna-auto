@@ -54,7 +54,7 @@ export default function QuoteForm({ serviceName }: QuoteFormProps) {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-3">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <input
             type="text"
             placeholder="Full Name"
@@ -72,7 +72,7 @@ export default function QuoteForm({ serviceName }: QuoteFormProps) {
             className="px-4 py-3 bg-[rgba(10,15,26,0.8)] border border-[rgba(74,144,217,0.15)] rounded text-sm text-[#e8edf5] placeholder-[#3d4a61] focus:outline-none focus:border-[#4a90d9] transition-colors"
           />
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <input
             type="tel"
             placeholder="Phone Number"
