@@ -1,12 +1,83 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const categories = ["All", "News", "Reviews", "Events", "Guides", "Technology", "Insights"];
+  const categories = ["All", "Guides", "Technology", "Reviews", "Comparison", "Insights", "Events"];
 
   const blogPosts = [
+    // Market Intelligence / Insights articles
+    {
+      id: 101,
+      title: "US EVs vs Chinese EVs: A Complete Comparison",
+      excerpt: "A comprehensive comparison of American and Chinese electric vehicles. We analyze range, technology, build quality, and value.",
+      category: "Comparison",
+      image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80",
+      date: "January 25, 2026",
+      readTime: "8 min read",
+      slug: "us-evs-vs-chinese-evs",
+      isInsight: true,
+    },
+    {
+      id: 102,
+      title: "Best Ceramic Coatings 2025: We Tested Them All",
+      excerpt: "We tested the top ceramic coating brands to find the best protection for your premium vehicle. From Ceramic Pro to Gtechniq.",
+      category: "Guides",
+      image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80",
+      date: "January 25, 2026",
+      readTime: "8 min read",
+      slug: "best-ceramic-coatings-2025",
+      isInsight: true,
+    },
+    {
+      id: 103,
+      title: "Tesla vs Lucid vs Rivian: The Ultimate Showdown",
+      excerpt: "The ultimate American EV showdown. We compare the top three US electric vehicle brands across performance, luxury, range, and value.",
+      category: "Comparison",
+      image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80",
+      date: "January 25, 2026",
+      readTime: "12 min read",
+      slug: "tesla-vs-lucid-vs-rivian",
+      isInsight: true,
+    },
+    {
+      id: 104,
+      title: "Complete EV Maintenance Guide for 2026",
+      excerpt: "Everything you need to know about maintaining your electric vehicle for optimal performance and longevity.",
+      category: "Guides",
+      image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80",
+      date: "January 25, 2026",
+      readTime: "15 min read",
+      slug: "ev-maintenance-guide",
+      isInsight: true,
+    },
+    {
+      id: 105,
+      title: "PPF vs Ceramic Coating: The Ultimate Protection Guide",
+      excerpt: "We break down the differences between paint protection film and ceramic coating, including costs and which option is best.",
+      category: "Guides",
+      image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800&q=80",
+      date: "January 25, 2026",
+      readTime: "14 min read",
+      slug: "ppf-vs-ceramic-coating",
+      isInsight: true,
+    },
+    {
+      id: 106,
+      title: "How to Find a Trusted Body Shop for Your Vehicle",
+      excerpt: "How to find a reputable body shop for your luxury or electric vehicle. Red flags to avoid, certifications to look for.",
+      category: "Guides",
+      image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80",
+      date: "January 25, 2026",
+      readTime: "12 min read",
+      slug: "finding-trusted-body-shop",
+      isInsight: true,
+    },
+    // Blog articles
     {
       id: 23,
       title: "The Real Cost of Owning an Electric Car in 2026",
@@ -295,33 +366,18 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0f1a]/90 backdrop-blur-md border-b border-[rgba(74,144,217,0.15)]">
-        <div className="max-w-[1200px] mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="/" className="text-[22px] font-light tracking-[0.12em] cursor-pointer">
-            HEALVANNA <span className="text-[#4a90d9]">AUTO</span>
-          </a>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="/" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">HOME</a>
-            <a href="/cars" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">CARS</a>
-            <a href="/care" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">CARE</a>
-            <a href="/craft" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">CRAFT</a>
-            <a href="/shop" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">SHOP</a>
-            <a href="/blog" className="text-[14px] text-[#4a90d9] transition-colors duration-300">BLOG</a>
-          </div>
-        </div>
-      </nav>
+      <Navigation activeItem="BLOG" />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-[1200px] mx-auto">
           <span className="text-[#4a90d9] text-[14px] tracking-[0.2em] uppercase mb-4 block">Our Blog</span>
           <h1 className="text-[48px] md:text-[64px] font-bold leading-[1.1] mb-6">
-            EV Insights &
+            Insights &
             <span className="text-[#4a90d9]"> News</span>
           </h1>
           <p className="text-[18px] text-[#6b7a94] max-w-[600px]">
-            Stay informed with the latest electric vehicle news, reviews, buying guides, and industry insights.
+            Stay informed with expert analysis, buying guides, industry comparisons, and the latest automotive news.
           </p>
         </div>
       </section>
@@ -352,9 +408,9 @@ export default function Blog() {
         <div className="max-w-[1200px] mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredPosts.map((post) => (
-              <a
+              <Link
                 key={post.id}
-                href={`/blog/${post.slug}`}
+                href={post.isInsight ? `/insights/${post.slug}` : `/blog/${post.slug}`}
                 className="group bg-[rgba(74,144,217,0.05)] rounded-2xl overflow-hidden border border-[rgba(74,144,217,0.1)] hover:border-[rgba(74,144,217,0.3)] transition-all duration-300"
               >
                 <div className="relative h-[160px] overflow-hidden">
@@ -369,6 +425,7 @@ export default function Blog() {
                       post.category === "Events" ? "bg-[#8b5cf6]" :
                       post.category === "Reviews" ? "bg-[#f59e0b]" :
                       post.category === "Insights" ? "bg-[#ec4899]" :
+                      post.category === "Comparison" ? "bg-[#6366f1]" :
                       post.category === "Guides" ? "bg-[#4a90d9]" :
                       "bg-[#4a90d9]"
                     }`}>
@@ -389,7 +446,7 @@ export default function Blog() {
                     {post.excerpt}
                   </p>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -413,12 +470,7 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#080c14] py-12 px-6 border-t border-[rgba(74,144,217,0.15)]">
-        <div className="max-w-[1200px] mx-auto text-center">
-          <p className="text-[#6b7a94] text-[14px]">© 2025 Healvanna Auto. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

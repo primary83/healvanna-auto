@@ -16,7 +16,7 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
     { name: "HOME", href: "/" },
     { name: "SERVICES", href: "#", hasDropdown: true },
     { name: "CARS", href: "/cars" },
-    { name: "BLOG", href: "/insights" },
+    { name: "BLOG", href: "/blog" },
     { name: "ABOUT", href: "/about" },
     { name: "CONTACT", href: "/contact" },
   ];
