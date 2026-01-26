@@ -182,7 +182,8 @@ export default function CraftPage() {
 { name: "CRAFT", href: "/craft" },
 { name: "SHOP", href: "/shop" },
 { name: "BLOG", href: "/blog" },
-            <Link
+].map((item) => (
+        <Link
               key={item.name}
               href={item.href}
               className={`text-xs tracking-[0.12em] cursor-pointer transition-colors duration-300 pb-2 ${
