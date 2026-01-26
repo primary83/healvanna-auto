@@ -128,7 +128,7 @@ export function useGeoLocation(): GeoLocation & {
       });
     };
 
-    // Fallback: IP-based geolocation APIs
+    // IP-based geolocation APIs (no permission prompt needed)
     const tryIPGeolocation = async () => {
       const apis = [
         {
@@ -143,14 +143,14 @@ export function useGeoLocation(): GeoLocation & {
           }),
         },
         {
-          url: "https://ip-api.com/json/?fields=city,region,zip,countryCode,lat,lon",
+          url: "https://ipwho.is/",
           parse: (data: any) => ({
             city: data.city || DEFAULT_LOCATION.city,
-            state: data.region || DEFAULT_LOCATION.state,
-            zip: data.zip || DEFAULT_LOCATION.zip,
-            country: data.countryCode || DEFAULT_LOCATION.country,
-            latitude: data.lat || DEFAULT_LOCATION.latitude,
-            longitude: data.lon || DEFAULT_LOCATION.longitude,
+            state: data.region_code || data.region || DEFAULT_LOCATION.state,
+            zip: data.postal || DEFAULT_LOCATION.zip,
+            country: data.country_code || DEFAULT_LOCATION.country,
+            latitude: data.latitude || DEFAULT_LOCATION.latitude,
+            longitude: data.longitude || DEFAULT_LOCATION.longitude,
           }),
         },
       ];
@@ -158,7 +158,7 @@ export function useGeoLocation(): GeoLocation & {
       for (const api of apis) {
         try {
           const response = await fetch(api.url, {
-            signal: AbortSignal.timeout(5000),
+            signal: AbortSignal.timeout(3000),
           });
           if (response.ok) {
             const data = await response.json();
@@ -173,7 +173,19 @@ export function useGeoLocation(): GeoLocation & {
 
     const detectLocation = async () => {
       try {
-        // 1. Try browser geolocation (GPS/WiFi — most accurate)
+        // 1. Try IP-based geolocation first (instant, no permission prompt)
+        const ipData = await tryIPGeolocation();
+        if (ipData) {
+          setLocation({
+            ...ipData,
+            isLoading: false,
+            error: null,
+          });
+          setDetectedLocation(`${ipData.city}, ${ipData.state}`);
+          return;
+        }
+
+        // 2. Fallback to browser geolocation only if IP detection fails
         const browserPos = await tryBrowserGeolocation();
         if (browserPos) {
           const { latitude, longitude } = browserPos.coords;
@@ -189,18 +201,6 @@ export function useGeoLocation(): GeoLocation & {
             setDetectedLocation(`${geo.city}, ${geo.state}`);
             return;
           }
-        }
-
-        // 2. Fallback to IP-based geolocation
-        const ipData = await tryIPGeolocation();
-        if (ipData) {
-          setLocation({
-            ...ipData,
-            isLoading: false,
-            error: null,
-          });
-          setDetectedLocation(`${ipData.city}, ${ipData.state}`);
-          return;
         }
 
         // 3. Use default if everything fails
