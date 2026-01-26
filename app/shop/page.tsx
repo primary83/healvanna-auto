@@ -3,6 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 export default function ShopPage() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -239,25 +241,10 @@ export default function ShopPage() {
 
   return (
     <main className="min-h-screen bg-slate-950">
-      {/* Navigation */}
-      <nav className="border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-light tracking-wider">
-            HEALVANNA <span className="text-[#4a90d9]">AUTO</span>
-          </Link>
-          <div className="flex gap-8">
-            <Link href="/" className="text-slate-300 hover:text-white transition-colors">HOME</Link>
-            <Link href="/cars" className="text-slate-300 hover:text-white transition-colors">CARS</Link>
-            <Link href="/care" className="text-slate-300 hover:text-white transition-colors">CARE</Link>
-            <Link href="/craft" className="text-slate-300 hover:text-white transition-colors">CRAFT</Link>
-            <Link href="/shop" className="text-[#4a90d9]">SHOP</Link>
-            <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">BLOG</Link>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
-      <section className="px-4 py-16 border-b border-slate-800/50">
+      <section className="px-4 pt-32 pb-16 border-b border-slate-800/50">
         <div className="max-w-7xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#4a90d9]/10 rounded-full text-[#4a90d9] text-sm mb-6">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -404,12 +391,7 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4">
-        <div className="max-w-7xl mx-auto text-center text-slate-400">
-          <p>© 2026 Healvanna Auto. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

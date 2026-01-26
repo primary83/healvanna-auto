@@ -301,15 +301,16 @@ export default function ForBusinessPage() {
                     </li>
                   ))}
                 </ul>
-                <button 
-                  className={`w-full py-3 rounded-lg transition-colors ${
+                <Link
+                  href="/contact"
+                  className={`block w-full py-3 rounded-lg transition-colors text-center ${
                     tier.highlighted
                       ? 'bg-[#4a90d9] text-white hover:bg-[#3a7bc8]'
                       : 'bg-white/5 text-white hover:bg-white/10'
                   }`}
                 >
                   {tier.cta}
-                </button>
+                </Link>
               </div>
             ))}
           </div>
@@ -344,9 +345,9 @@ export default function ForBusinessPage() {
             Get started with a free listing today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="inline-block bg-[#4a90d9] text-white px-8 py-3 rounded-lg hover:bg-[#3a7bc8] transition-colors">
+            <Link href="/contact" className="inline-block bg-[#4a90d9] text-white px-8 py-3 rounded-lg hover:bg-[#3a7bc8] transition-colors">
               Create Free Listing
-            </button>
+            </Link>
             <Link 
               href="/contact"
               className="inline-block bg-white/5 text-white px-8 py-3 rounded-lg hover:bg-white/10 transition-colors"

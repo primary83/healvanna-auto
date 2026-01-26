@@ -1,26 +1,17 @@
+"use client";
+
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import Link from "next/link";
+
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       {/* Navigation */}
-      <nav className="flex justify-between items-center px-12 py-6 border-b border-[rgba(74,144,217,0.15)]">
-        <a href="/" className="text-xl tracking-[0.3em] font-light">
-          HEALVANNA <span className="text-[#4a90d9]">AUTO</span>
-        </a>
-        <div className="flex gap-10">
-          {["Home", "Cars", "Care", "Craft", "Insights", "About"].map((item) => (
-            <a
-              key={item}
-              href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              className="text-[13px] tracking-wider text-[#6b7a94] hover:text-[#e8edf5] transition-colors duration-300"
-            >
-              {item.toUpperCase()}
-            </a>
-          ))}
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Content */}
-      <section className="px-12 py-24 max-w-[800px] mx-auto">
+      <section className="px-12 pt-32 pb-24 max-w-[800px] mx-auto">
         <p className="text-[#4a90d9] text-[11px] tracking-[0.3em] uppercase mb-6">
           Legal
         </p>
@@ -131,22 +122,7 @@ export default function PrivacyPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#0a0f1a] pt-16 pb-8 px-12 border-t border-[rgba(74,144,217,0.15)]">
-        <div className="flex justify-between items-center pt-8 max-w-[1200px] mx-auto">
-          <div className="text-[11px] text-[#3d4a61]">© 2025 Healvanna Auto. All rights reserved.</div>
-          <div className="flex gap-6">
-            {["Privacy", "Terms", "Contact", "About"].map((link) => (
-              <a
-                key={link}
-                href={`/${link.toLowerCase()}`}
-                className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors duration-300"
-              >
-                {link}
-              </a>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -97,14 +97,12 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Healvanna Auto. All rights reserved.
         </div>
         <div className="flex gap-6">
-          {["Privacy", "Terms", "Cookies"].map((link) => (
-            <span
-              key={link}
-              className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300"
-            >
-              {link}
-            </span>
-          ))}
+          <Link href="/privacy" className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors duration-300">
+            Privacy
+          </Link>
+          <Link href="/terms" className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors duration-300">
+            Terms
+          </Link>
         </div>
       </div>
     </footer>

@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 export default function CarsPage() {
   const featuredCars = [
@@ -15,34 +17,7 @@ export default function CarsPage() {
 
   return (
     <main className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-12 py-5 flex justify-between items-center bg-gradient-to-b from-[#0a0f1a]/95 to-transparent backdrop-blur-xl">
-        <Link href="/" className="text-[22px] font-light tracking-[0.12em] cursor-pointer">
-          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
-        </Link>
-        <div className="flex gap-10">
-          {[
-{ name: "HOME", href: "/" },
-{ name: "CARS", href: "/cars", active: true },
-{ name: "CARE", href: "/care" },
-{ name: "CRAFT", href: "/craft" },
-{ name: "SHOP", href: "/shop" },
-{ name: "BLOG", href: "/blog" },
-          ].map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`text-xs tracking-[0.12em] cursor-pointer transition-colors duration-300 pb-2 ${
-                item.active
-                  ? "text-[#e8edf5] border-b border-[#4a90d9]"
-                  : "text-[#6b7a94] hover:text-[#e8edf5] border-b border-transparent"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
+      <Navigation activeItem="CARS" />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-12">
@@ -213,62 +188,7 @@ export default function CarsPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#0a0f1a] pt-16 pb-8 px-12 border-t border-[rgba(74,144,217,0.15)]">
-        <div className="grid grid-cols-6 gap-10 max-w-[1200px] mx-auto mb-12">
-          {[
-            { title: "Cars", links: [
-              { name: "Tesla", href: "/cars/tesla" },
-              { name: "All Brands", href: "/cars" },
-              { name: "SUVs", href: "/cars/suvs" },
-              { name: "Sedans", href: "/cars" }
-            ]},
-            { title: "Care", links: [
-              { name: "Detailing", href: "/care" },
-              { name: "Ceramic Coating", href: "/care" },
-              { name: "PPF", href: "/care" },
-              { name: "Interior", href: "/care" }
-            ]},
-            { title: "Craft", links: [
-              { name: "EV Body Shops", href: "/craft" },
-              { name: "Luxury Collision", href: "/craft" },
-              { name: "Restoration", href: "/craft" }
-            ]},
-            { title: "Markets", links: [
-              { name: "Austin", href: "/care?location=Austin" },
-              { name: "Miami", href: "/care?location=Miami" },
-              { name: "Los Angeles", href: "/care?location=Los Angeles" },
-              { name: "New York", href: "/care?location=New York" }
-            ]},
-            { title: "Resources", links: [
-              { name: "Blog", href: "/blog" },
-              { name: "Guides", href: "/blog" }
-            ]},
-            { title: "Company", links: [
-              { name: "About", href: "/about" },
-              { name: "For Business", href: "/business" },
-              { name: "Contact", href: "/contact" }
-            ]},
-          ].map((column, index) => (
-            <div key={index}>
-              <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">{column.title}</h4>
-              {column.links.map((link) => (
-                <Link key={link.name} href={link.href} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)] max-w-[1200px] mx-auto">
-          <div className="text-[11px] text-[#3d4a61]">© 2026 Healvanna. All rights reserved.</div>
-          <div className="flex gap-6">
-            {[
-              { name: "Privacy", href: "/privacy" },
-              { name: "Terms", href: "/terms" },
-              { name: "Cookies", href: "#" }
-            ].map((link) => <Link key={link.name} href={link.href} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>)}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
