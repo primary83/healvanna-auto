@@ -14,6 +14,7 @@ import StructuredData, {
   generateServiceSchema,
   generateBreadcrumbSchema,
 } from "./StructuredData";
+import QuoteForm from "./QuoteForm";
 
 interface ServiceListingPageProps {
   service: ServiceCategory;

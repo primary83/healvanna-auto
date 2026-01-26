@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "For Business - Partner With Healvanna Auto",
@@ -125,22 +127,7 @@ const stats = [
 export default function ForBusinessPage() {
   return (
     <div className="min-h-screen bg-[#0a0f1a]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0f1a]/90 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-light tracking-wider">
-            <span className="text-white">HEALVANNA</span>
-            <span className="text-[#4a90d9] ml-2">AUTO</span>
-          </Link>
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-300 hover:text-white transition-colors">HOME</Link>
-            <Link href="/cars" className="text-gray-300 hover:text-white transition-colors">CARS</Link>
-            <Link href="/care" className="text-gray-300 hover:text-white transition-colors">CARE</Link>
-            <Link href="/craft" className="text-gray-300 hover:text-white transition-colors">CRAFT</Link>
-            <Link href="/insights" className="text-gray-300 hover:text-white transition-colors">INSIGHTS</Link>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-6">
@@ -409,16 +396,7 @@ export default function ForBusinessPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#0a0f1a] border-t border-white/10 px-6 py-12">
-        <div className="max-w-7xl mx-auto text-center">
-          <Link href="/" className="text-xl font-light tracking-wider">
-            <span className="text-white">HEALVANNA</span>
-            <span className="text-[#4a90d9] ml-2">AUTO</span>
-          </Link>
-          <p className="text-gray-500 mt-4">© 2025 Healvanna. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
