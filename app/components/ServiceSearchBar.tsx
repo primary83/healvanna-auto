@@ -24,12 +24,12 @@ export default function ServiceSearchBar() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Set ZIP from geolocation
+  // Set ZIP from geolocation once detection is complete
   useEffect(() => {
-    if (geo.zip && !zipCode) {
+    if (!geo.isLoading && geo.zip) {
       setZipCode(geo.zip);
     }
-  }, [geo.zip, zipCode]);
+  }, [geo.isLoading, geo.zip]);
 
   // Close suggestions on outside click
   useEffect(() => {

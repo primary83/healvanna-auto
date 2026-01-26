@@ -85,6 +85,9 @@ export function useGeoLocation(): GeoLocation & {
 } {
   const [location, setLocation] = useState<GeoLocation>({
     ...DEFAULT_LOCATION,
+    zip: "",
+    city: "",
+    state: "",
     isLoading: true,
   });
   const [detectedLocation, setDetectedLocation] = useState<string>("");
