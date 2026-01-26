@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+import { SERVICE_CATEGORIES } from "./lib/services";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -68,42 +71,13 @@ export default function Home() {
     { title: "EV Blog", subtitle: "Guides · Reviews · News", image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80", link: "/blog" },
   ];
 
-  const navItems = [
-    { name: "HOME", href: "/" },
-    { name: "CARS", href: "/cars" },
-    { name: "CARE", href: "/care" },
-    { name: "CRAFT", href: "/craft" },
-    { name: "SHOP", href: "/shop" },
-    { name: "BLOG", href: "/blog" },
-  ];
-
   const goToSlide = (index: number) => setCurrentSlide(index);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
 
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-12 py-5 flex justify-between items-center bg-gradient-to-b from-[#0a0f1a]/95 to-transparent backdrop-blur-xl">
-        <Link href="/" className="text-[22px] font-light tracking-[0.12em] cursor-pointer">
-          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
-        </Link>
-        <div className="flex gap-10">
-          {navItems.map((item, index) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`text-xs tracking-[0.12em] cursor-pointer transition-colors duration-300 pb-2 ${
-                index === 0
-                  ? "text-[#e8edf5] border-b border-[#4a90d9]"
-                  : "text-[#6b7a94] hover:text-[#e8edf5] border-b border-transparent"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
+      <Navigation activeItem="HOME" />
 
       {/* Hero Slider */}
       <section className="h-screen relative overflow-hidden">
@@ -172,6 +146,35 @@ export default function Home() {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-24 px-6 md:px-12 bg-[#0a0f1a]">
+        <div className="text-center mb-16">
+          <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Services</div>
+          <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Automotive Service Directory</h2>
+          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Find verified specialists across every automotive service category.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-[1300px] mx-auto">
+          {SERVICE_CATEGORIES.map((service) => (
+            <Link
+              key={service.slug}
+              href={`/${service.slug}`}
+              className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded-xl p-6 border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block"
+            >
+              <div className="w-12 h-12 rounded-xl bg-[rgba(74,144,217,0.1)] flex items-center justify-center mb-4 group-hover:bg-[rgba(74,144,217,0.2)] transition-colors">
+                <svg className="w-6 h-6 text-[#4a90d9]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d={service.icon} />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-[#e8edf5] mb-2 group-hover:text-[#4a90d9] transition-colors">{service.name}</h3>
+              <p className="text-[13px] text-[#6b7a94] leading-relaxed">{service.description}</p>
+            </Link>
+          ))}
+        </div>
+        <div className="text-center mt-12">
+          <Link href="/services" className="inline-block px-12 py-3.5 text-[13px] font-medium bg-transparent text-[#e8edf5] border border-[rgba(74,144,217,0.15)] hover:border-[#4a90d9] hover:text-[#4a90d9] transition-all duration-300">Browse All Services</Link>
         </div>
       </section>
 
@@ -367,64 +370,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#0a0f1a] pt-16 pb-8 px-12 border-t border-[rgba(74,144,217,0.15)]">
-        <div className="grid grid-cols-6 gap-10 max-w-[1200px] mx-auto mb-12">
-          {[
-            { title: "Cars", links: [
-              { name: "Tesla", href: "/cars/tesla" },
-              { name: "All Brands", href: "/cars" },
-              { name: "SUVs", href: "/cars/suvs" },
-              { name: "Sedans", href: "/cars" }
-            ]},
-            { title: "Care", links: [
-              { name: "Detailing", href: "/care" },
-              { name: "Ceramic Coating", href: "/care" },
-              { name: "PPF", href: "/care" },
-              { name: "Interior", href: "/care" }
-            ]},
-            { title: "Craft", links: [
-              { name: "EV Body Shops", href: "/craft" },
-              { name: "Luxury Collision", href: "/craft" },
-              { name: "Restoration", href: "/craft" }
-            ]},
-            { title: "Markets", links: [
-              { name: "Austin", href: "/care?location=Austin" },
-              { name: "Miami", href: "/care?location=Miami" },
-              { name: "Los Angeles", href: "/care?location=Los Angeles" },
-              { name: "New York", href: "/care?location=New York" },
-              { name: "Dubai", href: "/care?location=Dubai" }
-            ]},
-            { title: "Resources", links: [
-              { name: "Blog", href: "/blog" },
-             { name: "Insights", href: "/insights" },
-              { name: "Guides", href: "/blog" }
-            ]},
-            { title: "Company", links: [
-              { name: "About", href: "/about" },
-              { name: "For Business", href: "/business" },
-              { name: "Contact", href: "/contact" }
-            ]},
-          ].map((column, index) => (
-            <div key={index}>
-              <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">{column.title}</h4>
-              {column.links.map((link) => (
-                <Link key={link.name} href={link.href} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)] max-w-[1200px] mx-auto">
-          <div className="text-[11px] text-[#3d4a61]">© 2026 Healvanna. All rights reserved.</div>
-          <div className="flex gap-6">
-            {[
-              { name: "Privacy", href: "/privacy" },
-              { name: "Terms", href: "/terms" },
-              { name: "Cookies", href: "#" }
-            ].map((link) => <Link key={link.name} href={link.href} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>)}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,24 @@
+# Healvanna Auto - robots.txt
+# https://healvanna.com
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://healvanna.com/sitemap.xml
+
+# Disallow admin/internal paths (add as needed)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow all search engine crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawl delay for less critical bots
+User-agent: *
+Crawl-delay: 1
