@@ -19,17 +19,18 @@ export default function ServiceSearchBar() {
   const geo = useGeoLocation();
   const [query, setQuery] = useState("");
   const [zipCode, setZipCode] = useState("");
+  const [userEditedZip, setUserEditedZip] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Set ZIP from geolocation once detection is complete
+  // Set ZIP from geolocation once detection is complete (only if user hasn't manually changed it)
   useEffect(() => {
-    if (!geo.isLoading && geo.zip) {
+    if (!geo.isLoading && geo.zip && !userEditedZip) {
       setZipCode(geo.zip);
     }
-  }, [geo.isLoading, geo.zip]);
+  }, [geo.isLoading, geo.zip, userEditedZip]);
 
   // Close suggestions on outside click
   useEffect(() => {
@@ -156,7 +157,10 @@ export default function ServiceSearchBar() {
           <input
             type="text"
             value={zipCode}
-            onChange={(e) => setZipCode(e.target.value.replace(/\D/g, "").slice(0, 5))}
+            onChange={(e) => {
+              setZipCode(e.target.value.replace(/\D/g, "").slice(0, 5));
+              setUserEditedZip(true);
+            }}
             placeholder={geo.isLoading ? "Detecting..." : "ZIP Code"}
             className="w-full sm:w-[140px] pl-10 pr-4 py-4 sm:py-5 bg-transparent text-white placeholder:text-[#6b7a94] text-[15px] outline-none"
             maxLength={5}
