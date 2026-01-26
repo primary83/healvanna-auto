@@ -28,6 +28,15 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
       "best-electric-suvs-families-2026",
       "tesla-alternatives",
       "top-ev-apps",
+      "hyundai-ioniq-6-vs-tesla-model-3",
+      "kia-ev6-gt-review",
+      "bmw-i4-vs-mercedes-eqe",
+      "chevrolet-equinox-ev-review",
+      "should-you-buy-used-ev",
+      "best-used-evs-under-25k",
+      "ev-battery-health-check",
+      "cold-weather-ev-range",
+      "ev-charging-cost-comparison",
     ],
   },
   {
@@ -48,6 +57,7 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
       "car-wrap-vs-paint",
       "hand-wash-vs-automatic-car-wash",
       "leather-restoration-classic-cars",
+      "winter-car-care-checklist",
     ],
   },
   {

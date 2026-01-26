@@ -103,6 +103,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "ev-environment-impact",
     "leasing-vs-buying-ev",
     "ev-collision-repair-guide",
+    "hyundai-ioniq-6-vs-tesla-model-3",
+    "kia-ev6-gt-review",
+    "bmw-i4-vs-mercedes-eqe",
+    "chevrolet-equinox-ev-review",
+    "should-you-buy-used-ev",
+    "best-used-evs-under-25k",
+    "ev-battery-health-check",
+    "cold-weather-ev-range",
+    "winter-car-care-checklist",
+    "ev-charging-cost-comparison",
   ];
 
   const blogPages: MetadataRoute.Sitemap = [
