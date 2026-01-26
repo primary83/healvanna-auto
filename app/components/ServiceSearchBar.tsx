@@ -19,18 +19,12 @@ export default function ServiceSearchBar() {
   const geo = useGeoLocation();
   const [query, setQuery] = useState("");
   const [zipCode, setZipCode] = useState("");
-  const [userEditedZip, setUserEditedZip] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Set ZIP from geolocation once detection is complete (only if user hasn't manually changed it)
-  useEffect(() => {
-    if (!geo.isLoading && geo.zip && !userEditedZip) {
-      setZipCode(geo.zip);
-    }
-  }, [geo.isLoading, geo.zip, userEditedZip]);
+  // Don't auto-fill ZIP — let users enter their own
 
   // Close suggestions on outside click
   useEffect(() => {
@@ -157,11 +151,8 @@ export default function ServiceSearchBar() {
           <input
             type="text"
             value={zipCode}
-            onChange={(e) => {
-              setZipCode(e.target.value.replace(/\D/g, "").slice(0, 5));
-              setUserEditedZip(true);
-            }}
-            placeholder={geo.isLoading ? "Detecting..." : "ZIP Code"}
+            onChange={(e) => setZipCode(e.target.value.replace(/\D/g, "").slice(0, 5))}
+            placeholder="ZIP Code"
             className="w-full sm:w-[140px] pl-10 pr-4 py-4 sm:py-5 bg-transparent text-white placeholder:text-[#6b7a94] text-[15px] outline-none"
             maxLength={5}
           />
@@ -236,6 +227,15 @@ export default function ServiceSearchBar() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
           </svg>
           <span>Showing services near <span className="text-[#4a90d9]">{geo.city}, {geo.state}</span></span>
+        </div>
+      )}
+      {!geo.city && !geo.isLoading && (
+        <div className="flex items-center justify-center gap-1.5 mt-4 text-[12px] text-[#6b7a94]">
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          </svg>
+          <span>Enter your ZIP code to find services nearby</span>
         </div>
       )}
     </div>
