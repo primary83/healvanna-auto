@@ -140,7 +140,7 @@ export default function ProviderDetailPage() {
       <Navigation />
 
       {/* Breadcrumbs */}
-      <div className="px-6 md:px-12 pt-6 pb-2">
+      <div className="px-6 md:px-12 pt-32 pb-2">
         <div className="max-w-[1100px] mx-auto">
           <nav className="flex items-center gap-2 text-[12px] text-[#6b7a94]">
             <Link href="/" className="hover:text-[#4a90d9] transition-colors">Home</Link>
