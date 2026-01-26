@@ -306,7 +306,7 @@ export default function Blog() {
             <a href="/cars" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">CARS</a>
             <a href="/care" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">CARE</a>
             <a href="/craft" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">CRAFT</a>
-            <a href="/insights" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">INSIGHTS</a>
+            <a href="/shop" className="text-[14px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300">SHOP</a>
             <a href="/blog" className="text-[14px] text-[#4a90d9] transition-colors duration-300">BLOG</a>
           </div>
         </div>
