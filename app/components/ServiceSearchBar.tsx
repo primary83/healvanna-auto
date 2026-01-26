@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { SERVICE_CATEGORIES } from "../lib/services";
-import { useGeoLocation } from "../hooks/useGeoLocation";
+import { SERVICE_CATEGORIES, MAJOR_CITIES } from "../lib/services";
+import { useGeoLocation, calculateDistance } from "../hooks/useGeoLocation";
 
 const SERVICE_SUGGESTIONS = SERVICE_CATEGORIES.flatMap((cat) => [
   { label: cat.name, slug: cat.slug, type: "category" as const },
@@ -49,11 +49,23 @@ export default function ServiceSearchBar() {
     : SERVICE_SUGGESTIONS.filter((s) => s.type === "category");
 
   function buildUrl(slug: string) {
-    // Build location slug from geo data
-    const citySlug = geo.city && geo.state
-      ? `${geo.city.toLowerCase().replace(/\s+/g, "-")}-${geo.state.toLowerCase()}`
-      : "";
-    return citySlug ? `/${slug}/${citySlug}` : `/${slug}`;
+    if (!geo.latitude || !geo.longitude) return `/${slug}`;
+
+    // Find the nearest major city that has a static page
+    let nearestSlug = "";
+    let nearestDist = Infinity;
+    for (const city of MAJOR_CITIES) {
+      const dist = calculateDistance(
+        geo.latitude, geo.longitude,
+        city.latitude, city.longitude
+      );
+      if (dist < nearestDist) {
+        nearestDist = dist;
+        nearestSlug = city.slug;
+      }
+    }
+
+    return nearestSlug ? `/${slug}/${nearestSlug}` : `/${slug}`;
   }
 
   function handleSearch(slug?: string) {
