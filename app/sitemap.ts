@@ -62,5 +62,62 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticPages, ...servicePages, ...locationPages];
+  // Blog posts
+  const blogSlugs = [
+    "ceramic-coating-cost-2026",
+    "car-wrap-vs-paint",
+    "choose-body-shop-after-accident",
+    "auto-glass-repair-vs-replacement",
+    "is-car-detailing-worth-it",
+    "custom-car-paint-jobs",
+    "find-best-collision-repair-shop",
+    "hand-wash-vs-automatic-car-wash",
+    "interior-detailing-checklist",
+    "vinyl-wrap-care-guide",
+    "ceramic-coating-tesla-model-3",
+    "ppf-vs-ceramic-coating",
+    "matte-paint-protection",
+    "leather-restoration-classic-cars",
+    "paint-correction-black-cars",
+    "choose-first-ev",
+    "ev-vs-hybrid",
+    "future-autonomous-evs",
+    "ev-charging-etiquette",
+    "top-ev-apps",
+    "how-to-install-home-ev-charger",
+    "ev-road-trip-planning-guide",
+    "ev-tax-credits-2026",
+    "ev-maintenance-guide",
+    "ev-charging-networks-compared",
+    "wireless-ev-charging",
+    "vehicle-to-home-v2h",
+    "top-electric-car-shows-2026",
+    "what-to-expect-electrify-expo-2026",
+    "ev-battery-technology-2026",
+    "best-electric-suvs-families-2026",
+    "real-cost-owning-ev-2026",
+    "ev-range-anxiety",
+    "tesla-alternatives",
+    "solid-state-batteries",
+    "ev-environment-impact",
+    "leasing-vs-buying-ev",
+    "ev-collision-repair-guide",
+  ];
+
+  const blogPages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    ...blogSlugs.map((slug) => ({
+      url: `${baseUrl}/blog/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+  ];
+
+  return [...staticPages, ...servicePages, ...locationPages, ...blogPages];
 }

@@ -6,12 +6,40 @@ import QuoteRequestModal from "./QuoteRequestModal";
 
 interface ProviderCardProps {
   provider: Provider & { distanceText?: string };
+  onCompareToggle?: (provider: Provider & { distanceText?: string }) => void;
+  isCompareSelected?: boolean;
+  compareDisabled?: boolean;
 }
 
-export default function ProviderCard({ provider }: ProviderCardProps) {
+export default function ProviderCard({ provider, onCompareToggle, isCompareSelected, compareDisabled }: ProviderCardProps) {
   const [showQuoteModal, setShowQuoteModal] = useState(false);
   return (
-    <div className="bg-[rgba(15,22,40,0.6)] rounded-xl p-5 border border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.35)] transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 group">
+    <div className={`bg-[rgba(15,22,40,0.6)] rounded-xl p-5 border transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 group ${isCompareSelected ? "border-[#4a90d9] ring-1 ring-[#4a90d9]/30" : "border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.35)]"}`}>
+      {/* Compare Toggle + Top Row */}
+      {onCompareToggle && (
+        <div className="flex justify-end mb-1">
+          <button
+            onClick={(e) => { e.stopPropagation(); onCompareToggle(provider); }}
+            disabled={compareDisabled && !isCompareSelected}
+            className={`flex items-center gap-1.5 px-2.5 py-1 text-[10px] tracking-[0.03em] font-medium rounded-md border transition-all duration-200 ${
+              isCompareSelected
+                ? "bg-[#4a90d9] text-[#0a0f1a] border-[#4a90d9]"
+                : compareDisabled
+                ? "bg-transparent text-[#3d4a61] border-[rgba(74,144,217,0.1)] cursor-not-allowed"
+                : "bg-transparent text-[#6b7a94] border-[rgba(74,144,217,0.15)] hover:border-[#4a90d9] hover:text-[#4a90d9]"
+            }`}
+          >
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              {isCompareSelected ? (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+              )}
+            </svg>
+            {isCompareSelected ? "Selected" : "Compare"}
+          </button>
+        </div>
+      )}
       {/* Top Row: Image + Info */}
       <div className="flex gap-4 mb-4">
         <div className="w-14 h-14 rounded-lg bg-[rgba(74,144,217,0.1)] flex items-center justify-center flex-shrink-0 overflow-hidden">

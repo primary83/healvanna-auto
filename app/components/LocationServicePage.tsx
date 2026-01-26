@@ -14,6 +14,8 @@ import StructuredData, {
   generateServiceSchema,
   generateBreadcrumbSchema,
 } from "./StructuredData";
+import RelatedArticles from "./RelatedArticles";
+import { CompareBar } from "./CompareProviders";
 
 interface LocationServicePageProps {
   service: ServiceCategory;
@@ -63,6 +65,17 @@ function LocationServiceContent({
   const [providers, setProviders] = useState<Provider[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [compareList, setCompareList] = useState<Provider[]>([]);
+
+  function handleCompareToggle(provider: Provider) {
+    setCompareList((prev) => {
+      const exists = prev.find((p) => p.id === provider.id);
+      if (exists) return prev.filter((p) => p.id !== provider.id);
+      if (prev.length >= 3) return prev;
+      return [...prev, provider];
+    });
+  }
 
   useEffect(() => {
     const fetchProviders = async () => {
@@ -101,6 +114,20 @@ function LocationServiceContent({
     fetchProviders();
   }, [latitude, longitude, sortBy, searchQuery, service.yelpCategories]);
 
+  // EV-related filter definitions
+  const EV_FILTERS = [
+    { label: "EV Friendly", value: "ev", keywords: ["ev", "electric", "tesla", "rivian", "lucid", "hybrid", "electric vehicle"] },
+    { label: "Tesla Certified", value: "tesla", keywords: ["tesla"] },
+    { label: "High Rated (4.5+)", value: "highrated", keywords: [] },
+    { label: "Open Now", value: "open", keywords: [] },
+  ];
+
+  function toggleFilter(value: string) {
+    setActiveFilters((prev) =>
+      prev.includes(value) ? prev.filter((f) => f !== value) : [...prev, value]
+    );
+  }
+
   const filteredProviders = useMemo(() => {
     return providers
       .map((provider) => {
@@ -116,6 +143,23 @@ function LocationServiceContent({
           distanceText: `${dist.toFixed(1)} mi`,
         };
       })
+      .filter((provider) => {
+        if (activeFilters.length === 0) return true;
+        return activeFilters.every((filter) => {
+          const searchText = `${provider.name} ${provider.category} ${provider.specialties.join(" ")} ${provider.description}`.toLowerCase();
+          switch (filter) {
+            case "highrated":
+              return provider.rating >= 4.5;
+            case "open":
+              return provider.isOpen;
+            default: {
+              const filterDef = EV_FILTERS.find((f) => f.value === filter);
+              if (!filterDef || filterDef.keywords.length === 0) return true;
+              return filterDef.keywords.some((kw) => searchText.includes(kw));
+            }
+          }
+        });
+      })
       .sort((a, b) => {
         switch (sortBy) {
           case "rating":
@@ -126,7 +170,7 @@ function LocationServiceContent({
             return a.calculatedDistance - b.calculatedDistance;
         }
       });
-  }, [providers, sortBy, latitude, longitude]);
+  }, [providers, sortBy, latitude, longitude, activeFilters]);
 
   const locationString = `${cityName}, ${stateCode}`;
 
@@ -239,6 +283,31 @@ function LocationServiceContent({
             </select>
           </div>
 
+          {/* Filter Chips */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {EV_FILTERS.map((filter) => (
+              <button
+                key={filter.value}
+                onClick={() => toggleFilter(filter.value)}
+                className={`px-3.5 py-1.5 text-[11px] tracking-[0.03em] font-medium rounded-full border transition-all duration-200 ${
+                  activeFilters.includes(filter.value)
+                    ? "bg-[#4a90d9] text-[#0a0f1a] border-[#4a90d9]"
+                    : "bg-transparent text-[#6b7a94] border-[rgba(74,144,217,0.2)] hover:border-[#4a90d9] hover:text-[#4a90d9]"
+                }`}
+              >
+                {filter.label}
+              </button>
+            ))}
+            {activeFilters.length > 0 && (
+              <button
+                onClick={() => setActiveFilters([])}
+                className="px-3 py-1.5 text-[11px] text-[#6b7a94] hover:text-[#ef4444] transition-colors"
+              >
+                Clear filters
+              </button>
+            )}
+          </div>
+
           <p className="text-sm text-[#6b7a94]">
             {isLoading ? (
               "Loading providers..."
@@ -302,7 +371,13 @@ function LocationServiceContent({
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredProviders.map((provider) => (
-                <ProviderCard key={provider.id} provider={provider} />
+                <ProviderCard
+                  key={provider.id}
+                  provider={provider}
+                  onCompareToggle={handleCompareToggle}
+                  isCompareSelected={compareList.some((p) => p.id === provider.id)}
+                  compareDisabled={compareList.length >= 3}
+                />
               ))}
             </div>
           )}
@@ -376,6 +451,13 @@ function LocationServiceContent({
         </div>
       </section>
 
+      {/* Related Articles */}
+      <RelatedArticles
+        serviceSlug={service.slug}
+        serviceName={service.name}
+        cityName={cityName}
+      />
+
       {/* CTA */}
       <section className="px-6 md:px-12 pb-24">
         <div className="max-w-[800px] mx-auto text-center bg-[rgba(74,144,217,0.05)] border border-[rgba(74,144,217,0.15)] rounded-lg p-12">
@@ -394,6 +476,26 @@ function LocationServiceContent({
           </Link>
         </div>
       </section>
+
+      <CompareBar
+        selected={compareList.map((p) => ({
+          id: p.id,
+          name: p.name,
+          category: p.category,
+          rating: p.rating,
+          reviewCount: p.reviewCount,
+          phone: p.phone,
+          address: p.address,
+          specialties: p.specialties,
+          isOpen: p.isOpen,
+          priceRange: p.priceRange,
+          distanceText: (p as Provider & { distanceText?: string }).distanceText,
+          url: p.url,
+          image: p.image,
+        }))}
+        onRemove={(id) => setCompareList((prev) => prev.filter((p) => p.id !== id))}
+        onClear={() => setCompareList([])}
+      />
 
       <Footer />
     </div>
