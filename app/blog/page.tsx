@@ -1,11 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
+const POSTS_PER_PAGE = 12;
+
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const categories = ["All", "Guides", "Technology", "Reviews", "Comparison", "Insights", "Events"];
 
@@ -663,9 +666,30 @@ export default function Blog() {
     }
   ];
 
-  const filteredPosts = activeCategory === "All" 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === activeCategory);
+  // Sort posts newest first by date
+  const sortedPosts = useMemo(() =>
+    [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
+    []
+  );
+
+  const filteredPosts = activeCategory === "All"
+    ? sortedPosts
+    : sortedPosts.filter(post => post.category === activeCategory);
+
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const paginatedPosts = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    setCurrentPage(1);
+  };
+
+  const scrollToGrid = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
@@ -692,7 +716,7 @@ export default function Blog() {
             {categories.map((category) => (
               <button
                 key={category}
-                onClick={() => setActiveCategory(category)}
+                onClick={() => handleCategoryChange(category)}
                 className={`px-5 py-2 rounded-full text-[14px] font-medium transition-all duration-300 ${
                   activeCategory === category
                     ? "bg-[#4a90d9] text-white"
@@ -707,10 +731,14 @@ export default function Blog() {
       </section>
 
       {/* Blog Grid */}
-      <section className="px-6 pb-20">
+      <section className="px-6 pb-8">
         <div className="max-w-[1200px] mx-auto">
+          {/* Post count */}
+          <p className="text-[14px] text-[#6b7a94] mb-6">
+            Showing {(currentPage - 1) * POSTS_PER_PAGE + 1}–{Math.min(currentPage * POSTS_PER_PAGE, filteredPosts.length)} of {filteredPosts.length} articles
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredPosts.map((post) => (
+            {paginatedPosts.map((post) => (
               <Link
                 key={post.id}
                 href={post.isInsight ? `/insights/${post.slug}` : `/blog/${post.slug}`}
@@ -755,6 +783,49 @@ export default function Blog() {
           </div>
         </div>
       </section>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <section className="px-6 pb-20">
+          <div className="max-w-[1200px] mx-auto flex items-center justify-center gap-2">
+            <button
+              onClick={() => { setCurrentPage(p => Math.max(1, p - 1)); scrollToGrid(); }}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 rounded-lg text-[14px] font-medium transition-all duration-300 ${
+                currentPage === 1
+                  ? "bg-[rgba(74,144,217,0.05)] text-[#3a4a5c] cursor-not-allowed"
+                  : "bg-[rgba(74,144,217,0.1)] text-[#6b7a94] hover:bg-[rgba(74,144,217,0.2)] hover:text-[#e8edf5]"
+              }`}
+            >
+              Previous
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => { setCurrentPage(page); scrollToGrid(); }}
+                className={`w-10 h-10 rounded-lg text-[14px] font-medium transition-all duration-300 ${
+                  currentPage === page
+                    ? "bg-[#4a90d9] text-white"
+                    : "bg-[rgba(74,144,217,0.1)] text-[#6b7a94] hover:bg-[rgba(74,144,217,0.2)] hover:text-[#e8edf5]"
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+            <button
+              onClick={() => { setCurrentPage(p => Math.min(totalPages, p + 1)); scrollToGrid(); }}
+              disabled={currentPage === totalPages}
+              className={`px-4 py-2 rounded-lg text-[14px] font-medium transition-all duration-300 ${
+                currentPage === totalPages
+                  ? "bg-[rgba(74,144,217,0.05)] text-[#3a4a5c] cursor-not-allowed"
+                  : "bg-[rgba(74,144,217,0.1)] text-[#6b7a94] hover:bg-[rgba(74,144,217,0.2)] hover:text-[#e8edf5]"
+              }`}
+            >
+              Next
+            </button>
+          </div>
+        </section>
+      )}
 
       {/* Newsletter Section */}
       <section className="px-6 pb-20">
