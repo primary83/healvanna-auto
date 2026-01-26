@@ -22,12 +22,12 @@ export default function CarsPage() {
         </Link>
         <div className="flex gap-10">
           {[
-            { name: "HOME", href: "/" },
-            { name: "CARS", href: "/cars", active: true },
-            { name: "CARE", href: "/care" },
-            { name: "CRAFT", href: "/craft" },
-            { name: "INSIGHTS", href: "/insights" },
-            { name: "BLOG", href: "/blog" },
+{ name: "HOME", href: "/" },
+{ name: "CARS", href: "/cars", active: true },
+{ name: "CARE", href: "/care" },
+{ name: "CRAFT", href: "/craft" },
+{ name: "SHOP", href: "/shop" },
+{ name: "BLOG", href: "/blog" },
           ].map((item) => (
             <Link
               key={item.name}

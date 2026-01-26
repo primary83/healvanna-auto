@@ -176,12 +176,12 @@ export default function CraftPage() {
         </Link>
         <div className="hidden md:flex gap-10">
           {[
-            { name: "HOME", href: "/" },
-            { name: "CARS", href: "/cars" },
-            { name: "CARE", href: "/care" },
-            { name: "CRAFT", href: "/craft" },
-            { name: "INSIGHTS", href: "/insights" },
-          ].map((item) => (
+{ name: "HOME", href: "/" },
+{ name: "CARS", href: "/cars" },
+{ name: "CARE", href: "/care" },
+{ name: "CRAFT", href: "/craft" },
+{ name: "SHOP", href: "/shop" },
+{ name: "BLOG", href: "/blog" },
             <Link
               key={item.name}
               href={item.href}
