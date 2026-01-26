@@ -243,14 +243,14 @@ export default function ShopPage() {
       <nav className="border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="text-xl font-light tracking-wider">
-            HEALVANNA <span className="text-emerald-400">AUTO</span>
+            HEALVANNA <span className="text-[#4a90d9]">AUTO</span>
           </Link>
           <div className="flex gap-8">
             <Link href="/" className="text-slate-300 hover:text-white transition-colors">HOME</Link>
             <Link href="/cars" className="text-slate-300 hover:text-white transition-colors">CARS</Link>
             <Link href="/care" className="text-slate-300 hover:text-white transition-colors">CARE</Link>
             <Link href="/craft" className="text-slate-300 hover:text-white transition-colors">CRAFT</Link>
-            <Link href="/shop" className="text-emerald-400">SHOP</Link>
+            <Link href="/shop" className="text-[#4a90d9]">SHOP</Link>
             <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">BLOG</Link>
           </div>
         </div>
@@ -259,7 +259,7 @@ export default function ShopPage() {
       {/* Hero Section */}
       <section className="px-4 py-16 border-b border-slate-800/50">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-400 text-sm mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#4a90d9]/10 rounded-full text-[#4a90d9] text-sm mb-6">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
@@ -285,7 +285,7 @@ export default function ShopPage() {
                 onClick={() => setActiveCategory(category.id)}
                 className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
                   activeCategory === category.id
-                    ? 'bg-emerald-500 text-white'
+                    ? 'bg-[#4a90d9] text-white'
                     : 'bg-slate-800/50 text-slate-300 hover:bg-slate-700/50 hover:text-white'
                 }`}
               >
@@ -322,12 +322,12 @@ export default function ShopPage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   {product.badge && (
-                    <div className="absolute top-3 left-3 px-2 py-1 bg-emerald-500 rounded-full text-xs font-medium text-white">
+                    <div className="absolute top-3 left-3 px-2 py-1 bg-[#4a90d9] rounded-full text-xs font-medium text-white">
                       {product.badge}
                     </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">
-                    <span className="px-4 py-2 bg-emerald-500 rounded-lg text-white text-sm font-medium">
+                    <span className="px-4 py-2 bg-[#4a90d9] rounded-lg text-white text-sm font-medium">
                       View on Amazon →
                     </span>
                   </div>
@@ -335,7 +335,7 @@ export default function ShopPage() {
 
                 {/* Product Info */}
                 <div className="p-4">
-                  <h3 className="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors line-clamp-1">
+                  <h3 className="font-semibold text-white mb-1 group-hover:text-[#4a90d9] transition-colors line-clamp-1">
                     {product.name}
                   </h3>
                   <p className="text-sm text-slate-400 mb-3 line-clamp-2">
@@ -352,7 +352,7 @@ export default function ShopPage() {
 
                   {/* Price */}
                   <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold text-emerald-400">{product.price}</span>
+                    <span className="text-xl font-bold text-[#4a90d9]">{product.price}</span>
                     <span className="text-xs text-slate-500 flex items-center gap-1">
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
@@ -390,7 +390,7 @@ export default function ShopPage() {
           <div className="flex gap-4 justify-center">
             <Link
               href="/blog"
-              className="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-medium transition-colors"
+              className="px-6 py-3 bg-[#4a90d9] hover:bg-[#3a7bc8] text-white rounded-lg font-medium transition-colors"
             >
               Read Our Guides
             </Link>
