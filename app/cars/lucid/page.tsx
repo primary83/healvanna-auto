@@ -58,7 +58,7 @@ export default function LucidBrand() {
                     <div><div className="text-sm text-slate-500">Type</div><div className="text-white font-semibold">{vehicle.type}</div></div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
