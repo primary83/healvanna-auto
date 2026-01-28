@@ -45,7 +45,7 @@ export default function KiaBrand() {
           <h2 className="text-2xl font-bold text-white mb-8">All Kia Models</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {vehicles.map((vehicle) => (
-              <div key={vehicle.slug} className="group bg-slate-900/50 rounded-3xl overflow-hidden border border-slate-800 hover:border-emerald-400/50 transition-all">
+              <Link key={vehicle.slug} href={`/cars/kia/${vehicle.slug}`} className="group bg-slate-900/50 rounded-3xl overflow-hidden border border-slate-800 hover:border-emerald-400/50 transition-all">
                 <div className="aspect-video relative overflow-hidden"><img src={vehicle.image} alt={vehicle.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /><div className="absolute top-4 right-4 px-3 py-1 bg-emerald-500 rounded-full text-white text-sm font-medium">Kia</div></div>
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-white mb-2">Kia {vehicle.name}</h3><p className="text-slate-400 mb-4">{vehicle.description}</p>

@@ -13,10 +13,10 @@ export default function GenesisBrand() {
     <main className="min-h-screen bg-slate-950">
       <nav className="border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-light tracking-wider">HEALVANNA <span className="text-amber-600">AUTO</span></Link>
+          <Link href="/" className="text-xl font-light tracking-wider">HEALVANNA <span className="text-emerald-400">AUTO</span></Link>
           <div className="flex gap-8">
             <Link href="/" className="text-slate-300 hover:text-white transition-colors">HOME</Link>
-            <Link href="/cars" className="text-amber-600">CARS</Link>
+            <Link href="/cars" className="text-emerald-400">CARS</Link>
             <Link href="/care" className="text-slate-300 hover:text-white transition-colors">CARE</Link>
             <Link href="/craft" className="text-slate-300 hover:text-white transition-colors">CRAFT</Link>
             <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">BLOG</Link>
@@ -44,7 +44,7 @@ export default function GenesisBrand() {
           <h2 className="text-2xl font-bold text-white mb-8">All Genesis EV Models</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {vehicles.map((vehicle) => (
-              <div key={vehicle.slug} className="group bg-slate-900/50 rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-600/50 transition-all">
+              <Link key={vehicle.slug} href={`/cars/genesis/${vehicle.slug}`} className="group bg-slate-900/50 rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-600/50 transition-all">
                 <div className="aspect-video relative overflow-hidden"><img src={vehicle.image} alt={vehicle.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /><div className="absolute top-4 right-4 px-3 py-1 bg-amber-700 rounded-full text-white text-sm font-medium">Genesis</div></div>
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-white mb-2">Genesis {vehicle.name}</h3><p className="text-slate-400 mb-4">{vehicle.description}</p>
