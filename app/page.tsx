@@ -3,6 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+import ServiceSearchBar from "./components/ServiceSearchBar";
+import { SERVICE_CATEGORIES } from "./lib/services";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -22,30 +26,30 @@ export default function Home() {
   const heroSlides = [
     {
       title: "Premium Car",
-      titleAccent: "Ownership",
-      subtitle: "A curated guide to exceptional vehicles, trusted care specialists, and master craftsmen. For discerning automotive enthusiasts.",
-      category: "The Curated Guide",
+      titleAccent: "Services",
+      subtitle: "Find trusted automotive service providers — detailing, wrapping, body shops, collision repair, and more. Verified specialists near you.",
+      category: "Service Directory",
       image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1920&q=80",
-      exploreLink: "/cars",
+      exploreLink: "/services",
       learnMoreLink: "/insights",
-    },
-    {
-      title: "Electric",
-      titleAccent: "Excellence",
-      subtitle: "Explore the finest EVs from Tesla, Rivian, Lucid, and beyond. In-depth guides to help you find your perfect electric vehicle.",
-      category: "EV Directory",
-      image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1920&q=80",
-      exploreLink: "/cars",
-      learnMoreLink: "/blog",
     },
     {
       title: "Trusted",
       titleAccent: "Specialists",
       subtitle: "Verified detailers, ceramic coating experts, and restoration craftsmen. Find premium care for your premium vehicle.",
-      category: "Service Directory",
+      category: "Find Your Pro",
       image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1920&q=80",
-      exploreLink: "/care",
-      learnMoreLink: "/blog",
+      exploreLink: "/services",
+      learnMoreLink: "/insights",
+    },
+    {
+      title: "Quality",
+      titleAccent: "Craftsmanship",
+      subtitle: "From body shops to auto glass, collision repair to custom painting. Every service category covered with real reviews.",
+      category: "All Services",
+      image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1920&q=80",
+      exploreLink: "/services",
+      learnMoreLink: "/insights",
     },
   ];
 
@@ -68,45 +72,16 @@ export default function Home() {
     { title: "EV Blog", subtitle: "Guides · Reviews · News", image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80", link: "/blog" },
   ];
 
-  const navItems = [
-    { name: "HOME", href: "/" },
-    { name: "CARS", href: "/cars" },
-    { name: "CARE", href: "/care" },
-    { name: "CRAFT", href: "/craft" },
-    { name: "SHOP", href: "/shop" },
-    { name: "BLOG", href: "/blog" },
-  ];
-
   const goToSlide = (index: number) => setCurrentSlide(index);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
 
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-12 py-5 flex justify-between items-center bg-gradient-to-b from-[#0a0f1a]/95 to-transparent backdrop-blur-xl">
-        <Link href="/" className="text-[22px] font-light tracking-[0.12em] cursor-pointer">
-          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
-        </Link>
-        <div className="flex gap-10">
-          {navItems.map((item, index) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`text-xs tracking-[0.12em] cursor-pointer transition-colors duration-300 pb-2 ${
-                index === 0
-                  ? "text-[#e8edf5] border-b border-[#4a90d9]"
-                  : "text-[#6b7a94] hover:text-[#e8edf5] border-b border-transparent"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
+      <Navigation activeItem="HOME" />
 
       {/* Hero Slider */}
-      <section className="h-screen relative overflow-hidden">
+      <section className="min-h-screen relative overflow-hidden">
         {heroSlides.map((slide, index) => (
           <div
             key={index}
@@ -116,17 +91,18 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1a]/95 via-[#0a0f1a]/70 to-transparent" />
-            <div className="absolute inset-0 flex items-center">
-              <div className={`ml-16 max-w-[600px] transition-all duration-1000 ${isLoaded && currentSlide === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-                <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">{slide.category}</div>
-                <h1 className="text-[clamp(48px,7vw,72px)] font-extralight leading-[1.05] mb-6 tracking-tight">
-                  {slide.title}<br />
-                  <span className="italic text-[#4a90d9]">{slide.titleAccent}</span>
-                </h1>
-                <p className="text-[15px] text-[#6b7a94] leading-relaxed mb-8 max-w-[450px]">{slide.subtitle}</p>
-                <div className="flex gap-4">
-                  <Link href={slide.exploreLink} className="px-8 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300">Explore Directory</Link>
-                  <Link href={slide.learnMoreLink} className="px-8 py-3 text-[13px] font-medium bg-transparent border border-[rgba(232,237,245,0.25)] text-[#e8edf5] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300">Learn More</Link>
+            <div className="absolute inset-0 flex items-center pb-20">
+              <div className={`w-full px-6 md:px-16 transition-all duration-1000 ${isLoaded && currentSlide === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+                <div className="max-w-[800px]">
+                  <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">{slide.category}</div>
+                  <h1 className="text-[clamp(36px,5.5vw,60px)] font-extralight leading-[1.05] mb-4 tracking-tight">
+                    {slide.title}<br />
+                    <span className="italic text-[#4a90d9]">{slide.titleAccent}</span>
+                  </h1>
+                  <p className="text-[14px] text-[#6b7a94] leading-relaxed mb-8 max-w-[450px]">{slide.subtitle}</p>
+                </div>
+                <div className="max-w-[800px]">
+                  <ServiceSearchBar />
                 </div>
               </div>
             </div>
@@ -134,7 +110,7 @@ export default function Home() {
         ))}
 
         {/* Slider Controls */}
-        <div className="absolute bottom-10 left-16 flex items-center gap-6">
+        <div className="absolute bottom-10 left-6 md:left-16 flex items-center gap-6">
           <div className="flex gap-3">
             {heroSlides.map((_, index) => (
               <button
@@ -149,14 +125,31 @@ export default function Home() {
           <span className="text-[11px] tracking-[0.1em] text-[#6b7a94] font-medium">0{currentSlide + 1} / 0{heroSlides.length}</span>
         </div>
 
-        <div className="absolute bottom-10 right-16 flex gap-3">
+        <div className="absolute bottom-10 right-6 md:right-16 flex gap-3">
           <button onClick={prevSlide} className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">←</button>
           <button onClick={nextSlide} className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">→</button>
         </div>
       </section>
 
+      {/* Trust Stats Bar */}
+      <section className="py-10 px-6 md:px-12 bg-[#0d1424] border-b border-[rgba(74,144,217,0.08)]">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { value: "7", label: "Service Categories", href: "/services" },
+            { value: "20+", label: "Cities Covered", href: "/car-detailing" },
+            { value: "Free", label: "Business Listings", href: "/business" },
+            { value: "100%", label: "Verified Providers", href: "/about" },
+          ].map((stat) => (
+            <Link key={stat.label} href={stat.href} className="group">
+              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 group-hover:text-[#6ba8eb] transition-colors">{stat.value}</div>
+              <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">{stat.label}</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Categories Quick Nav */}
-      <section className="py-24 px-12 bg-[#0d1424]">
+      <section className="py-24 px-6 md:px-12 bg-[#0d1424]">
         <div className="text-center mb-14">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Discover</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight">Explore Our Directory</h2>
@@ -175,8 +168,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section className="py-24 px-6 md:px-12 bg-[#0a0f1a]">
+        <div className="text-center mb-16">
+          <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Services</div>
+          <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Automotive Service Directory</h2>
+          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Find verified specialists across every automotive service category.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-[1300px] mx-auto">
+          {SERVICE_CATEGORIES.map((service) => (
+            <Link
+              key={service.slug}
+              href={`/${service.slug}`}
+              className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded-xl p-6 border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block"
+            >
+              <div className="w-12 h-12 rounded-xl bg-[rgba(74,144,217,0.1)] flex items-center justify-center mb-4 group-hover:bg-[rgba(74,144,217,0.2)] transition-colors">
+                <svg className="w-6 h-6 text-[#4a90d9]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d={service.icon} />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-[#e8edf5] mb-2 group-hover:text-[#4a90d9] transition-colors">{service.name}</h3>
+              <p className="text-[13px] text-[#6b7a94] leading-relaxed">{service.description}</p>
+            </Link>
+          ))}
+        </div>
+        <div className="text-center mt-12">
+          <Link href="/services" className="inline-block px-12 py-3.5 text-[13px] font-medium bg-transparent text-[#e8edf5] border border-[rgba(74,144,217,0.15)] hover:border-[#4a90d9] hover:text-[#4a90d9] transition-all duration-300">Browse All Services</Link>
+        </div>
+      </section>
+
       {/* Browse by Brand Section */}
-      <section className="py-24 px-12 bg-[#0a0f1a]">
+      <section className="py-24 px-6 md:px-12 bg-[#0a0f1a]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">EV Directory</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Browse by Brand</h2>
@@ -235,19 +257,37 @@ export default function Home() {
             </div>
           </Link>
 
-          {/* Coming Soon Brands */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {/* Other Brands */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { name: "Rivian", models: "R1T · R1S · R2", color: "amber" },
-              { name: "BMW", models: "i4 · i7 · iX", color: "blue" },
-              { name: "Mercedes", models: "EQS · EQE · EQB", color: "slate" },
-              { name: "Porsche", models: "Taycan · Macan EV", color: "red" },
+              { name: "Rivian", models: "R1T · R1S", image: "/cars/rivian/r1s.png", href: "/cars/rivian", count: "2 Models", color: "amber" },
+              { name: "BMW", models: "i4 · i7 · iX", image: "/cars/bmw/i4.png", href: "/cars/bmw", count: "3 Models", color: "blue" },
+              { name: "Mercedes", models: "EQS · EQE · EQB", image: "/cars/mercedes/eqs.png", href: "/cars/mercedes", count: "3 Models", color: "slate" },
+              { name: "Porsche", models: "Taycan · Macan EV", image: "/cars/porsche/taycan.png", href: "/cars/porsche", count: "2 Models", color: "red" },
             ].map((brand) => (
-              <div key={brand.name} className="bg-[rgba(15,22,40,0.5)] rounded-xl p-6 border border-[rgba(74,144,217,0.1)] opacity-60">
-                <h4 className="text-lg font-medium text-white mb-1">{brand.name}</h4>
-                <p className="text-[12px] text-[#6b7a94] mb-3">{brand.models}</p>
-                <span className="text-[10px] tracking-[0.1em] uppercase text-[#4a90d9]">Coming Soon</span>
-              </div>
+              <Link key={brand.name} href={brand.href} className="bg-[rgba(15,22,40,0.5)] rounded-xl overflow-hidden border border-[rgba(74,144,217,0.1)] hover:border-[rgba(74,144,217,0.3)] transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.4)] group block">
+                <div className="h-[140px] relative overflow-hidden bg-gradient-to-b from-[rgba(74,144,217,0.05)] to-transparent">
+                  <Image
+                    src={brand.image}
+                    alt={brand.name}
+                    fill
+                    className="object-contain object-center p-4 group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-1">
+                    <h4 className="text-lg font-medium text-white group-hover:text-[#4a90d9] transition-colors">{brand.name}</h4>
+                    <span className="text-[10px] tracking-[0.1em] uppercase text-[#4a90d9] font-medium">{brand.count}</span>
+                  </div>
+                  <p className="text-[12px] text-[#6b7a94] mb-3">{brand.models}</p>
+                  <span className="inline-flex items-center text-[#4a90d9] text-[12px] font-medium group-hover:gap-2 gap-1 transition-all">
+                    View Models
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -258,7 +298,7 @@ export default function Home() {
       </section>
 
       {/* CARE Section */}
-      <section className="py-24 px-12 bg-[#0d1424]">
+      <section className="py-24 px-6 md:px-12 bg-[#0d1424]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Care</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Premium Detailing & Protection</h2>
@@ -292,7 +332,7 @@ export default function Home() {
       </section>
 
       {/* CRAFT Section */}
-      <section className="py-24 px-12 bg-[#0a0f1a]">
+      <section className="py-24 px-6 md:px-12 bg-[#0a0f1a]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Craft</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Body Shops & Restoration</h2>
@@ -326,7 +366,7 @@ export default function Home() {
       </section>
 
       {/* INSIGHTS Section */}
-      <section className="py-24 px-12 bg-[#0d1424]">
+      <section className="py-24 px-6 md:px-12 bg-[#0d1424]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Insights</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Market Intelligence</h2>
@@ -363,68 +403,13 @@ export default function Home() {
         <div className="relative text-center max-w-[600px] px-6">
           <h2 className="text-[clamp(32px,5vw,48px)] font-extralight mb-4 tracking-tight">Your Guide to Premium Auto</h2>
           <p className="text-base text-[#6b7a94] mb-8 leading-relaxed">Join thousands of enthusiasts who trust Healvanna for expert vehicle guides and verified service providers.</p>
-          <button className="px-14 py-4 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300">Subscribe to Updates</button>
+          <Link href="/contact">
+            <button className="px-14 py-4 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300">Subscribe to Updates</button>
+          </Link>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#0a0f1a] pt-16 pb-8 px-12 border-t border-[rgba(74,144,217,0.15)]">
-        <div className="grid grid-cols-6 gap-10 max-w-[1200px] mx-auto mb-12">
-          {[
-            { title: "Cars", links: [
-              { name: "Tesla", href: "/cars/tesla" },
-              { name: "All Brands", href: "/cars" },
-              { name: "SUVs", href: "/cars/suvs" },
-              { name: "Sedans", href: "/cars" }
-            ]},
-            { title: "Care", links: [
-              { name: "Detailing", href: "/care" },
-              { name: "Ceramic Coating", href: "/care" },
-              { name: "PPF", href: "/care" },
-              { name: "Interior", href: "/care" }
-            ]},
-            { title: "Craft", links: [
-              { name: "EV Body Shops", href: "/craft" },
-              { name: "Luxury Collision", href: "/craft" },
-              { name: "Restoration", href: "/craft" }
-            ]},
-            { title: "Markets", links: [
-              { name: "Austin", href: "/care?location=Austin" },
-              { name: "Miami", href: "/care?location=Miami" },
-              { name: "Los Angeles", href: "/care?location=Los Angeles" },
-              { name: "New York", href: "/care?location=New York" },
-              { name: "Dubai", href: "/care?location=Dubai" }
-            ]},
-            { title: "Resources", links: [
-              { name: "Blog", href: "/blog" },
-             { name: "Insights", href: "/insights" },
-              { name: "Guides", href: "/blog" }
-            ]},
-            { title: "Company", links: [
-              { name: "About", href: "/about" },
-              { name: "For Business", href: "/business" },
-              { name: "Contact", href: "/contact" }
-            ]},
-          ].map((column, index) => (
-            <div key={index}>
-              <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">{column.title}</h4>
-              {column.links.map((link) => (
-                <Link key={link.name} href={link.href} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)] max-w-[1200px] mx-auto">
-          <div className="text-[11px] text-[#3d4a61]">© 2026 Healvanna. All rights reserved.</div>
-          <div className="flex gap-6">
-            {[
-              { name: "Privacy", href: "/privacy" },
-              { name: "Terms", href: "/terms" },
-              { name: "Cookies", href: "#" }
-            ].map((link) => <Link key={link.name} href={link.href} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>)}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

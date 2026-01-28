@@ -13,6 +13,29 @@ interface GeoLocation {
   error: string | null;
 }
 
+// Convert full state name to two-letter code
+const STATE_CODES: Record<string, string> = {
+  "Alabama": "AL", "Alaska": "AK", "Arizona": "AZ", "Arkansas": "AR",
+  "California": "CA", "Colorado": "CO", "Connecticut": "CT", "Delaware": "DE",
+  "Florida": "FL", "Georgia": "GA", "Hawaii": "HI", "Idaho": "ID",
+  "Illinois": "IL", "Indiana": "IN", "Iowa": "IA", "Kansas": "KS",
+  "Kentucky": "KY", "Louisiana": "LA", "Maine": "ME", "Maryland": "MD",
+  "Massachusetts": "MA", "Michigan": "MI", "Minnesota": "MN", "Mississippi": "MS",
+  "Missouri": "MO", "Montana": "MT", "Nebraska": "NE", "Nevada": "NV",
+  "New Hampshire": "NH", "New Jersey": "NJ", "New Mexico": "NM", "New York": "NY",
+  "North Carolina": "NC", "North Dakota": "ND", "Ohio": "OH", "Oklahoma": "OK",
+  "Oregon": "OR", "Pennsylvania": "PA", "Rhode Island": "RI", "South Carolina": "SC",
+  "South Dakota": "SD", "Tennessee": "TN", "Texas": "TX", "Utah": "UT",
+  "Vermont": "VT", "Virginia": "VA", "Washington": "WA", "West Virginia": "WV",
+  "Wisconsin": "WI", "Wyoming": "WY", "District of Columbia": "DC",
+};
+
+function getStateCode(state: string): string {
+  // If already a 2-letter code, return as-is
+  if (state.length === 2) return state.toUpperCase();
+  return STATE_CODES[state] || state;
+}
+
 const DEFAULT_LOCATION: GeoLocation = {
   city: "Austin",
   state: "TX",
@@ -62,73 +85,135 @@ export function useGeoLocation(): GeoLocation & {
 } {
   const [location, setLocation] = useState<GeoLocation>({
     ...DEFAULT_LOCATION,
+    zip: "",
+    city: "",
+    state: "",
     isLoading: true,
   });
   const [detectedLocation, setDetectedLocation] = useState<string>("");
 
   useEffect(() => {
-    const fetchLocation = async () => {
+    // Reverse geocode coordinates to get city/state/zip
+    const reverseGeocode = async (lat: number, lon: number): Promise<{
+      city: string; state: string; zip: string; country: string;
+    } | null> => {
       try {
-        // Try multiple free IP geolocation APIs as fallbacks
-        const apis = [
-          {
-            url: "https://ipapi.co/json/",
-            parse: (data: any) => ({
-              city: data.city || DEFAULT_LOCATION.city,
-              state: data.region_code || DEFAULT_LOCATION.state,
-              zip: data.postal || DEFAULT_LOCATION.zip,
-              country: data.country_code || DEFAULT_LOCATION.country,
-              latitude: data.latitude || DEFAULT_LOCATION.latitude,
-              longitude: data.longitude || DEFAULT_LOCATION.longitude,
-            }),
-          },
-          {
-            url: "https://ip-api.com/json/?fields=city,region,zip,countryCode,lat,lon",
-            parse: (data: any) => ({
-              city: data.city || DEFAULT_LOCATION.city,
-              state: data.region || DEFAULT_LOCATION.state,
-              zip: data.zip || DEFAULT_LOCATION.zip,
-              country: data.countryCode || DEFAULT_LOCATION.country,
-              latitude: data.lat || DEFAULT_LOCATION.latitude,
-              longitude: data.lon || DEFAULT_LOCATION.longitude,
-            }),
-          },
-        ];
-
-        let locationData = null;
-
-        for (const api of apis) {
-          try {
-            const response = await fetch(api.url, {
-              signal: AbortSignal.timeout(5000), // 5 second timeout
-            });
-            if (response.ok) {
-              const data = await response.json();
-              locationData = api.parse(data);
-              break;
-            }
-          } catch {
-            continue;
-          }
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&addressdetails=1`,
+          { signal: AbortSignal.timeout(5000), headers: { "Accept-Language": "en" } }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          const addr = data.address || {};
+          return {
+            city: addr.city || addr.town || addr.village || DEFAULT_LOCATION.city,
+            state: addr.state ? getStateCode(addr.state) : DEFAULT_LOCATION.state,
+            zip: addr.postcode || DEFAULT_LOCATION.zip,
+            country: addr.country_code?.toUpperCase() || DEFAULT_LOCATION.country,
+          };
         }
+      } catch { /* fall through */ }
+      return null;
+    };
 
-        if (locationData) {
+    // Try browser Geolocation API first (most accurate)
+    const tryBrowserGeolocation = (): Promise<GeolocationPosition | null> => {
+      return new Promise((resolve) => {
+        if (!navigator.geolocation) {
+          resolve(null);
+          return;
+        }
+        navigator.geolocation.getCurrentPosition(
+          (position) => resolve(position),
+          () => resolve(null),
+          { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 }
+        );
+      });
+    };
+
+    // IP-based geolocation APIs (no permission prompt needed)
+    const tryIPGeolocation = async () => {
+      const apis = [
+        {
+          url: "https://ipapi.co/json/",
+          parse: (data: any) => ({
+            city: data.city || DEFAULT_LOCATION.city,
+            state: data.region_code || DEFAULT_LOCATION.state,
+            zip: data.postal || DEFAULT_LOCATION.zip,
+            country: data.country_code || DEFAULT_LOCATION.country,
+            latitude: data.latitude || DEFAULT_LOCATION.latitude,
+            longitude: data.longitude || DEFAULT_LOCATION.longitude,
+          }),
+        },
+        {
+          url: "https://ipwho.is/",
+          parse: (data: any) => ({
+            city: data.city || DEFAULT_LOCATION.city,
+            state: data.region_code || data.region || DEFAULT_LOCATION.state,
+            zip: data.postal || DEFAULT_LOCATION.zip,
+            country: data.country_code || DEFAULT_LOCATION.country,
+            latitude: data.latitude || DEFAULT_LOCATION.latitude,
+            longitude: data.longitude || DEFAULT_LOCATION.longitude,
+          }),
+        },
+      ];
+
+      for (const api of apis) {
+        try {
+          const response = await fetch(api.url, {
+            signal: AbortSignal.timeout(3000),
+          });
+          if (response.ok) {
+            const data = await response.json();
+            return api.parse(data);
+          }
+        } catch {
+          continue;
+        }
+      }
+      return null;
+    };
+
+    const detectLocation = async () => {
+      try {
+        // 1. Try IP-based geolocation first (instant, no permission prompt)
+        const ipData = await tryIPGeolocation();
+        if (ipData) {
           setLocation({
-            ...locationData,
+            ...ipData,
             isLoading: false,
             error: null,
           });
-          setDetectedLocation(`${locationData.city}, ${locationData.state}`);
-        } else {
-          // Use default if all APIs fail
-          setLocation({
-            ...DEFAULT_LOCATION,
-            isLoading: false,
-            error: "Could not detect location, using default",
-          });
-          setDetectedLocation(`${DEFAULT_LOCATION.city}, ${DEFAULT_LOCATION.state}`);
+          setDetectedLocation(`${ipData.city}, ${ipData.state}`);
+          return;
         }
-      } catch (error) {
+
+        // 2. Fallback to browser geolocation only if IP detection fails
+        const browserPos = await tryBrowserGeolocation();
+        if (browserPos) {
+          const { latitude, longitude } = browserPos.coords;
+          const geo = await reverseGeocode(latitude, longitude);
+          if (geo) {
+            setLocation({
+              ...geo,
+              latitude,
+              longitude,
+              isLoading: false,
+              error: null,
+            });
+            setDetectedLocation(`${geo.city}, ${geo.state}`);
+            return;
+          }
+        }
+
+        // 3. Use default if everything fails
+        setLocation({
+          ...DEFAULT_LOCATION,
+          isLoading: false,
+          error: "Could not detect location, using default",
+        });
+        setDetectedLocation(`${DEFAULT_LOCATION.city}, ${DEFAULT_LOCATION.state}`);
+      } catch {
         setLocation({
           ...DEFAULT_LOCATION,
           isLoading: false,
@@ -138,7 +223,7 @@ export function useGeoLocation(): GeoLocation & {
       }
     };
 
-    fetchLocation();
+    detectLocation();
   }, []);
 
   const setManualLocation = (city: string, state: string) => {

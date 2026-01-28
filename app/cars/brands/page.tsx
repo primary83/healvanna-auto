@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "All Car Brands - Premium & Electric Vehicle Directory",
-  description: "Explore all premium and electric vehicle brands in our directory. From Tesla to Porsche, Lucid to Mercedes-Benz, discover the finest vehicles from the world's top automakers.",
-  keywords: ["car brands", "luxury car brands", "electric car brands", "Tesla", "Porsche", "Lucid", "Rivian", "BMW", "Mercedes-Benz", "Audi"],
+  title: "All EV Car Brands - Electric Vehicle Directory | 28+ Brands",
+  description: "Explore 28+ electric vehicle brands including Tesla, BYD, NIO, XPeng, Rivian, BMW, Mercedes-Benz, Porsche, and more. Compare Chinese EVs, luxury electrics, and affordable options.",
+  keywords: ["electric car brands", "EV brands", "Chinese electric cars", "BYD", "NIO", "XPeng", "Tesla", "Porsche", "Lucid", "Rivian", "BMW", "Mercedes-Benz", "Audi", "Zeekr", "Li Auto", "Xiaomi car", "Hyundai Ioniq", "Kia EV", "VinFast", "Volvo electric"],
 };
 
 const brands = [
@@ -140,6 +140,184 @@ const brands = [
     slug: "bentley",
     color: "#006847"
   },
+  // Chinese EV Brands
+  {
+    name: "BYD",
+    logo: "BYD",
+    country: "China",
+    founded: "1995",
+    specialty: "Mass-Market & Premium EVs",
+    description: "The world's largest EV manufacturer by volume, BYD combines advanced Blade Battery technology with aggressive pricing across sedans, SUVs, and luxury segments.",
+    models: ["Seal", "Atto 3", "Dolphin", "Han", "Tang", "Seal U"],
+    slug: "byd",
+    color: "#c00000"
+  },
+  {
+    name: "NIO",
+    logo: "NIO",
+    country: "China",
+    founded: "2014",
+    specialty: "Premium Smart EVs & Battery Swap",
+    description: "Pioneering battery-swap technology and premium EV design, NIO delivers a luxury ownership experience with innovative power solutions and an AI-driven cockpit.",
+    models: ["ET7", "ET5", "ES8", "ES6", "EC7", "EC6"],
+    slug: "nio",
+    color: "#00a0e9"
+  },
+  {
+    name: "XPeng",
+    logo: "XP",
+    country: "China",
+    founded: "2014",
+    specialty: "Smart EVs & Autonomous Driving",
+    description: "A technology-first automaker leading in advanced driver assistance and smart cockpit features, with competitive pricing across its growing lineup.",
+    models: ["G9", "G6", "P7", "X9", "Mona M03"],
+    slug: "xpeng",
+    color: "#00c853"
+  },
+  {
+    name: "Li Auto",
+    logo: "Li",
+    country: "China",
+    founded: "2015",
+    specialty: "Extended-Range & Pure Electric SUVs",
+    description: "Known for family-oriented smart SUVs, Li Auto pioneered the extended-range EV concept in China and now offers both EREV and pure electric platforms.",
+    models: ["Mega", "L9", "L8", "L7", "L6"],
+    slug: "li-auto",
+    color: "#1a73e8"
+  },
+  {
+    name: "Zeekr",
+    logo: "ZK",
+    country: "China",
+    founded: "2021",
+    specialty: "Premium Performance EVs",
+    description: "Geely's premium EV brand combines Scandinavian-inspired design with cutting-edge battery technology, including the ultra-fast-charging Golden Battery architecture.",
+    models: ["001", "009", "X", "007", "Mix"],
+    slug: "zeekr",
+    color: "#6c5ce7"
+  },
+  {
+    name: "BYD Yangwang",
+    logo: "YW",
+    country: "China",
+    founded: "2023",
+    specialty: "Ultra-Luxury Performance EVs",
+    description: "BYD's ultra-premium brand pushes the boundaries of EV performance with advanced e4 four-motor technology and luxury positioning to rival established European marques.",
+    models: ["U8", "U9"],
+    slug: "yangwang",
+    color: "#b8860b"
+  },
+  {
+    name: "Xiaomi",
+    logo: "Mi",
+    country: "China",
+    founded: "2021",
+    specialty: "Tech-Forward Electric Vehicles",
+    description: "The tech giant brings its ecosystem expertise to automotive, delivering a highly integrated smart EV with industry-leading software and competitive performance.",
+    models: ["SU7", "SU7 Pro", "SU7 Max", "YU7"],
+    slug: "xiaomi",
+    color: "#ff6900"
+  },
+  // Other Global EV Brands
+  {
+    name: "Hyundai",
+    logo: "H",
+    country: "South Korea",
+    founded: "1967",
+    specialty: "Mainstream & Performance EVs",
+    description: "Leading the charge with the acclaimed Ioniq lineup, Hyundai delivers 800V ultra-fast charging and award-winning design at accessible price points.",
+    models: ["Ioniq 5", "Ioniq 6", "Ioniq 9", "Kona Electric"],
+    slug: "hyundai",
+    color: "#002c5f"
+  },
+  {
+    name: "Kia",
+    logo: "K",
+    country: "South Korea",
+    founded: "1944",
+    specialty: "Value-Driven Electric Vehicles",
+    description: "Kia's bold new design language and E-GMP platform deliver impressive range, fast charging, and spacious interiors at competitive prices.",
+    models: ["EV6", "EV9", "EV3", "Niro EV"],
+    slug: "kia",
+    color: "#05141f"
+  },
+  {
+    name: "Volvo",
+    logo: "V",
+    country: "Sweden",
+    founded: "1927",
+    specialty: "Safety-First Electric Vehicles",
+    description: "Committed to becoming fully electric by 2030, Volvo brings its legendary safety focus and Scandinavian minimalism to a growing range of premium EVs.",
+    models: ["EX90", "EX30", "EC40", "XC40 Recharge"],
+    slug: "volvo",
+    color: "#003057"
+  },
+  {
+    name: "Volkswagen",
+    logo: "VW",
+    country: "Germany",
+    founded: "1937",
+    specialty: "Accessible Electric Mobility",
+    description: "The people's car company brings electric mobility to the mainstream with its dedicated MEB platform, making EVs accessible to millions worldwide.",
+    models: ["ID.4", "ID. Buzz", "ID.7", "ID.3"],
+    slug: "volkswagen",
+    color: "#001e50"
+  },
+  {
+    name: "Ford",
+    logo: "F",
+    country: "United States",
+    founded: "1903",
+    specialty: "Electric Trucks & Performance",
+    description: "America's truck brand electrifies its icons with the F-150 Lightning and Mustang Mach-E, bringing EV capability to mainstream American buyers.",
+    models: ["F-150 Lightning", "Mustang Mach-E", "E-Transit"],
+    slug: "ford",
+    color: "#003478"
+  },
+  {
+    name: "Chevrolet",
+    logo: "CH",
+    country: "United States",
+    founded: "1911",
+    specialty: "Affordable & Performance EVs",
+    description: "GM's Ultium platform powers Chevrolet's electric future, from the affordable Equinox EV to the reborn Blazer EV and iconic Silverado EV truck.",
+    models: ["Equinox EV", "Blazer EV", "Silverado EV"],
+    slug: "chevrolet",
+    color: "#d1a836"
+  },
+  {
+    name: "VinFast",
+    logo: "VF",
+    country: "Vietnam",
+    founded: "2017",
+    specialty: "Affordable Global EVs",
+    description: "Vietnam's first global automaker is rapidly expanding with competitively priced electric SUVs and sedans, targeting value-conscious EV buyers worldwide.",
+    models: ["VF 8", "VF 9", "VF 7", "VF 6", "VF 3"],
+    slug: "vinfast",
+    color: "#1a3c6d"
+  },
+  {
+    name: "Jaguar",
+    logo: "J",
+    country: "United Kingdom",
+    founded: "1922",
+    specialty: "Ultra-Luxury Electric GT",
+    description: "Reinventing itself as an all-electric ultra-luxury brand, Jaguar is preparing a bold new lineup of striking electric vehicles with prices starting above $100,000.",
+    models: ["I-Pace", "Type 00"],
+    slug: "jaguar",
+    color: "#1a472a"
+  },
+  {
+    name: "Cadillac",
+    logo: "CA",
+    country: "United States",
+    founded: "1902",
+    specialty: "American Luxury EVs",
+    description: "GM's luxury division goes all-electric with the Ultium platform, blending American boldness with cutting-edge technology in its new electric lineup.",
+    models: ["Lyriq", "Celestiq", "Escalade IQ", "Optiq"],
+    slug: "cadillac",
+    color: "#a6192e"
+  },
 ];
 
 export default function AllBrandsPage() {
@@ -207,6 +385,12 @@ export default function AllBrandsPage() {
             <button className="px-6 py-2 bg-white/5 text-gray-300 rounded-full text-sm hover:bg-white/10 transition-colors">
               American
             </button>
+            <button className="px-6 py-2 bg-white/5 text-gray-300 rounded-full text-sm hover:bg-white/10 transition-colors">
+              Chinese
+            </button>
+            <button className="px-6 py-2 bg-white/5 text-gray-300 rounded-full text-sm hover:bg-white/10 transition-colors">
+              Asian
+            </button>
           </div>
         </div>
       </section>
@@ -271,11 +455,11 @@ export default function AllBrandsPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
-              <p className="text-4xl font-extralight text-[#4a90d9] mb-2">12+</p>
+              <p className="text-4xl font-extralight text-[#4a90d9] mb-2">28+</p>
               <p className="text-gray-400">Premium Brands</p>
             </div>
             <div>
-              <p className="text-4xl font-extralight text-[#4a90d9] mb-2">50+</p>
+              <p className="text-4xl font-extralight text-[#4a90d9] mb-2">120+</p>
               <p className="text-gray-400">Vehicle Models</p>
             </div>
             <div>

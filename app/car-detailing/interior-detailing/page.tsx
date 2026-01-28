@@ -1,0 +1,21 @@
+import type { Metadata } from "next";
+import { getSubcategory } from "../../lib/services";
+import ServiceListingPage from "../../components/ServiceListingPage";
+
+const data = getSubcategory("car-detailing", "interior-detailing")!;
+
+export const metadata: Metadata = {
+  title: `Interior Detailing Near You - Expert Interior Care`,
+  description: data.subcategory.description,
+  keywords: data.subcategory.keywords,
+  alternates: { canonical: `/${data.service.slug}/${data.subcategory.slug}` },
+  openGraph: {
+    title: `${data.subcategory.name} - Healvanna Auto`,
+    description: data.subcategory.description,
+    url: `https://healvanna.com/${data.service.slug}/${data.subcategory.slug}`,
+  },
+};
+
+export default function InteriorDetailingPage() {
+  return <ServiceListingPage service={data.service} subcategorySlug="interior-detailing" />;
+}

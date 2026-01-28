@@ -62,8 +62,23 @@ export async function GET(request: NextRequest) {
 
     const data = await response.json();
 
+    // Auto-related category aliases to filter out irrelevant results
+    const AUTO_CATEGORY_ALIASES = new Set([
+      "autodetailing", "carwash", "autoglass", "bodyshops", "autorepair",
+      "autocustomization", "vehiclewraps", "auto_paint", "autopartssupplies",
+      "tires", "oilchange", "transmissionrepair", "autoupholstery",
+      "carrental", "servicestations", "smog_check_stations", "towing",
+      "auto_insurance", "autoaccessories", "autocleaning",
+    ]);
+
+    // Strictly filter to only auto-related businesses — never show irrelevant results
+    const filteredBusinesses = data.businesses.filter((business: any) => {
+      const cats = business.categories?.map((c: any) => c.alias) || [];
+      return cats.some((alias: string) => AUTO_CATEGORY_ALIASES.has(alias));
+    });
+
     // Transform Yelp data to match our provider format
-    const providers = data.businesses.map((business: any) => ({
+    const providers = filteredBusinesses.map((business: any) => ({
       id: business.id,
       name: business.name,
       category: business.categories?.[0]?.title || "Auto Services",

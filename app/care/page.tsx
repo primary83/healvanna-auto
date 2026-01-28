@@ -3,6 +3,8 @@
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useGeoLocation, calculateDistance } from "../hooks/useGeoLocation";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 interface Provider {
   id: string;
@@ -170,33 +172,7 @@ export default function CarePage() {
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-[#0a0f1a]/95 backdrop-blur-xl border-b border-[rgba(74,144,217,0.1)]">
-        <Link href="/" className="text-[22px] font-light tracking-[0.12em] cursor-pointer">
-          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
-        </Link>
-        <div className="hidden md:flex gap-10">
-       {[
-  { name: "HOME", href: "/" },
-  { name: "CARS", href: "/cars" },
-  { name: "CARE", href: "/care" },
-  { name: "CRAFT", href: "/craft" },
-  { name: "SHOP", href: "/shop" },
-  { name: "BLOG", href: "/blog" },
-].map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`text-xs tracking-[0.12em] cursor-pointer transition-colors duration-300 pb-2 ${
-                item.name === "CARE"
-                  ? "text-[#e8edf5] border-b border-[#4a90d9]"
-                  : "text-[#6b7a94] hover:text-[#e8edf5] border-b border-transparent"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
+      <Navigation activeItem="SERVICES" />
 
       {/* Header */}
       <section className="pt-32 pb-8 px-6 md:px-12">
@@ -422,36 +398,7 @@ export default function CarePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#0a0f1a] pt-16 pb-8 px-6 md:px-12 border-t border-[rgba(74,144,217,0.15)]">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 max-w-[1200px] mx-auto mb-12">
-          {[
-            { title: "Cars", links: ["Electric Vehicles", "Luxury Sedans", "SUVs", "All Brands"] },
-            { title: "Care", links: ["Detailing", "Ceramic Coating", "PPF", "Interior"] },
-            { title: "Craft", links: ["EV Body Shops", "Luxury Collision", "Restoration"] },
-            { title: "Insights", links: ["Comparisons", "Buying Guides", "Maintenance"] },
-            { title: "Company", links: ["About", "For Business", "Contact"] },
-          ].map((column, index) => (
-            <div key={index}>
-              <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">{column.title}</h4>
-              {column.links.map((link) => (
-                <a key={link} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">
-                  {link}
-                </a>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)] max-w-[1200px] mx-auto gap-4">
-          <div className="text-[11px] text-[#3d4a61]">© 2024 Healvanna Auto. All rights reserved.</div>
-          <div className="flex gap-6">
-            {["Privacy", "Terms", "Cookies"].map((link) => (
-              <span key={link} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">
-                {link}
-              </span>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

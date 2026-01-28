@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import StructuredData from "./components/StructuredData";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -80,7 +81,37 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="theme-color" content="#0a0f1a" />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <StructuredData data={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Healvanna Auto",
+          url: "https://healvanna.com",
+          logo: "https://healvanna.com/favicon.ico",
+          description: "Premium automotive services directory connecting car owners with verified detailers, body shops, collision repair, and auto glass specialists across the United States.",
+          sameAs: [],
+          contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "customer service",
+            url: "https://healvanna.com/contact",
+          },
+        }} />
+        <StructuredData data={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Healvanna Auto",
+          url: "https://healvanna.com",
+          potentialAction: {
+            "@type": "SearchAction",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: "https://healvanna.com/car-detailing?q={search_term_string}",
+            },
+            "query-input": "required name=search_term_string",
+          },
+        }} />
+        {children}
+      </body>
     </html>
   );
 }

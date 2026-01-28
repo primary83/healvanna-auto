@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://healvanna.com
+
+# Sitemaps
+Sitemap: https://healvanna.com/sitemap.xml

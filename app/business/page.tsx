@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "For Business - Partner With Healvanna Auto",
@@ -125,28 +127,13 @@ const stats = [
 export default function ForBusinessPage() {
   return (
     <div className="min-h-screen bg-[#0a0f1a]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0f1a]/90 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-light tracking-wider">
-            <span className="text-white">HEALVANNA</span>
-            <span className="text-[#4a90d9] ml-2">AUTO</span>
-          </Link>
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-300 hover:text-white transition-colors">HOME</Link>
-            <Link href="/cars" className="text-gray-300 hover:text-white transition-colors">CARS</Link>
-            <Link href="/care" className="text-gray-300 hover:text-white transition-colors">CARE</Link>
-            <Link href="/craft" className="text-gray-300 hover:text-white transition-colors">CRAFT</Link>
-            <Link href="/insights" className="text-gray-300 hover:text-white transition-colors">INSIGHTS</Link>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-[#4a90d9] tracking-[0.3em] text-sm mb-4">PARTNER WITH US</p>
-          <h1 className="text-5xl md:text-6xl font-extralight text-white mb-2">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extralight text-white mb-2">
             For <span className="italic text-[#4a90d9]">Business</span>
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto mt-6">
@@ -193,7 +180,7 @@ export default function ForBusinessPage() {
           <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
             We work with premium automotive service providers who share our commitment to excellence.
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {businessTypes.map((type) => (
               <div 
                 key={type.title}
@@ -216,7 +203,7 @@ export default function ForBusinessPage() {
           <h2 className="text-3xl font-extralight text-white text-center mb-12">
             Why Partner With <span className="italic text-[#4a90d9]">Healvanna</span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-[#4a90d9]/10 rounded-full flex items-center justify-center text-[#4a90d9]">
@@ -288,11 +275,11 @@ export default function ForBusinessPage() {
           <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
             Choose the plan that fits your business goals. Start free and upgrade as you grow.
           </p>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {partnershipTiers.map((tier) => (
               <div 
                 key={tier.name}
-                className={`rounded-xl p-8 border ${
+                className={`rounded-xl p-6 md:p-8 border ${
                   tier.highlighted 
                     ? 'bg-[#4a90d9]/10 border-[#4a90d9]' 
                     : 'bg-[#0d1420] border-white/5'
@@ -314,15 +301,16 @@ export default function ForBusinessPage() {
                     </li>
                   ))}
                 </ul>
-                <button 
-                  className={`w-full py-3 rounded-lg transition-colors ${
+                <Link
+                  href="/contact"
+                  className={`block w-full py-3 rounded-lg transition-colors text-center ${
                     tier.highlighted
                       ? 'bg-[#4a90d9] text-white hover:bg-[#3a7bc8]'
                       : 'bg-white/5 text-white hover:bg-white/10'
                   }`}
                 >
                   {tier.cta}
-                </button>
+                </Link>
               </div>
             ))}
           </div>
@@ -357,9 +345,9 @@ export default function ForBusinessPage() {
             Get started with a free listing today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="inline-block bg-[#4a90d9] text-white px-8 py-3 rounded-lg hover:bg-[#3a7bc8] transition-colors">
+            <Link href="/contact" className="inline-block bg-[#4a90d9] text-white px-8 py-3 rounded-lg hover:bg-[#3a7bc8] transition-colors">
               Create Free Listing
-            </button>
+            </Link>
             <Link 
               href="/contact"
               className="inline-block bg-white/5 text-white px-8 py-3 rounded-lg hover:bg-white/10 transition-colors"
@@ -409,16 +397,7 @@ export default function ForBusinessPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#0a0f1a] border-t border-white/10 px-6 py-12">
-        <div className="max-w-7xl mx-auto text-center">
-          <Link href="/" className="text-xl font-light tracking-wider">
-            <span className="text-white">HEALVANNA</span>
-            <span className="text-[#4a90d9] ml-2">AUTO</span>
-          </Link>
-          <p className="text-gray-500 mt-4">© 2025 Healvanna. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -47,22 +49,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      {/* Navigation - Matches rest of site */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-12 py-6 flex justify-between items-center bg-[rgba(10,15,26,0.95)] backdrop-blur-md border-b border-[rgba(74,144,217,0.1)]">
-        <Link href="/" className="text-[22px] font-light tracking-[0.12em]">HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span></Link>
-        <div className="flex gap-10">
-          {[
-  { name: "Home", href: "/" },
-  { name: "Cars", href: "/cars" },
-  { name: "Care", href: "/care" },
-  { name: "Craft", href: "/craft" },
-  { name: "Shop", href: "/shop" },
-  { name: "Blog", href: "/blog" },
-].map((item) => (
-            <Link key={item.name} href={item.href} className="text-[13px] tracking-wide transition-all duration-300 pb-1 text-[#6b7a94] hover:text-[#e8edf5] border-b border-transparent">{item.name}</Link>
-          ))}
-        </div>
-      </nav>
+      <Navigation activeItem="CONTACT" />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-12 bg-gradient-to-b from-[#0d1424] to-[#0a0f1a]">
@@ -254,7 +241,7 @@ export default function ContactPage() {
                   Want to list your service on Healvanna? Check out our business solutions.
                 </p>
                 <Link
-                  href="/for-business"
+                  href="/business"
                   className="inline-flex items-center text-[#4a90d9] hover:text-[#6ba8eb] transition-colors text-sm font-medium"
                 >
                   View Business Plans →
@@ -265,30 +252,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="px-12 py-16 bg-[#070b12] border-t border-[rgba(74,144,217,0.1)]">
-        <div className="grid grid-cols-4 gap-12 max-w-[1200px] mx-auto mb-12">
-          {[
-            { title: "Vehicles", links: [{ name: "Browse All", href: "/cars" }, { name: "Electric", href: "/cars" }, { name: "Luxury", href: "/cars" }]},
-            { title: "Care", links: [{ name: "Find Services", href: "/care" }, { name: "Detailing", href: "/care" }, { name: "Ceramic Coating", href: "/care" }]},
-            { title: "Craft", links: [{ name: "Body Shops", href: "/craft" }, { name: "EV Repair", href: "/craft" }, { name: "Restoration", href: "/craft" }]},
-            { title: "Company", links: [{ name: "About", href: "/about" }, { name: "Contact", href: "/contact" }, { name: "For Business", href: "/for-business" }]},
-          ].map((column, index) => (
-            <div key={index}>
-              <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">{column.title}</h4>
-              {column.links.map((link) => (<Link key={link.name} href={link.href} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>))}
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)] max-w-[1200px] mx-auto">
-          <div className="text-[11px] text-[#3d4a61]">© 2025 Healvanna. All rights reserved.</div>
-          <div className="flex gap-6">
-            {[{ name: "Privacy", href: "/privacy" }, { name: "Terms", href: "/terms" }].map((link) => (
-              <Link key={link.name} href={link.href} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
