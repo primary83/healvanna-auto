@@ -122,7 +122,6 @@ function LocationServiceContent({
     { label: "EV Friendly", value: "ev", keywords: ["ev", "electric", "tesla", "rivian", "lucid", "hybrid", "electric vehicle"] },
     { label: "Tesla Certified", value: "tesla", keywords: ["tesla"] },
     { label: "High Rated (4.5+)", value: "highrated", keywords: [] },
-    { label: "Open Now", value: "open", keywords: [] },
   ];
 
   function toggleFilter(value: string) {
@@ -153,8 +152,6 @@ function LocationServiceContent({
           switch (filter) {
             case "highrated":
               return provider.rating >= 4.5;
-            case "open":
-              return provider.isOpen;
             default: {
               const filterDef = EV_FILTERS.find((f) => f.value === filter);
               if (!filterDef || filterDef.keywords.length === 0) return true;

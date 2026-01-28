@@ -18,13 +18,10 @@ export default function ServiceSearchBar() {
   const router = useRouter();
   const geo = useGeoLocation();
   const [query, setQuery] = useState("");
-  const [zipCode, setZipCode] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  // Don't auto-fill ZIP — let users enter their own
 
   // Close suggestions on outside click
   useEffect(() => {
@@ -136,28 +133,6 @@ export default function ServiceSearchBar() {
           />
         </div>
 
-        {/* Divider */}
-        <div className="hidden sm:block w-px bg-white/[0.1] my-3" />
-        <div className="block sm:hidden h-px bg-white/[0.1] mx-4" />
-
-        {/* ZIP Code Input */}
-        <div className="relative flex items-center">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-            <svg className="w-4 h-4 text-[#6b7a94]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-            </svg>
-          </div>
-          <input
-            type="text"
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value.replace(/\D/g, "").slice(0, 5))}
-            placeholder="ZIP Code"
-            className="w-full sm:w-[140px] pl-10 pr-4 py-4 sm:py-5 bg-transparent text-white placeholder:text-[#6b7a94] text-[15px] outline-none"
-            maxLength={5}
-          />
-        </div>
-
         {/* Search Button */}
         <button
           onClick={() => {
@@ -235,7 +210,7 @@ export default function ServiceSearchBar() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
           </svg>
-          <span>Enter your ZIP code to find services nearby</span>
+          <span>Detecting your location...</span>
         </div>
       )}
     </div>

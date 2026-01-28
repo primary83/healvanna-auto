@@ -403,7 +403,9 @@ export default function Home() {
         <div className="relative text-center max-w-[600px] px-6">
           <h2 className="text-[clamp(32px,5vw,48px)] font-extralight mb-4 tracking-tight">Your Guide to Premium Auto</h2>
           <p className="text-base text-[#6b7a94] mb-8 leading-relaxed">Join thousands of enthusiasts who trust Healvanna for expert vehicle guides and verified service providers.</p>
-          <button className="px-14 py-4 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300">Subscribe to Updates</button>
+          <Link href="/contact">
+            <button className="px-14 py-4 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300">Subscribe to Updates</button>
+          </Link>
         </div>
       </section>
 

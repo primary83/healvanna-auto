@@ -355,15 +355,8 @@ export default function CraftPage() {
                     )}
                   </div>
 
-                  {/* Status & Category Tags */}
+                  {/* Category Tag */}
                   <div className="flex flex-wrap gap-2">
-                    <span className={`text-[10px] font-semibold px-3 py-1.5 rounded-md ${
-                      provider.isOpen
-                        ? "bg-[rgba(34,197,94,0.15)] text-[#22c55e]"
-                        : "bg-[rgba(239,68,68,0.15)] text-[#ef4444]"
-                    }`}>
-                      {provider.isOpen ? "Open" : "Closed"}
-                    </span>
                     <span className="text-[10px] font-medium px-3 py-1.5 rounded-md bg-[rgba(74,144,217,0.12)] text-[#4a90d9]">
                       {provider.category}
                     </span>

@@ -135,11 +135,6 @@ function CompareModal({ providers, onClose }: { providers: CompareProvider[]; on
                   <span className="text-[11px] text-[#6b7a94]">({p.reviewCount})</span>
                 </div>
               ))} />
-              <CompareRow label="Status" values={providers.map((p) => (
-                <span key={p.id} className={`text-[12px] font-medium ${p.isOpen ? "text-[#22c55e]" : "text-[#ef4444]"}`}>
-                  {p.isOpen ? "Open Now" : "Closed"}
-                </span>
-              ))} />
               <CompareRow label="Distance" values={providers.map((p) => (
                 <span key={p.id} className="text-[13px] text-[#4a90d9]">{p.distanceText || "—"}</span>
               ))} />
@@ -197,8 +192,8 @@ function CompareModal({ providers, onClose }: { providers: CompareProvider[]; on
                 </div>
                 <div>
                   <h4 className="text-[14px] font-semibold text-[#e8edf5]">{p.name}</h4>
-                  <span className={`text-[11px] font-medium ${p.isOpen ? "text-[#22c55e]" : "text-[#ef4444]"}`}>
-                    {p.isOpen ? "Open Now" : "Closed"}
+                  <span className="text-[11px] font-medium text-[#6b7a94]">
+                    {p.category}
                   </span>
                 </div>
               </div>

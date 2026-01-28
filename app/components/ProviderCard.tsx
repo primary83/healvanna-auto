@@ -120,15 +120,6 @@ export default function ProviderCard({ provider, onCompareToggle, isCompareSelec
 
       {/* Trust Signals Row */}
       <div className="flex flex-wrap gap-1.5 mb-3">
-        <span
-          className={`text-[10px] font-semibold px-2.5 py-1 rounded-md ${
-            provider.isOpen
-              ? "bg-[rgba(34,197,94,0.15)] text-[#22c55e]"
-              : "bg-[rgba(239,68,68,0.15)] text-[#ef4444]"
-          }`}
-        >
-          {provider.isOpen ? "Open Now" : "Closed"}
-        </span>
         <span className="text-[10px] font-medium px-2.5 py-1 rounded-md bg-[rgba(74,144,217,0.12)] text-[#4a90d9]">
           {provider.category}
         </span>
