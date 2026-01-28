@@ -11,7 +11,7 @@ const brands = [
   { name: "BMW", slug: "bmw", models: "i4 · i7 · iX", count: "3 Models", image: "/cars/bmw/i4.png", region: "european", tags: ["luxury", "performance"] },
   { name: "Mercedes", slug: "mercedes", models: "EQS · EQE · EQB", count: "3 Models", image: "/cars/mercedes/eqs.png", region: "european", tags: ["luxury"] },
   { name: "Porsche", slug: "porsche", models: "Taycan · Macan EV", count: "2 Models", image: "/cars/porsche/taycan.png", region: "european", tags: ["luxury", "performance"] },
-  { name: "BYD", slug: "byd", models: "Seal · Atto 3 · Dolphin · Han · Tang · Seal U", count: "6 Models", image: "https://images.unsplash.com/photo-1696446702183-cbd13d78e1e7?w=600&q=80", region: "chinese", tags: ["electric"] },
+  { name: "BYD", slug: "byd", models: "Seal · Atto 3 · Dolphin · Han · Tang · Seal U", count: "6 Models", image: "/cars/byd/seal.png", region: "chinese", tags: ["electric"] },
   { name: "NIO", slug: "nio", models: "ET7 · ET5 · ES8 · ES6 · EC7 · EC6", count: "6 Models", image: "https://images.unsplash.com/photo-1694076439640-3c0fc4e9e8ee?w=600&q=80", region: "chinese", tags: ["electric", "luxury"] },
   { name: "XPeng", slug: "xpeng", models: "G9 · P7 · G6 · X9", count: "4 Models", image: "https://images.unsplash.com/photo-1697654361888-e24650fa1860?w=600&q=80", region: "chinese", tags: ["electric"] },
   { name: "Li Auto", slug: "li-auto", models: "MEGA · L9 · L8 · L7 · L6", count: "5 Models", image: "https://images.unsplash.com/photo-1698256029750-0cdebc2eca0b?w=600&q=80", region: "chinese", tags: ["electric"] },
