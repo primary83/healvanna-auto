@@ -241,7 +241,7 @@ export default function ContactPage() {
                   Want to list your service on Healvanna? Check out our business solutions.
                 </p>
                 <Link
-                  href="/for-business"
+                  href="/business"
                   className="inline-flex items-center text-[#4a90d9] hover:text-[#6ba8eb] transition-colors text-sm font-medium"
                 >
                   View Business Plans →
