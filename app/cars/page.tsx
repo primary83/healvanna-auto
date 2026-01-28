@@ -27,7 +27,7 @@ export default function CarsPage() {
             Electric Vehicles
           </h1>
           <p className="text-[17px] text-[#6b7a94] max-w-[600px] leading-relaxed">
-            Explore our complete directory of electric vehicles. Browse by brand or discover featured models from Tesla, Rivian, Porsche, and more.
+            Explore our complete directory of 120+ electric vehicles across 22+ brands. Browse from Tesla to BYD, NIO to Porsche — the most comprehensive EV directory.
           </p>
         </div>
       </section>
@@ -91,20 +91,62 @@ export default function CarsPage() {
             </div>
           </Link>
 
-          {/* View Models → Brands */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {/* All Brands Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-{ name: "Rivian", models: "R1T · R1S", link: "/cars/rivian" },
-{ name: "BMW", models: "i4 · i7 · iX", link: "/cars/bmw" },
-{ name: "Mercedes-Benz", models: "EQS · EQE · EQB", link: "/cars/mercedes" },
-{ name: "Porsche", models: "Taycan · Macan EV", link: "/cars/porsche" },
+              { name: "Rivian", models: "R1T · R1S · R2", link: "/cars/rivian", image: "https://images.unsplash.com/photo-1675467521498-58e52a4f4cbc?w=600&q=80", country: "USA" },
+              { name: "BMW", models: "i4 · i7 · iX · i5", link: "/cars/bmw", image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&q=80", country: "Germany" },
+              { name: "Mercedes-Benz", models: "EQS · EQE · EQB", link: "/cars/mercedes", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=80", country: "Germany" },
+              { name: "Porsche", models: "Taycan · Macan EV", link: "/cars/porsche", image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=600&q=80", country: "Germany" },
+              { name: "BYD", models: "Seal · Atto 3 · Dolphin · Han · Tang", link: "/cars/brands", image: "https://images.unsplash.com/photo-1696446702183-cbd13d78e1e7?w=600&q=80", country: "China" },
+              { name: "NIO", models: "ET7 · ET5 · ES6 · EC7 · EP9", link: "/cars/brands", image: "https://images.unsplash.com/photo-1694076439640-3c0fc4e9e8ee?w=600&q=80", country: "China" },
+              { name: "XPeng", models: "G9 · P7 · G6 · X9", link: "/cars/brands", image: "https://images.unsplash.com/photo-1697654361888-e24650fa1860?w=600&q=80", country: "China" },
+              { name: "Li Auto", models: "MEGA · L9 · L7 · L6", link: "/cars/brands", image: "https://images.unsplash.com/photo-1698256029750-0cdebc2eca0b?w=600&q=80", country: "China" },
+              { name: "Zeekr", models: "001 · 009 · X · 007", link: "/cars/brands", image: "https://images.unsplash.com/photo-1697017559073-4b2d5765303e?w=600&q=80", country: "China" },
+              { name: "Xiaomi", models: "SU7 · SU7 Pro · SU7 Max", link: "/cars/brands", image: "https://images.unsplash.com/photo-1712749028550-24ef15a1fb64?w=600&q=80", country: "China" },
+              { name: "Lucid", models: "Air · Gravity", link: "/cars/brands", image: "https://images.unsplash.com/photo-1664141249828-5c6e1b3faed5?w=600&q=80", country: "USA" },
+              { name: "Hyundai", models: "IONIQ 5 · IONIQ 6 · Kona EV", link: "/cars/brands", image: "https://images.unsplash.com/photo-1670974085498-72cebc5e0c49?w=600&q=80", country: "South Korea" },
+              { name: "Kia", models: "EV6 · EV9 · Niro EV", link: "/cars/brands", image: "https://images.unsplash.com/photo-1676573680498-5765e2eac178?w=600&q=80", country: "South Korea" },
+              { name: "Volvo", models: "EX30 · EX90 · C40 · XC40", link: "/cars/brands", image: "https://images.unsplash.com/photo-1611651338502-8230a0c5636c?w=600&q=80", country: "Sweden" },
+              { name: "Volkswagen", models: "ID.4 · ID.7 · ID.Buzz", link: "/cars/brands", image: "https://images.unsplash.com/photo-1622838520460-3521c68afd78?w=600&q=80", country: "Germany" },
+              { name: "Ford", models: "Mustang Mach-E · F-150 Lightning", link: "/cars/brands", image: "https://images.unsplash.com/photo-1643750228773-b997a0c1db66?w=600&q=80", country: "USA" },
+              { name: "Audi", models: "e-tron GT · Q8 e-tron · Q4", link: "/cars/brands", image: "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=600&q=80", country: "Germany" },
+              { name: "Polestar", models: "Polestar 2 · Polestar 3 · Polestar 4", link: "/cars/brands", image: "https://images.unsplash.com/photo-1664141250065-cf3a1dae59b7?w=600&q=80", country: "Sweden" },
+              { name: "Cadillac", models: "LYRIQ · CELESTIQ · Escalade IQ", link: "/cars/brands", image: "https://images.unsplash.com/photo-1657123543888-4877e7b6c5c6?w=600&q=80", country: "USA" },
+              { name: "Genesis", models: "GV60 · G80 EV · GV70 EV", link: "/cars/brands", image: "https://images.unsplash.com/photo-1680266694127-1029b5765fd5?w=600&q=80", country: "South Korea" },
+              { name: "Jaguar", models: "I-PACE", link: "/cars/brands", image: "https://images.unsplash.com/photo-1612825173281-9a193378527e?w=600&q=80", country: "UK" },
+              { name: "VinFast", models: "VF 8 · VF 9 · VF 6", link: "/cars/brands", image: "https://images.unsplash.com/photo-1694537746498-a5dab4d5a5fb?w=600&q=80", country: "Vietnam" },
             ].map((brand) => (
-              <Link href={brand.link} key={brand.name} className="bg-[rgba(15,22,40,0.5)] rounded-xl p-5 border border-[rgba(74,144,217,0.1)] opacity-60">
-                <h4 className="text-base font-medium text-white mb-1">{brand.name}</h4>
-                <p className="text-[11px] text-[#6b7a94] mb-2">{brand.models}</p>
-                <span className="text-[9px] tracking-[0.1em] uppercase text-[#4a90d9]">View Models →</span>
+              <Link href={brand.link} key={brand.name} className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded-xl overflow-hidden border border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.4)] group block">
+                <div className="h-36 overflow-hidden relative">
+                  <img src={brand.image} alt={brand.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,15,26,0.8)] to-transparent" />
+                  <div className="absolute bottom-3 left-4">
+                    <span className="text-[9px] tracking-[0.15em] uppercase px-2 py-0.5 bg-white/10 backdrop-blur-sm text-white/70 rounded-full border border-white/10">{brand.country}</span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <h4 className="text-[15px] font-semibold text-white mb-1 group-hover:text-[#4a90d9] transition-colors">{brand.name}</h4>
+                  <p className="text-[11px] text-[#6b7a94] mb-3">{brand.models}</p>
+                  <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.08em] uppercase text-[#4a90d9] font-medium group-hover:gap-2.5 transition-all">
+                    View Models
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
               </Link>
             ))}
+          </div>
+
+          {/* View All Brands Link */}
+          <div className="mt-8 text-center">
+            <Link href="/cars/brands" className="inline-flex items-center gap-2 px-6 py-3 text-[13px] font-medium border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded-lg">
+              View Complete Brand Directory
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
