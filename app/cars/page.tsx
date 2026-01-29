@@ -8,6 +8,36 @@ export default function CarsPage() {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const brands = [
+    // Row 1: Tesla, Rivian, BMW, Mercedes
+    {
+      name: "Tesla",
+      models: ["Model S", "Model 3", "Model X", "Model Y", "Cybertruck"],
+      modelCount: 5,
+      image: "/cars/tesla/model-3.png",
+      link: "/cars/tesla",
+    },
+    {
+      name: "Rivian",
+      models: ["R1T", "R1S"],
+      modelCount: 2,
+      image: "/cars/rivian/r1t.png",
+      link: "/cars/rivian",
+    },
+    {
+      name: "BMW",
+      models: ["i4", "i7", "iX"],
+      modelCount: 3,
+      image: "/cars/bmw/i4.png",
+      link: "/cars/bmw",
+    },
+    {
+      name: "Mercedes",
+      models: ["EQS", "EQE", "EQB"],
+      modelCount: 3,
+      image: "/cars/mercedes/eqs.png",
+      link: "/cars/mercedes",
+    },
+    // Row 2: Porsche, BYD, NIO, XPeng
     {
       name: "Porsche",
       models: ["Taycan", "Macan EV"],
@@ -36,6 +66,7 @@ export default function CarsPage() {
       image: "/cars/xpeng/g9.png",
       link: "/cars/xpeng",
     },
+    // Row 3: Li Auto, Zeekr, Xiaomi, Lucid
     {
       name: "Li Auto",
       models: ["MEGA", "L9", "L8", "L7", "L6"],
@@ -64,6 +95,14 @@ export default function CarsPage() {
       image: "/cars/lucid/air-pure.png",
       link: "/cars/lucid",
     },
+    // Row 4: Hyundai, Kia, Genesis, Volvo
+    {
+      name: "Hyundai",
+      models: ["Ioniq 5", "Ioniq 6", "Kona Electric"],
+      modelCount: 3,
+      image: "/cars/hyundai/ioniq-5.png",
+      link: "/cars/hyundai",
+    },
     {
       name: "Kia",
       models: ["EV6", "EV9", "EV3", "Niro EV"],
@@ -79,47 +118,81 @@ export default function CarsPage() {
       link: "/cars/genesis",
     },
     {
-      name: "VinFast",
-      models: ["VF 8", "VF 9"],
-      modelCount: 2,
-      image: "/cars/vinfast/vf8.png",
-      link: "/cars/vinfast",
-    },
-    {
-      name: "Volkswagen",
-      models: ["ID.4", "ID. Buzz"],
-      modelCount: 2,
-      image: "/cars/volkswagen/id4.png",
-      link: "/cars/volkswagen",
-    },
-    {
-      name: "Rivian",
-      models: ["R1T", "R1S"],
-      modelCount: 2,
-      image: "/cars/rivian/r1t.png",
-      link: "/cars/rivian",
-    },
-    {
-      name: "Tesla",
-      models: ["Model S", "Model 3", "Model X", "Model Y", "Cybertruck"],
-      modelCount: 5,
-      image: "/cars/tesla/model-3.png",
-      link: "/cars/tesla",
-    },
-    {
       name: "Volvo",
       models: ["EX30", "EX90", "EC40", "XC40 Recharge"],
       modelCount: 4,
       image: "/cars/volvo/ex30.png",
       link: "/cars/volvo",
     },
+    // Row 5: Volkswagen, Audi, Ford, Polestar (NEED FIXING)
     {
-      name: "Hyundai",
-      models: ["Ioniq 5", "Ioniq 6", "Kona Electric"],
+      name: "Volkswagen",
+      models: ["ID.4", "ID.Buzz", "ID.7"],
       modelCount: 3,
-      image: "/cars/hyundai/ioniq-5.png",
-      link: "/cars/hyundai",
+      image: "/cars/volkswagen/id4.png",
+      link: "/cars/volkswagen",
     },
+    {
+      name: "Audi",
+      models: ["Q4 e-tron", "Q8 e-tron", "e-tron GT", "RS e-tron GT"],
+      modelCount: 4,
+      image: "/cars/audi/q4-e-tron.png",
+      link: "/cars/audi",
+    },
+    {
+      name: "Ford",
+      models: ["Mustang Mach-E", "F-150 Lightning", "E-Transit"],
+      modelCount: 3,
+      image: "/cars/ford/mustang-mach-e.png",
+      link: "/cars/ford",
+    },
+    {
+      name: "Polestar",
+      models: ["Polestar 2", "Polestar 3", "Polestar 4"],
+      modelCount: 3,
+      image: "/cars/polestar/polestar-2.png",
+      link: "/cars/polestar",
+    },
+    // Row 6: Cadillac, Chevrolet, Jaguar, VinFast (NEED FIXING)
+    {
+      name: "Cadillac",
+      models: ["LYRIQ", "CELESTIQ", "Escalade IQ", "OPTIQ"],
+      modelCount: 4,
+      image: "/cars/cadillac/lyriq.png",
+      link: "/cars/cadillac",
+    },
+    {
+      name: "Chevrolet",
+      models: ["Equinox EV", "Blazer EV", "Silverado EV"],
+      modelCount: 3,
+      image: "/cars/chevrolet/equinox-ev.png",
+      link: "/cars/chevrolet",
+    },
+    {
+      name: "Jaguar",
+      models: ["I-PACE", "Type 00"],
+      modelCount: 2,
+      image: "/cars/jaguar/i-pace.png",
+      link: "/cars/jaguar",
+    },
+    {
+      name: "VinFast",
+      models: ["VF 8", "VF 9", "VF 6", "VF 7"],
+      modelCount: 4,
+      image: "/cars/vinfast/vf8.png",
+      link: "/cars/vinfast",
+    },
+  ];
+
+  const filters = [
+    { id: "all", label: "All Brands" },
+    { id: "electric", label: "Electric Focus" },
+    { id: "luxury", label: "Luxury" },
+    { id: "performance", label: "Performance" },
+    { id: "european", label: "European" },
+    { id: "american", label: "American" },
+    { id: "chinese", label: "Chinese" },
+    { id: "asian", label: "Asian" },
   ];
 
   return (
@@ -160,14 +233,35 @@ export default function CarsPage() {
       </nav>
 
       {/* Page Header */}
-      <section className="pt-32 pb-12 px-6 md:px-12">
-        <div className="max-w-[1400px] mx-auto">
-          <h1 className="text-4xl md:text-5xl font-light tracking-tight mb-4">
-            Electric Vehicles
+      <section className="pt-32 pb-8 px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto text-center">
+          <h1 className="text-5xl md:text-6xl font-light tracking-tight mb-4">
+            All <span className="text-[#4a90d9] italic">Brands</span>
           </h1>
-          <p className="text-[#6b7a94] text-lg max-w-2xl">
-            Explore our curated collection of premium electric vehicles from the world's leading manufacturers.
+          <p className="text-[#6b7a94] text-lg max-w-2xl mx-auto">
+            Explore the world's finest electric vehicle manufacturers. Select a brand to browse all models.
           </p>
+        </div>
+      </section>
+
+      {/* Filter Buttons */}
+      <section className="pb-8 px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex flex-wrap justify-center gap-3">
+            {filters.map((filter) => (
+              <button
+                key={filter.id}
+                onClick={() => setActiveFilter(filter.id)}
+                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeFilter === filter.id
+                    ? "bg-[#4a90d9] text-white"
+                    : "bg-[rgba(74,144,217,0.1)] text-[#6b7a94] hover:bg-[rgba(74,144,217,0.2)] hover:text-[#e8edf5]"
+                }`}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -181,7 +275,7 @@ export default function CarsPage() {
                 href={brand.link}
                 className="bg-gradient-to-b from-[rgba(15,22,40,0.8)] to-[rgba(10,15,26,0.9)] rounded-xl overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.1)] hover:border-[rgba(74,144,217,0.3)] transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(74,144,217,0.15)] group block"
               >
-                <div className="h-44 overflow-hidden relative bg-gradient-to-br from-[#12182a] to-[#0d1220] flex items-center justify-center p-4">
+                <div className="h-56 overflow-hidden relative bg-gradient-to-br from-[#12182a] to-[#0d1220] flex items-center justify-center p-4">
                   <Image
                     src={brand.image}
                     alt={brand.name}
