@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Navigation from "../../components/Navigation";
-import Footer from "../../components/Footer";
+import Image from "next/image";
 
 const models = [
   {
@@ -46,14 +45,38 @@ const models = [
 export default function ZeekrPage() {
   return (
     <main className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      <Navigation activeItem="CARS" />
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-gradient-to-b from-[#0a0f1a]/95 to-transparent backdrop-blur-xl">
+        <Link href="/" className="text-[20px] font-light tracking-[0.12em]">
+          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
+        </Link>
+        <div className="flex gap-8">
+          {[
+            { name: "HOME", href: "/" },
+            { name: "CARS", href: "/cars", active: true },
+            { name: "CARE", href: "/care" },
+            { name: "CRAFT", href: "/craft" },
+            { name: "BLOG", href: "/blog" },
+          ].map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`text-xs tracking-[0.12em] transition-colors duration-300 ${
+                item.active ? "text-[#4a90d9]" : "text-[#6b7a94] hover:text-[#e8edf5]"
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+      </nav>
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <Link
             href="/cars"
-            className="inline-flex items-center gap-2 text-[#6b7a94] hover:text-[#4a90d9] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-[#6b7a94] hover:text-[#eaaa00] transition-colors mb-8"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -93,10 +116,11 @@ export default function ZeekrPage() {
                 className="group bg-[rgba(15,22,40,0.5)] rounded-2xl overflow-hidden border border-[rgba(74,144,217,0.1)] hover:border-[rgba(234,170,0,0.3)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.4)]"
               >
                 <div className="h-[240px] relative overflow-hidden bg-gradient-to-b from-[rgba(234,170,0,0.05)] to-transparent">
-                  <img
+                  <Image
                     src={model.image}
                     alt={model.name}
-                    className="w-full h-full object-contain object-center p-6 group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    className="object-contain object-center p-6 group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-6">
@@ -188,7 +212,12 @@ export default function ZeekrPage() {
         </div>
       </section>
 
-      <Footer />
+      {/* Footer */}
+      <footer className="bg-[#0a0f1a] py-12 px-6 md:px-12 border-t border-[rgba(74,144,217,0.15)]">
+        <div className="max-w-7xl mx-auto text-center text-[#6b7a94] text-sm">
+          © 2026 Healvanna Auto. All rights reserved.
+        </div>
+      </footer>
     </main>
   );
 }
