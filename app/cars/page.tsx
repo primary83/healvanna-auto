@@ -18,7 +18,7 @@ const brands = [
   { name: "Zeekr", slug: "zeekr", models: "001 · 009 · X · 007", count: "4 Models", image: "/cars/zeekr/001.png", region: "chinese", tags: ["electric", "performance"] },
   { name: "Xiaomi", slug: "xiaomi", models: "SU7 · SU7 Pro · SU7 Max", count: "3 Models", image: "/cars/xiaomi/su7.png", region: "chinese", tags: ["electric"] },
   { name: "Lucid", slug: "lucid", models: "Air Pure · Air Touring · Air GT · Sapphire · Gravity", count: "5 Models", image: "/cars/lucid/air-pure.png", region: "american", tags: ["electric", "luxury"] },
-  { name: "Hyundai", slug: "hyundai", models: "Ioniq 5 · Ioniq 6 · Ioniq 9 · Kona EV", count: "4 Models", image: "https://images.unsplash.com/photo-1670974085498-72cebc5e0c49?w=600&q=80", region: "asian", tags: ["electric"] },
+  { name: "Hyundai", slug: "hyundai", models: "Ioniq 5 · Ioniq 6 · Ioniq 9 · Kona EV", count: "4 Models", image: "/cars/hyundai/ioniq-5.png", region: "asian", tags: ["electric"] },
   { name: "Kia", slug: "kia", models: "EV6 · EV9 · EV3 · Niro EV", count: "4 Models", image: "https://images.unsplash.com/photo-1676573680498-5765e2eac178?w=600&q=80", region: "asian", tags: ["electric"] },
   { name: "Genesis", slug: "genesis", models: "GV60 · Electrified G80 · Electrified GV70", count: "3 Models", image: "https://images.unsplash.com/photo-1680266694127-1029b5765fd5?w=600&q=80", region: "asian", tags: ["luxury"] },
   { name: "Volvo", slug: "volvo", models: "EX30 · EX90 · EC40 · XC40 Recharge", count: "4 Models", image: "https://images.unsplash.com/photo-1611651338502-8230a0c5636c?w=600&q=80", region: "european", tags: ["electric", "luxury"] },
