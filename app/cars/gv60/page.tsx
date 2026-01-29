@@ -25,8 +25,8 @@ export default function GV60Page() {
             <span className="text-[#c9a88a] font-medium">Genesis</span>
             <h1 className="text-5xl font-bold text-white mt-2 mb-4">GV60</h1>
             <p className="text-xl text-gray-300 mb-6">
-              The first dedicated electric vehicle from Genesis, featuring bold design, 
-              the iconic Crystal Sphere shifter, and exhilarating performance.
+              The bold compact luxury electric SUV featuring the innovative Crystal Sphere 
+              and Genesis's signature athletic elegance.
             </p>
             <div className="flex items-baseline gap-2 mb-8">
               <span className="text-4xl font-bold text-white">$54,900</span>
@@ -75,21 +75,21 @@ export default function GV60Page() {
             <Star className="w-8 h-8 text-[#c9a88a] mb-4" />
             <h3 className="text-lg font-semibold text-white mb-2">Crystal Sphere</h3>
             <p className="text-gray-400 text-sm">
-              Laser-engraved illuminated sphere rotates to reveal the shift dial with haptic feedback.
+              Iconic rotating gear selector that doubles as ambient interior lighting when parked.
             </p>
           </div>
           <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
             <Shield className="w-8 h-8 text-[#c9a88a] mb-4" />
-            <h3 className="text-lg font-semibold text-white mb-2">Face Recognition</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Face Connect</h3>
             <p className="text-gray-400 text-sm">
-              Biometric authentication with face recognition and fingerprint scanner for secure entry.
+              Biometric facial recognition system for keyless entry and personalized settings.
             </p>
           </div>
           <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
             <Cog className="w-8 h-8 text-[#c9a88a] mb-4" />
-            <h3 className="text-lg font-semibold text-white mb-2">e-LSD</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Boost Mode</h3>
             <p className="text-gray-400 text-sm">
-              Electronic Limited Slip Differential for enhanced traction and cornering control.
+              Performance mode delivers maximum power for 10 seconds of exhilarating acceleration.
             </p>
           </div>
         </div>
@@ -111,11 +111,11 @@ export default function GV60Page() {
               </tr>
               <tr>
                 <td className="px-6 py-4 text-gray-400">Peak Power</td>
-                <td className="px-6 py-4 text-white font-medium">429 hp (483 hp Boost)</td>
+                <td className="px-6 py-4 text-white font-medium">429 hp</td>
               </tr>
               <tr>
                 <td className="px-6 py-4 text-gray-400">Peak Torque</td>
-                <td className="px-6 py-4 text-white font-medium">516 lb-ft</td>
+                <td className="px-6 py-4 text-white font-medium">446 lb-ft</td>
               </tr>
               <tr>
                 <td className="px-6 py-4 text-gray-400">Architecture</td>
@@ -127,7 +127,7 @@ export default function GV60Page() {
               </tr>
               <tr>
                 <td className="px-6 py-4 text-gray-400">Body Style</td>
-                <td className="px-6 py-4 text-white font-medium">Compact Luxury SUV</td>
+                <td className="px-6 py-4 text-white font-medium">Compact SUV</td>
               </tr>
               <tr>
                 <td className="px-6 py-4 text-gray-400">Warranty</td>

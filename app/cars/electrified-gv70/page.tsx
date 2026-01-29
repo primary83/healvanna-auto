@@ -25,8 +25,8 @@ export default function ElectrifiedGV70Page() {
             <span className="text-[#c9a88a] font-medium">Genesis</span>
             <h1 className="text-5xl font-bold text-white mt-2 mb-4">Electrified GV70</h1>
             <p className="text-xl text-gray-300 mb-6">
-              The athletic luxury electric SUV that combines powerful dual motors 
-              with refined road manners and premium Genesis craftsmanship.
+              The athletic luxury electric SUV that combines sporty performance 
+              with refined comfort and cutting-edge technology.
             </p>
             <div className="flex items-baseline gap-2 mb-8">
               <span className="text-4xl font-bold text-white">$67,800</span>
@@ -73,23 +73,23 @@ export default function ElectrifiedGV70Page() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
             <Star className="w-8 h-8 text-[#c9a88a] mb-4" />
-            <h3 className="text-lg font-semibold text-white mb-2">Boost Mode</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Sport+ Mode</h3>
             <p className="text-gray-400 text-sm">
-              Push the steering wheel button to unleash 483 horsepower for 10 seconds of pure acceleration.
+              Dynamic driving mode with enhanced throttle response and tightened suspension.
             </p>
           </div>
           <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
             <Shield className="w-8 h-8 text-[#c9a88a] mb-4" />
-            <h3 className="text-lg font-semibold text-white mb-2">Road Preview Suspension</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Highway Driving Assist II</h3>
             <p className="text-gray-400 text-sm">
-              Camera scans the road ahead to proactively adjust suspension for bumps and potholes.
+              Advanced semi-autonomous driving with lane change assist and smart cruise control.
             </p>
           </div>
           <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
             <Cog className="w-8 h-8 text-[#c9a88a] mb-4" />
-            <h3 className="text-lg font-semibold text-white mb-2">Vehicle-to-Load</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Virtual Engine Sound</h3>
             <p className="text-gray-400 text-sm">
-              Built-in 110V outlet in the grille to power appliances, tools, or even other EVs.
+              Customizable e-ASD system that creates engaging driving sounds through speakers.
             </p>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function ElectrifiedGV70Page() {
               </tr>
               <tr>
                 <td className="px-6 py-4 text-gray-400">Peak Power</td>
-                <td className="px-6 py-4 text-white font-medium">429 hp (483 hp Boost)</td>
+                <td className="px-6 py-4 text-white font-medium">429 hp</td>
               </tr>
               <tr>
                 <td className="px-6 py-4 text-gray-400">Peak Torque</td>
@@ -123,11 +123,11 @@ export default function ElectrifiedGV70Page() {
               </tr>
               <tr>
                 <td className="px-6 py-4 text-gray-400">Fast Charging</td>
-                <td className="px-6 py-4 text-white font-medium">240 kW DC</td>
+                <td className="px-6 py-4 text-white font-medium">350 kW DC</td>
               </tr>
               <tr>
                 <td className="px-6 py-4 text-gray-400">Body Style</td>
-                <td className="px-6 py-4 text-white font-medium">Compact Luxury SUV</td>
+                <td className="px-6 py-4 text-white font-medium">Midsize SUV</td>
               </tr>
               <tr>
                 <td className="px-6 py-4 text-gray-400">Warranty</td>
