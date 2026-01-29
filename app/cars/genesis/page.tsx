@@ -8,7 +8,7 @@ export default function GenesisPage() {
     {
       id: 1,
       name: "GV60",
-      category: "Compact Luxury SUV",
+      category: "Electric Crossover",
       image: "/cars/genesis/gv60.png",
       range: "294 mi",
       acceleration: "4.0s",
@@ -20,7 +20,7 @@ export default function GenesisPage() {
     {
       id: 2,
       name: "Electrified G80",
-      category: "Luxury Sedan",
+      category: "Electric Luxury Sedan",
       image: "/cars/genesis/electrified-g80.png",
       range: "282 mi",
       acceleration: "4.9s",
@@ -32,7 +32,7 @@ export default function GenesisPage() {
     {
       id: 3,
       name: "Electrified GV70",
-      category: "Midsize Luxury SUV",
+      category: "Electric Luxury SUV",
       image: "/cars/genesis/electrified-gv70.png",
       range: "236 mi",
       acceleration: "4.2s",
@@ -59,33 +59,39 @@ export default function GenesisPage() {
             { name: "SHOP", href: "/shop" },
             { name: "BLOG", href: "/blog" },
           ].map((item) => (
-            <Link key={item.name} href={item.href} className={`text-[13px] tracking-[0.15em] cursor-pointer transition-colors duration-300 ${item.name === "CARS" ? "text-[#4a90d9] border-b border-[#4a90d9] pb-1" : "text-[#6b7a94] hover:text-[#e8edf5]"}`}>
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`text-xs tracking-[0.12em] cursor-pointer transition-colors duration-300 pb-2 ${
+                item.name === "CARS"
+                  ? "text-[#e8edf5] border-b border-[#4a90d9]"
+                  : "text-[#6b7a94] hover:text-[#e8edf5] border-b border-transparent"
+              }`}
+            >
               {item.name}
             </Link>
           ))}
         </div>
       </nav>
 
-      {/* Stats Bar */}
-      <section className="pt-24 bg-[#0a0f1a]">
-        <div className="max-w-[1300px] mx-auto px-12">
-          <div className="grid grid-cols-4 gap-8 py-8 border-b border-[rgba(74,144,217,0.15)]">
-            <div className="p-8">
-              <div className="text-3xl font-light text-[#c9a88a]">3</div>
-              <div className="text-sm text-[#6b7a94]">Models Available</div>
-            </div>
-            <div className="p-8">
-              <div className="text-3xl font-light text-[#c9a88a]">294 mi</div>
-              <div className="text-sm text-[#6b7a94]">Max Range</div>
-            </div>
-            <div className="p-8">
-              <div className="text-3xl font-light text-[#c9a88a]">4.0s</div>
-              <div className="text-sm text-[#6b7a94]">Fastest 0-60</div>
-            </div>
-            <div className="p-8">
-              <div className="text-3xl font-light text-[#c9a88a]">800V</div>
-              <div className="text-sm text-[#6b7a94]">Ultra-Fast Charging</div>
-            </div>
+      {/* Hero Stats Bar - Genesis Theme */}
+      <section className="pt-28 pb-0">
+        <div className="grid grid-cols-4 border-b border-[rgba(5,20,31,0.3)]">
+          <div className="p-8 border-r border-[rgba(5,20,31,0.3)]">
+            <div className="text-3xl font-light text-[#05141f]">3</div>
+            <div className="text-sm text-[#6b7a94]">Models Available</div>
+          </div>
+          <div className="p-8 border-r border-[rgba(5,20,31,0.3)]">
+            <div className="text-3xl font-light text-[#05141f]">294 mi</div>
+            <div className="text-sm text-[#6b7a94]">Max Range</div>
+          </div>
+          <div className="p-8 border-r border-[rgba(5,20,31,0.3)]">
+            <div className="text-3xl font-light text-[#05141f]">4.0s</div>
+            <div className="text-sm text-[#6b7a94]">Fastest 0-60</div>
+          </div>
+          <div className="p-8">
+            <div className="text-3xl font-light text-[#05141f]">800V</div>
+            <div className="text-sm text-[#6b7a94]">Ultra-Fast Charging</div>
           </div>
         </div>
       </section>
@@ -93,7 +99,7 @@ export default function GenesisPage() {
       {/* Brand Header */}
       <section className="py-12 px-12">
         <div className="max-w-[1300px] mx-auto">
-          <Link href="/cars" className="inline-flex items-center gap-2 text-[#6b7a94] text-sm mb-6 hover:text-[#c9a88a] transition-colors">
+          <Link href="/cars" className="inline-flex items-center gap-2 text-[#6b7a94] text-sm mb-6 hover:text-[#05141f] transition-colors">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
@@ -102,8 +108,8 @@ export default function GenesisPage() {
 
           <div className="flex items-center gap-6 mb-6">
             {/* Genesis Logo */}
-            <div className="w-20 h-20 bg-[#6b4c3b] rounded-2xl flex items-center justify-center">
-              <span className="text-white font-bold text-2xl italic">G</span>
+            <div className="w-20 h-20 bg-[#05141f] rounded-2xl flex items-center justify-center">
+              <span className="text-white font-bold text-xl tracking-wider">GEN</span>
             </div>
             <div>
               <h1 className="text-4xl font-light tracking-tight">Genesis</h1>
@@ -112,9 +118,9 @@ export default function GenesisPage() {
           </div>
 
           <p className="text-[#8a9bb5] max-w-[800px] leading-relaxed">
-            Genesis represents Korean luxury reimagined with electrifying performance. Featuring 
-            800V architecture for ultra-fast charging, stunning design, and an industry-leading 
-            10-year warranty, Genesis EVs deliver athletic elegance for the modern driver.
+            Genesis represents Korean luxury reimagined with electrifying performance.
+            Combining bold design, cutting-edge technology, and exceptional value, Genesis EVs offer
+            an exciting driving experience with industry-leading 800V charging capability.
           </p>
         </div>
       </section>
@@ -129,42 +135,66 @@ export default function GenesisPage() {
               <Link
                 key={car.id}
                 href={car.link}
-                className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded-xl overflow-hidden cursor-pointer border border-[rgba(0,40,122,0.15)] hover:border-[rgba(0,40,122,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,40,122,0.2)] group block"
+                className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded-xl overflow-hidden cursor-pointer border border-[rgba(5,20,31,0.15)] hover:border-[rgba(5,20,31,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(5,20,31,0.2)] group block"
               >
-                <div className="relative h-48 bg-gradient-to-br from-[#1a2235] to-[#0f1525]">
+                <div className="h-48 overflow-hidden relative bg-gradient-to-br from-[#1a1f2e] to-[#0d1220]">
                   <Image
                     src={car.image}
-                    alt={car.name}
+                    alt={`Genesis ${car.name}`}
                     fill
-                    className="object-contain p-4"
+                    className="object-cover transition-transform duration-600 group-hover:scale-105"
                   />
+                  {/* Genesis Badge */}
+                  <div className="absolute top-3 right-3 px-2 py-1 bg-[#05141f] text-white text-[9px] tracking-wider font-semibold rounded">
+                    GENESIS
+                  </div>
                 </div>
                 <div className="p-5">
-                  <div className="text-[#6b7a94] text-xs tracking-wider uppercase mb-1">{car.category}</div>
-                  <h3 className="text-lg font-medium mb-1">{car.name}</h3>
-                  <p className="text-[#6b7a94] text-sm mb-4 line-clamp-2">{car.description}</p>
-                  
-                  <div className="flex justify-between text-sm mb-4">
-                    <div>
-                      <div className="text-[#c9a88a]">{car.range}</div>
-                      <div className="text-[#6b7a94] text-xs">Range</div>
-                    </div>
-                    <div>
-                      <div className="text-[#c9a88a]">{car.acceleration}</div>
-                      <div className="text-[#6b7a94] text-xs">0-60</div>
-                    </div>
-                    <div>
-                      <div className="text-[#c9a88a]">{car.power}</div>
-                      <div className="text-[#6b7a94] text-xs">Power</div>
-                    </div>
+                  <div className="flex justify-between items-start mb-2">
+                    <div className="text-[9px] tracking-[0.2em] uppercase text-[#4a90d9] font-medium">{car.category}</div>
+                    <span className="text-[9px] tracking-[0.1em] uppercase px-2 py-1 bg-[rgba(5,20,31,0.15)] text-[#4a90d9] rounded-sm font-semibold">EV</span>
                   </div>
-
-                  <div className="flex justify-between items-center pt-4 border-t border-[rgba(74,144,217,0.1)]">
-                    <span className="text-[#c9a88a] font-medium">{car.price}</span>
-                    <span className="text-[#6b7a94] text-sm group-hover:text-[#c9a88a] transition-colors">View Details →</span>
+                  <div className="text-lg font-medium mb-1">Genesis {car.name}</div>
+                  <div className="text-xs text-[#6b7a94] mb-3">2024 • From {car.price}</div>
+                  <p className="text-xs text-[#6b7a94] mb-4 line-clamp-2">{car.description}</p>
+                  <div className="flex justify-between text-[11px] text-[#6b7a94] mb-4 py-3 border-t border-b border-[rgba(5,20,31,0.1)]">
+                    <div><span className="text-[#e8edf5] font-medium">{car.range}</span> Range</div>
+                    <div><span className="text-[#e8edf5] font-medium">{car.acceleration}</span> 0-60</div>
+                    <div><span className="text-[#e8edf5] font-medium">{car.power}</span></div>
                   </div>
+                  <span className="w-full py-2.5 text-[10px] tracking-[0.1em] uppercase font-medium border border-[rgba(5,20,31,0.3)] text-[#4a90d9] hover:bg-[rgba(5,20,31,0.1)] transition-all duration-300 rounded block text-center">
+                    View Details
+                  </span>
                 </div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Genesis Section */}
+      <section className="py-16 px-12">
+        <div className="max-w-[1300px] mx-auto">
+          <h2 className="text-2xl font-light tracking-tight mb-8">Why Choose Genesis?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "800V Ultra-Fast Charging",
+                description: "Charge from 10-80% in just 18 minutes with 350kW DC fast charging capability."
+              },
+              {
+                title: "Award-Winning Design",
+                description: "Athletic elegance with distinctive styling that turns heads everywhere."
+              },
+              {
+                title: "10-Year Warranty",
+                description: "Industry-leading warranty coverage with complimentary scheduled maintenance."
+              }
+            ].map((feature, index) => (
+              <div key={index} className="bg-[rgba(15,22,40,0.5)] rounded-xl p-6 border border-[rgba(5,20,31,0.1)]">
+                <h3 className="text-base font-medium text-white mb-2">{feature.title}</h3>
+                <p className="text-sm text-[#6b7a94]">{feature.description}</p>
+              </div>
             ))}
           </div>
         </div>
