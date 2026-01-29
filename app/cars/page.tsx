@@ -20,7 +20,7 @@ const brands = [
   { name: "Lucid", slug: "lucid", models: "Air Pure · Air Touring · Air GT · Sapphire · Gravity", count: "5 Models", image: "/cars/lucid/air-pure.png", region: "american", tags: ["electric", "luxury"] },
   { name: "Hyundai", slug: "hyundai", models: "Ioniq 5 · Ioniq 6 · Ioniq 9 · Kona EV", count: "4 Models", image: "/cars/hyundai/ioniq-5.png", region: "asian", tags: ["electric"] },
   { name: "Kia", slug: "kia", models: "EV6 · EV9 · EV3 · Niro EV", count: "4 Models", image: "/cars/kia/ev6.png", region: "asian", tags: ["electric"] },
-  { name: "Genesis", slug: "genesis", models: "GV60 · Electrified G80 · Electrified GV70", count: "3 Models", image: "https://images.unsplash.com/photo-1680266694127-1029b5765fd5?w=600&q=80", region: "asian", tags: ["luxury"] },
+  { name: "Genesis", slug: "genesis", models: "GV60 · Electrified G80 · Electrified GV70", count: "3 Models", image: "/cars/genesis/gv60.png", region: "asian", tags: ["luxury"] },
   { name: "Volvo", slug: "volvo", models: "EX30 · EX90 · EC40 · XC40 Recharge", count: "4 Models", image: "https://images.unsplash.com/photo-1611651338502-8230a0c5636c?w=600&q=80", region: "european", tags: ["electric", "luxury"] },
   { name: "Volkswagen", slug: "volkswagen", models: "ID.4 · ID.Buzz · ID.7", count: "3 Models", image: "https://images.unsplash.com/photo-1622838520460-3521c68afd78?w=600&q=80", region: "european", tags: ["electric"] },
   { name: "Audi", slug: "audi", models: "Q4 e-tron · Q8 e-tron · e-tron GT · RS e-tron GT", count: "4 Models", image: "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=600&q=80", region: "european", tags: ["luxury", "performance"] },
