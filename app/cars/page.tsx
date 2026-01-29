@@ -16,7 +16,7 @@ const brands = [
   { name: "XPeng", slug: "xpeng", models: "G9 · P7 · G6 · X9", count: "4 Models", image: "/cars/xpeng/g9.png", region: "chinese", tags: ["electric"] },
   { name: "Li Auto", slug: "li-auto", models: "MEGA · L9 · L8 · L7 · L6", count: "5 Models", image: "/cars/li-auto/mega.png", region: "chinese", tags: ["electric"] },
   { name: "Zeekr", slug: "zeekr", models: "001 · 009 · X · 007", count: "4 Models", image: "/cars/zeekr/001.png", region: "chinese", tags: ["electric", "performance"] },
-  { name: "Xiaomi", slug: "xiaomi", models: "SU7 · SU7 Pro · SU7 Max", count: "3 Models", image: "https://images.unsplash.com/photo-1712749028550-24ef15a1fb64?w=600&q=80", region: "chinese", tags: ["electric"] },
+  { name: "Xiaomi", slug: "xiaomi", models: "SU7 · SU7 Pro · SU7 Max", count: "3 Models", image: "/cars/xiaomi/su7.png", region: "chinese", tags: ["electric"] },
   { name: "Lucid", slug: "lucid", models: "Air Pure · Air Touring · Air GT · Sapphire · Gravity", count: "5 Models", image: "https://images.unsplash.com/photo-1664141249828-5c6e1b3faed5?w=600&q=80", region: "american", tags: ["electric", "luxury"] },
   { name: "Hyundai", slug: "hyundai", models: "Ioniq 5 · Ioniq 6 · Ioniq 9 · Kona EV", count: "4 Models", image: "https://images.unsplash.com/photo-1670974085498-72cebc5e0c49?w=600&q=80", region: "asian", tags: ["electric"] },
   { name: "Kia", slug: "kia", models: "EV6 · EV9 · EV3 · Niro EV", count: "4 Models", image: "https://images.unsplash.com/photo-1676573680498-5765e2eac178?w=600&q=80", region: "asian", tags: ["electric"] },
