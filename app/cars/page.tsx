@@ -13,8 +13,9 @@ const brands = [
   { name: "Porsche", slug: "porsche", models: "Taycan · Macan EV", count: "2 Models", image: "/cars/porsche/taycan.png", region: "european", tags: ["luxury", "performance"] },
   { name: "BYD", slug: "byd", models: "Seal · Atto 3 · Dolphin · Han · Tang · Seal U", count: "6 Models", image: "/cars/byd/seal.png", region: "chinese", tags: ["electric"] },
   { name: "NIO", slug: "nio", models: "ET7 · ET5 · ES8 · ES6 · EC7 · EC6", count: "6 Models", image: "/cars/nio/et7.png", region: "chinese", tags: ["electric", "luxury"] },
-  { name: "XPeng", slug: "xpeng", models: "G9 · P7 · G6 · X9", count: "4 Models", image: "/cars/xpeng/g9.png", region: "chinese", tags: ["electric"] },
-  { name: "Li Auto", slug: "li-auto", models: "MEGA · L9 · L8 · L7 · L6", count: "5 Models", image: "https://images.unsplash.com/photo-1698256029750-0cdebc2eca0b?w=600&q=80", region: "chinese", tags: ["electric"] },
+  { name: "XPeng", slug: "xpeng", models: "G9 · P7 · G6 · X9", count: "4 Models", image:
+"/cars/xpeng/g9.png", region: "chinese", tags: ["electric"] },
+  { name: "Li Auto", slug: "li-auto", models: "MEGA · L9 · L8 · L7 · L6", count: "5 Models", image: "/cars/li-auto/mega.png", region: "chinese", tags: ["electric"] },
   { name: "Zeekr", slug: "zeekr", models: "001 · 009 · X · 007", count: "4 Models", image: "https://images.unsplash.com/photo-1697017559073-4b2d5765303e?w=600&q=80", region: "chinese", tags: ["electric", "performance"] },
   { name: "Xiaomi", slug: "xiaomi", models: "SU7 · SU7 Pro · SU7 Max", count: "3 Models", image: "https://images.unsplash.com/photo-1712749028550-24ef15a1fb64?w=600&q=80", region: "chinese", tags: ["electric"] },
   { name: "Lucid", slug: "lucid", models: "Air Pure · Air Touring · Air GT · Sapphire · Gravity", count: "5 Models", image: "https://images.unsplash.com/photo-1664141249828-5c6e1b3faed5?w=600&q=80", region: "american", tags: ["electric", "luxury"] },
