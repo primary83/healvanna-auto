@@ -74,32 +74,32 @@ export default function JaguarPage() {
       <div className="px-6 md:px-12 py-12">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-light text-[#e8edf5] mb-8">All Jaguar Models</h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {models.map((model) => (
               <Link key={model.id} href={`/cars/jaguar/${model.id}`}>
                 <div className="group bg-[#0d1420] rounded-2xl overflow-hidden border border-[#1a2235] hover:border-[#2a3a55] transition-all duration-300">
-                  <div className="relative h-52 bg-gradient-to-br from-[#111927] to-[#0d1420] overflow-hidden">
+                  <div className="aspect-video relative overflow-hidden">
                     <div className="absolute top-4 left-4 z-10">
                       <span className="bg-[#1a1a1a] text-[#2d6b4d] text-[10px] font-bold px-3 py-1 rounded">JAGUAR</span>
                     </div>
-                    <div className="absolute bottom-4 right-4 z-10">
+                    <div className="absolute top-4 right-4 z-10">
                       <span className={`text-[10px] font-bold px-2 py-1 rounded ${model.tag === "CONCEPT" ? "bg-[#6b4d2d] text-white" : "bg-[#1a2235] text-[#4a90d9]"}`}>{model.tag}</span>
                     </div>
-                    <Image src={model.image} alt={model.name} fill className="object-contain group-hover:scale-105 transition-transform duration-500" />
+                    <Image src={model.image} alt={model.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0d1420] via-transparent to-transparent" />
                     <p className="absolute bottom-4 left-4 text-[10px] text-[#6b7a94] uppercase tracking-wider">{model.type}</p>
                   </div>
-                  <div className="p-5">
-                    <h3 className="text-lg font-medium text-[#e8edf5] mb-1">{model.name}</h3>
+                  <div className="p-6">
+                    <h3 className="text-xl font-medium text-[#e8edf5] mb-1">{model.name}</h3>
                     <p className="text-[#4a90d9] text-sm mb-3">{model.year} • {model.price}</p>
-                    <p className="text-[#6b7a94] text-sm mb-4 line-clamp-2">{model.description}</p>
-                    <div className="flex justify-between border-t border-[#1a2235] pt-4">
-                      <div className="text-center"><span className="text-[#e8edf5] font-medium">{model.range}</span><p className="text-[10px] text-[#6b7a94]">Range</p></div>
-                      <div className="text-center"><span className="text-[#e8edf5] font-medium">{model.acceleration}</span><p className="text-[10px] text-[#6b7a94]">0-60</p></div>
-                      <div className="text-center"><span className="text-[#e8edf5] font-medium">{model.power}</span><p className="text-[10px] text-[#6b7a94]">Power</p></div>
+                    <p className="text-[#6b7a94] text-sm mb-4">{model.description}</p>
+                    <div className="grid grid-cols-3 gap-4 border-t border-[#1a2235] pt-4">
+                      <div><div className="text-sm text-[#6b7a94]">Range</div><div className="text-[#e8edf5] font-medium">{model.range}</div></div>
+                      <div><div className="text-sm text-[#6b7a94]">0-60</div><div className="text-[#e8edf5] font-medium">{model.acceleration}</div></div>
+                      <div><div className="text-sm text-[#6b7a94]">Power</div><div className="text-[#e8edf5] font-medium">{model.power}</div></div>
                     </div>
                     <div className="mt-4 pt-4 border-t border-[#1a2235]">
-                      <span className="text-[#4a90d9] text-sm font-medium group-hover:text-[#6ba5e7] transition-colors">VIEW DETAILS</span>
+                      <span className="text-[#4a90d9] text-sm font-medium group-hover:text-[#6ba5e7] transition-colors">VIEW DETAILS →</span>
                     </div>
                   </div>
                 </div>
