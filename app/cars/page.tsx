@@ -172,14 +172,14 @@ export default function CarsPage() {
       name: "Jaguar",
       models: ["I-PACE", "Type 00"],
       modelCount: 2,
-      image: "/cars/jaguar/i-pace.png",
+      image: "/cars/jaguar/i-pace.jpg",
       link: "/cars/jaguar",
     },
     {
       name: "VinFast",
       models: ["VF 8", "VF 9", "VF 6", "VF 7"],
       modelCount: 4,
-      image: "/cars/vinfast/vf8.png",
+      image: "/cars/vinfast/vf8.jpg",
       link: "/cars/vinfast",
     },
   ];
