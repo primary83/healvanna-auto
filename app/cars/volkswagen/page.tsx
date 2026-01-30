@@ -2,123 +2,219 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 export default function VolkswagenPage() {
   const models = [
     {
       id: "id4",
-      name: "ID.4",
-      price: "$38,995",
-      specs: "275 mi range • AWD available",
+      name: "Volkswagen ID.4",
+      year: "2024",
+      price: "From $38,995",
+      type: "COMPACT ELECTRIC SUV",
+      tag: "EV",
+      description: "The accessible electric SUV with spacious interior and impressive range for everyday adventures.",
+      range: "275 mi",
+      acceleration: "5.7s",
+      power: "282 hp",
       image: "/cars/volkswagen/id4.png",
     },
     {
       id: "id-buzz",
-      name: "ID.Buzz",
-      price: "$59,995",
-      specs: "234 mi range • Iconic design",
+      name: "Volkswagen ID.Buzz",
+      year: "2024",
+      price: "From $59,995",
+      type: "ELECTRIC MINIVAN",
+      tag: "EV",
+      description: "The iconic microbus reimagined for the electric age with retro styling and modern technology.",
+      range: "234 mi",
+      acceleration: "6.6s",
+      power: "282 hp",
       image: "/cars/volkswagen/id-buzz.png",
     },
     {
       id: "id7",
-      name: "ID.7",
-      price: "$50,495",
-      specs: "340 mi range • Flagship sedan",
+      name: "Volkswagen ID.7",
+      year: "2024",
+      price: "From $50,495",
+      type: "ELECTRIC FLAGSHIP SEDAN",
+      tag: "EV",
+      description: "The flagship electric sedan combining elegant design with exceptional range and comfort.",
+      range: "340 mi",
+      acceleration: "5.5s",
+      power: "282 hp",
       image: "/cars/volkswagen/id7.png",
     },
   ];
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a]">
-      {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#001e50]/30 via-[#0a0a0a]/60 to-[#0a0a0a]" />
-        <div className="absolute inset-0 bg-[url('/cars/volkswagen/id4.png')] bg-center bg-cover opacity-40" />
-        <div className="relative z-10 text-center px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 tracking-tight">
-              Volkswagen
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
-              Electric for All
-            </p>
-          </motion.div>
+    <main className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-gradient-to-b from-[#0a0f1a]/95 to-transparent backdrop-blur-xl">
+        <Link href="/" className="text-[22px] font-light tracking-[0.12em]">
+          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
+        </Link>
+        <div className="hidden md:flex items-center gap-8">
+          {[
+            { name: "HOME", href: "/" },
+            { name: "CARS", href: "/cars" },
+            { name: "CARE", href: "/care" },
+            { name: "CRAFT", href: "/craft" },
+            { name: "SHOP", href: "/shop" },
+            { name: "BLOG", href: "/blog" },
+          ].map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`text-xs tracking-[0.12em] transition-colors duration-300 ${
+                item.name === "CARS"
+                  ? "text-[#e8edf5] border-b border-[#4a90d9]"
+                  : "text-[#6b7a94] hover:text-[#e8edf5]"
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
+      {/* Stats Bar */}
+      <section className="pt-24 pb-8 px-6 md:px-12 border-b border-[rgba(74,144,217,0.15)]">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <div className="text-4xl font-light text-[#4a90d9]">3</div>
+              <div className="text-sm text-[#6b7a94]">Models Available</div>
+            </div>
+            <div>
+              <div className="text-4xl font-light text-[#4a90d9]">340 mi</div>
+              <div className="text-sm text-[#6b7a94]">Max Range</div>
+            </div>
+            <div>
+              <div className="text-4xl font-light text-[#4a90d9]">5.5s</div>
+              <div className="text-sm text-[#6b7a94]">Fastest 0-60</div>
+            </div>
+            <div>
+              <div className="text-4xl font-light text-[#4a90d9]">IQ.DRIVE</div>
+              <div className="text-sm text-[#6b7a94]">Driver Assist</div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Models Grid */}
-      <section className="max-w-7xl mx-auto px-4 py-20">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-white mb-12 text-center"
-        >
-          Electric Models
-        </motion.h2>
+      {/* Back Link + Brand Header */}
+      <section className="pt-8 pb-4 px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto">
+          <Link
+            href="/cars"
+            className="inline-flex items-center text-[#6b7a94] hover:text-[#e8edf5] transition-colors mb-8"
+          >
+            <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to All Cars
+          </Link>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {models.map((model, index) => (
-            <motion.div
-              key={model.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Link href={`/cars/volkswagen/${model.id}`}>
-                <div className="group bg-gradient-to-br from-[#12182a] to-[#0d1220] rounded-2xl overflow-hidden border border-gray-800/50 hover:border-[#001e50]/50 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#001e50]/20">
-                  <div className="relative h-64 overflow-hidden">
+          <div className="flex items-center gap-6 mb-6">
+            <div className="w-[100px] h-[100px] bg-[#001e50] rounded-xl flex items-center justify-center">
+              <span className="text-white font-bold text-lg">VW</span>
+            </div>
+            <div>
+              <h1 className="text-4xl md:text-5xl font-light">Volkswagen</h1>
+              <p className="text-[#6b7a94]">Electric for All</p>
+            </div>
+          </div>
+
+          <p className="text-[#6b7a94] max-w-3xl leading-relaxed">
+            Volkswagen is democratizing electric mobility with its ID. family of vehicles. 
+            Combining German engineering excellence with accessible pricing, every ID. model 
+            delivers impressive range, intuitive technology, and the quality Volkswagen is known for.
+          </p>
+        </div>
+      </section>
+
+      {/* Models Section */}
+      <section className="py-12 px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto">
+          <h2 className="text-2xl font-light mb-8">All Volkswagen Models</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {models.map((model) => (
+              <Link key={model.id} href={`/cars/volkswagen/${model.id}`}>
+                <div className="bg-gradient-to-b from-[rgba(15,22,40,0.8)] to-[rgba(10,15,26,0.9)] rounded-xl overflow-hidden border border-[rgba(74,144,217,0.1)] hover:border-[rgba(74,144,217,0.3)] transition-all duration-300 hover:-translate-y-1 group">
+                  <div className="relative h-56 bg-gradient-to-br from-[#12182a] to-[#0d1220] flex items-center justify-center p-4">
+                    <div className="absolute top-4 left-4 bg-[#001e50] text-white text-xs font-bold px-3 py-1 rounded">
+                      VW
+                    </div>
                     <Image
                       src={model.image}
                       alt={model.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      width={320}
+                      height={180}
+                      className="object-contain transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d1220] via-transparent to-transparent" />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">
-                      {model.name}
-                    </h3>
-                    <p className="text-[#001e50] font-semibold text-lg mb-2">
-                      Starting at {model.price}
-                    </p>
-                    <p className="text-gray-400">{model.specs}</p>
+
+                  <div className="p-5">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-xs text-[#6b7a94] tracking-wider">{model.type}</span>
+                      <span className="text-xs bg-[rgba(74,144,217,0.2)] text-[#4a90d9] px-2 py-1 rounded">
+                        {model.tag}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-medium mb-1">{model.name}</h3>
+                    <p className="text-[#4a90d9] font-medium mb-3">{model.year} • {model.price}</p>
+                    <p className="text-sm text-[#6b7a94] mb-4 line-clamp-2">{model.description}</p>
+
+                    <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[rgba(74,144,217,0.1)]">
+                      <div>
+                        <div className="text-lg font-medium text-[#4a90d9]">{model.range}</div>
+                        <div className="text-xs text-[#6b7a94]">Range</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-medium text-[#4a90d9]">{model.acceleration}</div>
+                        <div className="text-xs text-[#6b7a94]">0-60</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-medium text-[#4a90d9]">{model.power}</div>
+                        <div className="text-xs text-[#6b7a94]">Power</div>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 text-center">
+                      <span className="text-[#4a90d9] text-sm font-medium tracking-wider">
+                        VIEW DETAILS
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Link>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Back Link */}
-      <div className="max-w-7xl mx-auto px-4 pb-20">
-        <Link
-          href="/cars"
-          className="inline-flex items-center text-gray-400 hover:text-white transition-colors"
-        >
-          <svg
-            className="w-5 h-5 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-          Back to All Brands
-        </Link>
-      </div>
+      {/* Footer */}
+      <footer className="bg-[#080c14] py-16 px-6 md:px-12 mt-16">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)]">
+            <div className="text-[11px] text-[#3d4a61] mb-4 md:mb-0">
+              © 2026 Healvanna. All rights reserved.
+            </div>
+            <div className="flex gap-6">
+              {["Privacy", "Terms", "Cookies"].map((link) => (
+                <Link
+                  key={link}
+                  href={`/${link.toLowerCase()}`}
+                  className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors"
+                >
+                  {link}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
