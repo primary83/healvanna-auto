@@ -81,7 +81,7 @@ export default function JaguarPage() {
                   <div className="relative h-52 bg-gradient-to-br from-[#111927] to-[#0d1420] overflow-hidden">
                     <div className="absolute top-4 left-4 z-10"><span className="bg-[#1a1a1a] text-[#2d6b4d] text-[10px] font-bold px-3 py-1 rounded">JAGUAR</span></div>
                     <div className="absolute bottom-4 right-4 z-10"><span className={`text-[10px] font-bold px-2 py-1 rounded ${model.tag === "CONCEPT" ? "bg-[#6b4d2d] text-white" : "bg-[#1a2235] text-[#4a90d9]"}`}>{model.tag}</span></div>
-                    <Image src={model.image} alt={model.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <Image src={model.image} alt={model.name} fill className="object-contain group-hover:scale-105 transition-transform duration-50 />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0d1420] via-transparent to-transparent" />
                     <p className="absolute bottom-4 left-4 text-[10px] text-[#6b7a94] uppercase tracking-wider">{model.type}</p>
                   </div>
