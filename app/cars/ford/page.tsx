@@ -1,66 +1,163 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowLeft, Zap, Battery, Gauge } from "lucide-react";
 
-export default function FordBrand() {
-  const vehicles = [
-    { name: "Mustang Mach-E", slug: "mach-e", type: "Electric Crossover", price: "$42,995", range: "312 miles", acceleration: "3.5s 0-60", image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80", description: "An electric crossover that carries the Mustang spirit with zero emissions." },
-    { name: "F-150 Lightning", slug: "f150-lightning", type: "Electric Truck", price: "$49,995", range: "320 miles", acceleration: "4.0s 0-60", image: "https://images.unsplash.com/photo-1643750228773-b997a0c1db66?w=800&q=80", description: "America's best-selling truck goes electric with mega power frunk and V2H capability." },
-    { name: "E-Transit", slug: "e-transit", type: "Commercial Van", price: "$51,769", range: "126 miles", acceleration: "8.5s 0-60", image: "https://images.unsplash.com/photo-1622838520460-3521c68afd78?w=800&q=80", description: "An all-electric commercial van built for business fleets and last-mile delivery." },
-  ];
+const models = [
+  {
+    name: "Mustang Mach-E",
+    slug: "mustang-mach-e",
+    image: "/cars/ford/mustang-mach-e.png",
+    price: "From $42,995",
+    range: "312 miles",
+    acceleration: "3.5s 0-60",
+    power: "480 hp",
+    description: "An all-electric SUV that combines Mustang heritage with modern EV technology.",
+  },
+  {
+    name: "F-150 Lightning",
+    slug: "f-150-lightning",
+    image: "/cars/ford/f-150-lightning.png",
+    price: "From $49,995",
+    range: "320 miles",
+    acceleration: "4.0s 0-60",
+    power: "580 hp",
+    description: "America's best-selling truck, now fully electric with incredible capability.",
+  },
+  {
+    name: "E-Transit",
+    slug: "e-transit",
+    image: "/cars/ford/e-transit.png",
+    price: "From $43,295",
+    range: "159 miles",
+    acceleration: "N/A",
+    power: "266 hp",
+    description: "The all-electric commercial van built for business efficiency.",
+  },
+];
 
+export default function FordPage() {
   return (
-    <main className="min-h-screen bg-slate-950">
-      <nav className="border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-light tracking-wider">HEALVANNA <span className="text-emerald-400">AUTO</span></Link>
-          <div className="flex gap-8">
-            <Link href="/" className="text-slate-300 hover:text-white transition-colors">HOME</Link>
-            <Link href="/cars" className="text-emerald-400">CARS</Link>
-            <Link href="/care" className="text-slate-300 hover:text-white transition-colors">CARE</Link>
-            <Link href="/craft" className="text-slate-300 hover:text-white transition-colors">CRAFT</Link>
-            <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">BLOG</Link>
-          </div>
-        </div>
-      </nav>
-      <div className="max-w-7xl mx-auto px-4 py-6"><Link href="/cars" className="text-blue-500 hover:text-blue-400 transition-colors inline-flex items-center gap-2"><span>←</span> Back to All Brands</Link></div>
-      <section className="px-4 pb-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-6 mb-6">
-            <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center"><span className="text-2xl font-bold text-blue-500">F</span></div>
-            <div><h1 className="text-4xl font-bold text-white">Ford</h1><p className="text-slate-400">Electric Trucks & Performance • Founded 1903 • Dearborn, Michigan</p></div>
-          </div>
-          <p className="text-xl text-slate-300 max-w-3xl">America&apos;s truck brand electrifies its icons with the F-150 Lightning and Mustang Mach-E, bringing EV capability to mainstream American buyers.</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-blue-500">3</div><div className="text-slate-400">Models Available</div></div>
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-blue-500">320 mi</div><div className="text-slate-400">Max Range</div></div>
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-blue-500">3.5s</div><div className="text-slate-400">Fastest 0-60</div></div>
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-blue-500">120+</div><div className="text-slate-400">Years Heritage</div></div>
-          </div>
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950">
+      {/* Hero Section */}
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-600/20 via-transparent to-transparent" />
+        
+        <div className="relative z-10 text-center px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Link
+              href="/cars"
+              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to All Brands
+            </Link>
+            
+            <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 tracking-tight">
+              Ford
+            </h1>
+            <p className="text-xl md:text-2xl text-blue-200/80 max-w-2xl mx-auto">
+              Built Ford Tough. Now Built Electric.
+            </p>
+          </motion.div>
         </div>
       </section>
-      <section className="px-4 pb-20">
+
+      {/* Models Grid */}
+      <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold text-white mb-8">All Ford EV Models</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {vehicles.map((vehicle) => (
-              <Link key={vehicle.slug} href={`/cars/ford/${vehicle.slug}`} className="group bg-slate-900/50 rounded-3xl overflow-hidden border border-slate-800 hover:border-blue-500/50 transition-all">
-                <div className="aspect-video relative overflow-hidden"><img src={vehicle.image} alt={vehicle.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /><div className="absolute top-4 right-4 px-3 py-1 bg-blue-600 rounded-full text-white text-sm font-medium">Ford</div></div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">Ford {vehicle.name}</h3><p className="text-slate-400 mb-4">{vehicle.description}</p>
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div><div className="text-sm text-slate-500">Starting at</div><div className="text-blue-500 font-semibold">{vehicle.price}</div></div>
-                    <div><div className="text-sm text-slate-500">Range</div><div className="text-white font-semibold">{vehicle.range}</div></div>
-                    <div><div className="text-sm text-slate-500">0-60 mph</div><div className="text-white font-semibold">{vehicle.acceleration}</div></div>
-                    <div><div className="text-sm text-slate-500">Type</div><div className="text-white font-semibold">{vehicle.type}</div></div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-bold text-white text-center mb-16"
+          >
+            Electric Models
+          </motion.h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {models.map((model, index) => (
+              <motion.div
+                key={model.slug}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <Link href={`/cars/ford/${model.slug}`}>
+                  <div className="group bg-slate-900/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-800 hover:border-blue-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/10">
+                    <div className="relative h-64 bg-gradient-to-br from-slate-800 to-slate-900 overflow-hidden">
+                      <Image
+                        src={model.image}
+                        alt={model.name}
+                        fill
+                        className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    
+                    <div className="p-6">
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                          {model.name}
+                        </h3>
+                        <span className="text-blue-400 font-semibold">
+                          {model.price}
+                        </span>
+                      </div>
+                      
+                      <p className="text-slate-400 mb-6 line-clamp-2">
+                        {model.description}
+                      </p>
+
+                      <div className="grid grid-cols-3 gap-4">
+                        <div className="text-center">
+                          <Battery className="w-5 h-5 text-blue-400 mx-auto mb-1" />
+                          <span className="text-sm text-slate-300">{model.range}</span>
+                        </div>
+                        <div className="text-center">
+                          <Gauge className="w-5 h-5 text-blue-400 mx-auto mb-1" />
+                          <span className="text-sm text-slate-300">{model.acceleration}</span>
+                        </div>
+                        <div className="text-center">
+                          <Zap className="w-5 h-5 text-blue-400 mx-auto mb-1" />
+                          <span className="text-sm text-slate-300">{model.power}</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
-      <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4"><div className="max-w-7xl mx-auto text-center text-slate-400"><p>© 2026 Healvanna Auto. All rights reserved.</p></div></footer>
-    </main>
+
+      {/* Brand Story */}
+      <section className="py-20 px-4 bg-slate-900/50">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Leading the Electric Revolution
+            </h2>
+            <p className="text-lg text-slate-300 leading-relaxed">
+              Ford is transforming its iconic lineup for the electric age. From the legendary 
+              Mustang reimagined as an all-electric SUV to America's best-selling truck going 
+              fully electric, Ford is proving that performance and sustainability go hand in hand. 
+              With massive investments in EV technology and battery production, Ford is committed 
+              to an electric future.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+    </div>
   );
 }
