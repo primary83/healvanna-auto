@@ -1,66 +1,124 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
-export default function VolkswagenBrand() {
-  const vehicles = [
-    { name: "ID.4", slug: "id4", type: "Compact SUV", price: "$38,995", range: "275 miles", acceleration: "5.7s 0-60", image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800&q=80", description: "VW's global electric SUV offering practicality and value on the MEB platform." },
-    { name: "ID.Buzz", slug: "id-buzz", type: "Electric Van", price: "$59,995", range: "234 miles", acceleration: "6.4s 0-60", image: "https://images.unsplash.com/photo-1622838520460-3521c68afd78?w=800&q=80", description: "The iconic Microbus reimagined as a modern electric vehicle with retro charm." },
-    { name: "ID.7", slug: "id7", type: "Electric Sedan", price: "$48,995", range: "340 miles", acceleration: "5.4s 0-60", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80", description: "VW's flagship electric sedan with impressive range and a spacious interior." },
+export default function VolkswagenPage() {
+  const models = [
+    {
+      id: "id4",
+      name: "ID.4",
+      price: "$38,995",
+      specs: "275 mi range • AWD available",
+      image: "/cars/volkswagen/id4.png",
+    },
+    {
+      id: "id-buzz",
+      name: "ID.Buzz",
+      price: "$59,995",
+      specs: "234 mi range • Iconic design",
+      image: "/cars/volkswagen/id-buzz.png",
+    },
+    {
+      id: "id7",
+      name: "ID.7",
+      price: "$50,495",
+      specs: "340 mi range • Flagship sedan",
+      image: "/cars/volkswagen/id7.png",
+    },
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950">
-      <nav className="border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-light tracking-wider">HEALVANNA <span className="text-emerald-400">AUTO</span></Link>
-          <div className="flex gap-8">
-            <Link href="/" className="text-slate-300 hover:text-white transition-colors">HOME</Link>
-            <Link href="/cars" className="text-emerald-400">CARS</Link>
-            <Link href="/care" className="text-slate-300 hover:text-white transition-colors">CARE</Link>
-            <Link href="/craft" className="text-slate-300 hover:text-white transition-colors">CRAFT</Link>
-            <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">BLOG</Link>
-          </div>
-        </div>
-      </nav>
-      <div className="max-w-7xl mx-auto px-4 py-6"><Link href="/cars" className="text-indigo-400 hover:text-indigo-300 transition-colors inline-flex items-center gap-2"><span>←</span> Back to All Brands</Link></div>
-      <section className="px-4 pb-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-6 mb-6">
-            <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center"><span className="text-2xl font-bold text-indigo-400">VW</span></div>
-            <div><h1 className="text-4xl font-bold text-white">Volkswagen</h1><p className="text-slate-400">People&apos;s Electric Car • Founded 1937 • Wolfsburg, Germany</p></div>
-          </div>
-          <p className="text-xl text-slate-300 max-w-3xl">Volkswagen&apos;s ID. family brings electric mobility to the masses with the dedicated MEB platform, offering affordable EVs from compact SUVs to the iconic ID.Buzz.</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-indigo-400">3</div><div className="text-slate-400">Models Available</div></div>
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-indigo-400">340 mi</div><div className="text-slate-400">Max Range</div></div>
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-indigo-400">5.4s</div><div className="text-slate-400">Fastest 0-60</div></div>
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-indigo-400">MEB</div><div className="text-slate-400">Platform</div></div>
-          </div>
+    <main className="min-h-screen bg-[#0a0a0a]">
+      {/* Hero Section */}
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001e50]/30 via-[#0a0a0a]/60 to-[#0a0a0a]" />
+        <div className="absolute inset-0 bg-[url('/cars/volkswagen/id4.png')] bg-center bg-cover opacity-40" />
+        <div className="relative z-10 text-center px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 tracking-tight">
+              Volkswagen
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
+              Electric for All
+            </p>
+          </motion.div>
         </div>
       </section>
-      <section className="px-4 pb-20">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold text-white mb-8">All Volkswagen EV Models</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {vehicles.map((vehicle) => (
-              <Link key={vehicle.slug} href={`/cars/volkswagen/${vehicle.slug}`} className="group bg-slate-900/50 rounded-3xl overflow-hidden border border-slate-800 hover:border-indigo-400/50 transition-all">
-                <div className="aspect-video relative overflow-hidden"><img src={vehicle.image} alt={vehicle.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /><div className="absolute top-4 right-4 px-3 py-1 bg-indigo-500 rounded-full text-white text-sm font-medium">VW</div></div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">Volkswagen {vehicle.name}</h3><p className="text-slate-400 mb-4">{vehicle.description}</p>
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div><div className="text-sm text-slate-500">Starting at</div><div className="text-indigo-400 font-semibold">{vehicle.price}</div></div>
-                    <div><div className="text-sm text-slate-500">Range</div><div className="text-white font-semibold">{vehicle.range}</div></div>
-                    <div><div className="text-sm text-slate-500">0-60 mph</div><div className="text-white font-semibold">{vehicle.acceleration}</div></div>
-                    <div><div className="text-sm text-slate-500">Type</div><div className="text-white font-semibold">{vehicle.type}</div></div>
+
+      {/* Models Grid */}
+      <section className="max-w-7xl mx-auto px-4 py-20">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold text-white mb-12 text-center"
+        >
+          Electric Models
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {models.map((model, index) => (
+            <motion.div
+              key={model.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Link href={`/cars/volkswagen/${model.id}`}>
+                <div className="group bg-gradient-to-br from-[#12182a] to-[#0d1220] rounded-2xl overflow-hidden border border-gray-800/50 hover:border-[#001e50]/50 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#001e50]/20">
+                  <div className="relative h-64 overflow-hidden">
+                    <Image
+                      src={model.image}
+                      alt={model.name}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d1220] via-transparent to-transparent" />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold text-white mb-2">
+                      {model.name}
+                    </h3>
+                    <p className="text-[#001e50] font-semibold text-lg mb-2">
+                      Starting at {model.price}
+                    </p>
+                    <p className="text-gray-400">{model.specs}</p>
                   </div>
                 </div>
               </Link>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
       </section>
-      <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4"><div className="max-w-7xl mx-auto text-center text-slate-400"><p>© 2026 Healvanna Auto. All rights reserved.</p></div></footer>
+
+      {/* Back Link */}
+      <div className="max-w-7xl mx-auto px-4 pb-20">
+        <Link
+          href="/cars"
+          className="inline-flex items-center text-gray-400 hover:text-white transition-colors"
+        >
+          <svg
+            className="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          Back to All Brands
+        </Link>
+      </div>
     </main>
   );
 }
