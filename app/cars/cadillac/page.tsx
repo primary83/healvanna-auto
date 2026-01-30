@@ -1,67 +1,236 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
-export default function CadillacBrand() {
-  const vehicles = [
-    { name: "LYRIQ", slug: "lyriq", type: "Luxury SUV", price: "$58,590", range: "314 miles", acceleration: "5.6s 0-60", image: "https://images.unsplash.com/photo-1657123543888-4877e7b6c5c6?w=800&q=80", description: "Cadillac's first all-electric vehicle with a stunning LED light signature." },
-    { name: "CELESTIQ", slug: "celestiq", type: "Ultra-Luxury Sedan", price: "$300,000", range: "300 miles", acceleration: "3.8s 0-60", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80", description: "A hand-built ultra-luxury sedan — Cadillac's most ambitious vehicle ever." },
-    { name: "Escalade IQ", slug: "escalade-iq", type: "Full-Size Luxury SUV", price: "$129,990", range: "460 miles", acceleration: "4.9s 0-60", image: "https://images.unsplash.com/photo-1675467521498-58e52a4f4cbc?w=800&q=80", description: "The iconic Escalade goes all-electric with a massive 200 kWh battery." },
-    { name: "OPTIQ", slug: "optiq", type: "Compact Luxury SUV", price: "$54,000", range: "300 miles", acceleration: "5.5s 0-60", image: "https://images.unsplash.com/photo-1611651338502-8230a0c5636c?w=800&q=80", description: "An accessible entry into Cadillac's electric lineup with premium features." },
+export default function CadillacPage() {
+  const models = [
+    {
+      id: "lyriq",
+      name: "Cadillac LYRIQ",
+      year: "2024",
+      price: "From $58,590",
+      type: "LUXURY ELECTRIC SUV",
+      tag: "EV",
+      description: "The first all-electric Cadillac. Bold design meets cutting-edge technology in this luxury SUV.",
+      range: "314 mi",
+      acceleration: "5.3s",
+      power: "340 hp",
+      image: "/cars/cadillac/lyriq.png",
+    },
+    {
+      id: "celestiq",
+      name: "Cadillac CELESTIQ",
+      year: "2024",
+      price: "From $340,000",
+      type: "ULTRA-LUXURY ELECTRIC SEDAN",
+      tag: "EV",
+      description: "The pinnacle of Cadillac luxury. Hand-built, bespoke, and entirely electric.",
+      range: "300 mi",
+      acceleration: "3.8s",
+      power: "600 hp",
+      image: "/cars/cadillac/celestiq.png",
+    },
+    {
+      id: "escalade-iq",
+      name: "Cadillac ESCALADE IQ",
+      year: "2024",
+      price: "From $129,990",
+      type: "FULL-SIZE LUXURY ELECTRIC SUV",
+      tag: "EV",
+      description: "The iconic Escalade, reimagined for the electric era with unprecedented luxury and capability.",
+      range: "450 mi",
+      acceleration: "4.9s",
+      power: "680 hp",
+      image: "/cars/cadillac/escalade-iq.png",
+    },
+    {
+      id: "optiq",
+      name: "Cadillac OPTIQ",
+      year: "2024",
+      price: "From $54,000",
+      type: "COMPACT LUXURY ELECTRIC SUV",
+      tag: "EV",
+      description: "Accessible luxury meets electric efficiency in Cadillac's newest compact SUV.",
+      range: "300 mi",
+      acceleration: "5.8s",
+      power: "300 hp",
+      image: "/cars/cadillac/optiq.png",
+    },
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950">
-      <nav className="border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-light tracking-wider">HEALVANNA <span className="text-emerald-400">AUTO</span></Link>
-          <div className="flex gap-8">
-            <Link href="/" className="text-slate-300 hover:text-white transition-colors">HOME</Link>
-            <Link href="/cars" className="text-emerald-400">CARS</Link>
-            <Link href="/care" className="text-slate-300 hover:text-white transition-colors">CARE</Link>
-            <Link href="/craft" className="text-slate-300 hover:text-white transition-colors">CRAFT</Link>
-            <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">BLOG</Link>
-          </div>
+    <main className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-gradient-to-b from-[#0a0f1a]/95 to-transparent backdrop-blur-xl">
+        <Link href="/" className="text-[22px] font-light tracking-[0.12em]">
+          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
+        </Link>
+        <div className="hidden md:flex items-center gap-8">
+          {[
+            { name: "HOME", href: "/" },
+            { name: "CARS", href: "/cars" },
+            { name: "CARE", href: "/care" },
+            { name: "CRAFT", href: "/craft" },
+            { name: "SHOP", href: "/shop" },
+            { name: "BLOG", href: "/blog" },
+          ].map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`text-xs tracking-[0.12em] transition-colors duration-300 ${
+                item.name === "CARS"
+                  ? "text-[#4a90d9] border-b border-[#4a90d9] pb-1"
+                  : "text-[#8a919e] hover:text-[#e8edf5]"
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
         </div>
       </nav>
-      <div className="max-w-7xl mx-auto px-4 py-6"><Link href="/cars" className="text-rose-500 hover:text-rose-400 transition-colors inline-flex items-center gap-2"><span>←</span> Back to All Brands</Link></div>
-      <section className="px-4 pb-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-6 mb-6">
-            <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center"><span className="text-2xl font-bold text-rose-500">CA</span></div>
-            <div><h1 className="text-4xl font-bold text-white">Cadillac</h1><p className="text-slate-400">American Luxury EVs • Founded 1902 • Detroit, Michigan</p></div>
+
+      {/* Hero Stats Bar */}
+      <div className="pt-24 pb-8 px-6 md:px-12 border-b border-[#1a2235]">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-8">
+          <div>
+            <span className="text-4xl md:text-5xl font-light text-[#e8edf5]">4</span>
+            <p className="text-sm text-[#6b7a94] mt-1">Models Available</p>
           </div>
-          <p className="text-xl text-slate-300 max-w-3xl">GM&apos;s luxury division goes all-electric with the Ultium platform, blending American boldness with cutting-edge technology in its new electric lineup.</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-rose-500">4</div><div className="text-slate-400">Models Available</div></div>
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-rose-500">460 mi</div><div className="text-slate-400">Max Range</div></div>
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-rose-500">3.8s</div><div className="text-slate-400">Fastest 0-60</div></div>
-            <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800"><div className="text-3xl font-bold text-rose-500">120+</div><div className="text-slate-400">Years of Luxury</div></div>
+          <div>
+            <span className="text-4xl md:text-5xl font-light text-[#e8edf5]">450 mi</span>
+            <p className="text-sm text-[#6b7a94] mt-1">Max Range</p>
+          </div>
+          <div>
+            <span className="text-4xl md:text-5xl font-light text-[#e8edf5]">3.8s</span>
+            <p className="text-sm text-[#6b7a94] mt-1">Fastest 0-60</p>
+          </div>
+          <div>
+            <span className="text-4xl md:text-5xl font-light text-[#e8edf5]">Ultium</span>
+            <p className="text-sm text-[#6b7a94] mt-1">Platform</p>
           </div>
         </div>
-      </section>
-      <section className="px-4 pb-20">
+      </div>
+
+      {/* Back Link & Brand Header */}
+      <div className="px-6 md:px-12 py-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold text-white mb-8">All Cadillac EV Models</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {vehicles.map((vehicle) => (
-              <Link key={vehicle.slug} href={`/cars/cadillac/${vehicle.slug}`} className="group bg-slate-900/50 rounded-3xl overflow-hidden border border-slate-800 hover:border-rose-500/50 transition-all">
-                <div className="aspect-video relative overflow-hidden"><img src={vehicle.image} alt={vehicle.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /><div className="absolute top-4 right-4 px-3 py-1 bg-rose-600 rounded-full text-white text-sm font-medium">Cadillac</div></div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">Cadillac {vehicle.name}</h3><p className="text-slate-400 mb-4">{vehicle.description}</p>
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div><div className="text-sm text-slate-500">Starting at</div><div className="text-rose-500 font-semibold">{vehicle.price}</div></div>
-                    <div><div className="text-sm text-slate-500">Range</div><div className="text-white font-semibold">{vehicle.range}</div></div>
-                    <div><div className="text-sm text-slate-500">0-60 mph</div><div className="text-white font-semibold">{vehicle.acceleration}</div></div>
-                    <div><div className="text-sm text-slate-500">Type</div><div className="text-white font-semibold">{vehicle.type}</div></div>
+          <Link
+            href="/cars"
+            className="inline-flex items-center gap-2 text-[#6b7a94] hover:text-[#e8edf5] transition-colors mb-8"
+          >
+            <span>←</span>
+            <span>Back to All Cars</span>
+          </Link>
+
+          <div className="flex items-center gap-6 mb-6">
+            <div className="w-32 h-24 bg-[#1a1a1a] rounded-xl flex items-center justify-center">
+              <span className="text-[#c4a052] font-bold text-lg tracking-wide">CADILLAC</span>
+            </div>
+            <div>
+              <h1 className="text-4xl md:text-5xl font-light text-[#e8edf5]">Cadillac</h1>
+              <p className="text-[#6b7a94] mt-1">Be Iconic. Drive Electric.</p>
+            </div>
+          </div>
+
+          <p className="text-[#8a919e] max-w-3xl leading-relaxed">
+            Cadillac is leading the American luxury electric revolution. Built on the advanced 
+            Ultium platform, every electric Cadillac delivers bold design, cutting-edge technology, 
+            and the craftsmanship that has defined the brand for over a century.
+          </p>
+        </div>
+      </div>
+
+      {/* Models Section */}
+      <div className="px-6 md:px-12 py-12">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl font-light text-[#e8edf5] mb-8">All Cadillac Models</h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {models.map((model) => (
+              <Link key={model.id} href={`/cars/cadillac/${model.id}`}>
+                <div className="group bg-[#0d1420] rounded-2xl overflow-hidden border border-[#1a2235] hover:border-[#2a3a55] transition-all duration-300">
+                  {/* Image Container */}
+                  <div className="relative h-48 bg-gradient-to-br from-[#111927] to-[#0d1420] overflow-hidden">
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="bg-[#1a1a1a] text-[#c4a052] text-[10px] font-bold px-3 py-1 rounded">
+                        CADILLAC
+                      </span>
+                    </div>
+                    <div className="absolute bottom-4 right-4 z-10">
+                      <span className="text-[10px] font-bold px-2 py-1 rounded bg-[#1a2235] text-[#4a90d9]">
+                        {model.tag}
+                      </span>
+                    </div>
+                    <Image
+                      src={model.image}
+                      alt={model.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d1420] via-transparent to-transparent" />
+                    <p className="absolute bottom-4 left-4 text-[9px] text-[#6b7a94] uppercase tracking-wider">
+                      {model.type}
+                    </p>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-5">
+                    <h3 className="text-lg font-medium text-[#e8edf5] mb-1">{model.name}</h3>
+                    <p className="text-[#4a90d9] text-sm mb-3">{model.year} • {model.price}</p>
+                    <p className="text-[#6b7a94] text-sm mb-4 line-clamp-2">{model.description}</p>
+
+                    {/* Specs */}
+                    <div className="flex justify-between border-t border-[#1a2235] pt-4">
+                      <div className="text-center">
+                        <span className="text-[#e8edf5] font-medium text-sm">{model.range}</span>
+                        <p className="text-[9px] text-[#6b7a94]">Range</p>
+                      </div>
+                      <div className="text-center">
+                        <span className="text-[#e8edf5] font-medium text-sm">{model.acceleration}</span>
+                        <p className="text-[9px] text-[#6b7a94]">0-60</p>
+                      </div>
+                      <div className="text-center">
+                        <span className="text-[#e8edf5] font-medium text-sm">{model.power}</span>
+                        <p className="text-[9px] text-[#6b7a94]">Power</p>
+                      </div>
+                    </div>
+
+                    {/* View Details */}
+                    <div className="mt-4 pt-4 border-t border-[#1a2235]">
+                      <span className="text-[#4a90d9] text-sm font-medium group-hover:text-[#6ba5e7] transition-colors">
+                        VIEW DETAILS
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
         </div>
-      </section>
-      <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4"><div className="max-w-7xl mx-auto text-center text-slate-400"><p>© 2026 Healvanna Auto. All rights reserved.</p></div></footer>
+      </div>
+
+      {/* Footer */}
+      <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-[11px] text-[#6b7a94]">
+              © 2024 Healvanna Auto. All rights reserved.
+            </div>
+            <div className="flex gap-6">
+              {["Privacy", "Terms", "Cookies"].map((link) => (
+                <Link
+                  key={link}
+                  href={`/${link.toLowerCase()}`}
+                  className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors"
+                >
+                  {link}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
