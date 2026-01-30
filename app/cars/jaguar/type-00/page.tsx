@@ -32,7 +32,7 @@ export default function Type00Page() {
             </div>
             <button className="bg-[#2d6b4d] hover:bg-[#3d7b5d] text-white px-8 py-3 rounded-lg font-medium transition-colors">Register Interest</button>
           </div>
-          <div className="relative h-[400px] lg:h-[500px]"><Image src="/cars/jaguar/type-00.png" alt="Jaguar Type 00" fill className="object-contain" priority /></div>
+          <div className="relative h-[400px] lg:h-[500px]"><Image src="/cars/jaguar/type-00.jpg" alt="Jaguar Type 00" fill className="object-contain" priority /></div>
         </div>
       </div>
 

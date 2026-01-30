@@ -5,10 +5,10 @@ import Link from "next/link";
 
 export default function VinFastPage() {
   const models = [
-    { id: "vf6", name: "VinFast VF 6", year: "2024", price: "From $44,950", type: "COMPACT ELECTRIC SUV", tag: "EV", description: "The urban-friendly compact SUV with bold Vietnamese design and accessible pricing.", range: "207 mi", acceleration: "5.8s", power: "228 hp", image: "/cars/vinfast/vf6.png" },
-    { id: "vf7", name: "VinFast VF 7", year: "2024", price: "From $51,450", type: "MIDSIZE ELECTRIC SUV", tag: "EV", description: "The versatile midsize SUV balancing performance, space, and technology.", range: "236 mi", acceleration: "5.5s", power: "348 hp", image: "/cars/vinfast/vf7.png" },
-    { id: "vf8", name: "VinFast VF 8", year: "2024", price: "From $46,950", type: "ELECTRIC SUV", tag: "EV", description: "The flagship all-electric SUV combining style, space, and smart technology.", range: "264 mi", acceleration: "5.5s", power: "402 hp", image: "/cars/vinfast/vf8.png" },
-    { id: "vf9", name: "VinFast VF 9", year: "2024", price: "From $73,950", type: "FULL-SIZE ELECTRIC SUV", tag: "EV", description: "The premium three-row SUV for families who demand space and luxury.", range: "330 mi", acceleration: "6.5s", power: "402 hp", image: "/cars/vinfast/vf9.png" },
+    { id: "vf6", name: "VinFast VF 6", year: "2024", price: "From $44,950", type: "COMPACT ELECTRIC SUV", tag: "EV", description: "The urban-friendly compact SUV with bold Vietnamese design and accessible pricing.", range: "207 mi", acceleration: "5.8s", power: "228 hp", image: "/cars/vinfast/vf6.jpg" },
+    { id: "vf7", name: "VinFast VF 7", year: "2024", price: "From $51,450", type: "MIDSIZE ELECTRIC SUV", tag: "EV", description: "The versatile midsize SUV balancing performance, space, and technology.", range: "236 mi", acceleration: "5.5s", power: "348 hp", image: "/cars/vinfast/vf7.jpg" },
+    { id: "vf8", name: "VinFast VF 8", year: "2024", price: "From $46,950", type: "ELECTRIC SUV", tag: "EV", description: "The flagship all-electric SUV combining style, space, and smart technology.", range: "264 mi", acceleration: "5.5s", power: "402 hp", image: "/cars/vinfast/vf8.jpg" },
+    { id: "vf9", name: "VinFast VF 9", year: "2024", price: "From $73,950", type: "FULL-SIZE ELECTRIC SUV", tag: "EV", description: "The premium three-row SUV for families who demand space and luxury.", range: "330 mi", acceleration: "6.5s", power: "402 hp", image: "/cars/vinfast/vf9.jpg" },
   ];
 
   return (

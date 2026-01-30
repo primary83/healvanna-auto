@@ -21,7 +21,7 @@ export default function VF9Page() {
             <div className="flex gap-8 mb-8"><div><span className="text-3xl font-light text-[#4a90d9]">330 mi</span><p className="text-sm text-[#6b7a94]">Range</p></div><div><span className="text-3xl font-light text-[#4a90d9]">6.5s</span><p className="text-sm text-[#6b7a94]">0-60 mph</p></div><div><span className="text-3xl font-light text-[#4a90d9]">402 hp</span><p className="text-sm text-[#6b7a94]">Power</p></div></div>
             <button className="bg-[#4a90d9] hover:bg-[#5aa0e9] text-white px-8 py-3 rounded-lg font-medium transition-colors">Request Quote</button>
           </div>
-          <div className="relative h-[400px] lg:h-[500px]"><Image src="/cars/vinfast/vf9.png" alt="VinFast VF 9" fill className="object-contain" priority /></div>
+          <div className="relative h-[400px] lg:h-[500px]"><Image src="/cars/vinfast/vf9.jpg" alt="VinFast VF 9" fill className="object-contain" priority /></div>
         </div>
       </div>
       <div className="px-6 md:px-12 py-12 bg-[#0d1420]">

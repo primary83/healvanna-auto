@@ -16,7 +16,7 @@ export default function JaguarPage() {
       range: "246 mi",
       acceleration: "4.5s",
       power: "394 hp",
-      image: "/cars/jaguar/i-pace.png",
+      image: "/cars/jaguar/i-pace.jpg",
     },
     {
       id: "type-00",
@@ -29,7 +29,7 @@ export default function JaguarPage() {
       range: "400 mi",
       acceleration: "2.9s",
       power: "600 hp",
-      image: "/cars/jaguar/type-00.png",
+      image: "/cars/jaguar/type-00.jpg",
     },
   ];
 

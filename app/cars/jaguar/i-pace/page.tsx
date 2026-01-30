@@ -35,7 +35,7 @@ export default function IPacePage() {
             </div>
             <button className="bg-[#2d6b4d] hover:bg-[#3d7b5d] text-white px-8 py-3 rounded-lg font-medium transition-colors">Request Quote</button>
           </div>
-          <div className="relative h-[400px] lg:h-[500px]"><Image src="/cars/jaguar/i-pace.png" alt="Jaguar I-PACE" fill className="object-contain" priority /></div>
+          <div className="relative h-[400px] lg:h-[500px]"><Image src="/cars/jaguar/i-pace.jpg" alt="Jaguar I-PACE" fill className="object-contain" priority /></div>
         </div>
       </div>
 
