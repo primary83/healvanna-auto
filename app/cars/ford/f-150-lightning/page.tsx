@@ -1,101 +1,98 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowLeft, Battery, Gauge, Zap, Calendar, MapPin } from "lucide-react";
-
-const specs = {
-  performance: [
-    { label: "Horsepower", value: "580 hp" },
-    { label: "Torque", value: "775 lb-ft" },
-    { label: "0-60 mph", value: "4.0 seconds" },
-    { label: "Towing Capacity", value: "10,000 lbs" },
-  ],
-  battery: [
-    { label: "Battery Capacity", value: "131 kWh" },
-    { label: "Range (EPA)", value: "320 miles" },
-    { label: "DC Fast Charging", value: "150 kW" },
-    { label: "Charge Time (15-80%)", value: "41 min" },
-  ],
-  dimensions: [
-    { label: "Length", value: "232.7 in" },
-    { label: "Width", value: "79.9 in" },
-    { label: "Height", value: "78.9 in" },
-    { label: "Payload Capacity", value: "2,000 lbs" },
-  ],
-};
-
-const features = [
-  "Pro Power Onboard (9.6 kW)",
-  "Mega Power Frunk",
-  "Intelligent Backup Power",
-  "Ford Co-Pilot360 2.0",
-  "BlueCruise Hands-Free",
-  "SYNC 4A with 15.5\" Display",
-  "Onboard Scales",
-  "Over-the-Air Updates",
-];
 
 export default function F150LightningPage() {
+  const specs = {
+    range: "320 mi",
+    acceleration: "4.0s",
+    topSpeed: "110 mph",
+    power: "580 hp",
+    battery: "131 kWh",
+    drive: "4x4",
+  };
+
+  const variants = [
+    { name: "Pro", price: "$49,995", range: "240 mi", power: "452 hp" },
+    { name: "XLT Extended Range", price: "$69,995", range: "320 mi", power: "580 hp" },
+    { name: "Platinum", price: "$91,995", range: "300 mi", power: "580 hp" },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950">
-      {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-transparent to-blue-600/20" />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-20 grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+    <main className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-gradient-to-b from-[#0a0f1a]/95 to-transparent backdrop-blur-xl">
+        <Link href="/" className="text-[22px] font-light tracking-[0.12em]">
+          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
+        </Link>
+        <div className="hidden md:flex items-center gap-8">
+          {[
+            { name: "HOME", href: "/" },
+            { name: "CARS", href: "/cars" },
+            { name: "CARE", href: "/care" },
+            { name: "CRAFT", href: "/craft" },
+            { name: "SHOP", href: "/shop" },
+            { name: "BLOG", href: "/blog" },
+          ].map((item) => (
             <Link
-              href="/cars/ford"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-6 transition-colors"
+              key={item.name}
+              href={item.href}
+              className={`text-xs tracking-[0.12em] transition-colors duration-300 ${
+                item.name === "CARS"
+                  ? "text-[#4a90d9] border-b border-[#4a90d9] pb-1"
+                  : "text-[#8a919e] hover:text-[#e8edf5]"
+              }`}
             >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Ford
+              {item.name}
             </Link>
-            
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
-              F-150 Lightning
+          ))}
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="pt-24 pb-12 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div>
+            <div className="mb-4">
+              <span className="bg-[#003478] text-white text-[10px] font-bold px-3 py-1 rounded">
+                FORD
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-light text-[#e8edf5] mb-2">
+              Ford F-150 Lightning
             </h1>
-            <p className="text-xl text-blue-200/80 mb-8 max-w-lg">
-              America's best-selling truck. Now fully electric. Built Ford Tough.
+            <p className="text-[#4a90d9] text-lg mb-4">2024 • From $49,995</p>
+            <p className="text-[#8a919e] mb-8 max-w-lg">
+              America's best-selling truck, now fully electric. Incredible capability, 
+              zero emissions, and power that can run your whole worksite.
             </p>
-            
-            <div className="flex flex-wrap gap-4 mb-8">
-              <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full">
-                <Battery className="w-5 h-5 text-blue-400" />
-                <span className="text-white">320 mi range</span>
+
+            {/* Quick Specs */}
+            <div className="flex gap-8 mb-8">
+              <div>
+                <span className="text-3xl font-light text-[#4a90d9]">{specs.range}</span>
+                <p className="text-sm text-[#6b7a94]">Range</p>
               </div>
-              <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full">
-                <Gauge className="w-5 h-5 text-blue-400" />
-                <span className="text-white">4.0s 0-60</span>
+              <div>
+                <span className="text-3xl font-light text-[#4a90d9]">{specs.acceleration}</span>
+                <p className="text-sm text-[#6b7a94]">0-60 mph</p>
               </div>
-              <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full">
-                <Zap className="w-5 h-5 text-blue-400" />
-                <span className="text-white">580 hp</span>
+              <div>
+                <span className="text-3xl font-light text-[#4a90d9]">{specs.power}</span>
+                <p className="text-sm text-[#6b7a94]">Power</p>
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <button className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-full font-semibold transition-colors">
-                Configure Yours
-              </button>
-              <button className="border border-slate-600 hover:border-blue-400 text-white px-8 py-3 rounded-full font-semibold transition-colors">
-                Schedule Test Drive
-              </button>
-            </div>
-          </motion.div>
+            {/* CTA Button */}
+            <button className="bg-[#003478] hover:bg-[#004494] text-white px-8 py-3 rounded-lg font-medium transition-colors">
+              Request Quote
+            </button>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative h-[400px] lg:h-[500px]"
-          >
+          {/* Right Image */}
+          <div className="relative h-[400px] lg:h-[500px]">
             <Image
               src="/cars/ford/f-150-lightning.png"
               alt="Ford F-150 Lightning"
@@ -103,103 +100,166 @@ export default function F150LightningPage() {
               className="object-contain"
               priority
             />
-          </motion.div>
+          </div>
         </div>
-      </section>
+      </div>
 
-      {/* Specs Section */}
-      <section className="py-20 px-4">
+      {/* Specifications Section */}
+      <div className="px-6 md:px-12 py-12 bg-[#0d1420]">
         <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-white text-center mb-16"
-          >
-            Specifications
-          </motion.h2>
+          <h2 className="text-2xl font-light text-[#e8edf5] mb-8">Specifications</h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {Object.entries(specs).map(([category, items], index) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-800"
-              >
-                <h3 className="text-xl font-bold text-blue-400 mb-6 capitalize">
-                  {category}
-                </h3>
-                <div className="space-y-4">
-                  {items.map((spec) => (
-                    <div key={spec.label} className="flex justify-between">
-                      <span className="text-slate-400">{spec.label}</span>
-                      <span className="text-white font-semibold">{spec.value}</span>
-                    </div>
-                  ))}
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Performance */}
+            <div className="bg-[#111927] rounded-xl p-6 border border-[#1a2235]">
+              <h3 className="text-[#4a90d9] font-medium mb-4">Performance</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">Horsepower</span>
+                  <span className="text-[#e8edf5]">580 hp</span>
                 </div>
-              </motion.div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">Torque</span>
+                  <span className="text-[#e8edf5]">775 lb-ft</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">0-60 mph</span>
+                  <span className="text-[#e8edf5]">4.0 seconds</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">Towing Capacity</span>
+                  <span className="text-[#e8edf5]">10,000 lbs</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Battery & Charging */}
+            <div className="bg-[#111927] rounded-xl p-6 border border-[#1a2235]">
+              <h3 className="text-[#4a90d9] font-medium mb-4">Battery & Charging</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">Battery Capacity</span>
+                  <span className="text-[#e8edf5]">131 kWh</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">Range (EPA)</span>
+                  <span className="text-[#e8edf5]">320 miles</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">DC Fast Charging</span>
+                  <span className="text-[#e8edf5]">150 kW</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">Charge Time (15-80%)</span>
+                  <span className="text-[#e8edf5]">41 min</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Capability */}
+            <div className="bg-[#111927] rounded-xl p-6 border border-[#1a2235]">
+              <h3 className="text-[#4a90d9] font-medium mb-4">Capability</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">Payload Capacity</span>
+                  <span className="text-[#e8edf5]">2,000 lbs</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">Bed Length</span>
+                  <span className="text-[#e8edf5]">5.5 ft</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">Pro Power Onboard</span>
+                  <span className="text-[#e8edf5]">9.6 kW</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b7a94]">Frunk Storage</span>
+                  <span className="text-[#e8edf5]">14.1 cu ft</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Variants Section */}
+      <div className="px-6 md:px-12 py-12">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl font-light text-[#e8edf5] mb-8">Available Variants</h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {variants.map((variant) => (
+              <div key={variant.name} className="bg-[#0d1420] rounded-xl p-6 border border-[#1a2235] hover:border-[#2a3a55] transition-colors">
+                <h3 className="text-lg font-medium text-[#e8edf5] mb-2">{variant.name}</h3>
+                <p className="text-[#4a90d9] text-xl font-light mb-4">{variant.price}</p>
+                <div className="flex justify-between text-sm">
+                  <span className="text-[#6b7a94]">Range: {variant.range}</span>
+                  <span className="text-[#6b7a94]">Power: {variant.power}</span>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Features Section */}
-      <section className="py-20 px-4 bg-slate-900/50">
+      <div className="px-6 md:px-12 py-12 bg-[#0d1420]">
         <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-white text-center mb-16"
-          >
-            Key Features
-          </motion.h2>
+          <h2 className="text-2xl font-light text-[#e8edf5] mb-8">Key Features</h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700 text-center"
-              >
-                <span className="text-slate-200">{feature}</span>
-              </motion.div>
+          <div className="grid md:grid-cols-4 gap-4">
+            {[
+              "Pro Power Onboard (9.6 kW)",
+              "Mega Power Frunk",
+              "Intelligent Backup Power",
+              "Ford Co-Pilot360 2.0",
+              "BlueCruise Hands-Free",
+              "SYNC 4A with 15.5\" Display",
+              "Onboard Scales",
+              "Over-the-Air Updates",
+            ].map((feature) => (
+              <div key={feature} className="bg-[#111927] rounded-lg p-4 border border-[#1a2235]">
+                <span className="text-[#e8edf5] text-sm">{feature}</span>
+              </div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+      {/* Back Link */}
+      <div className="px-6 md:px-12 py-8">
+        <div className="max-w-7xl mx-auto">
+          <Link
+            href="/cars/ford"
+            className="inline-flex items-center gap-2 text-[#4a90d9] hover:text-[#6ba5e7] transition-colors"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready for the Electric F-150?
-            </h2>
-            <p className="text-lg text-slate-300 mb-8">
-              Starting from $49,995. Power your worksite. Power your home.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-full font-semibold transition-colors">
-                <Calendar className="w-5 h-5" />
-                Schedule Test Drive
-              </button>
-              <button className="flex items-center gap-2 border border-slate-600 hover:border-blue-400 text-white px-8 py-3 rounded-full font-semibold transition-colors">
-                <MapPin className="w-5 h-5" />
-                Find a Dealer
-              </button>
-            </div>
-          </motion.div>
+            <span>←</span>
+            <span>Back to Ford Models</span>
+          </Link>
         </div>
-      </section>
-    </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-[11px] text-[#6b7a94]">
+              © 2024 Healvanna Auto. All rights reserved.
+            </div>
+            <div className="flex gap-6">
+              {["Privacy", "Terms", "Cookies"].map((link) => (
+                <Link
+                  key={link}
+                  href={`/${link.toLowerCase()}`}
+                  className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors"
+                >
+                  {link}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }
