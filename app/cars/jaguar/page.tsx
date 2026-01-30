@@ -79,9 +79,13 @@ export default function JaguarPage() {
               <Link key={model.id} href={`/cars/jaguar/${model.id}`}>
                 <div className="group bg-[#0d1420] rounded-2xl overflow-hidden border border-[#1a2235] hover:border-[#2a3a55] transition-all duration-300">
                   <div className="relative h-52 bg-gradient-to-br from-[#111927] to-[#0d1420] overflow-hidden">
-                    <div className="absolute top-4 left-4 z-10"><span className="bg-[#1a1a1a] text-[#2d6b4d] text-[10px] font-bold px-3 py-1 rounded">JAGUAR</span></div>
-                    <div className="absolute bottom-4 right-4 z-10"><span className={`text-[10px] font-bold px-2 py-1 rounded ${model.tag === "CONCEPT" ? "bg-[#6b4d2d] text-white" : "bg-[#1a2235] text-[#4a90d9]"}`}>{model.tag}</span></div>
-                    <Image src={model.image} alt={model.name} fill className="object-contain group-hover:scale-105 transition-transform duration-50 />
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="bg-[#1a1a1a] text-[#2d6b4d] text-[10px] font-bold px-3 py-1 rounded">JAGUAR</span>
+                    </div>
+                    <div className="absolute bottom-4 right-4 z-10">
+                      <span className={`text-[10px] font-bold px-2 py-1 rounded ${model.tag === "CONCEPT" ? "bg-[#6b4d2d] text-white" : "bg-[#1a2235] text-[#4a90d9]"}`}>{model.tag}</span>
+                    </div>
+                    <Image src={model.image} alt={model.name} fill className="object-contain group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0d1420] via-transparent to-transparent" />
                     <p className="absolute bottom-4 left-4 text-[10px] text-[#6b7a94] uppercase tracking-wider">{model.type}</p>
                   </div>
@@ -94,7 +98,9 @@ export default function JaguarPage() {
                       <div className="text-center"><span className="text-[#e8edf5] font-medium">{model.acceleration}</span><p className="text-[10px] text-[#6b7a94]">0-60</p></div>
                       <div className="text-center"><span className="text-[#e8edf5] font-medium">{model.power}</span><p className="text-[10px] text-[#6b7a94]">Power</p></div>
                     </div>
-                    <div className="mt-4 pt-4 border-t border-[#1a2235]"><span className="text-[#4a90d9] text-sm font-medium group-hover:text-[#6ba5e7] transition-colors">VIEW DETAILS</span></div>
+                    <div className="mt-4 pt-4 border-t border-[#1a2235]">
+                      <span className="text-[#4a90d9] text-sm font-medium group-hover:text-[#6ba5e7] transition-colors">VIEW DETAILS</span>
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -107,7 +113,11 @@ export default function JaguarPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-[11px] text-[#6b7a94]">© 2024 Healvanna Auto. All rights reserved.</div>
-            <div className="flex gap-6">{["Privacy", "Terms", "Cookies"].map((link) => (<Link key={link} href={`/${link.toLowerCase()}`} className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors">{link}</Link>))}</div>
+            <div className="flex gap-6">
+              {["Privacy", "Terms", "Cookies"].map((link) => (
+                <Link key={link} href={`/${link.toLowerCase()}`} className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors">{link}</Link>
+              ))}
+            </div>
           </div>
         </div>
       </footer>
