@@ -197,6 +197,28 @@ export default function ChevroletPage() {
         </div>
       </div>
 
+      {/* Protect Your Investment CTA */}
+      <div className="px-6 md:px-12 py-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-gradient-to-br from-[#111927] to-[#0d1420] rounded-2xl p-10 border border-[#1a2235]">
+            <h2 className="text-3xl font-light text-[#e8edf5] mb-4">
+              Own a Chevrolet? Protect Your Investment
+            </h2>
+            <p className="text-[#8a919e] text-lg mb-8 max-w-2xl">
+              Our premium ceramic coating and PPF services keep your Chevrolet looking showroom-new for years.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link 
+                href="/care" 
+                className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold px-8 py-4 rounded-xl transition-colors"
+              >
+                Explore Care Services <span>›</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Footer */}
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]">
         <div className="max-w-7xl mx-auto">
