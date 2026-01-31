@@ -146,6 +146,28 @@ export default function BMWBrand() {
         </div>
       </section>
 
+      {/* Protect Your Investment CTA */}
+      <section className="px-4 pb-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-10 border border-slate-700">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Own a BMW? Protect Your Investment
+            </h2>
+            <p className="text-slate-300 text-lg mb-8 max-w-2xl">
+              Our premium ceramic coating and PPF services keep your BMW looking showroom-new for years.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link 
+                href="/care" 
+                className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold px-8 py-4 rounded-xl transition-colors"
+              >
+                Explore Care Services <span>›</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center text-slate-400">
