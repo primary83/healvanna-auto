@@ -90,19 +90,19 @@ export default function KiaPage() {
       <section className="pt-28 pb-0">
         <div className="grid grid-cols-4 border-b border-[rgba(5,20,31,0.3)]">
           <div className="p-8 border-r border-[rgba(5,20,31,0.3)]">
-            <div className="text-3xl font-light text-[#05141f]">4</div>
+            <div className="text-3xl font-light text-[#4a90d9]">4</div>
             <div className="text-sm text-[#6b7a94]">Models Available</div>
           </div>
           <div className="p-8 border-r border-[rgba(5,20,31,0.3)]">
-            <div className="text-3xl font-light text-[#05141f]">311 mi</div>
+            <div className="text-3xl font-light text-[#4a90d9]">311 mi</div>
             <div className="text-sm text-[#6b7a94]">Max Range</div>
           </div>
           <div className="p-8 border-r border-[rgba(5,20,31,0.3)]">
-            <div className="text-3xl font-light text-[#05141f]">5.1s</div>
+            <div className="text-3xl font-light text-[#4a90d9]">5.1s</div>
             <div className="text-sm text-[#6b7a94]">Fastest 0-60</div>
           </div>
           <div className="p-8">
-            <div className="text-3xl font-light text-[#05141f]">800V</div>
+            <div className="text-3xl font-light text-[#4a90d9]">800V</div>
             <div className="text-sm text-[#6b7a94]">Ultra-Fast Charging</div>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function KiaPage() {
       {/* Brand Header */}
       <section className="py-12 px-12">
         <div className="max-w-[1300px] mx-auto">
-          <Link href="/cars" className="inline-flex items-center gap-2 text-[#6b7a94] text-sm mb-6 hover:text-[#05141f] transition-colors">
+          <Link href="/cars" className="inline-flex items-center gap-2 text-[#6b7a94] text-sm mb-6 hover:text-[#4a90d9] transition-colors">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
