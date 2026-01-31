@@ -207,8 +207,24 @@ export default function AudiPage() {
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="py-20 px-6 md:px-12 bg-[#0d1424]">
+        <div className="max-w-[800px] mx-auto text-center">
+          <h2 className="text-2xl font-light mb-4">Own an Audi? Protect Your Investment</h2>
+          <p className="text-[#6b7a94] mb-8">Our premium ceramic coating and PPF services keep your Audi looking showroom-new for years.</p>
+          <div className="flex justify-center gap-4">
+            <Link href="/care" className="px-8 py-3 text-[13px] font-medium bg-emerald-500 text-white hover:bg-emerald-400 transition-all duration-300 rounded">
+              Explore Care Services
+            </Link>
+            <Link href="/cars" className="px-8 py-3 text-[13px] font-medium bg-transparent border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded">
+              View All Brands
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-[#080c14] py-16 px-6 md:px-12 mt-16">
+      <footer className="bg-[#080c14] py-16 px-6 md:px-12">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)]">
             <div className="text-[11px] text-[#3d4a61] mb-4 md:mb-0">
