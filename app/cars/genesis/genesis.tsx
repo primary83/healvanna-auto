@@ -78,19 +78,19 @@ export default function GenesisPage() {
       <section className="pt-28 pb-0">
         <div className="grid grid-cols-4 border-b border-[rgba(5,20,31,0.3)]">
           <div className="p-8 border-r border-[rgba(5,20,31,0.3)]">
-            <div className="text-3xl font-light text-[#05141f]">3</div>
+            <div className="text-3xl font-light text-[#4a90d9]">3</div>
             <div className="text-sm text-[#6b7a94]">Models Available</div>
           </div>
           <div className="p-8 border-r border-[rgba(5,20,31,0.3)]">
-            <div className="text-3xl font-light text-[#05141f]">294 mi</div>
+            <div className="text-3xl font-light text-[#4a90d9]">294 mi</div>
             <div className="text-sm text-[#6b7a94]">Max Range</div>
           </div>
           <div className="p-8 border-r border-[rgba(5,20,31,0.3)]">
-            <div className="text-3xl font-light text-[#05141f]">4.0s</div>
+            <div className="text-3xl font-light text-[#4a90d9]">4.0s</div>
             <div className="text-sm text-[#6b7a94]">Fastest 0-60</div>
           </div>
           <div className="p-8">
-            <div className="text-3xl font-light text-[#05141f]">800V</div>
+            <div className="text-3xl font-light text-[#4a90d9]">800V</div>
             <div className="text-sm text-[#6b7a94]">Ultra-Fast Charging</div>
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function GenesisPage() {
         <div className="max-w-[1300px] mx-auto">
           <h2 className="text-2xl font-light tracking-tight mb-8">All Genesis Models</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {genesisModels.map((car) => (
               <Link
                 key={car.id}
