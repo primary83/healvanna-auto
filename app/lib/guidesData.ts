@@ -564,6 +564,18 @@ For most car owners who care about their vehicle's appearance, professional cera
     featured: true,
     sections: [],
     faqs: []
+  },
+  {
+    slug: "window-tinting",
+    title: "Window Tinting: The Complete Guide for 2025",
+    shortTitle: "Window Tinting",
+    description: "Everything you need to know about car window tinting - costs, film types, legal limits, and how to choose the right tint for your vehicle.",
+    icon: "🔧",
+    readTime: "10 min read",
+    category: "Car Care",
+    featured: true,
+    sections: [],
+    faqs: []
   }
 ];
 
