@@ -28,6 +28,14 @@ const footerColumns = [
     ],
   },
   {
+    title: "Guides",
+    links: [
+      { name: "EV Charging Guide", href: "/guides/home-ev-charging" },
+      { name: "Ceramic Coating 101", href: "/guides/ceramic-coating-101" },
+      { name: "All Guides", href: "/guides" },
+    ],
+  },
+  {
     title: "Shop",
     links: [
       { name: "Accessories", href: "/shop" },
@@ -36,17 +44,10 @@ const footerColumns = [
     ],
   },
   {
-    title: "Blog",
-    links: [
-      { name: "Comparisons", href: "/blog" },
-      { name: "Buying Guides", href: "/blog" },
-      { name: "Maintenance Tips", href: "/blog" },
-    ],
-  },
-  {
     title: "Company",
     links: [
       { name: "About", href: "/about" },
+      { name: "Blog", href: "/insights" },
       { name: "For Business", href: "/for-business" },
       { name: "Contact", href: "/contact" },
     ],
