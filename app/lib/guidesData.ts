@@ -552,6 +552,18 @@ For most car owners who care about their vehicle's appearance, professional cera
         answer: "Ceramic coating is a liquid that provides chemical/UV protection and gloss but minimal physical protection. PPF (paint protection film) is a thick clear film that absorbs impacts and prevents rock chips. Many owners use both: PPF on high-impact areas and ceramic coating over everything."
       }
     ]
+  },
+  {
+    slug: "ppf-paint-protection-film",
+    title: "PPF Paint Protection Film: The Complete Guide",
+    shortTitle: "Paint Protection Film (PPF)",
+    description: "Everything you need to know about PPF - costs, coverage options, top brands, and how to choose the right installer for your vehicle.",
+    icon: "🛡️",
+    readTime: "12 min read",
+    category: "Car Care",
+    featured: true,
+    sections: [],
+    faqs: []
   }
 ];
 
