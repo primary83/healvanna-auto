@@ -43,7 +43,7 @@ export default function Footer() {
           </Link>
         </div>
 
-        {/* Cars & Insights */}
+        {/* Cars */}
         <div>
           <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">
             Cars
@@ -59,19 +59,16 @@ export default function Footer() {
           </Link>
         </div>
 
-        {/* Insights */}
+        {/* Guides - UPDATED SECTION */}
         <div>
           <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">
-            Insights
+            Guides
           </h4>
-          <Link href="/insights" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
-            Guides & Articles
+          <Link href="/guides" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            All Guides
           </Link>
           <Link href="/insights" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
-            Comparisons
-          </Link>
-          <Link href="/insights" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
-            Maintenance Tips
+            Blog
           </Link>
         </div>
 
