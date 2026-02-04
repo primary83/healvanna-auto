@@ -1,11 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 import { guides, cities } from "../lib/guidesData";
 
 export default function GuidesHub() {
   return (
-    <main className="min-h-screen bg-[#0a0f1a]">
+    <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
+      <Navigation activeItem="BLOG" />
+      
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6">
         {/* Background gradient */}
@@ -167,6 +171,8 @@ export default function GuidesHub() {
           </div>
         </div>
       </section>
-    </main>
+
+      <Footer />
+    </div>
   );
 }

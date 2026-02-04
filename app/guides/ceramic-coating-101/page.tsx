@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { getGuideBySlug, cities } from "../../lib/guidesData";
+import Navigation from "../../components/Navigation";
+import Footer from "../../components/Footer";
+import { getGuideBySlug } from "../../lib/guidesData";
 
-export default function CeramicCoatingGuide() {
+export default function CeramicCoating101Guide() {
   const guide = getGuideBySlug("ceramic-coating-101");
   const [activeSection, setActiveSection] = useState("intro");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -20,7 +22,9 @@ export default function CeramicCoatingGuide() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0a0f1a]">
+    <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
+      <Navigation activeItem="BLOG" />
+      
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 px-6">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0d1424] to-[#0a0f1a]" />
@@ -98,18 +102,15 @@ export default function CeramicCoatingGuide() {
                 
                 <div className="mt-8 pt-8 border-t border-[#4a90d9]/10">
                   <h3 className="text-sm font-medium text-[#e8edf5] mb-4 uppercase tracking-wider">
-                    Find Local Detailers
+                    Related Guides
                   </h3>
                   <div className="space-y-2">
-                    {cities.slice(0, 5).map((city) => (
-                      <Link
-                        key={city.slug}
-                        href="/services"
-                        className="block py-2 px-3 rounded-lg text-sm text-[#6b7a94] hover:text-[#4a90d9] hover:bg-[#0d1424] transition-all"
-                      >
-                        📍 {city.name}, {city.state}
-                      </Link>
-                    ))}
+                    <Link
+                      href="/guides/home-ev-charging"
+                      className="block py-2 px-3 rounded-lg text-sm text-[#6b7a94] hover:text-[#4a90d9] hover:bg-[#0d1424] transition-all"
+                    >
+                      🔌 Home EV Charging
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -172,7 +173,7 @@ export default function CeramicCoatingGuide() {
                   Stay Updated
                 </h3>
                 <p className="text-[#6b7a94] mb-6">
-                  Get notified when we publish new car care guides and tips.
+                  Get notified when we publish new guides and car care tips.
                 </p>
                 
                 {subscribed ? (
@@ -203,16 +204,16 @@ export default function CeramicCoatingGuide() {
               {/* CTA */}
               <section className="p-8 rounded-2xl bg-[#0d1424] border border-[#4a90d9]/10">
                 <h3 className="text-xl font-medium text-[#e8edf5] mb-2">
-                  Ready to Get Your Car Coated?
+                  Ready to Get Ceramic Coating?
                 </h3>
                 <p className="text-[#6b7a94] mb-6">
-                  Find verified ceramic coating specialists in your area.
+                  Find verified ceramic coating specialists and detailers in your area.
                 </p>
                 <Link
-                  href="/services"
+                  href="/car-detailing/ceramic-coating"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#4a90d9] text-white font-medium hover:bg-[#6ba8eb] transition-colors"
                 >
-                  Find Detailers Near You
+                  Find Ceramic Coating Pros
                   <span>→</span>
                 </Link>
               </section>
@@ -220,6 +221,8 @@ export default function CeramicCoatingGuide() {
           </div>
         </div>
       </section>
-    </main>
+
+      <Footer />
+    </div>
   );
 }

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Navigation from "../../../components/Navigation";
+import Footer from "../../../components/Footer";
 import { cities, getCityBySlug } from "../../../lib/guidesData";
 
 export default function OrlandoEvChargingGuide() {
@@ -18,7 +20,9 @@ export default function OrlandoEvChargingGuide() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0a0f1a]">
+    <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
+      <Navigation activeItem="BLOG" />
+      
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 px-6">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0d1424] to-[#0a0f1a]" />
@@ -280,6 +284,8 @@ export default function OrlandoEvChargingGuide() {
           </section>
         </div>
       </section>
-    </main>
+
+      <Footer />
+    </div>
   );
 }
