@@ -6,6 +6,7 @@ export interface Guide {
   description: string;
   metaDescription: string;
   category: string;
+  icon: string;
   readTime: string;
   lastUpdated: string;
   heroImage?: string;
@@ -143,6 +144,7 @@ export const guides: Guide[] = [
     description: "Everything you need to know about installing a home EV charger, from choosing the right equipment to understanding costs and installation requirements.",
     metaDescription: "Learn how to install a home EV charger. Compare Level 1 vs Level 2 charging, understand costs, electrical requirements, and find the best charger for your electric vehicle.",
     category: "EV Ownership",
+    icon: "⚡",
     readTime: "12 min read",
     lastUpdated: "January 2025",
     featured: true,
@@ -176,6 +178,7 @@ export const guides: Guide[] = [
     description: "A complete guide to ceramic coating for vehicles. Learn what ceramic coating does, how much it costs, and whether it's the right choice for protecting your car's paint.",
     metaDescription: "Is ceramic coating worth it? Learn about ceramic coating costs, benefits, how long it lasts, and whether professional application is better than DIY for your vehicle.",
     category: "Paint Protection",
+    icon: "✨",
     readTime: "10 min read",
     lastUpdated: "January 2025",
     featured: true,
@@ -209,6 +212,7 @@ export const guides: Guide[] = [
     description: "Everything you need to know about Paint Protection Film (PPF). Learn about costs, benefits, coverage options, and how to choose the right installer for your vehicle.",
     metaDescription: "Complete guide to Paint Protection Film (PPF). Learn about PPF costs, full front vs full body coverage, self-healing technology, and how to find quality installers near you.",
     category: "Paint Protection",
+    icon: "🛡️",
     readTime: "14 min read",
     lastUpdated: "February 2025",
     featured: true,
