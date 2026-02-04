@@ -107,7 +107,7 @@ export default function GuidesHub() {
           </div>
           
           <p className="text-center text-sm text-[#6b7a94] mt-8">
-            More cities coming soon! <span className="text-[#4a90d9]">Request your city →</span>
+            More cities coming soon! <Link href="/contact" className="text-[#4a90d9] hover:underline">Request your city →</Link>
           </p>
         </div>
       </section>
