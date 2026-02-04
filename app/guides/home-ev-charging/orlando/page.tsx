@@ -25,7 +25,6 @@ export default function OrlandoEvChargingGuide() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(74,144,217,0.1)_0%,_transparent_60%)]" />
         
         <div className="relative max-w-4xl mx-auto">
-          {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-[#6b7a94] mb-8">
             <Link href="/guides" className="hover:text-[#4a90d9] transition-colors">
               Guides
@@ -98,7 +97,7 @@ export default function OrlandoEvChargingGuide() {
           {/* Local Incentives */}
           <div className="mb-12">
             <h2 className="text-2xl font-medium text-[#e8edf5] mb-6">
-              {city.name} EV Incentives & Rebates
+              {city.name} EV Incentives &amp; Rebates
             </h2>
             <div className="space-y-3">
               {city.evIncentives.map((incentive, idx) => (
@@ -113,7 +112,7 @@ export default function OrlandoEvChargingGuide() {
             </div>
           </div>
 
-          {/* Electricity & Charging Costs */}
+          {/* Electricity Costs */}
           <div className="mb-12">
             <h2 className="text-2xl font-medium text-[#e8edf5] mb-6">
               Electricity Costs in {city.name}
@@ -128,8 +127,7 @@ export default function OrlandoEvChargingGuide() {
                 <h4 className="font-medium text-[#e8edf5] mb-2">💡 Pro Tip: OUC EV Rate Plan</h4>
                 <p className="text-sm text-[#b8c4d9]">
                   Orlando Utilities Commission (OUC) offers a dedicated EV rate plan with significantly 
-                  lower overnight rates. If you&apos;re an OUC customer, this can reduce your charging 
-                  costs by 30-40%. Duke Energy customers also have time-of-use options.
+                  lower overnight rates. This can reduce your charging costs by 30-40%.
                 </p>
               </div>
               
@@ -183,15 +181,11 @@ export default function OrlandoEvChargingGuide() {
             </div>
           </div>
 
-          {/* Public Charging Networks */}
+          {/* Charging Networks */}
           <div className="mb-12">
             <h2 className="text-2xl font-medium text-[#e8edf5] mb-6">
               Public Charging Networks in {city.name}
             </h2>
-            <p className="text-[#6b7a94] mb-4">
-              While home charging handles most of your needs, here are the public networks 
-              available in {city.name} for longer trips:
-            </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {city.chargingNetworks.map((network, idx) => (
                 <div 
@@ -210,8 +204,7 @@ export default function OrlandoEvChargingGuide() {
               Want the Full Guide?
             </h3>
             <p className="text-[#6b7a94] mb-4">
-              Read our complete guide covering charger types, installation costs, electrical 
-              requirements, and common mistakes to avoid.
+              Read our complete guide covering charger types, installation costs, and more.
             </p>
             <Link
               href="/guides/home-ev-charging"
@@ -241,12 +234,8 @@ export default function OrlandoEvChargingGuide() {
 
           {/* Email Signup */}
           <section className="mb-12 p-8 rounded-2xl bg-gradient-to-br from-[#4a90d9]/10 to-transparent border border-[#4a90d9]/20">
-            <h3 className="text-xl font-medium text-[#e8edf5] mb-2">
-              Stay Updated
-            </h3>
-            <p className="text-[#6b7a94] mb-6">
-              Get notified about {city.name} EV news, incentives, and new guides.
-            </p>
+            <h3 className="text-xl font-medium text-[#e8edf5] mb-2">Stay Updated</h3>
+            <p className="text-[#6b7a94] mb-6">Get notified about {city.name} EV news and guides.</p>
             
             {subscribed ? (
               <div className="flex items-center gap-3 text-[#4a90d9]">
@@ -273,7 +262,7 @@ export default function OrlandoEvChargingGuide() {
             )}
           </section>
 
-          {/* CTA - Find Service Providers */}
+          {/* CTA */}
           <section className="p-8 rounded-2xl bg-[#0d1424] border border-[#4a90d9]/10">
             <h3 className="text-xl font-medium text-[#e8edf5] mb-2">
               Find EV Charger Installers in {city.name}

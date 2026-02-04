@@ -27,7 +27,6 @@ export default function CeramicCoatingGuide() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(74,144,217,0.1)_0%,_transparent_60%)]" />
         
         <div className="relative max-w-4xl mx-auto">
-          {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-[#6b7a94] mb-8">
             <Link href="/guides" className="hover:text-[#4a90d9] transition-colors">
               Guides
@@ -38,11 +37,9 @@ export default function CeramicCoatingGuide() {
           
           <div className="flex items-center gap-4 mb-6">
             <span className="text-5xl">{guide.icon}</span>
-            <div>
-              <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#4a90d9]/10 text-[#4a90d9]">
-                {guide.category}
-              </span>
-            </div>
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#4a90d9]/10 text-[#4a90d9]">
+              {guide.category}
+            </span>
           </div>
           
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-[#e8edf5] mb-6">
@@ -65,7 +62,7 @@ export default function CeramicCoatingGuide() {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-[280px_1fr] gap-12">
             
-            {/* Sidebar - Table of Contents */}
+            {/* Sidebar */}
             <aside className="hidden lg:block">
               <div className="sticky top-24">
                 <h3 className="text-sm font-medium text-[#e8edf5] mb-4 uppercase tracking-wider">
@@ -99,7 +96,6 @@ export default function CeramicCoatingGuide() {
                   </a>
                 </nav>
                 
-                {/* Local Guides Quick Links */}
                 <div className="mt-8 pt-8 border-t border-[#4a90d9]/10">
                   <h3 className="text-sm font-medium text-[#e8edf5] mb-4 uppercase tracking-wider">
                     Find Local Detailers
@@ -108,7 +104,7 @@ export default function CeramicCoatingGuide() {
                     {cities.slice(0, 5).map((city) => (
                       <Link
                         key={city.slug}
-                        href={`/guides/ceramic-coating-101/${city.slug}`}
+                        href="/services"
                         className="block py-2 px-3 rounded-lg text-sm text-[#6b7a94] hover:text-[#4a90d9] hover:bg-[#0d1424] transition-all"
                       >
                         📍 {city.name}, {city.state}
@@ -121,7 +117,6 @@ export default function CeramicCoatingGuide() {
 
             {/* Main Content */}
             <div className="max-w-3xl">
-              {/* Content Sections */}
               {guide.sections.map((section) => (
                 <section
                   key={section.id}
@@ -132,95 +127,11 @@ export default function CeramicCoatingGuide() {
                     {section.title}
                   </h2>
                   <div className="prose prose-invert prose-lg max-w-none">
-                    {section.content.split('\n\n').map((paragraph, idx) => {
-                      // Handle headers
-                      if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
-                        return (
-                          <h3 key={idx} className="text-xl font-medium text-[#e8edf5] mt-8 mb-4">
-                            {paragraph.replace(/\*\*/g, '')}
-                          </h3>
-                        );
-                      }
-                      
-                      // Handle bold headers with content
-                      if (paragraph.startsWith('**')) {
-                        const parts = paragraph.split('**');
-                        return (
-                          <div key={idx} className="mb-4">
-                            <h4 className="text-lg font-medium text-[#4a90d9] mb-2">
-                              {parts[1]}
-                            </h4>
-                            <p className="text-[#b8c4d9] leading-relaxed">
-                              {parts.slice(2).join('').trim()}
-                            </p>
-                          </div>
-                        );
-                      }
-                      
-                      // Handle bullet points
-                      if (paragraph.includes('\n- ')) {
-                        const lines = paragraph.split('\n');
-                        const title = lines[0];
-                        const bullets = lines.slice(1).filter(l => l.startsWith('- '));
-                        return (
-                          <div key={idx} className="mb-4">
-                            {title && <p className="text-[#b8c4d9] mb-2">{title}</p>}
-                            <ul className="space-y-2">
-                              {bullets.map((bullet, bIdx) => (
-                                <li key={bIdx} className="flex items-start gap-3 text-[#b8c4d9]">
-                                  <span className="text-[#4a90d9] mt-1">•</span>
-                                  <span>{bullet.replace('- ', '')}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        );
-                      }
-                      
-                      // Handle tables
-                      if (paragraph.includes('|')) {
-                        const rows = paragraph.split('\n').filter(r => r.trim());
-                        const headers = rows[0]?.split('|').filter(c => c.trim());
-                        const dataRows = rows.slice(2);
-                        
-                        return (
-                          <div key={idx} className="overflow-x-auto my-6">
-                            <table className="w-full border-collapse">
-                              <thead>
-                                <tr>
-                                  {headers?.map((header, hIdx) => (
-                                    <th 
-                                      key={hIdx} 
-                                      className="text-left py-3 px-4 bg-[#0d1424] text-[#e8edf5] font-medium border-b border-[#4a90d9]/20"
-                                    >
-                                      {header.trim()}
-                                    </th>
-                                  ))}
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {dataRows.map((row, rIdx) => (
-                                  <tr key={rIdx} className="border-b border-[#4a90d9]/10">
-                                    {row.split('|').filter(c => c.trim()).map((cell, cIdx) => (
-                                      <td key={cIdx} className="py-3 px-4 text-[#b8c4d9]">
-                                        {cell.trim()}
-                                      </td>
-                                    ))}
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </div>
-                        );
-                      }
-                      
-                      // Regular paragraph
-                      return (
-                        <p key={idx} className="text-[#b8c4d9] leading-relaxed mb-4">
-                          {paragraph}
-                        </p>
-                      );
-                    })}
+                    {section.content.split('\n\n').map((paragraph, idx) => (
+                      <p key={idx} className="text-[#b8c4d9] leading-relaxed mb-4">
+                        {paragraph}
+                      </p>
+                    ))}
                   </div>
                 </section>
               ))}
@@ -289,7 +200,7 @@ export default function CeramicCoatingGuide() {
                 )}
               </section>
 
-              {/* CTA - Find Service Providers */}
+              {/* CTA */}
               <section className="p-8 rounded-2xl bg-[#0d1424] border border-[#4a90d9]/10">
                 <h3 className="text-xl font-medium text-[#e8edf5] mb-2">
                   Ready to Get Your Car Coated?

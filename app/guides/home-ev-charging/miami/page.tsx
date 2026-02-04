@@ -2,297 +2,284 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { guides, cities, getGuideBySlug, getCityBySlug } from "../../../lib/guidesData";
+import { cities, getCityBySlug } from "../../../lib/guidesData";
 
 export default function MiamiEvChargingGuide() {
-  const guide = getGuideBySlug("home-ev-charging");
   const city = getCityBySlug("miami");
-  const [openFaq, setOpenFaq] = useState&lt;number | null&gt;(null);
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  if (!guide || !city) return null;
+  if (!city) return null;
 
-  const handleSubscribe = (e: React.FormEvent) =&gt; {
+  const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     setSubscribed(true);
     setEmail("");
   };
 
   return (
-    &lt;main className="min-h-screen bg-[#0a0f1a]"&gt;
+    <main className="min-h-screen bg-[#0a0f1a]">
       {/* Hero Section */}
-      &lt;section className="relative pt-32 pb-16 px-6"&gt;
-        &lt;div className="absolute inset-0 bg-gradient-to-b from-[#0d1424] to-[#0a0f1a]" /&gt;
-        &lt;div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(74,144,217,0.1)_0%,_transparent_60%)]" /&gt;
+      <section className="relative pt-32 pb-16 px-6">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0d1424] to-[#0a0f1a]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(74,144,217,0.1)_0%,_transparent_60%)]" />
         
-        &lt;div className="relative max-w-4xl mx-auto"&gt;
-          {/* Breadcrumb */}
-          &lt;nav className="flex items-center gap-2 text-sm text-[#6b7a94] mb-8"&gt;
-            &lt;Link href="/guides" className="hover:text-[#4a90d9] transition-colors"&gt;
+        <div className="relative max-w-4xl mx-auto">
+          <nav className="flex items-center gap-2 text-sm text-[#6b7a94] mb-8">
+            <Link href="/guides" className="hover:text-[#4a90d9] transition-colors">
               Guides
-            &lt;/Link&gt;
-            &lt;span&gt;/&lt;/span&gt;
-            &lt;Link href="/guides/home-ev-charging" className="hover:text-[#4a90d9] transition-colors"&gt;
+            </Link>
+            <span>/</span>
+            <Link href="/guides/home-ev-charging" className="hover:text-[#4a90d9] transition-colors">
               Home EV Charging
-            &lt;/Link&gt;
-            &lt;span&gt;/&lt;/span&gt;
-            &lt;span className="text-[#e8edf5]"&gt;{city.name}&lt;/span&gt;
-          &lt;/nav&gt;
+            </Link>
+            <span>/</span>
+            <span className="text-[#e8edf5]">{city.name}</span>
+          </nav>
           
-          &lt;div className="flex items-center gap-4 mb-6"&gt;
-            &lt;span className="text-5xl"&gt;📍&lt;/span&gt;
-            &lt;div className="flex items-center gap-3"&gt;
-              &lt;span className="px-3 py-1 rounded-full text-xs font-medium bg-[#4a90d9]/10 text-[#4a90d9]"&gt;
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-5xl">📍</span>
+            <div className="flex items-center gap-3">
+              <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#4a90d9]/10 text-[#4a90d9]">
                 Local Guide
-              &lt;/span&gt;
-              &lt;span className="px-3 py-1 rounded-full text-xs font-medium bg-[#10b981]/10 text-[#10b981]"&gt;
+              </span>
+              <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#10b981]/10 text-[#10b981]">
                 Florida
-              &lt;/span&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
+              </span>
+            </div>
+          </div>
           
-          &lt;h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-[#e8edf5] mb-6"&gt;
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-[#e8edf5] mb-6">
             Home EV Charging in{" "}
-            &lt;span className="text-[#4a90d9]"&gt;{city.name}&lt;/span&gt;
-          &lt;/h1&gt;
+            <span className="text-[#4a90d9]">{city.name}</span>
+          </h1>
           
-          &lt;p className="text-lg text-[#6b7a94] mb-6 max-w-2xl"&gt;
-            {city.description} Here's everything you need to know about setting up 
+          <p className="text-lg text-[#6b7a94] mb-6 max-w-2xl">
+            {city.description} Here&apos;s everything you need to know about setting up 
             home EV charging in {city.name}.
-          &lt;/p&gt;
+          </p>
           
-          &lt;div className="flex items-center gap-6 text-sm text-[#6b7a94]"&gt;
-            &lt;span&gt;📖 8 min read&lt;/span&gt;
-            &lt;span&gt;📅 Updated January 2026&lt;/span&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/section&gt;
+          <div className="flex items-center gap-6 text-sm text-[#6b7a94]">
+            <span>📖 8 min read</span>
+            <span>📅 Updated January 2026</span>
+          </div>
+        </div>
+      </section>
 
       {/* Quick Stats */}
-      &lt;section className="py-8 px-6 bg-[#0d1424]/50"&gt;
-        &lt;div className="max-w-4xl mx-auto"&gt;
-          &lt;div className="grid grid-cols-2 md:grid-cols-4 gap-4"&gt;
-            &lt;div className="p-4 rounded-xl bg-[#0a0f1a] border border-[#4a90d9]/10"&gt;
-              &lt;div className="text-2xl font-medium text-[#4a90d9]"&gt;{city.electricityRate}&lt;/div&gt;
-              &lt;div className="text-sm text-[#6b7a94]"&gt;Avg. Electricity Rate&lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div className="p-4 rounded-xl bg-[#0a0f1a] border border-[#4a90d9]/10"&gt;
-              &lt;div className="text-2xl font-medium text-[#4a90d9]"&gt;{city.chargingNetworks.length}+&lt;/div&gt;
-              &lt;div className="text-sm text-[#6b7a94]"&gt;Charging Networks&lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div className="p-4 rounded-xl bg-[#0a0f1a] border border-[#4a90d9]/10"&gt;
-              &lt;div className="text-2xl font-medium text-[#4a90d9]"&gt;FPL&lt;/div&gt;
-              &lt;div className="text-sm text-[#6b7a94]"&gt;Main Utility&lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div className="p-4 rounded-xl bg-[#0a0f1a] border border-[#4a90d9]/10"&gt;
-              &lt;div className="text-2xl font-medium text-[#4a90d9]"&gt;$500-$2K&lt;/div&gt;
-              &lt;div className="text-sm text-[#6b7a94]"&gt;Typical Install Cost&lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/section&gt;
+      <section className="py-8 px-6 bg-[#0d1424]/50">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="p-4 rounded-xl bg-[#0a0f1a] border border-[#4a90d9]/10">
+              <div className="text-2xl font-medium text-[#4a90d9]">{city.electricityRate}</div>
+              <div className="text-sm text-[#6b7a94]">Avg. Electricity Rate</div>
+            </div>
+            <div className="p-4 rounded-xl bg-[#0a0f1a] border border-[#4a90d9]/10">
+              <div className="text-2xl font-medium text-[#4a90d9]">{city.chargingNetworks.length}+</div>
+              <div className="text-sm text-[#6b7a94]">Charging Networks</div>
+            </div>
+            <div className="p-4 rounded-xl bg-[#0a0f1a] border border-[#4a90d9]/10">
+              <div className="text-2xl font-medium text-[#4a90d9]">FPL</div>
+              <div className="text-sm text-[#6b7a94]">Main Utility</div>
+            </div>
+            <div className="p-4 rounded-xl bg-[#0a0f1a] border border-[#4a90d9]/10">
+              <div className="text-2xl font-medium text-[#4a90d9]">$500-$2K</div>
+              <div className="text-sm text-[#6b7a94]">Typical Install Cost</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Main Content */}
-      &lt;section className="py-12 px-6"&gt;
-        &lt;div className="max-w-4xl mx-auto"&gt;
+      <section className="py-12 px-6">
+        <div className="max-w-4xl mx-auto">
           
           {/* Local Incentives */}
-          &lt;div className="mb-12"&gt;
-            &lt;h2 className="text-2xl font-medium text-[#e8edf5] mb-6"&gt;
+          <div className="mb-12">
+            <h2 className="text-2xl font-medium text-[#e8edf5] mb-6">
               {city.name} EV Incentives &amp; Rebates
-            &lt;/h2&gt;
-            &lt;div className="space-y-3"&gt;
-              {city.evIncentives.map((incentive, idx) =&gt; (
-                &lt;div 
+            </h2>
+            <div className="space-y-3">
+              {city.evIncentives.map((incentive, idx) => (
+                <div 
                   key={idx}
                   className="flex items-start gap-4 p-4 rounded-xl bg-[#0d1424]/50 border border-[#4a90d9]/10"
-                &gt;
-                  &lt;span className="text-[#4a90d9] mt-1"&gt;✓&lt;/span&gt;
-                  &lt;span className="text-[#b8c4d9]"&gt;{incentive}&lt;/span&gt;
-                &lt;/div&gt;
+                >
+                  <span className="text-[#4a90d9] mt-1">✓</span>
+                  <span className="text-[#b8c4d9]">{incentive}</span>
+                </div>
               ))}
-            &lt;/div&gt;
-          &lt;/div&gt;
+            </div>
+          </div>
 
-          {/* Electricity & Charging Costs */}
-          &lt;div className="mb-12"&gt;
-            &lt;h2 className="text-2xl font-medium text-[#e8edf5] mb-6"&gt;
+          {/* Electricity Costs */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-medium text-[#e8edf5] mb-6">
               Electricity Costs in {city.name}
-            &lt;/h2&gt;
-            &lt;div className="p-6 rounded-xl bg-[#0d1424]/50 border border-[#4a90d9]/10"&gt;
-              &lt;p className="text-[#b8c4d9] mb-4"&gt;
-                The average residential electricity rate in {city.name} is &lt;strong className="text-[#e8edf5]"&gt;{city.electricityRate}&lt;/strong&gt; per kWh. 
-                This means charging a typical EV (with a 60 kWh battery) from 20% to 80% costs approximately &lt;strong className="text-[#e8edf5]"&gt;$4.30 - $5.40&lt;/strong&gt;.
-              &lt;/p&gt;
+            </h2>
+            <div className="p-6 rounded-xl bg-[#0d1424]/50 border border-[#4a90d9]/10">
+              <p className="text-[#b8c4d9] mb-4">
+                The average residential electricity rate in {city.name} is <strong className="text-[#e8edf5]">{city.electricityRate}</strong> per kWh. 
+                This means charging a typical EV (with a 60 kWh battery) from 20% to 80% costs approximately <strong className="text-[#e8edf5]">$4.30 - $5.40</strong>.
+              </p>
               
-              &lt;div className="mt-6 p-4 rounded-lg bg-[#4a90d9]/10 border border-[#4a90d9]/20"&gt;
-                &lt;h4 className="font-medium text-[#e8edf5] mb-2"&gt;💡 Pro Tip: FPL Off-Peak Rates&lt;/h4&gt;
-                &lt;p className="text-sm text-[#b8c4d9]"&gt;
+              <div className="mt-6 p-4 rounded-lg bg-[#4a90d9]/10 border border-[#4a90d9]/20">
+                <h4 className="font-medium text-[#e8edf5] mb-2">💡 Pro Tip: FPL Off-Peak Rates</h4>
+                <p className="text-sm text-[#b8c4d9]">
                   Florida Power &amp; Light (FPL) offers time-of-use rates. Charging between 11 PM - 6 AM 
-                  can save you 20-30% on electricity costs. Most smart chargers let you schedule 
-                  charging automatically during these hours.
-                &lt;/p&gt;
-              &lt;/div&gt;
+                  can save you 20-30% on electricity costs.
+                </p>
+              </div>
               
-              &lt;div className="mt-4"&gt;
-                &lt;h4 className="font-medium text-[#e8edf5] mb-3"&gt;Monthly Cost Comparison&lt;/h4&gt;
-                &lt;div className="grid md:grid-cols-2 gap-4"&gt;
-                  &lt;div className="p-4 rounded-lg bg-[#0a0f1a]"&gt;
-                    &lt;div className="text-sm text-[#6b7a94] mb-1"&gt;EV (1,000 miles/month)&lt;/div&gt;
-                    &lt;div className="text-2xl font-medium text-[#10b981]"&gt;~$36-45&lt;/div&gt;
-                  &lt;/div&gt;
-                  &lt;div className="p-4 rounded-lg bg-[#0a0f1a]"&gt;
-                    &lt;div className="text-sm text-[#6b7a94] mb-1"&gt;Gas Car (1,000 miles @ $3.50/gal)&lt;/div&gt;
-                    &lt;div className="text-2xl font-medium text-[#ef4444]"&gt;~$117&lt;/div&gt;
-                  &lt;/div&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
+              <div className="mt-4">
+                <h4 className="font-medium text-[#e8edf5] mb-3">Monthly Cost Comparison</h4>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="p-4 rounded-lg bg-[#0a0f1a]">
+                    <div className="text-sm text-[#6b7a94] mb-1">EV (1,000 miles/month)</div>
+                    <div className="text-2xl font-medium text-[#10b981]">~$36-45</div>
+                  </div>
+                  <div className="p-4 rounded-lg bg-[#0a0f1a]">
+                    <div className="text-sm text-[#6b7a94] mb-1">Gas Car (1,000 miles @ $3.50/gal)</div>
+                    <div className="text-2xl font-medium text-[#ef4444]">~$117</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Local Tips */}
-          &lt;div className="mb-12"&gt;
-            &lt;h2 className="text-2xl font-medium text-[#e8edf5] mb-6"&gt;
+          <div className="mb-12">
+            <h2 className="text-2xl font-medium text-[#e8edf5] mb-6">
               {city.name}-Specific Tips
-            &lt;/h2&gt;
-            &lt;div className="grid md:grid-cols-2 gap-4"&gt;
-              {city.localTips.map((tip, idx) =&gt; (
-                &lt;div 
+            </h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              {city.localTips.map((tip, idx) => (
+                <div 
                   key={idx}
                   className="p-5 rounded-xl bg-[#0d1424]/50 border border-[#4a90d9]/10"
-                &gt;
-                  &lt;span className="text-[#b8c4d9]"&gt;{tip}&lt;/span&gt;
-                &lt;/div&gt;
+                >
+                  <span className="text-[#b8c4d9]">{tip}</span>
+                </div>
               ))}
-            &lt;/div&gt;
-          &lt;/div&gt;
+            </div>
+          </div>
 
-          {/* Popular EVs in Miami */}
-          &lt;div className="mb-12"&gt;
-            &lt;h2 className="text-2xl font-medium text-[#e8edf5] mb-6"&gt;
+          {/* Popular EVs */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-medium text-[#e8edf5] mb-6">
               Popular EVs in {city.name}
-            &lt;/h2&gt;
-            &lt;div className="flex flex-wrap gap-3"&gt;
-              {city.popularEvs.map((ev, idx) =&gt; (
-                &lt;span 
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              {city.popularEvs.map((ev, idx) => (
+                <span 
                   key={idx}
                   className="px-4 py-2 rounded-full bg-[#0d1424] border border-[#4a90d9]/20 text-[#e8edf5]"
-                &gt;
+                >
                   {ev}
-                &lt;/span&gt;
+                </span>
               ))}
-            &lt;/div&gt;
-          &lt;/div&gt;
+            </div>
+          </div>
 
-          {/* Public Charging Networks */}
-          &lt;div className="mb-12"&gt;
-            &lt;h2 className="text-2xl font-medium text-[#e8edf5] mb-6"&gt;
+          {/* Charging Networks */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-medium text-[#e8edf5] mb-6">
               Public Charging Networks in {city.name}
-            &lt;/h2&gt;
-            &lt;p className="text-[#6b7a94] mb-4"&gt;
-              While home charging handles most of your needs, here are the public networks 
-              available in {city.name} for longer trips:
-            &lt;/p&gt;
-            &lt;div className="grid grid-cols-2 md:grid-cols-4 gap-4"&gt;
-              {city.chargingNetworks.map((network, idx) =&gt; (
-                &lt;div 
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {city.chargingNetworks.map((network, idx) => (
+                <div 
                   key={idx}
                   className="p-4 rounded-xl bg-[#0d1424]/50 border border-[#4a90d9]/10 text-center"
-                &gt;
-                  &lt;span className="text-[#e8edf5] font-medium"&gt;{network}&lt;/span&gt;
-                &lt;/div&gt;
+                >
+                  <span className="text-[#e8edf5] font-medium">{network}</span>
+                </div>
               ))}
-            &lt;/div&gt;
-          &lt;/div&gt;
+            </div>
+          </div>
 
           {/* Link to Main Guide */}
-          &lt;div className="mb-12 p-6 rounded-xl bg-[#0d1424]/50 border border-[#4a90d9]/10"&gt;
-            &lt;h3 className="text-xl font-medium text-[#e8edf5] mb-2"&gt;
+          <div className="mb-12 p-6 rounded-xl bg-[#0d1424]/50 border border-[#4a90d9]/10">
+            <h3 className="text-xl font-medium text-[#e8edf5] mb-2">
               Want the Full Guide?
-            &lt;/h3&gt;
-            &lt;p className="text-[#6b7a94] mb-4"&gt;
-              Read our complete guide covering charger types, installation costs, electrical 
-              requirements, and common mistakes to avoid.
-            &lt;/p&gt;
-            &lt;Link
+            </h3>
+            <p className="text-[#6b7a94] mb-4">
+              Read our complete guide covering charger types, installation costs, and more.
+            </p>
+            <Link
               href="/guides/home-ev-charging"
               className="inline-flex items-center gap-2 text-[#4a90d9] hover:text-[#6ba8eb] transition-colors"
-            &gt;
+            >
               Read the Full Home EV Charging Guide →
-            &lt;/Link&gt;
-          &lt;/div&gt;
+            </Link>
+          </div>
 
           {/* Other Cities */}
-          &lt;div className="mb-12"&gt;
-            &lt;h2 className="text-2xl font-medium text-[#e8edf5] mb-6"&gt;
+          <div className="mb-12">
+            <h2 className="text-2xl font-medium text-[#e8edf5] mb-6">
               Guides for Other Florida Cities
-            &lt;/h2&gt;
-            &lt;div className="grid grid-cols-2 md:grid-cols-4 gap-4"&gt;
-              {cities.filter(c =&gt; c.slug !== city.slug).map((otherCity) =&gt; (
-                &lt;Link
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {cities.filter(c => c.slug !== city.slug).map((otherCity) => (
+                <Link
                   key={otherCity.slug}
                   href={`/guides/home-ev-charging/${otherCity.slug}`}
                   className="p-4 rounded-xl bg-[#0d1424]/50 border border-[#4a90d9]/10 hover:border-[#4a90d9]/30 transition-colors text-center"
-                &gt;
-                  &lt;span className="text-[#e8edf5] font-medium"&gt;{otherCity.name}&lt;/span&gt;
-                &lt;/Link&gt;
+                >
+                  <span className="text-[#e8edf5] font-medium">{otherCity.name}</span>
+                </Link>
               ))}
-            &lt;/div&gt;
-          &lt;/div&gt;
+            </div>
+          </div>
 
           {/* Email Signup */}
-          &lt;section className="mb-12 p-8 rounded-2xl bg-gradient-to-br from-[#4a90d9]/10 to-transparent border border-[#4a90d9]/20"&gt;
-            &lt;h3 className="text-xl font-medium text-[#e8edf5] mb-2"&gt;
-              Stay Updated
-            &lt;/h3&gt;
-            &lt;p className="text-[#6b7a94] mb-6"&gt;
-              Get notified about {city.name} EV news, incentives, and new guides.
-            &lt;/p&gt;
+          <section className="mb-12 p-8 rounded-2xl bg-gradient-to-br from-[#4a90d9]/10 to-transparent border border-[#4a90d9]/20">
+            <h3 className="text-xl font-medium text-[#e8edf5] mb-2">Stay Updated</h3>
+            <p className="text-[#6b7a94] mb-6">Get notified about {city.name} EV news and guides.</p>
             
             {subscribed ? (
-              &lt;div className="flex items-center gap-3 text-[#4a90d9]"&gt;
-                &lt;span&gt;✓&lt;/span&gt;
-                &lt;span&gt;Thanks! You're subscribed.&lt;/span&gt;
-              &lt;/div&gt;
+              <div className="flex items-center gap-3 text-[#4a90d9]">
+                <span>✓</span>
+                <span>Thanks! You&apos;re subscribed.</span>
+              </div>
             ) : (
-              &lt;form onSubmit={handleSubscribe} className="flex gap-3"&gt;
-                &lt;input
+              <form onSubmit={handleSubscribe} className="flex gap-3">
+                <input
                   type="email"
                   value={email}
-                  onChange={(e) =&gt; setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   required
                   className="flex-1 px-4 py-3 rounded-lg bg-[#0a0f1a] border border-[#4a90d9]/20 text-[#e8edf5] placeholder-[#6b7a94] focus:outline-none focus:border-[#4a90d9]/50"
-                /&gt;
-                &lt;button
+                />
+                <button
                   type="submit"
                   className="px-6 py-3 rounded-lg bg-[#4a90d9] text-white font-medium hover:bg-[#6ba8eb] transition-colors"
-                &gt;
+                >
                   Subscribe
-                &lt;/button&gt;
-              &lt;/form&gt;
+                </button>
+              </form>
             )}
-          &lt;/section&gt;
+          </section>
 
-          {/* CTA - Find Service Providers */}
-          &lt;section className="p-8 rounded-2xl bg-[#0d1424] border border-[#4a90d9]/10"&gt;
-            &lt;h3 className="text-xl font-medium text-[#e8edf5] mb-2"&gt;
+          {/* CTA */}
+          <section className="p-8 rounded-2xl bg-[#0d1424] border border-[#4a90d9]/10">
+            <h3 className="text-xl font-medium text-[#e8edf5] mb-2">
               Find EV Charger Installers in {city.name}
-            &lt;/h3&gt;
-            &lt;p className="text-[#6b7a94] mb-6"&gt;
+            </h3>
+            <p className="text-[#6b7a94] mb-6">
               Browse verified electricians and EV specialists in the {city.name} area.
-            &lt;/p&gt;
-            &lt;Link
+            </p>
+            <Link
               href="/services"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#4a90d9] text-white font-medium hover:bg-[#6ba8eb] transition-colors"
-            &gt;
+            >
               Find {city.name} Installers
-              &lt;span&gt;→&lt;/span&gt;
-            &lt;/Link&gt;
-          &lt;/section&gt;
-        &lt;/div&gt;
-      &lt;/section&gt;
-    &lt;/main&gt;
+              <span>→</span>
+            </Link>
+          </section>
+        </div>
+      </section>
+    </main>
   );
 }
