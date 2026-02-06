@@ -588,6 +588,18 @@ For most car owners who care about their vehicle's appearance, professional cera
     featured: true,
     sections: [],
     faqs: []
+  },
+  {
+    slug: "vinyl-wraps",
+    title: "Vinyl Wraps & Color Change: The Complete Guide for 2026",
+    shortTitle: "Vinyl Wraps & Color Change",
+    description: "Everything you need to know about vinyl wrapping your vehicle - costs, wrap types, color options, durability, and how to choose the right installer.",
+    icon: "🎨",
+    readTime: "12 min read",
+    category: "Car Care",
+    featured: true,
+    sections: [],
+    faqs: []
   }
 ];
 
