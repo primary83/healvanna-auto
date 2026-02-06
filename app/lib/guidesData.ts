@@ -660,6 +660,18 @@ For most car owners who care about their vehicle's appearance, professional cera
     featured: true,
     sections: [],
     faqs: []
+  },
+  {
+    slug: "new-car-protection-packages",
+    title: "New Car Protection Packages: The Complete Guide for 2026",
+    shortTitle: "New Car Protection Packages",
+    description: "Just bought a new car? Here's exactly what protection to get, in what order, and how much to budget - from PPF and ceramic coating to window tint and interior protection.",
+    icon: "🚗",
+    readTime: "11 min read",
+    category: "Car Care",
+    featured: true,
+    sections: [],
+    faqs: []
   }
 ];
 
