@@ -648,6 +648,18 @@ For most car owners who care about their vehicle's appearance, professional cera
     featured: true,
     sections: [],
     faqs: []
+  },
+  {
+    slug: "paint-correction-scratch-removal",
+    title: "Paint Correction & Scratch Removal: The Complete Guide for 2026",
+    shortTitle: "Paint Correction & Scratch Removal",
+    description: "Everything you need to know about restoring your vehicle's paint - swirl marks, scratches, oxidation, water spots, and how professional paint correction brings back that showroom shine.",
+    icon: "✨",
+    readTime: "12 min read",
+    category: "Car Care",
+    featured: true,
+    sections: [],
+    faqs: []
   }
 ];
 
