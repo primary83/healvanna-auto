@@ -53,7 +53,15 @@ export default function ProviderDetailPage() {
       setError(null);
       try {
         const res = await fetch(`/api/yelp/${id}`);
-        if (!res.ok) throw new Error("Failed to fetch");
+        if (!res.ok) {
+          const errorData = await res.json().catch(() => null);
+          if (errorData?.details?.error?.code === "BUSINESS_UNAVAILABLE") {
+            setError("This business is not currently available for detailed viewing. It may be new or not yet fully listed.");
+          } else {
+            setError("Unable to load provider details.");
+          }
+          return;
+        }
         const data = await res.json();
         setProvider(data.provider);
         setReviews(data.reviews || []);
@@ -104,12 +112,20 @@ export default function ProviderDetailPage() {
               </svg>
             </div>
             <p className="text-[#6b7a94] mb-6">{error}</p>
-            <Link
-              href="/directory"
-              className="inline-block px-6 py-2.5 bg-[#4a90d9] hover:bg-[#5a9ee5] text-[#0a0f1a] text-sm font-medium rounded-lg transition-colors"
-            >
-              Back to Directory
-            </Link>
+            <div className="flex items-center justify-center gap-3">
+              <button
+                onClick={() => window.history.back()}
+                className="px-6 py-2.5 bg-[rgba(232,237,245,0.06)] hover:bg-[rgba(232,237,245,0.12)] text-[#e8edf5] text-sm font-medium rounded-lg transition-colors border border-[rgba(232,237,245,0.1)]"
+              >
+                Go Back
+              </button>
+              <Link
+                href="/directory"
+                className="px-6 py-2.5 bg-[#4a90d9] hover:bg-[#5a9ee5] text-[#0a0f1a] text-sm font-medium rounded-lg transition-colors"
+              >
+                Back to Directory
+              </Link>
+            </div>
           </div>
         </div>
       ) : provider ? (
