@@ -624,6 +624,18 @@ For most car owners who care about their vehicle's appearance, professional cera
     featured: true,
     sections: [],
     faqs: []
+  },
+  {
+    slug: "leather-upholstery-care",
+    title: "Leather & Upholstery Care: The Complete Guide for 2026",
+    shortTitle: "Leather & Upholstery Care",
+    description: "Everything you need to know about caring for your vehicle's interior - leather conditioning, fabric cleaning, stain removal, and protecting your seats from Florida's heat and humidity.",
+    icon: "🛋️",
+    readTime: "11 min read",
+    category: "Car Care",
+    featured: true,
+    sections: [],
+    faqs: []
   }
 ];
 
