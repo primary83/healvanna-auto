@@ -188,6 +188,7 @@ export default function ChooseBodyShopAfterAccident() {
               Browse Body Shops
               <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </Link>
+            <p className="mt-4 text-sm text-slate-400">Or browse providers by location in our <Link href="/directory" className="text-[#4a90d9] hover:underline">national directory</Link>.</p>
           </div>
 
           <div className="border-t border-slate-700/50 pt-8 mt-12">

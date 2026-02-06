@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { SERVICE_CATEGORIES, MAJOR_CITIES } from "../lib/services";
 import { useGeoLocation, calculateDistance } from "../hooks/useGeoLocation";
+import { DIRECTORY_CITIES } from "../lib/directoryData";
 
 const SERVICE_SUGGESTIONS = SERVICE_CATEGORIES.flatMap((cat) => [
   { label: cat.name, slug: cat.slug, type: "category" as const },
@@ -39,6 +41,23 @@ export default function ServiceSearchBar() {
         s.label.toLowerCase().includes(query.toLowerCase())
       )
     : SERVICE_SUGGESTIONS.filter((s) => s.type === "category");
+
+  function getNearestDirectoryCity() {
+    if (!geo.latitude || !geo.longitude) return null;
+    let nearest = DIRECTORY_CITIES[0];
+    let nearestDist = Infinity;
+    for (const city of DIRECTORY_CITIES) {
+      const dist = calculateDistance(
+        geo.latitude, geo.longitude,
+        city.latitude, city.longitude
+      );
+      if (dist < nearestDist) {
+        nearestDist = dist;
+        nearest = city;
+      }
+    }
+    return nearest;
+  }
 
   function buildUrl(slug: string) {
     if (!geo.latitude || !geo.longitude) return `/${slug}`;
@@ -192,6 +211,17 @@ export default function ServiceSearchBar() {
             {cat.shortName}
           </button>
         ))}
+        <Link
+          href={(() => {
+            const nearestCity = getNearestDirectoryCity();
+            return nearestCity
+              ? `/directory/${nearestCity.stateSlug}/${nearestCity.slug}`
+              : "/directory";
+          })()}
+          className="px-4 py-2 text-[12px] font-medium text-[#4a90d9] bg-[#4a90d9]/10 hover:bg-[#4a90d9]/20 border border-[#4a90d9]/25 hover:border-[#4a90d9]/40 rounded-full transition-all duration-200"
+        >
+          Browse Directory
+        </Link>
       </div>
 
       {/* Location indicator */}
@@ -201,7 +231,19 @@ export default function ServiceSearchBar() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
           </svg>
-          <span>Showing services near <span className="text-[#4a90d9]">{geo.city}, {geo.state}</span></span>
+          <span>Showing services near{" "}
+            {(() => {
+              const nearestCity = getNearestDirectoryCity();
+              if (nearestCity) {
+                return (
+                  <Link href={`/directory/${nearestCity.stateSlug}/${nearestCity.slug}`} className="text-[#4a90d9] hover:underline">
+                    {geo.city}, {geo.state}
+                  </Link>
+                );
+              }
+              return <span className="text-[#4a90d9]">{geo.city}, {geo.state}</span>;
+            })()}
+          </span>
         </div>
       )}
       {!geo.city && !geo.isLoading && (
