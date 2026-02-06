@@ -600,6 +600,18 @@ For most car owners who care about their vehicle's appearance, professional cera
     featured: true,
     sections: [],
     faqs: []
+  },
+  {
+    slug: "led-lighting-upgrades",
+    title: "LED & Lighting Upgrades: The Complete Guide for 2026",
+    shortTitle: "LED & Lighting Upgrades",
+    description: "Everything you need to know about upgrading your vehicle's lighting - headlights, taillights, interior LEDs, accent lighting, and what's legal in Florida.",
+    icon: "🔦",
+    readTime: "11 min read",
+    category: "Car Care",
+    featured: true,
+    sections: [],
+    faqs: []
   }
 ];
 
