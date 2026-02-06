@@ -612,6 +612,18 @@ For most car owners who care about their vehicle's appearance, professional cera
     featured: true,
     sections: [],
     faqs: []
+  },
+  {
+    slug: "wheels-rims-tire-care",
+    title: "Wheels, Rims & Tire Care: The Complete Guide for 2026",
+    shortTitle: "Wheels, Rims & Tire Care",
+    description: "Everything you need to know about wheel upgrades, rim styles, tire selection, and proper maintenance to keep your wheels looking and performing their best.",
+    icon: "🛞",
+    readTime: "12 min read",
+    category: "Car Care",
+    featured: true,
+    sections: [],
+    faqs: []
   }
 ];
 
