@@ -576,6 +576,18 @@ For most car owners who care about their vehicle's appearance, professional cera
     featured: true,
     sections: [],
     faqs: []
+  },
+  {
+    slug: "car-detailing",
+    title: "Car Detailing: The Complete Guide for 2026",
+    shortTitle: "Car Detailing",
+    description: "Everything you need to know about interior and exterior car detailing - costs, what's included, DIY vs professional, and how to keep your vehicle looking showroom-new.",
+    icon: "🧽",
+    readTime: "11 min read",
+    category: "Car Care",
+    featured: true,
+    sections: [],
+    faqs: []
   }
 ];
 
