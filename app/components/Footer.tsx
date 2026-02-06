@@ -4,7 +4,7 @@ import { SERVICE_CATEGORIES } from "../lib/services";
 export default function Footer() {
   return (
     <footer className="bg-[#0a0f1a] pt-16 pb-8 px-6 md:px-12 border-t border-[rgba(74,144,217,0.15)]">
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 max-w-[1200px] mx-auto mb-12">
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-8 md:gap-12 max-w-[1200px] mx-auto mb-12">
         {/* Services Column */}
         <div>
           <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">
@@ -69,6 +69,28 @@ export default function Footer() {
           </Link>
           <Link href="/blog" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             Blog
+          </Link>
+        </div>
+
+        {/* Directory */}
+        <div>
+          <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">
+            Directory
+          </h4>
+          <Link href="/directory" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            All States
+          </Link>
+          <Link href="/directory/florida" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            Florida
+          </Link>
+          <Link href="/directory/california" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            California
+          </Link>
+          <Link href="/directory/texas" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            Texas
+          </Link>
+          <Link href="/directory/new-york" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            New York
           </Link>
         </div>
 

@@ -68,3 +68,24 @@ export interface LocationCity {
   longitude: number;
   population: number;
 }
+
+export interface DirectoryState {
+  name: string;
+  abbreviation: string;
+  slug: string;
+  latitude: number;
+  longitude: number;
+  featured: boolean;
+  region: string;
+}
+
+export interface DirectoryCity {
+  name: string;
+  stateSlug: string;
+  stateAbbreviation: string;
+  slug: string;
+  latitude: number;
+  longitude: number;
+  population: number;
+  featured: boolean;
+}

@@ -15,6 +15,7 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
   const mainNav = [
     { name: "HOME", href: "/" },
     { name: "SERVICES", href: "#", hasDropdown: true },
+    { name: "DIRECTORY", href: "/directory" },
     { name: "CARS", href: "/cars" },
     { name: "BLOG", href: "/blog" },
     { name: "SHOP", href: "/shop" },

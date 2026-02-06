@@ -10,9 +10,10 @@ interface ProviderCardProps {
   onCompareToggle?: (provider: Provider & { distanceText?: string }) => void;
   isCompareSelected?: boolean;
   compareDisabled?: boolean;
+  providerLinkBase?: string;
 }
 
-export default function ProviderCard({ provider, onCompareToggle, isCompareSelected, compareDisabled }: ProviderCardProps) {
+export default function ProviderCard({ provider, onCompareToggle, isCompareSelected, compareDisabled, providerLinkBase = "/provider" }: ProviderCardProps) {
   const [showQuoteModal, setShowQuoteModal] = useState(false);
   return (
     <div className={`bg-[rgba(15,22,40,0.6)] rounded-xl p-5 border transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 group ${isCompareSelected ? "border-[#4a90d9] ring-1 ring-[#4a90d9]/30" : "border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.35)]"}`}>
@@ -164,7 +165,7 @@ export default function ProviderCard({ provider, onCompareToggle, isCompareSelec
           </a>
         )}
         <Link
-          href={`/provider/${provider.id}`}
+          href={`${providerLinkBase}/${provider.id}`}
           onClick={(e) => e.stopPropagation()}
           className="flex items-center justify-center gap-1.5 flex-1 py-2.5 text-[11px] tracking-[0.05em] font-medium text-[#4a90d9] bg-[rgba(74,144,217,0.08)] hover:bg-[rgba(74,144,217,0.18)] border border-[rgba(74,144,217,0.2)] rounded-lg transition-all duration-200"
         >
