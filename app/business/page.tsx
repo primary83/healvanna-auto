@@ -26,7 +26,7 @@ const partnershipTiers = [
   },
   {
     name: "Verified Partner",
-    price: "$99/mo",
+    price: "$49/mo",
     description: "Stand out with verified status and premium placement",
     features: [
       "Everything in Basic",
@@ -42,7 +42,7 @@ const partnershipTiers = [
   },
   {
     name: "Premium Partner",
-    price: "$249/mo",
+    price: "$99/mo",
     description: "Maximum visibility and lead generation tools",
     features: [
       "Everything in Verified",
@@ -389,8 +389,8 @@ export default function ForBusinessPage() {
             <div className="border-b border-white/10 pb-6">
               <h3 className="text-lg text-white mb-2">What markets do you cover?</h3>
               <p className="text-gray-400 text-sm">
-                We currently focus on major US markets including Austin, Miami, Los Angeles, New York, Houston, and Phoenix. 
-                We&apos;re expanding to additional markets and internationally soon.
+                We currently focus on Florida markets including Miami, Orlando, Tampa, Fort Lauderdale, and Jacksonville. 
+                We&apos;re expanding to additional US markets soon.
               </p>
             </div>
           </div>
