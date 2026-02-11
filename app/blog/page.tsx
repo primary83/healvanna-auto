@@ -15,6 +15,16 @@ export default function Blog() {
   const blogPosts = [
     // Service SEO Articles
     {
+      id: 215,
+      title: "How to Protect Your EV's Paint: Complete Guide for Electric Vehicle Owners",
+      excerpt: "From PPF and ceramic coating to vinyl wraps and proper washing techniques, here's everything EV owners need to know about paint protection.",
+      category: "Guides",
+      image: "/blog/ev-paint-protection-guide.png",
+      date: "February 11, 2026",
+      readTime: "14 min read",
+      slug: "ev-paint-protection-guide",
+    },
+    {
       id: 201,
       title: "How Much Does Ceramic Coating Cost in 2026? Complete Price Guide",
       excerpt: "From entry-level to premium packages, here's what ceramic coating costs in 2026 and what affects the price.",
