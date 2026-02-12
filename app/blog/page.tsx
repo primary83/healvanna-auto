@@ -13,6 +13,37 @@ export default function Blog() {
   const categories = ["All", "Guides", "Technology", "Reviews", "Comparison", "Insights", "Events"];
 
   const blogPosts = [
+    // Batch 10 Articles (Final!)
+    {
+      id: 249,
+      title: "How to Maintain Your Car Wrap",
+      excerpt: "Washing best practices, cleaning stubborn contaminants, protection tips, storage advice, and signs your wrap needs attention.",
+      category: "Guides",
+      image: "/blog/maintain-car-wrap.png",
+      date: "February 11, 2026",
+      readTime: "10 min read",
+      slug: "maintain-car-wrap",
+    },
+    {
+      id: 248,
+      title: "EV Lease vs Buy: Which Saves You More?",
+      excerpt: "The financial case for leasing vs buying an EV, 3-year cost comparison, tax credit strategies, and hidden lease costs to watch.",
+      category: "Guides",
+      image: "/blog/ev-lease-vs-buy.png",
+      date: "February 11, 2026",
+      readTime: "12 min read",
+      slug: "ev-lease-vs-buy",
+    },
+    {
+      id: 247,
+      title: "Best Car Detailing Kits for Beginners",
+      excerpt: "Essential kit categories, top pre-made kits compared, build-your-own starter setup for $115, and common beginner mistakes to avoid.",
+      category: "Reviews",
+      image: "/blog/best-detailing-kits-beginners.png",
+      date: "February 11, 2026",
+      readTime: "11 min read",
+      slug: "best-detailing-kits-beginners",
+    },
     // Batch 9 Articles
     {
       id: 246,
