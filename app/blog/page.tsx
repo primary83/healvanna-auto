@@ -13,6 +13,47 @@ export default function Blog() {
   const categories = ["All", "Guides", "Technology", "Reviews", "Comparison", "Insights", "Events"];
 
   const blogPosts = [
+    // Batch 7 Articles
+    {
+      id: 239,
+      title: "Understanding EV Regenerative Braking",
+      excerpt: "How regen braking works, how much energy it recovers, one-pedal driving explained, and tips to maximize efficiency.",
+      category: "Technology",
+      image: "/blog/ev-regenerative-braking-explained.png",
+      date: "February 11, 2026",
+      readTime: "11 min read",
+      slug: "ev-regenerative-braking-explained",
+    },
+    {
+      id: 238,
+      title: "Best Car Cleaning Products for Interior Detailing",
+      excerpt: "The five product categories you actually need, what professional detailers use, a $96 starter kit, and products to avoid.",
+      category: "Guides",
+      image: "/blog/best-interior-detailing-products.png",
+      date: "February 11, 2026",
+      readTime: "12 min read",
+      slug: "best-interior-detailing-products",
+    },
+    {
+      id: 237,
+      title: "EV Charging at Home: Complete Installation Guide",
+      excerpt: "Level 2 charger selection, electrical requirements, installation costs, tax credits, and everything you need for home EV charging.",
+      category: "Guides",
+      image: "/blog/ev-home-charging-installation-guide.png",
+      date: "February 11, 2026",
+      readTime: "13 min read",
+      slug: "ev-home-charging-installation-guide",
+    },
+    {
+      id: 236,
+      title: "How to Choose the Right Car Wrap Color",
+      excerpt: "Finishes explained, popular colors and what they communicate, cost breakdown, top brands, and how to preview before committing.",
+      category: "Guides",
+      image: "/blog/choose-car-wrap-color.png",
+      date: "February 11, 2026",
+      readTime: "11 min read",
+      slug: "choose-car-wrap-color",
+    },
     // Batch 6 Articles
     {
       id: 235,
