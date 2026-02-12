@@ -135,6 +135,12 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
             </Link>
           )
         )}
+        <Link
+          href="/get-quote"
+          className="px-5 py-2 text-xs tracking-[0.12em] font-medium bg-[#4a90d9] text-[#0a0f1a] rounded-lg hover:bg-[#5a9ee5] transition-colors"
+        >
+          GET QUOTE
+        </Link>
       </div>
 
       {/* Mobile Menu Button */}
@@ -196,6 +202,22 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
                   {service.name}
                 </Link>
               ))}
+            </div>
+            <div className="pt-4 border-t border-[rgba(74,144,217,0.1)]">
+              <Link
+                href="/get-quote"
+                className="block w-full text-center py-3 text-sm font-medium bg-[#4a90d9] text-[#0a0f1a] rounded-lg hover:bg-[#5a9ee5] transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Get a Free Quote
+              </Link>
+              <Link
+                href="/compare-evs"
+                className="block text-sm text-[#6b7a94] hover:text-[#e8edf5] transition-colors mt-3"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Compare EVs
+              </Link>
             </div>
           </div>
         </div>

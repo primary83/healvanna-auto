@@ -57,6 +57,9 @@ export default function Footer() {
           <Link href="/cars/suvs" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             SUVs
           </Link>
+          <Link href="/compare-evs" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            Compare EVs
+          </Link>
         </div>
 
         {/* Guides - FIXED: Blog now points to /blog */}
@@ -107,6 +110,9 @@ export default function Footer() {
           </Link>
           <Link href="/business" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             For Business
+          </Link>
+          <Link href="/get-quote" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            Get a Quote
           </Link>
         </div>
       </div>
