@@ -13,6 +13,47 @@ export default function Blog() {
   const categories = ["All", "Guides", "Technology", "Reviews", "Comparison", "Insights", "Events"];
 
   const blogPosts = [
+    // Batch 8 Articles
+    {
+      id: 243,
+      title: "Understanding EV Battery Warranties",
+      excerpt: "Federal requirements, manufacturer warranty comparison, what's covered, how claims work, and tips for maximizing battery longevity.",
+      category: "Technology",
+      image: "/blog/ev-battery-warranty-guide.png",
+      date: "February 11, 2026",
+      readTime: "12 min read",
+      slug: "ev-battery-warranty-guide",
+    },
+    {
+      id: 242,
+      title: "Best Car Air Fresheners That Actually Last",
+      excerpt: "Types compared, top picks by category, scent profiles that work in cars, and how to eliminate odors at the source first.",
+      category: "Reviews",
+      image: "/blog/best-car-air-fresheners.png",
+      date: "February 11, 2026",
+      readTime: "10 min read",
+      slug: "best-car-air-fresheners",
+    },
+    {
+      id: 241,
+      title: "EV Towing Guide: What You Need to Know",
+      excerpt: "Range impact reality, top EV tow ratings, charging logistics while towing, and tips for maximizing towing range.",
+      category: "Guides",
+      image: "/blog/ev-towing-guide.png",
+      date: "February 11, 2026",
+      readTime: "12 min read",
+      slug: "ev-towing-guide",
+    },
+    {
+      id: 240,
+      title: "How to Protect Your Car's Paint in Summer Heat",
+      excerpt: "Why summer damages paint, protection methods ranked, washing best practices, parking strategies, and emergency contaminant removal.",
+      category: "Guides",
+      image: "/blog/protect-car-paint-summer-heat.png",
+      date: "February 11, 2026",
+      readTime: "11 min read",
+      slug: "protect-car-paint-summer-heat",
+    },
     // Batch 7 Articles
     {
       id: 239,
