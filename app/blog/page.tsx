@@ -13,6 +13,37 @@ export default function Blog() {
   const categories = ["All", "Guides", "Technology", "Reviews", "Comparison", "Insights", "Events"];
 
   const blogPosts = [
+    // Batch 9 Articles
+    {
+      id: 246,
+      title: "How to Prep Your Car for a Road Trip",
+      excerpt: "Pre-trip mechanical checklist, EV-specific prep, emergency kit essentials, interior detail, and exterior protection tips.",
+      category: "Guides",
+      image: "/blog/road-trip-car-prep.png",
+      date: "February 11, 2026",
+      readTime: "12 min read",
+      slug: "road-trip-car-prep",
+    },
+    {
+      id: 245,
+      title: "Best Tire Shine Products for a Showroom Finish",
+      excerpt: "Water-based vs solvent-based compared, top picks by category, application tips for maximum longevity, and what to avoid.",
+      category: "Reviews",
+      image: "/blog/best-tire-shine-products.png",
+      date: "February 11, 2026",
+      readTime: "10 min read",
+      slug: "best-tire-shine-products",
+    },
+    {
+      id: 244,
+      title: "How to Use a Clay Bar on Your Car: Complete Guide",
+      excerpt: "What clay bars do, the plastic bag test, types compared, step-by-step process, critical mistakes to avoid, and how often to clay.",
+      category: "Guides",
+      image: "/blog/clay-bar-guide.png",
+      date: "February 11, 2026",
+      readTime: "11 min read",
+      slug: "clay-bar-guide",
+    },
     // Batch 8 Articles
     {
       id: 243,
@@ -829,12 +860,12 @@ export default function Blog() {
     },
     {
       id: 4,
-      title: "EV Charging Etiquette: Do's and Don'ts",
-      excerpt: "Learn the unwritten rules of public EV charging to be a courteous member of the electric vehicle community.",
+      title: "EV Charging Etiquette: The Unwritten Rules",
+      excerpt: "The golden rules of public charging, DC fast charger etiquette, queuing, workplace sharing, and how to handle ICE-ing.",
       category: "Guides",
       image: "/blog/ev-charging-etiquette.png",
-      date: "January 19, 2026",
-      readTime: "9 min read",
+      date: "February 11, 2026",
+      readTime: "10 min read",
       slug: "ev-charging-etiquette"
     },
     {
