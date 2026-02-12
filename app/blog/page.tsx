@@ -6,6 +6,70 @@ import Footer from "../components/Footer";
 
 const POSTS_PER_PAGE = 12;
 
+function BlogNewsletter() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("submitting");
+    try {
+      const response = await fetch("https://formspree.io/f/xjggywyr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, _subject: "Blog Newsletter Signup" }),
+      });
+      if (response.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <section className="px-6 pb-20">
+      <div className="max-w-[800px] mx-auto bg-[rgba(74,144,217,0.1)] rounded-3xl p-6 md:p-12 text-center border border-[rgba(74,144,217,0.2)]">
+        <h2 className="text-[32px] font-bold mb-4">Stay Updated</h2>
+        <p className="text-[#6b7a94] mb-8">Get the latest EV news and insights delivered to your inbox weekly.</p>
+        {status === "success" ? (
+          <div className="flex items-center justify-center gap-2 text-[#4a90d9]">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span className="text-[14px] font-medium">You&apos;re subscribed! We&apos;ll be in touch.</span>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 justify-center max-w-[500px] mx-auto">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+              className="flex-1 px-6 py-3 bg-[#0a0f1a] border border-[rgba(74,144,217,0.3)] rounded-full text-[#e8edf5] placeholder-[#6b7a94] focus:outline-none focus:border-[#4a90d9]"
+            />
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className="px-8 py-3 bg-[#4a90d9] text-white font-medium rounded-full hover:bg-[#3a7bc8] transition-colors duration-300 disabled:opacity-60"
+            >
+              {status === "submitting" ? "Subscribing..." : "Subscribe"}
+            </button>
+          </form>
+        )}
+        {status === "error" && (
+          <p className="text-[12px] text-[#ef4444] mt-3">Something went wrong. Please try again.</p>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
@@ -1183,22 +1247,7 @@ export default function Blog() {
       )}
 
       {/* Newsletter Section */}
-      <section className="px-6 pb-20">
-        <div className="max-w-[800px] mx-auto bg-[rgba(74,144,217,0.1)] rounded-3xl p-6 md:p-12 text-center border border-[rgba(74,144,217,0.2)]">
-          <h2 className="text-[32px] font-bold mb-4">Stay Updated</h2>
-          <p className="text-[#6b7a94] mb-8">Get the latest EV news and insights delivered to your inbox weekly.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-[500px] mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-6 py-3 bg-[#0a0f1a] border border-[rgba(74,144,217,0.3)] rounded-full text-[#e8edf5] placeholder-[#6b7a94] focus:outline-none focus:border-[#4a90d9]"
-            />
-            <button className="px-8 py-3 bg-[#4a90d9] text-white font-medium rounded-full hover:bg-[#3a7bc8] transition-colors duration-300">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </section>
+      <BlogNewsletter />
 
       <Footer />
     </div>
