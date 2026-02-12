@@ -19,6 +19,11 @@ export const metadata: Metadata = {
       "Verified detailers, ceramic coating experts, and PPF installers. Premium protection from trusted professionals.",
     url: "https://healvanna.com/care",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Premium Car Care Specialists | Healvanna Auto",
+    description: "Verified detailers, ceramic coating experts, and PPF installers. Premium protection from trusted professionals.",
+  },
 };
 
 export default function CareLayout({

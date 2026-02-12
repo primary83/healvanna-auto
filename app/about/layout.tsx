@@ -11,6 +11,11 @@ export const metadata: Metadata = {
       "The philosophy behind Healvanna: connecting discerning owners with verified detailers, body shops, and automotive specialists.",
     url: "https://healvanna.com/about",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Healvanna Auto - Our Story & Mission",
+    description: "The philosophy behind Healvanna: connecting discerning owners with verified detailers, body shops, and automotive specialists.",
+  },
 };
 
 export default function AboutLayout({

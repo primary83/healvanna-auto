@@ -11,6 +11,11 @@ export const metadata: Metadata = {
       "Reach out to Healvanna Auto for questions about our premium car service directory, business listings, or partnerships.",
     url: "https://healvanna.com/contact",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us - Healvanna Auto",
+    description: "Reach out to Healvanna Auto for questions about our premium car service directory, business listings, or partnerships.",
+  },
 };
 
 export default function ContactLayout({

@@ -19,6 +19,11 @@ export const metadata: Metadata = {
       "Certified collision repair and master restoration craftsmen for luxury, classic, and electric vehicles.",
     url: "https://healvanna.com/craft",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Body Shops & Restoration Specialists | Healvanna Auto",
+    description: "Certified collision repair and master restoration craftsmen for luxury, classic, and electric vehicles.",
+  },
 };
 
 export default function CraftLayout({

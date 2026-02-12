@@ -104,9 +104,15 @@ export default function ProviderCard({ provider, onCompareToggle, isCompareSelec
         <span className="text-[13px] font-medium text-[#e8edf5]">
           {provider.rating}
         </span>
-        <span className="text-[12px] text-[#6b7a94]">
-          ({provider.reviewCount})
-        </span>
+        {provider.reviewCount > 0 ? (
+          <span className="text-[12px] text-[#6b7a94]">
+            ({provider.reviewCount})
+          </span>
+        ) : (
+          <span className="text-[10px] tracking-[0.05em] font-medium px-2 py-0.5 bg-[rgba(74,144,217,0.1)] text-[#4a90d9] rounded-sm">
+            New Listing
+          </span>
+        )}
         {provider.distanceText && (
           <span className="text-[12px] text-[#4a90d9] ml-1">
             {provider.distanceText}

@@ -122,6 +122,9 @@ export default function Footer() {
           <Link href="/terms" className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors duration-300">
             Terms
           </Link>
+          <Link href="/disclaimer" className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors duration-300">
+            Disclaimer
+          </Link>
         </div>
       </div>
     </footer>

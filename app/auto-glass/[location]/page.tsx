@@ -27,6 +27,11 @@ export async function generateMetadata({
     keywords: [...service.keywords, city.city, city.stateCode],
     alternates: { canonical: `/${service.slug}/${city.slug}` },
     openGraph: { title, description, url: `https://healvanna.com/${service.slug}/${city.slug}` },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 

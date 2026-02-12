@@ -26,6 +26,11 @@ export const metadata: Metadata = {
       "Browse all automotive services and find verified providers near you.",
     url: "https://healvanna.com/services",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "All Automotive Services - Healvanna Auto",
+    description: "Browse all automotive services and find verified providers near you.",
+  },
 };
 
 export default function ServicesIndexPage() {

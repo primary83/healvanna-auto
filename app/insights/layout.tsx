@@ -18,6 +18,11 @@ export const metadata: Metadata = {
       "Expert analysis, comparisons, and guides for the discerning automotive enthusiast.",
     url: "https://healvanna.com/insights",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Automotive Insights & Market Intelligence | Healvanna Auto",
+    description: "Expert analysis, comparisons, and guides for the discerning automotive enthusiast.",
+  },
 };
 
 export default function InsightsLayout({

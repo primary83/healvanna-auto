@@ -31,6 +31,11 @@ export async function generateMetadata({
       description,
       url: `https://healvanna.com/${service.slug}/${city.slug}`,
     },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 

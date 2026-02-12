@@ -8,6 +8,66 @@ import Footer from "./components/Footer";
 import ServiceSearchBar from "./components/ServiceSearchBar";
 import { SERVICE_CATEGORIES } from "./lib/services";
 
+function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("submitting");
+    try {
+      const response = await fetch("https://formspree.io/f/xjggywyr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, _subject: "Newsletter Signup" }),
+      });
+      if (response.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <div className="flex items-center justify-center gap-2 text-[#4a90d9]">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        </svg>
+        <span className="text-[14px] font-medium">You&apos;re subscribed! We&apos;ll be in touch.</span>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-[460px] mx-auto">
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter your email"
+        required
+        className="flex-1 px-5 py-4 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.25)] rounded text-[#e8edf5] placeholder-[#3d4a61] focus:outline-none focus:border-[#4a90d9] transition-colors text-[14px]"
+      />
+      <button
+        type="submit"
+        disabled={status === "submitting"}
+        className="px-8 py-4 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 disabled:opacity-60 whitespace-nowrap"
+      >
+        {status === "submitting" ? "Subscribing..." : "Subscribe"}
+      </button>
+      {status === "error" && (
+        <p className="text-[12px] text-[#ef4444] mt-1 sm:absolute sm:bottom-[-24px] sm:left-0">Something went wrong. Try again.</p>
+      )}
+    </form>
+  );
+}
+
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -135,8 +195,8 @@ export default function Home() {
       <section className="py-10 px-6 md:px-12 bg-[#0d1424] border-b border-[rgba(74,144,217,0.08)]">
         <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { value: "7", label: "Service Categories", href: "/services" },
-            { value: "20+", label: "Cities Covered", href: "/car-detailing" },
+            { value: "All", label: "Service Categories", href: "/services" },
+            { value: "50+", label: "Cities Nationwide", href: "/car-detailing" },
             { value: "Free", label: "Business Listings", href: "/business" },
             { value: "100%", label: "Verified Providers", href: "/about" },
           ].map((stat) => (
@@ -403,9 +463,7 @@ export default function Home() {
         <div className="relative text-center max-w-[600px] px-6">
           <h2 className="text-[clamp(32px,5vw,48px)] font-extralight mb-4 tracking-tight">Your Guide to Premium Auto</h2>
           <p className="text-base text-[#6b7a94] mb-8 leading-relaxed">Join thousands of enthusiasts who trust Healvanna for expert vehicle guides and verified service providers.</p>
-          <Link href="/contact">
-            <button className="px-14 py-4 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300">Subscribe to Updates</button>
-          </Link>
+          <NewsletterForm />
         </div>
       </section>
 

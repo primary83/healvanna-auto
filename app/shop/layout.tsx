@@ -11,6 +11,11 @@ export const metadata: Metadata = {
       "Curated EV accessories and premium car care products for discerning owners.",
     url: "https://healvanna.com/shop",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shop EV Accessories & Car Products | Healvanna Auto",
+    description: "Curated EV accessories and premium car care products for discerning owners.",
+  },
 };
 
 export default function ShopLayout({

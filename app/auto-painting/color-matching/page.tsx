@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     description: data.subcategory.description,
     url: `https://healvanna.com/${data.service.slug}/${data.subcategory.slug}`,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `${data.subcategory.name} - Healvanna Auto`,
+    description: data.subcategory.description,
+  },
 };
 
 export default function ColorMatchingPage() {

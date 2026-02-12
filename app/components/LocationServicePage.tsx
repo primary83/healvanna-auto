@@ -161,6 +161,9 @@ function LocationServiceContent({
         });
       })
       .sort((a, b) => {
+        // Push 0-review providers to the bottom
+        if (a.reviewCount === 0 && b.reviewCount > 0) return 1;
+        if (b.reviewCount === 0 && a.reviewCount > 0) return -1;
         switch (sortBy) {
           case "rating":
             return b.rating - a.rating;
