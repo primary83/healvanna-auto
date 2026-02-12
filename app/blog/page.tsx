@@ -13,6 +13,47 @@ export default function Blog() {
   const categories = ["All", "Guides", "Technology", "Reviews", "Comparison", "Insights", "Events"];
 
   const blogPosts = [
+    // Batch 6 Articles
+    {
+      id: 235,
+      title: "Choosing Between Sedan and SUV EVs",
+      excerpt: "Range, efficiency, cargo space, driving dynamics, and total cost of ownership — an objective comparison to help you pick the right EV body style.",
+      category: "Comparison",
+      image: "/blog/sedan-vs-suv-ev.png",
+      date: "February 11, 2026",
+      readTime: "12 min read",
+      slug: "sedan-vs-suv-ev",
+    },
+    {
+      id: 234,
+      title: "Electric Car Battery Degradation: What to Expect",
+      excerpt: "Real-world data on how fast EV batteries lose capacity, what accelerates degradation, and how to maximize your battery's lifespan.",
+      category: "Technology",
+      image: "/blog/ev-battery-degradation-guide.png",
+      date: "February 11, 2026",
+      readTime: "13 min read",
+      slug: "ev-battery-degradation-guide",
+    },
+    {
+      id: 233,
+      title: "How to Remove Water Spots from Your Car",
+      excerpt: "Three types of water spots, step-by-step removal methods from vinegar to machine polish, and how to prevent them from coming back.",
+      category: "Guides",
+      image: "/blog/remove-water-spots-from-car.png",
+      date: "February 11, 2026",
+      readTime: "11 min read",
+      slug: "remove-water-spots-from-car",
+    },
+    {
+      id: 232,
+      title: "Best Dashcams for Car Protection in 2026",
+      excerpt: "The best dashcams by category — budget, premium, fleet, and overall — plus what features actually matter and installation tips.",
+      category: "Reviews",
+      image: "/blog/best-dashcams-car-protection-2026.png",
+      date: "February 11, 2026",
+      readTime: "12 min read",
+      slug: "best-dashcams-car-protection-2026",
+    },
     // Service SEO Articles
     {
       id: 231,
