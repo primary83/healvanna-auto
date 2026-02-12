@@ -14,6 +14,7 @@ import StructuredData, {
   generateServiceSchema,
   generateBreadcrumbSchema,
   generateFAQSchema,
+  generateLocalBusinessSchema,
 } from "./StructuredData";
 import RelatedArticles from "./RelatedArticles";
 import { getServiceFAQs } from "../lib/serviceFAQs";
@@ -430,6 +431,27 @@ function LocationServiceContent({
                   compareDisabled={compareList.length >= 3}
                 />
               ))}
+              {/* LocalBusiness schema for providers with reviews */}
+              {filteredProviders
+                .filter((p) => p.reviewCount > 0)
+                .map((provider) => (
+                  <StructuredData
+                    key={`schema-${provider.id}`}
+                    data={generateLocalBusinessSchema({
+                      name: provider.name,
+                      address: provider.address,
+                      city: cityName,
+                      state: stateCode,
+                      phone: provider.phone,
+                      rating: provider.rating,
+                      reviewCount: provider.reviewCount,
+                      latitude: provider.latitude,
+                      longitude: provider.longitude,
+                      url: provider.url || `https://healvanna.com/provider/${provider.id}`,
+                      category: provider.category,
+                    })}
+                  />
+                ))}
             </div>
           )}
         </div>

@@ -115,6 +115,36 @@ const CITY_SERVICE_CONTENT: Record<string, Record<string, CityServiceContent>> =
       tip: "SF tip: Fog and salt air cause invisible corrosion. A ceramic coating or sealant after detailing provides a critical protective barrier.",
     },
   },
+  "san-antonio-tx": {
+    default: {
+      intro: "San Antonio's hot summers and occasional hailstorms demand reliable auto care. From the Pearl District to the Medical Center, local providers understand how South Texas heat affects paint and interiors.",
+      tip: "San Antonio tip: Summer dashboard temperatures can exceed 160°F. Ceramic window tint and interior UV protection are smart investments.",
+    },
+  },
+  "san-diego-ca": {
+    default: {
+      intro: "San Diego's coastal climate is easy on drivers but tough on paint. Salt air, marine fog, and year-round sun mean vehicles here need consistent protection and care from knowledgeable providers.",
+      tip: "San Diego tip: Coastal moisture causes water spotting. Hydrophobic ceramic coatings help keep your paint clean between washes.",
+    },
+  },
+  "las-vegas-nv": {
+    default: {
+      intro: "Las Vegas's extreme desert heat and dust storms are brutal on vehicles. Temperatures regularly exceed 110°F, making quality paint protection and interior care essential for any car in the Valley.",
+      tip: "Vegas tip: Desert sand and UV exposure are your biggest enemies. PPF on the front end and ceramic coating everywhere else is the go-to setup here.",
+    },
+  },
+  "portland-or": {
+    default: {
+      intro: "Portland's persistent rain and Pacific Northwest moisture make paint protection a year-round priority. Local auto care providers specialize in combating the effects of constant dampness and seasonal road grime.",
+      tip: "Portland tip: Tree sap and bird droppings are common under the city's tree canopy. Regular detailing prevents permanent etching on your clear coat.",
+    },
+  },
+  "charlotte-nc": {
+    default: {
+      intro: "Charlotte's mix of Southern humidity, pollen season, and growing urban traffic creates diverse auto care needs. The Queen City's providers handle everything from daily commuters to the NASCAR crowd.",
+      tip: "Charlotte tip: Spring pollen coats vehicles in a thick yellow layer. A ceramic coating makes cleanup quick and prevents pollen from bonding to paint.",
+    },
+  },
 };
 
 export function getCityContent(
