@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+const GOOGLE_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 const PLACES_API_BASE = "https://places.googleapis.com/v1/places:searchText";
 
 export async function GET(request: NextRequest) {
