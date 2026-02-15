@@ -51,7 +51,7 @@ export default function DirectoryCityContent({
           activeCategory === "all"
             ? "autodetailing,carwash,autocleaning,vehiclewraps,autocustomization,bodyshops,autoglass,auto_paint"
             : SERVICE_CATEGORIES.find((s) => s.slug === activeCategory)
-                ?.yelpCategories || "autodetailing";
+                ?.searchQuery || "autodetailing";
 
         const params = new URLSearchParams({
           latitude: city.latitude.toString(),
@@ -68,7 +68,7 @@ export default function DirectoryCityContent({
 
         if (searchQuery) params.set("term", searchQuery);
 
-        const res = await fetch(`/api/yelp?${params.toString()}`);
+        const res = await fetch(`/api/places?${params.toString()}`);
         if (!res.ok) throw new Error("Failed to fetch providers");
         const data = await res.json();
         setProviders(data.providers || []);
@@ -310,12 +310,12 @@ export default function DirectoryCityContent({
         </div>
       </section>
 
-      {/* Yelp Attribution */}
+      {/* Google Attribution */}
       {!isLoading && !error && providers.length > 0 && (
         <section className="px-6 md:px-12 pb-8">
           <div className="max-w-[1200px] mx-auto">
             <p className="text-[11px] text-[#3d4a61] text-center">
-              Provider data powered by Yelp. Ratings and reviews are from Yelp
+              Provider data powered by Google. Ratings and reviews are from Google
               users.
             </p>
           </div>

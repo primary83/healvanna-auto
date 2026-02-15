@@ -66,7 +66,7 @@ export default function ProviderDetailPage() {
     const fetchProvider = async () => {
       setIsLoading(true);
       try {
-        const res = await fetch(`/api/yelp/${id}`);
+        const res = await fetch(`/api/places/${id}`);
         if (!res.ok) throw new Error("Failed to load provider");
         const data = await res.json();
         setProvider(data.provider);
@@ -319,7 +319,7 @@ export default function ProviderDetailPage() {
                   ))}
                 </div>
                 <p className="text-[11px] text-[#3d4a61] mt-4">
-                  Reviews provided by <span className="text-[#c41200]">Yelp</span>
+                  Reviews provided by <span className="text-[#4285f4]">Google</span>
                 </p>
               </div>
             )}
@@ -391,10 +391,10 @@ export default function ProviderDetailPage() {
               </a>
             </div>
 
-            {/* Yelp Attribution */}
+            {/* Google Attribution */}
             <div className="text-center">
               <p className="text-[11px] text-[#3d4a61]">
-                Business data provided by <span className="text-[#c41200]">Yelp</span>
+                Business data provided by <span className="text-[#4285f4]">Google</span>
               </p>
             </div>
           </div>

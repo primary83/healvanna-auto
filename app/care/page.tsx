@@ -85,7 +85,7 @@ export default function CarePage() {
     };
   }, [selectedLocation, userLat, userLon, detectedLocation]);
 
-  // Fetch providers from Yelp API when location changes
+  // Fetch providers from Google Places API when location changes
   useEffect(() => {
     const fetchProviders = async () => {
       if (!centerLat || !centerLon) return;
@@ -94,7 +94,7 @@ export default function CarePage() {
       setError(null);
 
       try {
-        // Yelp categories for auto detailing and related services
+        // Google Places categories for auto detailing and related services
         const categories = "autodetailing,carwash,autocustomization";
         const params = new URLSearchParams({
           latitude: centerLat.toString(),
@@ -108,7 +108,7 @@ export default function CarePage() {
           params.append("term", searchQuery);
         }
 
-        const response = await fetch(`/api/yelp?${params.toString()}`);
+        const response = await fetch(`/api/places?${params.toString()}`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch providers");
@@ -193,7 +193,7 @@ export default function CarePage() {
             Premium Detailing & <span className="font-semibold bg-gradient-to-r from-[#e8edf5] to-[#4a90d9] bg-clip-text text-transparent">Protection</span>
           </h1>
           <p className="text-[15px] text-[#6b7a94] max-w-[600px] leading-relaxed">
-            Find verified specialists in auto detailing, ceramic coating, PPF installation, and interior restoration. Real reviews and ratings powered by Yelp.
+            Find verified specialists in auto detailing, ceramic coating, PPF installation, and interior restoration. Real reviews and ratings powered by Google.
           </p>
         </div>
       </section>
@@ -375,11 +375,11 @@ export default function CarePage() {
         </div>
       </section>
 
-      {/* Yelp Attribution */}
+      {/* Google Attribution */}
       <section className="px-6 md:px-12 pb-8">
         <div className="max-w-[1400px] mx-auto text-center">
           <p className="text-[11px] text-[#3d4a61]">
-            Business data provided by <span className="text-[#c41200]">Yelp</span>
+            Business data provided by <span className="text-[#4285f4]">Google</span>
           </p>
         </div>
       </section>

@@ -7,7 +7,7 @@ export interface ServiceCategory {
   description: string;
   seoDescription: string;
   icon: string; // SVG path data
-  yelpCategories: string;
+  searchQuery: string;
   subcategories: ServiceSubcategory[];
   trustSignals: string[];
   keywords: string[];

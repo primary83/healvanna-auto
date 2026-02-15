@@ -28,7 +28,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     seoDescription:
       "Find the best car detailing services near you. Professional auto detailing, paint correction, ceramic coating, and interior cleaning by verified specialists.",
     icon: ICONS.detailing,
-    yelpCategories: "autodetailing,carwash,autocleaning",
+    searchQuery: "car detailing auto detailing ceramic coating",
     subcategories: [
       {
         slug: "ceramic-coating",
@@ -72,7 +72,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     seoDescription:
       "Find top-rated car wrapping shops near you. Professional vinyl wraps, color change wraps, PPF installation, and commercial vehicle wraps.",
     icon: ICONS.wrapping,
-    yelpCategories: "vehiclewraps,autocustomization",
+    searchQuery: "car wrapping vehicle wrap vinyl wrap",
     subcategories: [
       {
         slug: "vinyl-wrap",
@@ -116,7 +116,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     seoDescription:
       "Find certified body shops near you. Expert cosmetic repair, paintless dent removal, and paint correction by verified professionals.",
     icon: ICONS.bodyShop,
-    yelpCategories: "bodyshops",
+    searchQuery: "auto body shop",
     subcategories: [
       {
         slug: "dent-repair",
@@ -152,7 +152,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     seoDescription:
       "Find certified collision repair centers near you. Expert accident damage repair, frame straightening, and direct insurance billing.",
     icon: ICONS.collision,
-    yelpCategories: "bodyshops,autorepair",
+    searchQuery: "collision repair auto body repair",
     subcategories: [
       {
         slug: "frame-repair",
@@ -188,7 +188,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     seoDescription:
       "Find trusted auto glass repair and replacement shops near you. Windshield repair, window replacement, and ADAS recalibration services.",
     icon: ICONS.autoGlass,
-    yelpCategories: "autoglass",
+    searchQuery: "auto glass windshield repair",
     subcategories: [
       {
         slug: "windshield-repair",
@@ -224,7 +224,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     seoDescription:
       "Find expert auto painting shops near you. Professional refinishing, color matching, custom paint jobs, and restoration painting.",
     icon: ICONS.autoPainting,
-    yelpCategories: "auto_paint,bodyshops",
+    searchQuery: "auto painting car paint body shop",
     subcategories: [
       {
         slug: "custom-paint",
@@ -260,7 +260,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     seoDescription:
       "Find the best car wash services near you. Express wash, hand wash, touchless wash, and full-service car wash locations.",
     icon: ICONS.carWash,
-    yelpCategories: "carwash,autocleaning",
+    searchQuery: "car wash auto cleaning",
     subcategories: [
       {
         slug: "hand-wash",

@@ -154,7 +154,7 @@ function ServiceListingContent({ service, subcategorySlug }: ServiceListingPageP
         const params = new URLSearchParams({
           latitude: centerLat.toString(),
           longitude: centerLon.toString(),
-          categories: service.yelpCategories,
+          categories: service.searchQuery,
           limit: "20",
           sort_by:
             sortBy === "distance"
@@ -170,7 +170,7 @@ function ServiceListingContent({ service, subcategorySlug }: ServiceListingPageP
           params.append("term", activeSubcategory.name);
         }
 
-        const response = await fetch(`/api/yelp?${params.toString()}`);
+        const response = await fetch(`/api/places?${params.toString()}`);
         if (!response.ok) throw new Error("Failed to fetch providers");
         const data = await response.json();
         setProviders(data.providers || []);
@@ -182,7 +182,7 @@ function ServiceListingContent({ service, subcategorySlug }: ServiceListingPageP
     };
 
     fetchProviders();
-  }, [centerLat, centerLon, sortBy, searchQuery, service.yelpCategories, activeSubcategory]);
+  }, [centerLat, centerLon, sortBy, searchQuery, service.searchQuery, activeSubcategory]);
 
   // EV-related filter definitions
   const EV_FILTERS = [
@@ -513,11 +513,11 @@ function ServiceListingContent({ service, subcategorySlug }: ServiceListingPageP
         </div>
       </section>
 
-      {/* Yelp Attribution */}
+      {/* Google Attribution */}
       <section className="px-6 md:px-12 pb-8">
         <div className="max-w-[1400px] mx-auto text-center">
           <p className="text-[11px] text-[#3d4a61]">
-            Business data provided by <span className="text-[#c41200]">Yelp</span>
+            Business data provided by <span className="text-[#4285f4]">Google</span>
           </p>
         </div>
       </section>

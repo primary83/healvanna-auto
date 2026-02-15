@@ -52,7 +52,7 @@ export default function ProviderDetailPage() {
       setIsLoading(true);
       setError(null);
       try {
-        const res = await fetch(`/api/yelp/${id}`);
+        const res = await fetch(`/api/places/${id}`);
         if (!res.ok) {
           const errorData = await res.json().catch(() => null);
           if (errorData?.details?.error?.code === "BUSINESS_UNAVAILABLE") {
@@ -448,11 +448,11 @@ export default function ProviderDetailPage() {
             </div>
           </section>
 
-          {/* Yelp Attribution */}
+          {/* Google Attribution */}
           <section className="px-6 md:px-12 pb-8">
             <div className="max-w-[1000px] mx-auto">
               <p className="text-[11px] text-[#3d4a61] text-center">
-                Provider data and reviews powered by Yelp.
+                Provider data and reviews powered by Google.
               </p>
             </div>
           </section>
