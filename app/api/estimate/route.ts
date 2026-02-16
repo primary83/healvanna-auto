@@ -70,7 +70,8 @@ Classification rules:
         ],
         generationConfig: {
           temperature: 0.1,
-          maxOutputTokens: 300,
+          maxOutputTokens: 1024,
+          thinkingConfig: { thinkingBudget: 0 },
         },
       }),
     }
@@ -140,10 +141,14 @@ export async function POST(request: NextRequest) {
         continue; // Try next model
       }
 
-      // Success — parse the response
+      // Success — parse the response (check all parts, not just first — thinking models have multiple parts)
       const geminiData = await response.json();
-      const textContent =
-        geminiData?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+      const parts = geminiData?.candidates?.[0]?.content?.parts || [];
+      const textContent = parts
+        .map((p: { text?: string }) => p.text || "")
+        .join("\n");
+
+      console.log(`Gemini ${model} raw response:`, textContent.substring(0, 500));
 
       const classification = parseGeminiResponse(textContent);
       if (!classification) {
