@@ -482,20 +482,14 @@ export default function CostEstimatorPage() {
                 </div>
 
                 {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div>
                   <Link
                     href={`/${serviceParentSlug}`}
-                    className="flex-1 px-6 py-3.5 text-[12px] tracking-[0.05em] font-medium bg-[#4a90d9] text-[#0a0f1a] rounded-lg hover:bg-[#5a9ee5] transition-colors text-center"
+                    className="block w-full px-6 py-3.5 text-[12px] tracking-[0.05em] font-medium bg-[#4a90d9] text-[#0a0f1a] rounded-lg hover:bg-[#5a9ee5] transition-colors text-center"
                   >
                     Find{" "}
                     {SERVICE_DISPLAY_NAMES[serviceParentSlug] || "Providers"}{" "}
                     Near Me
-                  </Link>
-                  <Link
-                    href="/get-quote"
-                    className="flex-1 px-6 py-3.5 text-[12px] tracking-[0.05em] font-medium text-[#4a90d9] border border-[rgba(74,144,217,0.25)] rounded-lg hover:bg-[rgba(74,144,217,0.08)] transition-colors text-center"
-                  >
-                    Get a Free Quote
                   </Link>
                 </div>
 
