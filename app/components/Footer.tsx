@@ -60,6 +60,9 @@ export default function Footer() {
           <Link href="/compare-evs" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             Compare EVs
           </Link>
+          <Link href="/cost-estimator" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            Cost Estimator
+          </Link>
         </div>
 
         {/* Guides - FIXED: Blog now points to /blog */}

@@ -19,6 +19,7 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
     { name: "CARS", href: "/cars" },
     { name: "BLOG", href: "/blog" },
     { name: "SHOP", href: "/shop" },
+    { name: "ESTIMATE", href: "/cost-estimator" },
     { name: "ABOUT", href: "/about" },
     { name: "CONTACT", href: "/contact" },
   ];
@@ -200,10 +201,17 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
             <div className="pt-4 border-t border-[rgba(74,144,217,0.1)]">
               <Link
                 href="/compare-evs"
-                className="block text-sm text-[#6b7a94] hover:text-[#e8edf5] transition-colors"
+                className="block text-sm text-[#6b7a94] hover:text-[#e8edf5] transition-colors py-1.5"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Compare EVs
+              </Link>
+              <Link
+                href="/cost-estimator"
+                className="block text-sm text-[#6b7a94] hover:text-[#e8edf5] transition-colors py-1.5"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Cost Estimator
               </Link>
             </div>
           </div>
