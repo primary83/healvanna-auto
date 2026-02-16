@@ -132,6 +132,7 @@ export default function CostEstimatorPage() {
       const data = await res.json();
 
       if (!res.ok) {
+        if (data.debugInfo) console.error("Gemini debug:", data.debugInfo);
         setAiError(data.error || "Analysis failed");
         setAnalysisStatus("error");
         return;

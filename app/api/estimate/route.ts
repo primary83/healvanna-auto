@@ -10,6 +10,7 @@ import {
 import type { VehicleSize, Severity } from "../../lib/pricingData";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 // Valid values for validation
 const VALID_VEHICLE_TYPES = VEHICLE_SIZES.map((v) => v.value);
@@ -22,6 +23,68 @@ interface GeminiClassification {
   severity: Severity;
   description: string;
   confidence: "low" | "medium" | "high";
+}
+
+// Helper: call Gemini API with a specific model
+async function callGemini(
+  modelName: string,
+  image: string,
+  mimeType: string
+): Promise<Response> {
+  return fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${GEMINI_API_KEY}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [
+              {
+                inlineData: {
+                  mimeType,
+                  data: image,
+                },
+              },
+              {
+                text: `You are an automotive service cost estimation assistant. Analyze this vehicle photo and classify it.
+
+Return ONLY a JSON object with these exact fields (no markdown, no explanation):
+{
+  "vehicleType": one of: "compact", "sedan", "suv", "truck", "luxury", "exotic",
+  "serviceNeeded": one of: ${VALID_SERVICES.map((s) => `"${s}"`).join(", ")},
+  "severity": one of: "minor", "moderate", "major", "severe",
+  "description": "Brief 1-2 sentence description of what you see — the vehicle type and any visible damage or service needs",
+  "confidence": one of: "low", "medium", "high"
+}
+
+Classification rules:
+- vehicleType: Based on the vehicle's size/class. Compact = small cars, Sedan = mid-size, SUV = SUVs/crossovers, Truck = pickups/vans, Luxury = premium brands (Mercedes S-Class, BMW 7), Exotic = supercars (Ferrari, Lamborghini)
+- serviceNeeded: Pick the MOST RELEVANT service based on visible damage or the vehicle's condition. If no damage is visible, default to "car-detailing"
+- severity: minor = cosmetic/light, moderate = standard, major = significant, severe = structural/extensive
+- If you cannot identify a vehicle, set confidence to "low" and make your best guess`,
+              },
+            ],
+          },
+        ],
+        generationConfig: {
+          temperature: 0.1,
+          maxOutputTokens: 300,
+        },
+      }),
+    }
+  );
+}
+
+// Helper: parse Gemini response text into classification
+function parseGeminiResponse(responseText: string): GeminiClassification | null {
+  const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) return null;
+  try {
+    return JSON.parse(jsonMatch[0]);
+  } catch {
+    return null;
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -46,214 +109,105 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Call Gemini with the image — try 2.0-flash first, fall back to 1.5-flash
-    const modelName = "gemini-2.0-flash";
-    const geminiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${GEMINI_API_KEY}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  inlineData: {
-                    mimeType,
-                    data: image,
-                  },
-                },
-                {
-                  text: `You are an automotive service cost estimation assistant. Analyze this vehicle photo and classify it.
+    // Try models in order — 1.5-flash first (more stable free tier), then 2.0-flash
+    const models = ["gemini-1.5-flash", "gemini-2.0-flash"];
+    const errors: { model: string; status: number; errorText: string }[] = [];
 
-Return ONLY a JSON object with these exact fields (no markdown, no explanation):
-{
-  "vehicleType": one of: "compact", "sedan", "suv", "truck", "luxury", "exotic",
-  "serviceNeeded": one of: ${VALID_SERVICES.map((s) => `"${s}"`).join(", ")},
-  "severity": one of: "minor", "moderate", "major", "severe",
-  "description": "Brief 1-2 sentence description of what you see — the vehicle type and any visible damage or service needs",
-  "confidence": one of: "low", "medium", "high"
-}
+    for (const model of models) {
+      console.log(`Trying Gemini model: ${model}`);
+      let response = await callGemini(model, image, mimeType);
 
-Classification rules:
-- vehicleType: Based on the vehicle's size/class. Compact = small cars, Sedan = mid-size, SUV = SUVs/crossovers, Truck = pickups/vans, Luxury = premium brands (Mercedes S-Class, BMW 7), Exotic = supercars (Ferrari, Lamborghini)
-- serviceNeeded: Pick the MOST RELEVANT service based on visible damage or the vehicle's condition. If no damage is visible, default to "car-detailing"
-- severity: minor = cosmetic/light, moderate = standard, major = significant, severe = structural/extensive
-- If you cannot identify a vehicle, set confidence to "low" and make your best guess`,
-                },
-              ],
-            },
-          ],
-          generationConfig: {
-            temperature: 0.1,
-            maxOutputTokens: 300,
-          },
-        }),
+      // If 429 rate limited, retry once after 2s delay
+      if (response.status === 429) {
+        const retryErrorText = await response.text();
+        console.error(`Gemini ${model} rate limited (429):`, retryErrorText);
+        errors.push({ model: `${model} (1st)`, status: 429, errorText: retryErrorText });
+
+        await sleep(2000);
+        console.log(`Retrying Gemini model: ${model}`);
+        response = await callGemini(model, image, mimeType);
       }
-    );
 
-    if (!geminiResponse.ok) {
-      const errorText = await geminiResponse.text();
-      console.error("Gemini API error:", geminiResponse.status, errorText);
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Gemini ${model} error:`, response.status, errorText);
+        errors.push({ model, status: response.status, errorText });
+        continue; // Try next model
+      }
 
-      // If 2.0-flash fails, try 1.5-flash as fallback
-      if (geminiResponse.status === 404 || geminiResponse.status === 400) {
-        const fallbackResponse = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+      // Success — parse the response
+      const geminiData = await response.json();
+      const textContent =
+        geminiData?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+
+      const classification = parseGeminiResponse(textContent);
+      if (!classification) {
+        console.error(`Failed to parse ${model} response:`, textContent);
+        return NextResponse.json(
           {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              contents: [
-                {
-                  parts: [
-                    {
-                      inlineData: {
-                        mimeType,
-                        data: image,
-                      },
-                    },
-                    {
-                      text: `You are an automotive service cost estimation assistant. Analyze this vehicle photo and classify it.
-
-Return ONLY a JSON object with these exact fields (no markdown, no explanation):
-{
-  "vehicleType": one of: "compact", "sedan", "suv", "truck", "luxury", "exotic",
-  "serviceNeeded": one of: ${VALID_SERVICES.map((s) => `"${s}"`).join(", ")},
-  "severity": one of: "minor", "moderate", "major", "severe",
-  "description": "Brief 1-2 sentence description of what you see — the vehicle type and any visible damage or service needs",
-  "confidence": one of: "low", "medium", "high"
-}
-
-Classification rules:
-- vehicleType: Based on the vehicle's size/class. Compact = small cars, Sedan = mid-size, SUV = SUVs/crossovers, Truck = pickups/vans, Luxury = premium brands (Mercedes S-Class, BMW 7), Exotic = supercars (Ferrari, Lamborghini)
-- serviceNeeded: Pick the MOST RELEVANT service based on visible damage or the vehicle's condition. If no damage is visible, default to "car-detailing"
-- severity: minor = cosmetic/light, moderate = standard, major = significant, severe = structural/extensive
-- If you cannot identify a vehicle, set confidence to "low" and make your best guess`,
-                    },
-                  ],
-                },
-              ],
-              generationConfig: {
-                temperature: 0.1,
-                maxOutputTokens: 300,
-              },
-            }),
-          }
+            error: "Could not analyze the photo. Please try a clearer image or use the manual estimator.",
+            code: "PARSE_ERROR",
+          },
+          { status: 422 }
         );
-
-        if (fallbackResponse.ok) {
-          // Use fallback response — continue processing below
-          const fallbackData = await fallbackResponse.json();
-          const fallbackText =
-            fallbackData?.candidates?.[0]?.content?.parts?.[0]?.text || "";
-
-          let classification: GeminiClassification;
-          try {
-            const jsonMatch = fallbackText.match(/\{[\s\S]*\}/);
-            if (!jsonMatch) throw new Error("No JSON in fallback");
-            classification = JSON.parse(jsonMatch[0]);
-          } catch {
-            return NextResponse.json(
-              { error: "Could not analyze the photo. Please try a clearer image or use the manual estimator.", code: "PARSE_ERROR" },
-              { status: 422 }
-            );
-          }
-
-          const vt = VALID_VEHICLE_TYPES.includes(classification.vehicleType) ? classification.vehicleType : "sedan";
-          const sn = VALID_SERVICES.includes(classification.serviceNeeded) ? classification.serviceNeeded : "car-detailing";
-          const sv = VALID_SEVERITIES.includes(classification.severity) ? classification.severity : "moderate";
-          const est = calculateEstimate(sn, vt as VehicleSize, sv as Severity);
-          if (!est) return NextResponse.json({ error: "Could not calculate estimate" }, { status: 500 });
-
-          return NextResponse.json({
-            classification: {
-              vehicleType: vt, serviceNeeded: sn, severity: sv,
-              description: classification.description || "Vehicle analyzed",
-              confidence: classification.confidence || "medium",
-              serviceName: SERVICE_DISPLAY_NAMES[sn] || sn,
-              serviceParentSlug: SERVICE_PARENT_SLUGS[sn] || sn,
-            },
-            estimate: est,
-          });
-        }
       }
 
-      return NextResponse.json(
-        {
-          error: "AI analysis failed. Please try the manual estimator instead.",
-          code: "GEMINI_ERROR",
-          debug: process.env.NODE_ENV === "development" ? errorText : undefined,
-        },
-        { status: 502 }
-      );
-    }
+      // Validate and sanitize
+      const vehicleType = VALID_VEHICLE_TYPES.includes(classification.vehicleType)
+        ? classification.vehicleType
+        : "sedan";
+      const serviceNeeded = VALID_SERVICES.includes(classification.serviceNeeded)
+        ? classification.serviceNeeded
+        : "car-detailing";
+      const severity = VALID_SEVERITIES.includes(classification.severity)
+        ? classification.severity
+        : "moderate";
 
-    const geminiData = await geminiResponse.json();
-
-    // Extract the text response
-    const textContent =
-      geminiData?.candidates?.[0]?.content?.parts?.[0]?.text || "";
-
-    // Parse JSON from the response (handle potential markdown wrapping)
-    let classification: GeminiClassification;
-    try {
-      const jsonMatch = textContent.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) {
-        throw new Error("No JSON found in response");
-      }
-      classification = JSON.parse(jsonMatch[0]);
-    } catch {
-      console.error("Failed to parse Gemini response:", textContent);
-      return NextResponse.json(
-        {
-          error:
-            "Could not analyze the photo. Please try a clearer image or use the manual estimator.",
-          code: "PARSE_ERROR",
-        },
-        { status: 422 }
-      );
-    }
-
-    // Validate and sanitize the classification
-    const vehicleType = VALID_VEHICLE_TYPES.includes(classification.vehicleType)
-      ? classification.vehicleType
-      : "sedan";
-
-    const serviceNeeded = VALID_SERVICES.includes(classification.serviceNeeded)
-      ? classification.serviceNeeded
-      : "car-detailing";
-
-    const severity = VALID_SEVERITIES.includes(classification.severity)
-      ? classification.severity
-      : "moderate";
-
-    // Calculate estimate using our deterministic pricing engine
-    const estimate = calculateEstimate(
-      serviceNeeded,
-      vehicleType as VehicleSize,
-      severity as Severity
-    );
-
-    if (!estimate) {
-      return NextResponse.json(
-        { error: "Could not calculate estimate for this service" },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json({
-      classification: {
-        vehicleType,
+      // Calculate estimate
+      const estimate = calculateEstimate(
         serviceNeeded,
-        severity,
-        description: classification.description || "Vehicle analyzed",
-        confidence: classification.confidence || "medium",
-        serviceName: SERVICE_DISPLAY_NAMES[serviceNeeded] || serviceNeeded,
-        serviceParentSlug: SERVICE_PARENT_SLUGS[serviceNeeded] || serviceNeeded,
+        vehicleType as VehicleSize,
+        severity as Severity
+      );
+
+      if (!estimate) {
+        return NextResponse.json(
+          { error: "Could not calculate estimate for this service" },
+          { status: 500 }
+        );
+      }
+
+      console.log(`Gemini ${model} succeeded — ${serviceNeeded}, ${vehicleType}, ${severity}`);
+
+      return NextResponse.json({
+        classification: {
+          vehicleType,
+          serviceNeeded,
+          severity,
+          description: classification.description || "Vehicle analyzed",
+          confidence: classification.confidence || "medium",
+          serviceName: SERVICE_DISPLAY_NAMES[serviceNeeded] || serviceNeeded,
+          serviceParentSlug: SERVICE_PARENT_SLUGS[serviceNeeded] || serviceNeeded,
+        },
+        estimate,
+      });
+    }
+
+    // All models failed — return error with debug info
+    const errorSummary = errors
+      .map((e) => `${e.model}: ${e.status}`)
+      .join(", ");
+    const lastError = errors[errors.length - 1];
+
+    // TODO: Remove debugInfo once Gemini quota issue is resolved
+    return NextResponse.json(
+      {
+        error: "AI analysis failed. Please try the manual estimator instead.",
+        code: "GEMINI_ERROR",
+        debugInfo: `Models tried: ${errorSummary}. Last error: ${(lastError?.errorText || "").substring(0, 500)}`,
       },
-      estimate,
-    });
+      { status: 502 }
+    );
   } catch (error) {
     console.error("Estimate API error:", error);
     return NextResponse.json(
