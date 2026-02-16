@@ -46,9 +46,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Call Gemini 2.0 Flash with the image
+    // Call Gemini with the image — try 2.0-flash first, fall back to 1.5-flash
+    const modelName = "gemini-2.0-flash";
     const geminiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -94,10 +95,95 @@ Classification rules:
     if (!geminiResponse.ok) {
       const errorText = await geminiResponse.text();
       console.error("Gemini API error:", geminiResponse.status, errorText);
+
+      // If 2.0-flash fails, try 1.5-flash as fallback
+      if (geminiResponse.status === 404 || geminiResponse.status === 400) {
+        const fallbackResponse = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [
+                {
+                  parts: [
+                    {
+                      inlineData: {
+                        mimeType,
+                        data: image,
+                      },
+                    },
+                    {
+                      text: `You are an automotive service cost estimation assistant. Analyze this vehicle photo and classify it.
+
+Return ONLY a JSON object with these exact fields (no markdown, no explanation):
+{
+  "vehicleType": one of: "compact", "sedan", "suv", "truck", "luxury", "exotic",
+  "serviceNeeded": one of: ${VALID_SERVICES.map((s) => `"${s}"`).join(", ")},
+  "severity": one of: "minor", "moderate", "major", "severe",
+  "description": "Brief 1-2 sentence description of what you see — the vehicle type and any visible damage or service needs",
+  "confidence": one of: "low", "medium", "high"
+}
+
+Classification rules:
+- vehicleType: Based on the vehicle's size/class. Compact = small cars, Sedan = mid-size, SUV = SUVs/crossovers, Truck = pickups/vans, Luxury = premium brands (Mercedes S-Class, BMW 7), Exotic = supercars (Ferrari, Lamborghini)
+- serviceNeeded: Pick the MOST RELEVANT service based on visible damage or the vehicle's condition. If no damage is visible, default to "car-detailing"
+- severity: minor = cosmetic/light, moderate = standard, major = significant, severe = structural/extensive
+- If you cannot identify a vehicle, set confidence to "low" and make your best guess`,
+                    },
+                  ],
+                },
+              ],
+              generationConfig: {
+                temperature: 0.1,
+                maxOutputTokens: 300,
+              },
+            }),
+          }
+        );
+
+        if (fallbackResponse.ok) {
+          // Use fallback response — continue processing below
+          const fallbackData = await fallbackResponse.json();
+          const fallbackText =
+            fallbackData?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+
+          let classification: GeminiClassification;
+          try {
+            const jsonMatch = fallbackText.match(/\{[\s\S]*\}/);
+            if (!jsonMatch) throw new Error("No JSON in fallback");
+            classification = JSON.parse(jsonMatch[0]);
+          } catch {
+            return NextResponse.json(
+              { error: "Could not analyze the photo. Please try a clearer image or use the manual estimator.", code: "PARSE_ERROR" },
+              { status: 422 }
+            );
+          }
+
+          const vt = VALID_VEHICLE_TYPES.includes(classification.vehicleType) ? classification.vehicleType : "sedan";
+          const sn = VALID_SERVICES.includes(classification.serviceNeeded) ? classification.serviceNeeded : "car-detailing";
+          const sv = VALID_SEVERITIES.includes(classification.severity) ? classification.severity : "moderate";
+          const est = calculateEstimate(sn, vt as VehicleSize, sv as Severity);
+          if (!est) return NextResponse.json({ error: "Could not calculate estimate" }, { status: 500 });
+
+          return NextResponse.json({
+            classification: {
+              vehicleType: vt, serviceNeeded: sn, severity: sv,
+              description: classification.description || "Vehicle analyzed",
+              confidence: classification.confidence || "medium",
+              serviceName: SERVICE_DISPLAY_NAMES[sn] || sn,
+              serviceParentSlug: SERVICE_PARENT_SLUGS[sn] || sn,
+            },
+            estimate: est,
+          });
+        }
+      }
+
       return NextResponse.json(
         {
           error: "AI analysis failed. Please try the manual estimator instead.",
           code: "GEMINI_ERROR",
+          debug: process.env.NODE_ENV === "development" ? errorText : undefined,
         },
         { status: 502 }
       );
