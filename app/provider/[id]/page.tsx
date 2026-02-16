@@ -161,6 +161,7 @@ export default function ProviderDetailPage() {
                 src={provider.photos[activePhoto]}
                 alt={`${provider.name} photo ${activePhoto + 1}`}
                 className="w-full h-full object-cover"
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
               />
               {provider.photos.length > 1 && (
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">

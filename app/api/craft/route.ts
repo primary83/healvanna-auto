@@ -64,7 +64,7 @@ export async function GET(request: NextRequest) {
         id: place.id,
         name: displayName?.text || "",
         image_url: photos?.[0]
-          ? `https://places.googleapis.com/v1/${photos[0].name}/media?maxHeightPx=400&maxWidthPx=600&key=${GOOGLE_API_KEY}`
+          ? `/api/photo?ref=${photos[0].name}&maxWidth=600&maxHeight=400`
           : "",
         url: `https://www.google.com/maps/place/?q=place_id:${place.id}`,
         rating: place.rating || 0,

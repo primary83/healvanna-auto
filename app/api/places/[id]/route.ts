@@ -80,10 +80,10 @@ export async function GET(
       PRICE_LEVEL_VERY_EXPENSIVE: "$$$$",
     };
 
-    // Build photos array
+    // Build photos array (proxy through our API to hide key)
     const photos = (place.photos || []).map(
       (photo: Record<string, string>) =>
-        `https://places.googleapis.com/v1/${photo.name}/media?maxHeightPx=600&maxWidthPx=800&key=${GOOGLE_API_KEY}`
+        `/api/photo?ref=${photo.name}&maxWidth=800&maxHeight=600`
     );
 
     // Parse hours into the format the frontend expects

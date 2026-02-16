@@ -276,18 +276,16 @@ export default function CraftPage() {
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-[rgba(15,22,40,0.6)] rounded-xl p-5 border border-[rgba(74,144,217,0.12)] animate-pulse">
-                  <div className="flex gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-lg bg-[rgba(74,144,217,0.1)]"></div>
-                    <div className="flex-1">
-                      <div className="h-4 bg-[rgba(74,144,217,0.1)] rounded mb-2 w-3/4"></div>
-                      <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/2"></div>
+                <div key={i} className="bg-[rgba(15,22,40,0.6)] rounded-xl overflow-hidden border border-[rgba(74,144,217,0.12)] animate-pulse">
+                  <div className="h-40 bg-[rgba(74,144,217,0.1)]"></div>
+                  <div className="p-5">
+                    <div className="h-4 bg-[rgba(74,144,217,0.1)] rounded mb-2 w-3/4"></div>
+                    <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/2 mb-3"></div>
+                    <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/3 mb-4"></div>
+                    <div className="flex gap-2">
+                      <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-16"></div>
+                      <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-24"></div>
                     </div>
-                  </div>
-                  <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/3 mb-4"></div>
-                  <div className="flex gap-2">
-                    <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-16"></div>
-                    <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-24"></div>
                   </div>
                 </div>
               ))}
@@ -314,52 +312,54 @@ export default function CraftPage() {
                   href={provider.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[rgba(15,22,40,0.6)] rounded-xl p-5 border border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.35)] transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 cursor-pointer group"
+                  className="bg-[rgba(15,22,40,0.6)] rounded-xl overflow-hidden border border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.35)] transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 cursor-pointer group"
                 >
-                  {/* Top Row: Image + Info */}
-                  <div className="flex gap-4 mb-4">
-                    {/* Image Container */}
-                    <div className="w-14 h-14 rounded-lg bg-[rgba(74,144,217,0.1)] flex items-center justify-center flex-shrink-0 overflow-hidden">
-                      {provider.image ? (
-                        <img
-                          src={provider.image}
-                          alt={provider.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <svg className="w-7 h-7 text-[#4a90d9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  {/* Hero Image */}
+                  <div className="relative h-40 w-full bg-gradient-to-br from-[rgba(74,144,217,0.15)] to-[rgba(15,22,40,0.8)]">
+                    {provider.image ? (
+                      <img
+                        src={provider.image}
+                        alt={provider.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <svg className="w-12 h-12 text-[#4a90d9]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
+                      </div>
+                    )}
+                    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[rgba(15,22,40,0.8)] to-transparent" />
+                  </div>
+
+                  {/* Info Section */}
+                  <div className="p-5">
+                    <h3 className="text-[15px] font-semibold text-[#e8edf5] mb-1 truncate group-hover:text-[#4a90d9] transition-colors">
+                      {provider.name}
+                    </h3>
+                    <p className="text-[12px] text-[#6b7a94] truncate mb-3">
+                      {provider.address}
+                    </p>
+
+                    {/* Rating Row */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[#f5c518] text-sm">★</span>
+                      <span className="text-[13px] font-medium text-[#e8edf5]">{provider.rating}</span>
+                      <span className="text-[12px] text-[#6b7a94]">({provider.reviewCount})</span>
+                      <span className="text-[12px] text-[#4a90d9] ml-1">{provider.distanceText}</span>
+                      {provider.priceRange && (
+                        <span className="text-[12px] text-[#6b7a94] ml-auto">{provider.priceRange}</span>
                       )}
                     </div>
 
-                    {/* Provider Info */}
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-[15px] font-semibold text-[#e8edf5] mb-1 truncate group-hover:text-[#4a90d9] transition-colors">
-                        {provider.name}
-                      </h3>
-                      <p className="text-[12px] text-[#6b7a94] truncate">
-                        {provider.address}
-                      </p>
+                    {/* Category Tag */}
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-[10px] font-medium px-3 py-1.5 rounded-md bg-[rgba(74,144,217,0.12)] text-[#4a90d9]">
+                        {provider.category}
+                      </span>
                     </div>
-                  </div>
-
-                  {/* Rating Row */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="text-[#f5c518] text-sm">★</span>
-                    <span className="text-[13px] font-medium text-[#e8edf5]">{provider.rating}</span>
-                    <span className="text-[12px] text-[#6b7a94]">({provider.reviewCount})</span>
-                    <span className="text-[12px] text-[#4a90d9] ml-1">{provider.distanceText}</span>
-                    {provider.priceRange && (
-                      <span className="text-[12px] text-[#6b7a94] ml-auto">{provider.priceRange}</span>
-                    )}
-                  </div>
-
-                  {/* Category Tag */}
-                  <div className="flex flex-wrap gap-2">
-                    <span className="text-[10px] font-medium px-3 py-1.5 rounded-md bg-[rgba(74,144,217,0.12)] text-[#4a90d9]">
-                      {provider.category}
-                    </span>
                   </div>
                 </a>
               ))}

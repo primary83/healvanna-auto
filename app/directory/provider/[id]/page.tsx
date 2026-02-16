@@ -160,16 +160,23 @@ export default function ProviderDetailPage() {
             <div className="max-w-[1000px] mx-auto">
               <div className="flex flex-col md:flex-row md:items-start gap-6">
                 {/* Image */}
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-xl bg-[rgba(74,144,217,0.1)] flex items-center justify-center flex-shrink-0 overflow-hidden">
+                <div className="w-24 h-24 md:w-32 md:h-32 rounded-xl bg-gradient-to-br from-[rgba(74,144,217,0.15)] to-[rgba(15,22,40,0.8)] flex items-center justify-center flex-shrink-0 overflow-hidden">
                   {provider.image ? (
                     <img
                       src={provider.image}
                       alt={provider.name}
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const img = e.target as HTMLImageElement;
+                        img.style.display = 'none';
+                        if (img.parentElement) {
+                          img.parentElement.innerHTML = '<svg class="w-12 h-12 text-[#4a90d9]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>';
+                        }
+                      }}
                     />
                   ) : (
                     <svg
-                      className="w-12 h-12 text-[#4a90d9]"
+                      className="w-12 h-12 text-[#4a90d9]/30"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

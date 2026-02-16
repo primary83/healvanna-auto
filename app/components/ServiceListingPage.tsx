@@ -434,19 +434,17 @@ function ServiceListingContent({ service, subcategorySlug }: ServiceListingPageP
               {[...Array(6)].map((_, i) => (
                 <div
                   key={i}
-                  className="bg-[rgba(15,22,40,0.6)] rounded-xl p-5 border border-[rgba(74,144,217,0.12)] animate-pulse"
+                  className="bg-[rgba(15,22,40,0.6)] rounded-xl overflow-hidden border border-[rgba(74,144,217,0.12)] animate-pulse"
                 >
-                  <div className="flex gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-lg bg-[rgba(74,144,217,0.1)]" />
-                    <div className="flex-1">
-                      <div className="h-4 bg-[rgba(74,144,217,0.1)] rounded mb-2 w-3/4" />
-                      <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/2" />
+                  <div className="h-40 bg-[rgba(74,144,217,0.1)]" />
+                  <div className="p-5">
+                    <div className="h-4 bg-[rgba(74,144,217,0.1)] rounded mb-2 w-3/4" />
+                    <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/2 mb-3" />
+                    <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/3 mb-4" />
+                    <div className="flex gap-2">
+                      <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-16" />
+                      <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-24" />
                     </div>
-                  </div>
-                  <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/3 mb-4" />
-                  <div className="flex gap-2">
-                    <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-16" />
-                    <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-24" />
                   </div>
                 </div>
               ))}
