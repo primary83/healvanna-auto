@@ -109,8 +109,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Try models in order — 1.5-flash first (more stable free tier), then 2.0-flash
-    const models = ["gemini-1.5-flash", "gemini-2.0-flash"];
+    // Try models in order — 2.0-flash first, then 1.5-flash-latest as fallback
+    const models = ["gemini-2.0-flash", "gemini-1.5-flash-latest"];
     const errors: { model: string; status: number; errorText: string }[] = [];
 
     for (const model of models) {
