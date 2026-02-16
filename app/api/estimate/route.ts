@@ -112,9 +112,9 @@ export async function POST(request: NextRequest) {
 
     // Try models in order with their preferred API versions
     const modelConfigs = [
-      { model: "gemini-2.5-flash-preview-05-20", apiVersion: "v1beta" },
+      { model: "gemini-2.5-flash", apiVersion: "v1beta" },
       { model: "gemini-2.0-flash", apiVersion: "v1beta" },
-      { model: "gemini-1.5-flash", apiVersion: "v1" },
+      { model: "gemini-2.0-flash-lite", apiVersion: "v1beta" },
     ];
     const errors: { model: string; status: number; errorText: string }[] = [];
 
