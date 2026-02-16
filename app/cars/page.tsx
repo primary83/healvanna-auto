@@ -284,13 +284,12 @@ export default function CarsPage() {
                 href={brand.link}
                 className="bg-gradient-to-b from-[rgba(15,22,40,0.8)] to-[rgba(10,15,26,0.9)] rounded-xl overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.1)] hover:border-[rgba(74,144,217,0.3)] transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(74,144,217,0.15)] group block"
               >
-                <div className="h-56 overflow-hidden relative bg-gradient-to-br from-[#12182a] to-[#0d1220] flex items-center justify-center p-4">
+                <div className="h-56 overflow-hidden relative bg-gradient-to-br from-[rgba(74,144,217,0.08)] to-[rgba(15,22,40,0.9)]">
                   <Image
                     src={brand.image}
                     alt={brand.name}
-                    width={280}
-                    height={160}
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-5">

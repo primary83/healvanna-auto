@@ -326,12 +326,12 @@ export default function Home() {
               { name: "Porsche", models: "Taycan · Macan EV", image: "/cars/porsche/taycan.png", href: "/cars/porsche", count: "2 Models", color: "red" },
             ].map((brand) => (
               <Link key={brand.name} href={brand.href} className="bg-[rgba(15,22,40,0.5)] rounded-xl overflow-hidden border border-[rgba(74,144,217,0.1)] hover:border-[rgba(74,144,217,0.3)] transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.4)] group block">
-                <div className="h-[140px] relative overflow-hidden bg-gradient-to-b from-[rgba(74,144,217,0.05)] to-transparent">
+                <div className="h-[160px] relative overflow-hidden bg-gradient-to-br from-[rgba(74,144,217,0.08)] to-[rgba(15,22,40,0.9)]">
                   <Image
                     src={brand.image}
                     alt={brand.name}
                     fill
-                    className="object-contain object-center p-4 group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-5">
