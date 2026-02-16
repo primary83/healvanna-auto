@@ -29,10 +29,11 @@ interface GeminiClassification {
 async function callGemini(
   modelName: string,
   image: string,
-  mimeType: string
+  mimeType: string,
+  apiVersion: string = "v1beta"
 ): Promise<Response> {
   return fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${GEMINI_API_KEY}`,
+    `https://generativelanguage.googleapis.com/${apiVersion}/models/${modelName}:generateContent?key=${GEMINI_API_KEY}`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -109,13 +110,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Try models in order — 2.0-flash first, then 1.5-flash-latest as fallback
-    const models = ["gemini-2.0-flash", "gemini-1.5-flash-latest"];
+    // Try models in order with their preferred API versions
+    const modelConfigs = [
+      { model: "gemini-2.5-flash-preview-05-20", apiVersion: "v1beta" },
+      { model: "gemini-2.0-flash", apiVersion: "v1beta" },
+      { model: "gemini-1.5-flash", apiVersion: "v1" },
+    ];
     const errors: { model: string; status: number; errorText: string }[] = [];
 
-    for (const model of models) {
-      console.log(`Trying Gemini model: ${model}`);
-      let response = await callGemini(model, image, mimeType);
+    for (const { model, apiVersion } of modelConfigs) {
+      console.log(`Trying Gemini model: ${model} (${apiVersion})`);
+      let response = await callGemini(model, image, mimeType, apiVersion);
 
       // If 429 rate limited, retry once after 2s delay
       if (response.status === 429) {
