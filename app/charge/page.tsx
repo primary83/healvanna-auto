@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useEffect, useMemo } from "react";
-import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
@@ -89,12 +88,12 @@ export default function ChargePage() {
   const [hasSearched, setHasSearched] = useState(false);
   const [detectingLocation, setDetectingLocation] = useState(false);
 
-  const searchParams = useSearchParams();
   const selectedEv = EV_MODELS.find((ev) => ev.id === selectedVehicle);
 
   // Auto-select vehicle from ?vehicle= query param
   useEffect(() => {
-    const vehicleParam = searchParams.get("vehicle");
+    const params = new URLSearchParams(window.location.search);
+    const vehicleParam = params.get("vehicle");
     if (!vehicleParam) return;
 
     // Match slug format "brand/model" against EV_MODELS
@@ -105,7 +104,7 @@ export default function ChargePage() {
     if (match) {
       setSelectedVehicle(match.id);
     }
-  }, [searchParams]);
+  }, []);
 
   // Auto-detect location on mount
   useEffect(() => {
