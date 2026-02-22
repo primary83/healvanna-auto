@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function VF7Page() {
   const variants = [{ name: "Plus", price: "$51,450", range: "236 mi", power: "248 hp" }, { name: "Plus AWD", price: "$56,950", range: "215 mi", power: "348 hp" }];
@@ -37,6 +38,9 @@ export default function VF7Page() {
       <div className="px-6 md:px-12 py-12"><div className="max-w-7xl mx-auto"><h2 className="text-2xl font-light text-[#e8edf5] mb-8">Available Variants</h2><div className="grid md:grid-cols-2 gap-6">{variants.map((v) => (<div key={v.name} className="bg-[#0d1420] rounded-xl p-6 border border-[#1a2235] hover:border-[#2a3a55] transition-colors"><h3 className="text-lg font-medium text-[#e8edf5] mb-2">{v.name}</h3><p className="text-[#4a90d9] text-xl font-light mb-4">{v.price}</p><div className="flex justify-between text-sm"><span className="text-[#6b7a94]">Range: {v.range}</span><span className="text-[#6b7a94]">Power: {v.power}</span></div></div>))}</div></div></div>
       <div className="px-6 md:px-12 py-12 bg-[#0d1420]"><div className="max-w-7xl mx-auto"><h2 className="text-2xl font-light text-[#e8edf5] mb-8">Key Features</h2><div className="grid md:grid-cols-4 gap-4">{["15.6\" Central Display", "ADAS Level 2+", "Wireless CarPlay", "Panoramic Sunroof", "Smart Remote Parking", "V2L Capability", "Premium Sound System", "OTA Updates"].map((f) => (<div key={f} className="bg-[#111927] rounded-lg p-4 border border-[#1a2235]"><span className="text-[#e8edf5] text-sm">{f}</span></div>))}</div></div></div>
       <div className="px-6 md:px-12 py-8"><div className="max-w-7xl mx-auto"><Link href="/cars/vinfast" className="inline-flex items-center gap-2 text-[#4a90d9] hover:text-[#6ba5e7] transition-colors"><span>←</span><span>Back to VinFast Models</span></Link></div></div>
+      {/* Charging Compatibility */}
+      <ChargingSection brand="VinFast" model="VF 7" slug="vinfast/vf7" range={236} theme="sapphire" />
+
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]"><div className="max-w-7xl mx-auto"><div className="flex flex-col md:flex-row justify-between items-center gap-4"><div className="text-[11px] text-[#6b7a94]">© 2024 Healvanna Auto. All rights reserved.</div><div className="flex gap-6">{["Privacy", "Terms", "Cookies"].map((l) => (<Link key={l} href={`/${l.toLowerCase()}`} className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors">{l}</Link>))}</div></div></div></footer>
     </main>
   );

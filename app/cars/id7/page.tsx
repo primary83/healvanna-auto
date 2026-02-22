@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import ChargingSection from "../../../components/ChargingSection";
+import ChargingSection from "../../components/ChargingSection";
 
 export default function ID7Page() {
   const specs = {
@@ -129,7 +129,7 @@ export default function ID7Page() {
         </Link>
       </div>
       {/* Charging Compatibility */}
-      <ChargingSection brand="Volkswagen" model="ID.7" slug="volkswagen/id7" range={340} theme="slate" />
+      <ChargingSection brand="Volkswagen" model="ID.7" slug="id7" range={340} theme="slate" />
 
     </main>
   );

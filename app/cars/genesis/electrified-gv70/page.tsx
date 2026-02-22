@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Battery, Gauge, Zap, Clock, Star, Shield, Cog } from "lucide-react";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function ElectrifiedGV70Page() {
   return (
@@ -137,6 +138,9 @@ export default function ElectrifiedGV70Page() {
           </table>
         </div>
       </div>
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Genesis" model="Electrified GV70" slug="genesis/electrified-gv70" range={236} theme="slate" />
+
     </div>
   );
 }

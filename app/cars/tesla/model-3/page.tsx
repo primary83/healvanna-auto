@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function TeslaModel3() {
   const variants = [
@@ -184,6 +185,9 @@ export default function TeslaModel3() {
       </section>
 
       {/* Features Section */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Tesla" model="Model 3" slug="tesla/model-3" range={333} theme="slate" />
+
       <section className="px-4 pb-20">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-8">Key Features</h2>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function VolvoEX30Page() {
   return (
@@ -100,6 +101,9 @@ export default function VolvoEX30Page() {
       </section>
 
       {/* Footer */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Volvo" model="EX30" slug="volvo/ex30" range={275} theme="sapphire" />
+
       <footer className="bg-[#080c14] py-16 px-12">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)]">

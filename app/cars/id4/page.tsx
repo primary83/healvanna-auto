@@ -3,25 +3,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import ChargingSection from "../../../components/ChargingSection";
+import ChargingSection from "../../components/ChargingSection";
 
-export default function ID7Page() {
+export default function ID4Page() {
   const specs = {
-    range: "340 miles",
-    acceleration: "5.5s 0-60 mph",
-    power: "282 hp",
+    range: "275 miles",
+    acceleration: "5.7s 0-60 mph",
+    power: "295 hp (AWD)",
     drivetrain: "RWD / AWD",
-    battery: "86 kWh",
-    charging: "200 kW DC fast charging",
+    battery: "82 kWh",
+    charging: "170 kW DC fast charging",
   };
 
   const features = [
-    "Flagship sedan aerodynamic design",
-    "15-inch touchscreen display",
+    "ID.Light intuitive communication",
+    "12-inch touchscreen infotainment",
+    "IQ.DRIVE advanced driver assistance",
+    "Spacious interior with flat floor",
     "Augmented reality head-up display",
-    "Air Quality Package with massage seats",
-    "Travel Assist with Swarm Data",
-    "Premium Harman Kardon audio",
+    "Wireless App-Connect",
   ];
 
   return (
@@ -30,8 +30,8 @@ export default function ID7Page() {
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#001e50]/20 via-[#0a0a0a]/70 to-[#0a0a0a]" />
         <Image
-          src="/cars/volkswagen/id7.png"
-          alt="Volkswagen ID.7"
+          src="/cars/volkswagen/id4.png"
+          alt="Volkswagen ID.4"
           fill
           className="object-cover opacity-60"
           priority
@@ -44,12 +44,12 @@ export default function ID7Page() {
           >
             <p className="text-[#001e50] font-semibold mb-4 text-lg">Volkswagen</p>
             <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 tracking-tight">
-              ID.7
+              ID.4
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
-              The Electric Flagship Sedan
+              The Electric SUV for Everyone
             </p>
-            <p className="text-3xl font-bold text-white mt-6">Starting at $50,495</p>
+            <p className="text-3xl font-bold text-white mt-6">Starting at $38,995</p>
           </motion.div>
         </div>
       </section>
@@ -129,7 +129,7 @@ export default function ID7Page() {
         </Link>
       </div>
       {/* Charging Compatibility */}
-      <ChargingSection brand="Volkswagen" model="ID.7" slug="volkswagen/id7" range={340} theme="slate" />
+      <ChargingSection brand="Volkswagen" model="ID.4" slug="id4" range={275} theme="slate" />
 
     </main>
   );

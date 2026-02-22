@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import ChargingSection from "../../components/ChargingSection";
 
 export default function LucidAirTouringPage() {
   return (
@@ -84,6 +85,9 @@ export default function LucidAirTouringPage() {
       </section>
 
       {/* Specs */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Lucid" model="Air Touring" slug="air-touring" range={425} theme="sapphire" />
+
       <section className="py-16 px-6 md:px-12 bg-[#0d1424]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-light mb-8">Specifications</h2>

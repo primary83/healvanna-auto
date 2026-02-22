@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function ETronGTPage() {
   const specs = {
@@ -105,6 +106,9 @@ export default function ETronGTPage() {
           </Link>
         </div>
       </section>
+
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Audi" model="e-tron GT" slug="audi/e-tron-gt" range={238} theme="sapphire" />
 
       <footer className="bg-[#080c14] py-16 px-6 md:px-12">
         <div className="max-w-[1200px] mx-auto">

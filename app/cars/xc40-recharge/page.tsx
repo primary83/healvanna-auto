@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import ChargingSection from "../../components/ChargingSection";
 
 export default function VolvoXC40RechargePage() {
   return (
@@ -100,6 +101,9 @@ export default function VolvoXC40RechargePage() {
       </section>
 
       {/* Footer */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Volvo" model="XC40 Recharge" slug="xc40-recharge" range={254} theme="sapphire" />
+
       <footer className="bg-[#080c14] py-16 px-12">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)]">

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function BMWi4() {
   const variants = [
@@ -185,6 +186,9 @@ export default function BMWi4() {
       </section>
 
       {/* Features Section */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="BMW" model="i4" slug="bmw/i4" range={301} theme="slate" />
+
       <section className="px-4 pb-20">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-8">Key Features</h2>

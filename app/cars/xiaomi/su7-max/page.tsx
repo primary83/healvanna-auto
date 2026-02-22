@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function XiaomiSU7MaxPage() {
   const variants = [
@@ -149,6 +150,9 @@ export default function XiaomiSU7MaxPage() {
       </section>
 
       {/* Key Features */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Xiaomi" model="SU7 Max" slug="xiaomi/su7-max" range={466} theme="sapphire" />
+
       <section className="py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-light mb-8">Key Features</h2>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function HyundaiIoniq5Page() {
   return (
@@ -84,6 +85,9 @@ export default function HyundaiIoniq5Page() {
       </section>
 
       {/* Specs */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Hyundai" model="Ioniq 5" slug="hyundai/ioniq-5" range={303} theme="sapphire" />
+
       <section className="py-16 px-6 md:px-12 bg-[#0d1424]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-light mb-8">Specifications</h2>

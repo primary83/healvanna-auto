@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function ZeekrXPage() {
   const variants = [
@@ -150,6 +151,9 @@ export default function ZeekrXPage() {
       </section>
 
       {/* Key Features */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Zeekr" model="X" slug="zeekr/x" range={311} theme="sapphire" />
+
       <section className="py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-light mb-8">Key Features</h2>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function RivianR1T() {
   const variants = [
@@ -187,6 +188,9 @@ export default function RivianR1T() {
       </section>
 
       {/* Features Section */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Rivian" model="R1T" slug="rivian/r1t" range={314} theme="slate" />
+
       <section className="px-4 pb-20">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-8">Key Features</h2>

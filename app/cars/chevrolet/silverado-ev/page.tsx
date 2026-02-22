@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function SilveradoEVPage() {
   const variants = [
@@ -170,6 +171,9 @@ export default function SilveradoEVPage() {
       </div>
 
       {/* Footer */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Chevrolet" model="Silverado EV" slug="chevrolet/silverado-ev" range={450} theme="sapphire" />
+
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">

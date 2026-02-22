@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Battery, Gauge, Zap, Clock, Star, Shield, Cog } from "lucide-react";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function GV60Page() {
   return (
@@ -137,6 +138,9 @@ export default function GV60Page() {
           </table>
         </div>
       </div>
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Genesis" model="GV60" slug="genesis/gv60" range={248} theme="slate" />
+
     </div>
   );
 }

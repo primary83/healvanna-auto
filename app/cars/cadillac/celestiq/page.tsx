@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function CelestiqPage() {
   return (
@@ -145,6 +146,9 @@ export default function CelestiqPage() {
       </div>
 
       {/* Footer */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Cadillac" model="CELESTIQ" slug="cadillac/celestiq" range={300} theme="sapphire" />
+
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function MustangMachEPage() {
   const specs = {
@@ -240,6 +241,9 @@ export default function MustangMachEPage() {
       </div>
 
       {/* Footer */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Ford" model="Mustang Mach-E" slug="ford/mustang-mach-e" range={312} theme="sapphire" />
+
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">

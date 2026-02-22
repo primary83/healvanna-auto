@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function MercedesEQB() {
   const variants = [
@@ -121,6 +122,9 @@ export default function MercedesEQB() {
           </div>
         </div>
       </section>
+
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Mercedes" model="EQB" slug="mercedes/eqb" range={245} theme="slate" />
 
       <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center text-slate-400"><p>© 2026 Healvanna Auto. All rights reserved.</p></div>

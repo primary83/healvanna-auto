@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function IDBuzzPage() {
   const specs = {
@@ -127,6 +128,9 @@ export default function IDBuzzPage() {
           All Brands
         </Link>
       </div>
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Volkswagen" model="ID. Buzz" slug="volkswagen/id-buzz" range={234} theme="slate" />
+
     </main>
   );
 }

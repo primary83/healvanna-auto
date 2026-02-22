@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import ChargingSection from "../../../components/ChargingSection";
 
 export default function LiAutoMEGAPage() {
   const variants = [
@@ -120,6 +121,9 @@ export default function LiAutoMEGAPage() {
           </Link>
         </div>
       </section>
+
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Li Auto" model="MEGA" slug="li-auto/mega" range={440} theme="sapphire" />
 
       <footer className="bg-[#0a0f1a] py-12 px-6 md:px-12 border-t border-[rgba(74,144,217,0.15)]">
         <div className="max-w-7xl mx-auto text-center text-[#6b7a94] text-sm">© 2026 Healvanna Auto. All rights reserved.</div>

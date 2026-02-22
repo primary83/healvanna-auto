@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ChargingSection from "../../components/ChargingSection";
 
 export default function PorscheTaycanTurboS() {
   const navItems = [
@@ -241,6 +242,9 @@ export default function PorscheTaycanTurboS() {
       </section>
 
       {/* Footer */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Porsche" model="Taycan" slug="porsche-taycan-turbo-s" range={280} theme="sapphire" />
+
       <footer className="px-12 py-16 bg-[#070b12] border-t border-[rgba(74,144,217,0.1)]">
         <div className="grid grid-cols-4 gap-12 max-w-[1200px] mx-auto mb-12">
           {[

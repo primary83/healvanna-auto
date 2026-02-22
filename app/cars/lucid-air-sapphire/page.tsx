@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ChargingSection from "../../components/ChargingSection";
 
 export default function LucidAirSapphire() {
   const navItems = [
@@ -241,6 +242,9 @@ export default function LucidAirSapphire() {
       </section>
 
       {/* Footer */}
+      {/* Charging Compatibility */}
+      <ChargingSection brand="Lucid" model="Air Sapphire" slug="lucid-air-sapphire" range={427} theme="sapphire" />
+
       <footer className="px-12 py-16 bg-[#070b12] border-t border-[rgba(74,144,217,0.1)]">
         <div className="grid grid-cols-4 gap-12 max-w-[1200px] mx-auto mb-12">
           {[
