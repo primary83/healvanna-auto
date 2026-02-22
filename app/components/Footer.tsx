@@ -63,6 +63,9 @@ export default function Footer() {
           <Link href="/cost-estimator" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             Cost Estimator
           </Link>
+          <Link href="/charge" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            Charging Stations
+          </Link>
         </div>
 
         {/* Guides - FIXED: Blog now points to /blog */}
