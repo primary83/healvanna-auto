@@ -16,15 +16,14 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const lat = searchParams.get("lat");
     const lng = searchParams.get("lng");
-    const location = searchParams.get("location");
     const radius = searchParams.get("radius") || "25";
     const limit = searchParams.get("limit") || "20";
     const evConnectorType = searchParams.get("ev_connector_type");
     const evNetwork = searchParams.get("ev_network");
 
-    if (!lat && !lng && !location) {
+    if (!lat || !lng) {
       return NextResponse.json(
-        { error: "Provide lat/lng or location parameter." },
+        { error: "Provide lat and lng parameters." },
         { status: 400 }
       );
     }
@@ -32,17 +31,12 @@ export async function GET(request: NextRequest) {
     const params = new URLSearchParams({
       api_key: NREL_API_KEY,
       fuel_type: "ELEC",
+      latitude: lat,
+      longitude: lng,
       radius,
       limit,
       status: "E",
     });
-
-    if (lat && lng) {
-      params.set("latitude", lat);
-      params.set("longitude", lng);
-    } else if (location) {
-      params.set("location", location);
-    }
 
     if (evConnectorType) params.set("ev_connector_type", evConnectorType);
     if (evNetwork) params.set("ev_network", evNetwork);

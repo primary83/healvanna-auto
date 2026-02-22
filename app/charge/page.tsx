@@ -121,22 +121,45 @@ export default function ChargePage() {
     setHasSearched(true);
 
     try {
-      const params = new URLSearchParams({ limit: "30" });
+      let lat: string | null = null;
+      let lng: string | null = null;
 
       // Check if locationInput is coordinates
       const coordMatch = locationInput.match(
         /^(-?\d+\.?\d*),\s*(-?\d+\.?\d*)$/
       );
       if (coordMatch) {
-        params.set("lat", coordMatch[1]);
-        params.set("lng", coordMatch[2]);
+        lat = coordMatch[1];
+        lng = coordMatch[2];
       } else if (locationInput.trim()) {
-        params.set("location", locationInput.trim());
+        // Geocode text location using Nominatim (OpenStreetMap)
+        const geoRes = await fetch(
+          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(locationInput.trim())}&format=json&limit=1&countrycodes=us`,
+          { headers: { "User-Agent": "HealvannaAuto/1.0" } }
+        );
+        const geoData = await geoRes.json();
+        if (!geoData || geoData.length === 0) {
+          setError("Could not find that location. Try a ZIP code or city name.");
+          setLoading(false);
+          return;
+        }
+        lat = geoData[0].lat;
+        lng = geoData[0].lon;
       } else if (mapCenter) {
-        params.set("lat", mapCenter[0].toString());
-        params.set("lng", mapCenter[1].toString());
+        lat = mapCenter[0].toString();
+        lng = mapCenter[1].toString();
       }
 
+      if (!lat || !lng) {
+        setError("Please enter a valid location.");
+        setLoading(false);
+        return;
+      }
+
+      // Update map center from geocoded/detected location
+      setMapCenter([parseFloat(lat), parseFloat(lng)]);
+
+      const params = new URLSearchParams({ lat, lng, limit: "30" });
       const res = await fetch(`/api/chargers?${params.toString()}`);
       const data = await res.json();
 
@@ -147,9 +170,6 @@ export default function ChargePage() {
       }
 
       setStations(data.stations || []);
-      if (data.latitude && data.longitude) {
-        setMapCenter([data.latitude, data.longitude]);
-      }
     } catch {
       setError(
         "Could not connect to the charging station service. Please try again."
