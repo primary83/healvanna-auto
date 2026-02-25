@@ -125,6 +125,36 @@ export const SEVERITY_COLORS: Record<OBDCode["severity"], { text: string; bg: st
   Critical: { text: "text-[#ef4444]", bg: "bg-[rgba(239,68,68,0.1)]", border: "border-[rgba(239,68,68,0.2)]" },
 };
 
+// Category definitions for Browse By Category
+export const CATEGORIES = [
+  { name: "Engine & Misfire", slug: "engine", range: "P0300–P0399", prefixes: ["P03"] },
+  { name: "Fuel System", slug: "fuel", range: "P0000–P0299", prefixes: ["P00", "P01", "P02"] },
+  { name: "Emissions & EVAP", slug: "emissions", range: "P0400–P0499", prefixes: ["P04"] },
+  { name: "Transmission", slug: "transmission", range: "P0700–P0999", prefixes: ["P07", "P08", "P09"] },
+  { name: "Electrical & ECM", slug: "electrical", range: "P0600–P0699", prefixes: ["P06"] },
+  { name: "Body & Safety", slug: "body", range: "B-codes", prefixes: ["B"] },
+  { name: "Chassis & ABS", slug: "chassis", range: "C-codes", prefixes: ["C"] },
+  { name: "Network & Communication", slug: "network", range: "U-codes", prefixes: ["U"] },
+];
+
+// Filter codes by category slug
+export function getCodesByCategory(slug: string): OBDCode[] {
+  const cat = CATEGORIES.find((c) => c.slug === slug);
+  if (!cat) return [];
+  return OBD_CODES.filter((c) => cat.prefixes.some((p) => c.code.startsWith(p)));
+}
+
+// Count codes per category (for display)
+export function getCategoryCounts(): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const cat of CATEGORIES) {
+    counts[cat.slug] = OBD_CODES.filter((c) =>
+      cat.prefixes.some((p) => c.code.startsWith(p))
+    ).length;
+  }
+  return counts;
+}
+
 // Difficulty color mapping
 export const DIFFICULTY_COLORS: Record<OBDCode["difficulty"], { text: string; bg: string }> = {
   Easy: { text: "text-[#34d399]", bg: "bg-[rgba(52,211,153,0.1)]" },
