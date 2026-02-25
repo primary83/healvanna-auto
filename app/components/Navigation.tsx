@@ -22,6 +22,7 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
     { name: "BLOG", href: "/blog" },
     { name: "SHOP", href: "/shop" },
     { name: "ESTIMATE", href: "/cost-estimator" },
+    { name: "CALCULATE", href: "/calculate" },
     { name: "ABOUT", href: "/about" },
     { name: "CONTACT", href: "/contact" },
   ];
