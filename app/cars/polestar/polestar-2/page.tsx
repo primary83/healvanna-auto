@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function Polestar2Page() {
   const specs = {
@@ -243,6 +244,7 @@ export default function Polestar2Page() {
       {/* Footer */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Polestar" model="2" slug="polestar/polestar-2" range={320} theme="sapphire" />
+      <MaintenanceSchedule brand="Polestar" model="2" theme="sapphire" />
 
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]">
         <div className="max-w-7xl mx-auto">

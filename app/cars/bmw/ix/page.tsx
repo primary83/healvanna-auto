@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function BMWiX() {
   const variants = [
@@ -188,6 +189,7 @@ export default function BMWiX() {
       {/* Features Section */}
       {/* Charging Compatibility */}
       <ChargingSection brand="BMW" model="iX" slug="bmw/ix" range={324} theme="slate" />
+      <MaintenanceSchedule brand="BMW" model="iX" theme="slate" />
 
       <section className="px-4 pb-20">
         <div className="max-w-7xl mx-auto">

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function Q4ETronPage() {
   const specs = {
@@ -110,6 +111,7 @@ export default function Q4ETronPage() {
 
       {/* Charging Compatibility */}
       <ChargingSection brand="Audi" model="Q4 e-tron" slug="audi/q4-e-tron" range={265} theme="sapphire" />
+      <MaintenanceSchedule brand="Audi" model="Q4 e-tron" theme="sapphire" />
 
       <footer className="bg-[#080c14] py-16 px-6 md:px-12">
         <div className="max-w-[1200px] mx-auto">

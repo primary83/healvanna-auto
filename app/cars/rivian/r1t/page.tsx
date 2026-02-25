@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function RivianR1T() {
   const variants = [
@@ -190,6 +191,7 @@ export default function RivianR1T() {
       {/* Features Section */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Rivian" model="R1T" slug="rivian/r1t" range={314} theme="slate" />
+      <MaintenanceSchedule brand="Rivian" model="R1T" theme="slate" />
 
       <section className="px-4 pb-20">
         <div className="max-w-7xl mx-auto">

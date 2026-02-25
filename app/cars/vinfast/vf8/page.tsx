@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function VF8Page() {
   const variants = [{ name: "Eco", price: "$46,950", range: "264 mi", power: "348 hp" }, { name: "Plus", price: "$52,950", range: "248 mi", power: "402 hp" }];
@@ -40,6 +41,7 @@ export default function VF8Page() {
       <div className="px-6 md:px-12 py-8"><div className="max-w-7xl mx-auto"><Link href="/cars/vinfast" className="inline-flex items-center gap-2 text-[#4a90d9] hover:text-[#6ba5e7] transition-colors"><span>←</span><span>Back to VinFast Models</span></Link></div></div>
       {/* Charging Compatibility */}
       <ChargingSection brand="VinFast" model="VF 8" slug="vinfast/vf8" range={264} theme="sapphire" />
+      <MaintenanceSchedule brand="VinFast" model="VF 8" theme="sapphire" />
 
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]"><div className="max-w-7xl mx-auto"><div className="flex flex-col md:flex-row justify-between items-center gap-4"><div className="text-[11px] text-[#6b7a94]">© 2024 Healvanna Auto. All rights reserved.</div><div className="flex gap-6">{["Privacy", "Terms", "Cookies"].map((l) => (<Link key={l} href={`/${l.toLowerCase()}`} className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors">{l}</Link>))}</div></div></div></footer>
     </main>

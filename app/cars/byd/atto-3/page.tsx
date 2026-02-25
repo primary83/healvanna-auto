@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function BYDAtto3Page() {
   const variants = [
@@ -151,6 +152,7 @@ export default function BYDAtto3Page() {
       {/* Key Features */}
       {/* Charging Compatibility */}
       <ChargingSection brand="BYD" model="Atto 3" slug="byd/atto-3" range={323} theme="sapphire" />
+      <MaintenanceSchedule brand="BYD" model="Atto 3" theme="sapphire" />
 
       <section className="py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function IPacePage() {
   const variants = [
@@ -105,6 +106,7 @@ export default function IPacePage() {
 
       {/* Charging Compatibility */}
       <ChargingSection brand="Jaguar" model="I-PACE" slug="jaguar/i-pace" range={246} theme="sapphire" />
+      <MaintenanceSchedule brand="Jaguar" model="I-PACE" theme="sapphire" />
 
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]"><div className="max-w-7xl mx-auto"><div className="flex flex-col md:flex-row justify-between items-center gap-4"><div className="text-[11px] text-[#6b7a94]">© 2024 Healvanna Auto. All rights reserved.</div><div className="flex gap-6">{["Privacy", "Terms", "Cookies"].map((link) => (<Link key={link} href={`/${link.toLowerCase()}`} className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors">{link}</Link>))}</div></div></div></footer>
     </main>

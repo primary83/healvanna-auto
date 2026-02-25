@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function KiaNiroEVPage() {
   return (
@@ -87,6 +88,7 @@ export default function KiaNiroEVPage() {
       {/* Specs */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Kia" model="Niro EV" slug="kia/niro-ev" range={253} theme="sapphire" />
+      <MaintenanceSchedule brand="Kia" model="Niro EV" theme="sapphire" />
 
       <section className="py-16 px-6 md:px-12 bg-[#0d1424]">
         <div className="max-w-7xl mx-auto">

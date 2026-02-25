@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Battery, Gauge, Zap, Clock, Star, Shield, Cog } from "lucide-react";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function ElectrifiedG80Page() {
   return (
@@ -140,6 +141,7 @@ export default function ElectrifiedG80Page() {
       </div>
       {/* Charging Compatibility */}
       <ChargingSection brand="Genesis" model="Electrified G80" slug="genesis/electrified-g80" range={282} theme="slate" />
+      <MaintenanceSchedule brand="Genesis" model="Electrified G80" theme="slate" />
 
     </div>
   );

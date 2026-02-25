@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ChargingSection from "../../components/ChargingSection";
+import MaintenanceSchedule from "../../components/MaintenanceSchedule";
 
 export default function TeslaModelSPlaid() {
   const navItems = [
@@ -488,6 +489,7 @@ export default function TeslaModelSPlaid() {
       {/* Footer */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Tesla" model="Model S" slug="tesla-model-s-plaid" range={396} theme="sapphire" />
+      <MaintenanceSchedule brand="Tesla" model="Model S" theme="sapphire" />
 
       <footer className="px-12 py-16 bg-[#070b12] border-t border-[rgba(74,144,217,0.1)]">
         <div className="grid grid-cols-4 gap-12 max-w-[1200px] mx-auto mb-12">

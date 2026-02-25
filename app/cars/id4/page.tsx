@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ChargingSection from "../../components/ChargingSection";
+import MaintenanceSchedule from "../../components/MaintenanceSchedule";
 
 export default function ID4Page() {
   const specs = {
@@ -130,6 +131,7 @@ export default function ID4Page() {
       </div>
       {/* Charging Compatibility */}
       <ChargingSection brand="Volkswagen" model="ID.4" slug="id4" range={275} theme="slate" />
+      <MaintenanceSchedule brand="Volkswagen" model="ID.4" theme="slate" />
 
     </main>
   );

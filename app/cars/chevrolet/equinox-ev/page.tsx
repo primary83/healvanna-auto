@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function EquinoxEVPage() {
   const variants = [
@@ -174,6 +175,7 @@ export default function EquinoxEVPage() {
       {/* Footer */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Chevrolet" model="Equinox EV" slug="chevrolet/equinox-ev" range={319} theme="sapphire" />
+      <MaintenanceSchedule brand="Chevrolet" model="Equinox EV" theme="sapphire" />
 
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]">
         <div className="max-w-7xl mx-auto">

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function NIOEC7Page() {
   const variants = [
@@ -124,6 +125,7 @@ export default function NIOEC7Page() {
 
       {/* Charging Compatibility */}
       <ChargingSection brand="NIO" model="EC7" slug="nio/ec7" range={355} theme="sapphire" />
+      <MaintenanceSchedule brand="NIO" model="EC7" theme="sapphire" />
 
       <footer className="bg-[#0a0f1a] py-12 px-6 md:px-12 border-t border-[rgba(74,144,217,0.15)]">
         <div className="max-w-7xl mx-auto text-center text-[#6b7a94] text-sm">© 2026 Healvanna Auto. All rights reserved.</div>

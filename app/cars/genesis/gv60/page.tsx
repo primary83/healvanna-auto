@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Battery, Gauge, Zap, Clock, Star, Shield, Cog } from "lucide-react";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function GV60Page() {
   return (
@@ -140,6 +141,7 @@ export default function GV60Page() {
       </div>
       {/* Charging Compatibility */}
       <ChargingSection brand="Genesis" model="GV60" slug="genesis/gv60" range={248} theme="slate" />
+      <MaintenanceSchedule brand="Genesis" model="GV60" theme="slate" />
 
     </div>
   );

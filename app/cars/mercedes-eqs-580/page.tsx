@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ChargingSection from "../../components/ChargingSection";
+import MaintenanceSchedule from "../../components/MaintenanceSchedule";
 
 export default function MercedesEQS580() {
   const navItems = [
@@ -244,6 +245,7 @@ export default function MercedesEQS580() {
       {/* Footer */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Mercedes" model="EQS 580" slug="mercedes-eqs-580" range={350} theme="sapphire" />
+      <MaintenanceSchedule brand="Mercedes" model="EQS 580" theme="sapphire" />
 
       <footer className="px-12 py-16 bg-[#070b12] border-t border-[rgba(74,144,217,0.1)]">
         <div className="grid grid-cols-4 gap-12 max-w-[1200px] mx-auto mb-12">

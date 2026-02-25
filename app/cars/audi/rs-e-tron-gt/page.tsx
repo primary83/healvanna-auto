@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function RSETronGTPage() {
   const specs = {
@@ -109,6 +110,7 @@ export default function RSETronGTPage() {
 
       {/* Charging Compatibility */}
       <ChargingSection brand="Audi" model="RS e-tron GT" slug="audi/rs-e-tron-gt" range={232} theme="sapphire" />
+      <MaintenanceSchedule brand="Audi" model="RS e-tron GT" theme="sapphire" />
 
       <footer className="bg-[#080c14] py-16 px-6 md:px-12">
         <div className="max-w-[1200px] mx-auto">

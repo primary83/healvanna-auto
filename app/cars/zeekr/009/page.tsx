@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function Zeekr009Page() {
   const variants = [
@@ -156,6 +157,7 @@ export default function Zeekr009Page() {
       {/* Key Features */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Zeekr" model="009" slug="zeekr/009" range={405} theme="sapphire" />
+      <MaintenanceSchedule brand="Zeekr" model="009" theme="sapphire" />
 
       <section className="py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">

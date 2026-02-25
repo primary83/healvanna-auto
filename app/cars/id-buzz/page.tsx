@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ChargingSection from "../../components/ChargingSection";
+import MaintenanceSchedule from "../../components/MaintenanceSchedule";
 
 export default function IDBuzzPage() {
   const specs = {
@@ -130,6 +131,7 @@ export default function IDBuzzPage() {
       </div>
       {/* Charging Compatibility */}
       <ChargingSection brand="Volkswagen" model="ID. Buzz" slug="id-buzz" range={234} theme="slate" />
+      <MaintenanceSchedule brand="Volkswagen" model="ID. Buzz" theme="slate" />
 
     </main>
   );

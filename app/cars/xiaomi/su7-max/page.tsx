@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function XiaomiSU7MaxPage() {
   const variants = [
@@ -152,6 +153,7 @@ export default function XiaomiSU7MaxPage() {
       {/* Key Features */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Xiaomi" model="SU7 Max" slug="xiaomi/su7-max" range={466} theme="sapphire" />
+      <MaintenanceSchedule brand="Xiaomi" model="SU7 Max" theme="sapphire" />
 
       <section className="py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">

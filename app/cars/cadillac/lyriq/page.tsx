@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function LyriqPage() {
   const variants = [
@@ -173,6 +174,7 @@ export default function LyriqPage() {
       {/* Footer */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Cadillac" model="LYRIQ" slug="cadillac/lyriq" range={314} theme="sapphire" />
+      <MaintenanceSchedule brand="Cadillac" model="LYRIQ" theme="sapphire" />
 
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]">
         <div className="max-w-7xl mx-auto">

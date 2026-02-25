@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function BYDSealUPage() {
   const variants = [
@@ -151,6 +152,7 @@ export default function BYDSealUPage() {
       {/* Key Features */}
       {/* Charging Compatibility */}
       <ChargingSection brand="BYD" model="Seal U" slug="byd/seal-u" range={323} theme="sapphire" />
+      <MaintenanceSchedule brand="BYD" model="Seal U" theme="sapphire" />
 
       <section className="py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">

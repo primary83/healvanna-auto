@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function PorscheTaycan() {
   const variants = [
@@ -121,6 +122,7 @@ export default function PorscheTaycan() {
 
       {/* Charging Compatibility */}
       <ChargingSection brand="Porsche" model="Taycan" slug="porsche/taycan" range={246} theme="slate" />
+      <MaintenanceSchedule brand="Porsche" model="Taycan" theme="slate" />
 
       <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center text-slate-400"><p>© 2026 Healvanna Auto. All rights reserved.</p></div>

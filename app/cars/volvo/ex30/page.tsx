@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function VolvoEX30Page() {
   return (
@@ -103,6 +104,7 @@ export default function VolvoEX30Page() {
       {/* Footer */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Volvo" model="EX30" slug="volvo/ex30" range={275} theme="sapphire" />
+      <MaintenanceSchedule brand="Volvo" model="EX30" theme="sapphire" />
 
       <footer className="bg-[#080c14] py-16 px-12">
         <div className="max-w-[1200px] mx-auto">

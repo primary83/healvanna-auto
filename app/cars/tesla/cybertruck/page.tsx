@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function TeslaCybertruck() {
   const variants = [
@@ -190,6 +191,7 @@ export default function TeslaCybertruck() {
       {/* Features Section */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Tesla" model="Cybertruck" slug="tesla/cybertruck" range={318} theme="slate" />
+      <MaintenanceSchedule brand="Tesla" model="Cybertruck" theme="slate" />
 
       <section className="px-4 pb-20">
         <div className="max-w-7xl mx-auto">

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import ChargingSection from "../../../components/ChargingSection";
+import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
 
 export default function HyundaiIoniq9Page() {
   return (
@@ -87,6 +88,7 @@ export default function HyundaiIoniq9Page() {
       {/* Specs */}
       {/* Charging Compatibility */}
       <ChargingSection brand="Hyundai" model="Ioniq 9" slug="hyundai/ioniq-9" range={350} theme="sapphire" />
+      <MaintenanceSchedule brand="Hyundai" model="Ioniq 9" theme="sapphire" />
 
       <section className="py-16 px-6 md:px-12 bg-[#0d1424]">
         <div className="max-w-7xl mx-auto">
