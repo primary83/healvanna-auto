@@ -85,6 +85,9 @@ export default function Footer() {
           <Link href="/calculate" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             EV Cost Calculator
           </Link>
+          <Link href="/recalls" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            Recall Checker
+          </Link>
         </div>
 
         {/* Directory */}
