@@ -22,6 +22,7 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
     { name: "BLOG", href: "/blog" },
     { name: "SHOP", href: "/shop" },
     { name: "CALCULATE", href: "/calculate" },
+    { name: "PARTNER", href: "/partner" },
   ];
 
   return (

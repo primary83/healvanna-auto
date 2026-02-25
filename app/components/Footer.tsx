@@ -129,6 +129,9 @@ export default function Footer() {
           <Link href="/business" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             For Business
           </Link>
+          <Link href="/partner" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            List Your Business
+          </Link>
         </div>
       </div>
 
