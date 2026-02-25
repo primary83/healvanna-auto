@@ -66,6 +66,7 @@ export default function DiagnosePage() {
   const [hasSearched, setHasSearched] = useState(false);
   const [activeCategory, setActiveCategory] = useState("");
   const [visibleCount, setVisibleCount] = useState(50);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Read ?category= from URL on mount
   useEffect(() => {
@@ -355,6 +356,240 @@ export default function DiagnosePage() {
             a certified mechanic for proper diagnosis and repair. Estimated costs
             vary by vehicle, location, and shop rates.
           </p>
+        </div>
+      </section>
+
+      {/* ── What is OBD-II? ── */}
+      <section className="px-6 md:px-12 pb-16">
+        <div className="max-w-[900px] mx-auto">
+          <div className="text-center mb-10">
+            <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">
+              Learn
+            </div>
+            <h2 className="text-[clamp(26px,4vw,40px)] font-extralight tracking-tight mb-4">
+              What is{" "}
+              <span className="italic text-[#4a90d9]">OBD-II</span>?
+            </h2>
+            <p className="text-[15px] text-[#6b7a94] max-w-[640px] mx-auto leading-relaxed">
+              Everything you need to know about on-board diagnostics and how your car communicates problems.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            {/* What OBD Stands For */}
+            <div className="p-6 rounded-xl bg-[rgba(15,22,40,0.6)] border border-[rgba(74,144,217,0.12)]">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[rgba(74,144,217,0.1)] flex items-center justify-center text-[#4a90d9]">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-[16px] font-medium text-[#e8edf5] mb-2">OBD Stands for On-Board Diagnostics</h3>
+                  <p className="text-[13px] text-[#6b7a94] leading-relaxed">
+                    OBD-II (On-Board Diagnostics, second generation) is a standardized computer system built into every modern vehicle. It continuously monitors your engine, transmission, emissions equipment, and other critical systems. When something goes wrong, the OBD-II system detects the issue, turns on your check engine light, and stores a specific diagnostic trouble code (DTC) that identifies the problem.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Why It Matters */}
+            <div className="p-6 rounded-xl bg-[rgba(15,22,40,0.6)] border border-[rgba(74,144,217,0.12)]">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[rgba(74,144,217,0.1)] flex items-center justify-center text-[#4a90d9]">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-[16px] font-medium text-[#e8edf5] mb-2">Why OBD-II Matters</h3>
+                  <p className="text-[13px] text-[#6b7a94] leading-relaxed">
+                    OBD-II gives you the power to understand what&rsquo;s happening inside your car before a small issue becomes an expensive repair. It&rsquo;s the same system mechanics use to diagnose problems &mdash; and with an affordable scanner, you can read the codes yourself. It also plays a key role in emissions testing, helping keep vehicles running cleaner.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Brief History */}
+            <div className="p-6 rounded-xl bg-[rgba(15,22,40,0.6)] border border-[rgba(74,144,217,0.12)]">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[rgba(74,144,217,0.1)] flex items-center justify-center text-[#4a90d9]">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-[16px] font-medium text-[#e8edf5] mb-2">A Brief History: OBD-I vs OBD-II</h3>
+                  <p className="text-[13px] text-[#6b7a94] leading-relaxed">
+                    The original OBD-I systems appeared in the early 1980s, but they varied wildly between manufacturers &mdash; each brand had its own codes, connectors, and protocols. In 1996, the U.S. government mandated OBD-II for all cars and light trucks sold in America. OBD-II standardized everything: a universal 16-pin connector, a shared set of diagnostic codes, and consistent communication protocols. This means any OBD-II scanner works with any 1996-or-newer vehicle, regardless of make.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* How DTCs Work */}
+            <div className="p-6 rounded-xl bg-[rgba(15,22,40,0.6)] border border-[rgba(74,144,217,0.12)]">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[rgba(74,144,217,0.1)] flex items-center justify-center text-[#4a90d9]">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-[16px] font-medium text-[#e8edf5] mb-2">How Diagnostic Trouble Codes Work</h3>
+                  <p className="text-[13px] text-[#6b7a94] leading-relaxed mb-4">
+                    Every DTC follows a standard five-character format. The first letter tells you which vehicle system is affected:
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[
+                      { letter: "P", label: "Powertrain", desc: "Engine, transmission, drivetrain", color: "#4a90d9" },
+                      { letter: "B", label: "Body", desc: "Airbags, A/C, seatbelts, lighting", color: "#34d399" },
+                      { letter: "C", label: "Chassis", desc: "ABS, steering, suspension", color: "#f59e0b" },
+                      { letter: "U", label: "Network", desc: "CAN bus, module communication", color: "#a78bfa" },
+                    ].map((item) => (
+                      <div
+                        key={item.letter}
+                        className="text-center p-3.5 rounded-lg bg-[rgba(10,15,26,0.6)] border border-[rgba(74,144,217,0.1)]"
+                      >
+                        <div
+                          className="text-[28px] font-bold mb-1"
+                          style={{ color: item.color }}
+                        >
+                          {item.letter}
+                        </div>
+                        <div className="text-[13px] font-medium text-[#e8edf5] mb-0.5">
+                          {item.label}
+                        </div>
+                        <div className="text-[11px] text-[#3d4a61] leading-snug">
+                          {item.desc}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-[13px] text-[#6b7a94] leading-relaxed mt-4">
+                    The remaining characters narrow down the exact fault. For example, <span className="font-mono text-[#4a90d9]">P0300</span> means a random/multiple cylinder misfire in the powertrain system. Use the search tool above to look up any code and get a plain-English explanation.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Where is My OBD-II Port? ── */}
+      <section className="px-6 md:px-12 pb-16">
+        <div className="max-w-[900px] mx-auto">
+          <div className="p-6 md:p-8 rounded-xl bg-[rgba(15,22,40,0.6)] border border-[rgba(74,144,217,0.12)]">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[rgba(74,144,217,0.1)] flex items-center justify-center text-[#4a90d9]">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-[18px] font-medium text-[#e8edf5] mb-3">Where is My OBD-II Port?</h3>
+                <p className="text-[13px] text-[#6b7a94] leading-relaxed mb-4">
+                  On most vehicles, the OBD-II port is located <span className="text-[#e8edf5] font-medium">under the dashboard on the driver&rsquo;s side</span>, usually near the steering column. It&rsquo;s a 16-pin trapezoidal connector that faces downward.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {[
+                    { step: "1", text: "Sit in the driver's seat and look under the dashboard, to the left of the steering wheel." },
+                    { step: "2", text: "Check near the fuse panel area or just above the pedals. Some vehicles have a small cover over the port." },
+                    { step: "3", text: "Plug in your OBD-II scanner — it should fit snugly into the 16-pin connector. Turn the ignition to \"On\" (engine off) to start reading codes." },
+                  ].map((item) => (
+                    <div
+                      key={item.step}
+                      className="p-4 rounded-lg bg-[rgba(10,15,26,0.5)] border border-[rgba(74,144,217,0.08)]"
+                    >
+                      <div className="text-[20px] font-bold text-[#4a90d9] mb-2">{item.step}</div>
+                      <p className="text-[12px] text-[#6b7a94] leading-relaxed">{item.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="px-6 md:px-12 pb-20">
+        <div className="max-w-[900px] mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-[clamp(24px,3.5vw,36px)] font-extralight tracking-tight mb-3">
+              Frequently Asked{" "}
+              <span className="italic text-[#4a90d9]">Questions</span>
+            </h2>
+            <p className="text-[14px] text-[#6b7a94]">
+              Common questions about OBD-II diagnostics and trouble codes.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            {[
+              {
+                q: "What does OBD stand for?",
+                a: "OBD stands for On-Board Diagnostics. It refers to a vehicle's built-in computer system that monitors engine performance, emissions, and other critical systems. OBD-II is the second generation of this technology, standardized across all vehicles sold in the U.S. since 1996."
+              },
+              {
+                q: "Do all cars have OBD-II?",
+                a: "All gasoline cars and light trucks sold in the United States since 1996 are required to have OBD-II systems. Diesel vehicles followed in 1997. If your car was manufactured before 1996, it may have the older OBD-I system or no standardized diagnostic port at all."
+              },
+              {
+                q: "What's the difference between OBD-I and OBD-II?",
+                a: "OBD-I (pre-1996) varied by manufacturer — each brand had different connectors, codes, and protocols. OBD-II standardized everything: a universal 16-pin port, shared diagnostic codes, and consistent communication protocols. This means one scanner can read codes from any OBD-II vehicle, regardless of make or model."
+              },
+              {
+                q: "Do electric vehicles have OBD ports?",
+                a: "Yes, most electric vehicles have an OBD-II port because it's legally required. However, EVs often use the port primarily for emissions compliance reporting and may not expose as much diagnostic data through standard OBD-II protocols. Many EV manufacturers use proprietary systems for deeper diagnostics, accessible through brand-specific apps or dealer tools."
+              },
+              {
+                q: "What do I need to read OBD codes?",
+                a: "You need an OBD-II scanner (also called a code reader). Basic scanners that read and clear codes start around $20–$30. More advanced scanners offer live data, freeze frame data, and manufacturer-specific codes. You can also use a Bluetooth OBD-II adapter paired with a smartphone app — popular options include BlueDriver, FIXD, and the ELM327 adapter with the Torque app."
+              },
+              {
+                q: "Are OBD codes the same for all cars?",
+                a: "Generic (SAE standard) codes starting with P0, P2, P3, B0, C0, and U0 are the same across all manufacturers. However, manufacturer-specific codes (starting with P1, B1, C1, U1, etc.) are unique to each brand. These proprietary codes cover systems and features specific to that manufacturer."
+              },
+              {
+                q: "Can I drive with a check engine light on?",
+                a: "It depends on the severity. A steady check engine light usually indicates a non-emergency issue — the car is safe to drive short distances, but you should get it diagnosed soon. A flashing check engine light means a severe problem (often a misfire that can damage the catalytic converter) and you should pull over safely and avoid driving until it's repaired."
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="rounded-xl border border-[rgba(74,144,217,0.12)] overflow-hidden transition-colors duration-200 hover:border-[rgba(74,144,217,0.25)]"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                  className="w-full flex items-center justify-between gap-4 p-5 text-left bg-[rgba(15,22,40,0.6)] hover:bg-[rgba(15,22,40,0.8)] transition-colors duration-200"
+                >
+                  <span className="text-[14px] font-medium text-[#e8edf5]">{item.q}</span>
+                  <svg
+                    className={`w-5 h-5 flex-shrink-0 text-[#4a90d9] transition-transform duration-300 ${
+                      openFaq === idx ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    openFaq === idx ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="px-5 pb-5 pt-0 bg-[rgba(15,22,40,0.4)]">
+                    <p className="text-[13px] text-[#6b7a94] leading-relaxed">{item.a}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
