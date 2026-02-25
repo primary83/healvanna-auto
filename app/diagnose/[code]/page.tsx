@@ -54,7 +54,7 @@ export default async function CodeDetailPage({
       <Navigation activeItem="DIAGNOSE" />
 
       {/* Breadcrumb */}
-      <div className="pt-24 px-6 md:px-12">
+      <div className="pt-32 px-6 md:px-12">
         <div className="max-w-[800px] mx-auto">
           <div className="flex items-center gap-2 text-sm text-[#6b7a94]">
             <Link
