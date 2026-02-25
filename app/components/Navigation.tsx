@@ -18,6 +18,7 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
     { name: "DIRECTORY", href: "/directory" },
     { name: "CARS", href: "/cars" },
     { name: "CHARGE", href: "/charge" },
+    { name: "DIAGNOSE", href: "/diagnose" },
     { name: "BLOG", href: "/blog" },
     { name: "SHOP", href: "/shop" },
     { name: "ESTIMATE", href: "/cost-estimator" },

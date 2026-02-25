@@ -79,6 +79,9 @@ export default function Footer() {
           <Link href="/blog" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             Blog
           </Link>
+          <Link href="/diagnose" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            Diagnostic Tool
+          </Link>
         </div>
 
         {/* Directory */}
