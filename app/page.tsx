@@ -151,7 +151,7 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1a]/95 via-[#0a0f1a]/70 to-transparent" />
-            <div className="absolute inset-0 flex items-center pb-20">
+            <div className="absolute inset-0 flex items-center pt-24 pb-20">
               <div className={`w-full px-6 md:px-16 transition-all duration-1000 ${isLoaded && currentSlide === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
                 <div className="max-w-[800px]">
                   <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">{slide.category}</div>

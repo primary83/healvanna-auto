@@ -21,10 +21,7 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
     { name: "DIAGNOSE", href: "/diagnose" },
     { name: "BLOG", href: "/blog" },
     { name: "SHOP", href: "/shop" },
-    { name: "ESTIMATE", href: "/cost-estimator" },
     { name: "CALCULATE", href: "/calculate" },
-    { name: "ABOUT", href: "/about" },
-    { name: "CONTACT", href: "/contact" },
   ];
 
   return (
@@ -113,12 +110,18 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
                         </Link>
                       ))}
                     </div>
-                    <div className="mt-4 pt-4 border-t border-[rgba(74,144,217,0.1)]">
+                    <div className="mt-4 pt-4 border-t border-[rgba(74,144,217,0.1)] flex items-center justify-between">
                       <Link
                         href="/services"
                         className="text-[11px] text-[#4a90d9] hover:text-[#6ba8eb] transition-colors tracking-[0.1em] uppercase font-medium"
                       >
                         View All Services &rarr;
+                      </Link>
+                      <Link
+                        href="/cost-estimator"
+                        className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors tracking-[0.1em] uppercase font-medium"
+                      >
+                        Cost Estimator
                       </Link>
                     </div>
                   </div>
