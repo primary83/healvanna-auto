@@ -160,6 +160,28 @@ export default function Home() {
                     <span className="italic text-[#4a90d9]">{slide.titleAccent}</span>
                   </h1>
                   <p className="text-[14px] text-[#6b7a94] leading-relaxed mb-8 max-w-[450px]">{slide.subtitle}</p>
+                  {index === 0 && (
+                    <div className="flex flex-col sm:flex-row items-start gap-4 mb-8">
+                      <Link
+                        href="/deals"
+                        className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#10B981] hover:bg-[#059669] text-white text-[15px] font-semibold rounded-lg transition-all duration-300 shadow-[0_4px_24px_rgba(16,185,129,0.3)] hover:shadow-[0_8px_32px_rgba(16,185,129,0.4)] hover:-translate-y-0.5"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                        Find Trusted Car Services Near You
+                      </Link>
+                      <Link
+                        href="/partner"
+                        className="inline-flex items-center gap-1.5 px-4 py-4 text-[13px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300"
+                      >
+                        Own a shop? Partner with us
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                        </svg>
+                      </Link>
+                    </div>
+                  )}
                 </div>
                 <div className="max-w-[800px]">
                   <ServiceSearchBar />
