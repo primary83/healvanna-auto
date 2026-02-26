@@ -9,7 +9,6 @@ import {
   DEALS,
   DEAL_TYPES,
   SERVICE_FILTERS,
-  STATES,
 } from "../lib/dealsData";
 import { useVercelGeo } from "../hooks/useVercelGeo";
 import { REGION_TO_STATE, haversineDistance } from "../lib/floridaCities";
@@ -38,7 +37,6 @@ function DealsPageContent() {
   const searchParams = useSearchParams();
   const geo = useVercelGeo();
 
-  const [selectedState, setSelectedState] = useState("Florida");
   const [dealTypeFilter, setDealTypeFilter] = useState("");
   const [serviceFilter, setServiceFilter] = useState("");
   const [userLat, setUserLat] = useState<number | null>(null);
@@ -77,17 +75,6 @@ function DealsPageContent() {
       setUserLat(geo.latitude);
       setUserLng(geo.longitude);
     }
-
-    // Auto-select state if detected
-    if (geo.region) {
-      const stateName = REGION_TO_STATE[geo.region];
-      if (stateName && STATES.includes(stateName)) {
-        setSelectedState(stateName);
-      } else {
-        // Non-listed state → keep Florida selected (where deals are)
-        setSelectedState("Florida");
-      }
-    }
   }, [geo.isLoading, geo.detected, geo.city, geo.region, geo.latitude, geo.longitude]);
 
   // ZIP code lookup via Nominatim
@@ -121,11 +108,6 @@ function DealsPageContent() {
               ([, v]) => v === stateMatch
             )?.[0] || null
           );
-          if (STATES.includes(stateMatch)) {
-            setSelectedState(stateMatch);
-          } else {
-            setSelectedState("Florida");
-          }
         }
         setLocationSource("zip");
         setShowZipInput(false);
@@ -142,7 +124,6 @@ function DealsPageContent() {
 
   // Filter + proximity sort deals
   const filteredDeals = useMemo(() => {
-    if (selectedState !== "Florida") return [];
     let deals = DEALS.filter((d) => {
       if (dealTypeFilter && d.dealType !== dealTypeFilter) return false;
       if (serviceFilter && !d.categories.includes(serviceFilter)) return false;
@@ -159,7 +140,7 @@ function DealsPageContent() {
     }
 
     return deals;
-  }, [selectedState, dealTypeFilter, serviceFilter, userLat, userLng]);
+  }, [dealTypeFilter, serviceFilter, userLat, userLng]);
 
   const stats = useMemo(() => {
     const shops = new Set(DEALS.map((d) => d.shop));
@@ -327,72 +308,29 @@ function DealsPageContent() {
         </div>
       </section>
 
-      {/* State Selector + Stats */}
+      {/* Stats */}
       <section className="px-6 md:px-12 pb-4">
-        <div className="max-w-[1000px] mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
-            <div className="flex items-center gap-3">
-              <label className="text-sm text-[#6b7a94]">Location:</label>
-              <select
-                value={selectedState}
-                onChange={(e) => setSelectedState(e.target.value)}
-                className="bg-[#0d1424] border border-[rgba(74,144,217,0.2)] rounded-lg px-4 py-2.5 text-[#e8edf5] text-sm focus:border-[#4a90d9] focus:outline-none transition-colors appearance-none cursor-pointer"
-              >
-                {STATES.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
+        <div className="max-w-[1000px] mx-auto flex justify-center">
+          <div className="flex items-center gap-6 text-sm">
+            <div className="flex items-center gap-1.5">
+              <span className="text-[#34d399] font-medium">{stats.total}</span>
+              <span className="text-[#6b7a94]">deals</span>
             </div>
-
-            {selectedState === "Florida" && (
-              <div className="flex items-center gap-6 text-sm">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[#34d399] font-medium">{stats.total}</span>
-                  <span className="text-[#6b7a94]">deals</span>
-                </div>
-                <div className="w-px h-4 bg-[rgba(74,144,217,0.15)]" />
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[#4a90d9] font-medium">{stats.shops}</span>
-                  <span className="text-[#6b7a94]">shops</span>
-                </div>
-                <div className="w-px h-4 bg-[rgba(74,144,217,0.15)]" />
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[#34d399] font-medium">Up to {stats.topSaving}</span>
-                  <span className="text-[#6b7a94]">savings</span>
-                </div>
-              </div>
-            )}
+            <div className="w-px h-4 bg-[rgba(74,144,217,0.15)]" />
+            <div className="flex items-center gap-1.5">
+              <span className="text-[#4a90d9] font-medium">{stats.shops}</span>
+              <span className="text-[#6b7a94]">shops</span>
+            </div>
+            <div className="w-px h-4 bg-[rgba(74,144,217,0.15)]" />
+            <div className="flex items-center gap-1.5">
+              <span className="text-[#34d399] font-medium">Up to {stats.topSaving}</span>
+              <span className="text-[#6b7a94]">savings</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Coming Soon for other states */}
-      {selectedState !== "Florida" && (
-        <section className="px-6 md:px-12 pb-16">
-          <div className="max-w-[600px] mx-auto text-center py-20">
-            <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-[rgba(74,144,217,0.1)] border border-[rgba(74,144,217,0.2)] flex items-center justify-center">
-              <svg className="w-8 h-8 text-[#4a90d9]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-medium text-[#e8edf5] mb-2">
-              Coming Soon!
-            </h3>
-            <p className="text-[14px] text-[#6b7a94]">
-              We&apos;re expanding to {selectedState} shortly. Check back soon for
-              local deals near you.
-            </p>
-          </div>
-        </section>
-      )}
-
-      {/* Filters + Deals Grid (Florida only) */}
-      {selectedState === "Florida" && (
-        <>
-          {/* Filters */}
+      {/* Filters */}
           <section className="px-6 md:px-12 pb-6">
             <div className="max-w-[1000px] mx-auto space-y-3">
               {/* Deal Type filters */}
@@ -560,8 +498,6 @@ function DealsPageContent() {
               )}
             </div>
           </section>
-        </>
-      )}
 
       {/* Bottom CTAs */}
       <section className="px-6 md:px-12 pb-12">
