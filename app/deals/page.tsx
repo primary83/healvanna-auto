@@ -43,11 +43,13 @@ function DealsPageContent() {
   const [userLng, setUserLng] = useState<number | null>(null);
   const [userCity, setUserCity] = useState<string | null>(null);
   const [userRegion, setUserRegion] = useState<string | null>(null);
-  const [locationSource, setLocationSource] = useState<"vercel" | "zip" | "none">("none");
+  const [locationSource, setLocationSource] = useState<"browser" | "vercel" | "zip" | "zip_nearest" | "none">("none");
   const [showZipInput, setShowZipInput] = useState(false);
   const [zipInput, setZipInput] = useState("");
   const [zipLoading, setZipLoading] = useState(false);
   const [zipError, setZipError] = useState("");
+  const [nearestZipMsg, setNearestZipMsg] = useState<string | null>(null);
+  const [geoLoading, setGeoLoading] = useState(true);
 
   // Read ?service= query param on mount
   useEffect(() => {
@@ -63,21 +65,68 @@ function DealsPageContent() {
     }
   }, [searchParams]);
 
-  // Process geo detection
+  // Primary: Browser Geolocation API, fallback: Vercel geo headers
   useEffect(() => {
-    if (geo.isLoading || !geo.detected) return;
+    let cancelled = false;
 
-    setUserCity(geo.city);
-    setUserRegion(geo.region);
-    setLocationSource("vercel");
+    const applyVercelFallback = () => {
+      if (cancelled) return;
+      if (geo.isLoading) return; // wait for Vercel geo to finish
+      if (geo.detected) {
+        setUserCity(geo.city);
+        setUserRegion(geo.region);
+        setLocationSource("vercel");
+        if (geo.latitude && geo.longitude) {
+          setUserLat(geo.latitude);
+          setUserLng(geo.longitude);
+        }
+      }
+      setGeoLoading(false);
+    };
 
-    if (geo.latitude && geo.longitude) {
-      setUserLat(geo.latitude);
-      setUserLng(geo.longitude);
+    if (!navigator.geolocation) {
+      applyVercelFallback();
+      return;
     }
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        if (cancelled) return;
+        const { latitude, longitude } = position.coords;
+        setUserLat(latitude);
+        setUserLng(longitude);
+        setLocationSource("browser");
+
+        // Reverse geocode to get city/state
+        try {
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&zoom=10`
+          );
+          const data = await res.json();
+          if (!cancelled && data.address) {
+            setUserCity(data.address.city || data.address.town || data.address.village || null);
+            const stateCode = Object.entries(REGION_TO_STATE).find(
+              ([, v]) => v === data.address.state
+            )?.[0] || null;
+            setUserRegion(stateCode);
+          }
+        } catch {
+          // Coords are set, city/state just won't show — that's fine
+        }
+        if (!cancelled) setGeoLoading(false);
+      },
+      () => {
+        // User denied or error — fall back to Vercel geo
+        if (!cancelled) applyVercelFallback();
+      },
+      { timeout: 5000, maximumAge: 300000 }
+    );
+
+    return () => { cancelled = true; };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [geo.isLoading, geo.detected, geo.city, geo.region, geo.latitude, geo.longitude]);
 
-  // ZIP code lookup via Nominatim
+  // ZIP code lookup via Nominatim — falls back to nearest deals if ZIP has no local deals
   const handleZipLookup = useCallback(async () => {
     if (!zipInput.trim() || !/^\d{5}$/.test(zipInput.trim())) {
       setZipError("Enter a valid 5-digit ZIP code");
@@ -85,6 +134,7 @@ function DealsPageContent() {
     }
     setZipLoading(true);
     setZipError("");
+    setNearestZipMsg(null);
     try {
       const res = await fetch(
         `https://nominatim.openstreetmap.org/search?postalcode=${zipInput.trim()}&country=US&format=json&limit=1`
@@ -97,7 +147,8 @@ function DealsPageContent() {
         setUserLng(lng);
         // Extract city/state from display_name
         const parts = data[0].display_name.split(", ");
-        setUserCity(parts[0] || zipInput.trim());
+        const city = parts[0] || zipInput.trim();
+        setUserCity(city);
         // Try to find state from parts
         const stateMatch = parts.find((p: string) =>
           Object.values(REGION_TO_STATE).includes(p)
@@ -109,7 +160,18 @@ function DealsPageContent() {
             )?.[0] || null
           );
         }
-        setLocationSource("zip");
+
+        // Check if any deals are within 50 miles — if not, show "nearest" message
+        const nearbyCount = DEALS.filter(
+          (d) => haversineDistance(lat, lng, d.lat, d.lng) <= 50
+        ).length;
+        if (nearbyCount === 0) {
+          setLocationSource("zip_nearest");
+          setNearestZipMsg(`No deals in ${zipInput.trim()} yet — showing nearest deals nearby`);
+        } else {
+          setLocationSource("zip");
+          setNearestZipMsg(null);
+        }
         setShowZipInput(false);
         setZipInput("");
       } else {
@@ -229,10 +291,17 @@ function DealsPageContent() {
 
   // Location banner text
   const getLocationBanner = () => {
-    if (geo.isLoading) {
+    if (geoLoading) {
       return { type: "loading" as const, text: "Detecting your location..." };
     }
-    if (locationSource === "vercel" && userCity && userRegion) {
+    if (locationSource === "zip_nearest" && nearestZipMsg) {
+      return {
+        type: "nearest" as const,
+        text: nearestZipMsg,
+        sub: "sorted by distance",
+      };
+    }
+    if ((locationSource === "browser" || locationSource === "vercel") && userCity && userRegion) {
       const stateName = REGION_TO_STATE[userRegion] || userRegion;
       const isInFlorida = userRegion === "FL";
       if (isInFlorida) {
@@ -246,6 +315,13 @@ function DealsPageContent() {
         type: "out_of_state" as const,
         text: `You're in ${userCity}, ${stateName}`,
         sub: "showing Florida deals sorted by distance to you",
+      };
+    }
+    if ((locationSource === "browser" || locationSource === "vercel") && userLat !== null) {
+      return {
+        type: "detected" as const,
+        text: "Showing deals near your location",
+        sub: "sorted by distance",
       };
     }
     if (locationSource === "zip" && userCity) {

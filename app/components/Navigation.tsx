@@ -63,6 +63,7 @@ const NAV_ITEMS: NavItem[] = [
     dropdown: [
       { label: "Diagnose", href: "/diagnose", description: "OBD code lookup" },
       { label: "Calculate", href: "/calculate", description: "EV cost calculator" },
+      { label: "Cost Estimator", href: "/cost-estimator", description: "Service cost estimates" },
       { label: "Recall Checker", href: "/recalls", description: "Vehicle safety recalls" },
     ],
   },
