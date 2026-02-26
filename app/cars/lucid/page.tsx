@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import Navigation from "../../components/Navigation";
 
 export default function LucidPage() {
   const lucidModels = [
@@ -69,34 +70,7 @@ export default function LucidPage() {
 
   return (
     <main className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-12 py-5 flex justify-between items-center bg-gradient-to-b from-[#0a0f1a]/95 to-transparent backdrop-blur-xl">
-        <Link href="/" className="text-[22px] font-light tracking-[0.12em] cursor-pointer">
-          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
-        </Link>
-        <div className="flex gap-10">
-          {[
-            { name: "HOME", href: "/" },
-            { name: "CARS", href: "/cars" },
-            { name: "CARE", href: "/care" },
-            { name: "CRAFT", href: "/craft" },
-            { name: "SHOP", href: "/shop" },
-            { name: "BLOG", href: "/blog" },
-          ].map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`text-xs tracking-[0.12em] cursor-pointer transition-colors duration-300 pb-2 ${
-                item.name === "CARS"
-                  ? "text-[#e8edf5] border-b border-[#4a90d9]"
-                  : "text-[#6b7a94] hover:text-[#e8edf5] border-b border-transparent"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Stats Bar - Lucid Blue-Gray Theme */}
       <section className="pt-28 pb-0">

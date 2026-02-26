@@ -4,29 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
 import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
+import Navigation from "../../../components/Navigation";
 
 export default function VolvoXC40RechargePage() {
   return (
     <main className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-12 py-5 flex justify-between items-center bg-gradient-to-b from-[#0a0f1a]/95 to-transparent backdrop-blur-xl">
-        <Link href="/" className="text-[22px] font-light tracking-[0.12em] cursor-pointer">
-          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
-        </Link>
-        <div className="flex gap-10">
-          {["HOME", "CARS", "CARE", "CRAFT", "SHOP", "BLOG"].map((item) => (
-            <Link
-              key={item}
-              href={item === "HOME" ? "/" : `/${item.toLowerCase()}`}
-              className={`text-xs tracking-[0.12em] cursor-pointer transition-colors duration-300 pb-2 ${
-                item === "CARS" ? "text-[#e8edf5] border-b border-[#4a90d9]" : "text-[#6b7a94] hover:text-[#e8edf5]"
-              }`}
-            >
-              {item}
-            </Link>
-          ))}
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Back Link */}
       <div className="pt-28 px-12">

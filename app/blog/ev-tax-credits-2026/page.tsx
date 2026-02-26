@@ -1,17 +1,9 @@
+import Navigation from "../../components/Navigation";
+
 export default function EVTaxCredits2026() {
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0f1a]/90 backdrop-blur-md border-b border-[rgba(74,144,217,0.15)]">
-        <div className="max-w-[1200px] mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="/" className="text-[22px] font-light tracking-[0.12em] cursor-pointer">
-            HEALVANNA <span className="text-[#4a90d9]">AUTO</span>
-          </a>
-          <a href="/blog" className="text-[14px] text-[#4a90d9] hover:text-[#6ba8eb] transition-colors duration-300">
-            ← Back to Blog
-          </a>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Article Content */}
       <article className="pt-32 pb-20 px-6">

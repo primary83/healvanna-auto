@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Navigation from "../../components/Navigation";
 
 export const metadata: Metadata = {
   title: "US EVs vs Chinese EVs: A Complete Comparison Guide",
@@ -8,27 +9,7 @@ export const metadata: Metadata = {
 export default function USvsChineseEVs() {
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      {/* Navigation */}
-      <nav className="flex justify-between items-center px-12 py-6 border-b border-[rgba(74,144,217,0.15)]">
-        <a href="/" className="text-xl tracking-[0.3em] font-light">
-          HEALVANNA <span className="text-[#4a90d9]">AUTO</span>
-        </a>
-        <div className="flex gap-10">
-          {["Home", "Cars", "Care", "Craft", "Insights", "About"].map((item) => (
-            <a
-              key={item}
-              href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              className={`text-[13px] tracking-wider transition-colors duration-300 ${
-                item === "Insights"
-                  ? "text-[#e8edf5] border-b border-[#4a90d9] pb-1"
-                  : "text-[#6b7a94] hover:text-[#e8edf5]"
-              }`}
-            >
-              {item.toUpperCase()}
-            </a>
-          ))}
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Article Header */}
       <header className="px-12 py-16 max-w-[900px] mx-auto">

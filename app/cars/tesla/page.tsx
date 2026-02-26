@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import Navigation from "../../components/Navigation";
 
 export default function TeslaBrand() {
   const teslaModels = [
@@ -59,21 +60,7 @@ export default function TeslaBrand() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-light tracking-wider">
-            HEALVANNA <span className="text-emerald-400">AUTO</span>
-          </Link>
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">HOME</Link>
-            <Link href="/cars" className="text-sm text-emerald-400 transition-colors">CARS</Link>
-            <Link href="/care" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">CARE</Link>
-            <Link href="/craft" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">CRAFT</Link>
-            <Link href="/blog" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">BLOG</Link>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 px-4">

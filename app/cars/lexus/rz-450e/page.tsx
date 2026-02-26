@@ -3,6 +3,7 @@
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
 import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
+import Navigation from "../../../components/Navigation";
 
 export default function LexusRZ450e() {
   const variants = [
@@ -33,21 +34,7 @@ export default function LexusRZ450e() {
 
   return (
     <main className="min-h-screen bg-slate-950">
-      {/* Navigation */}
-      <nav className="border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-light tracking-wider">
-            HEALVANNA <span className="text-emerald-400">AUTO</span>
-          </Link>
-          <div className="flex gap-8">
-            <Link href="/" className="text-slate-300 hover:text-white transition-colors">HOME</Link>
-            <Link href="/cars" className="text-emerald-400">CARS</Link>
-            <Link href="/care" className="text-slate-300 hover:text-white transition-colors">CARE</Link>
-            <Link href="/craft" className="text-slate-300 hover:text-white transition-colors">CRAFT</Link>
-            <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">BLOG</Link>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 py-4">

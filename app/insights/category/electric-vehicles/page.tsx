@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Navigation from "../../../components/Navigation";
 
 export default function ElectricVehiclesCategory() {
   const navItems = [
@@ -39,27 +40,7 @@ export default function ElectricVehiclesCategory() {
 
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-12 py-6 flex justify-between items-center bg-[rgba(10,15,26,0.95)] backdrop-blur-md border-b border-[rgba(74,144,217,0.1)]">
-        <Link href="/" className="text-xl tracking-wider font-extralight">
-          Healvanna<span className="text-[#4a90d9]">.</span>
-        </Link>
-        <div className="flex gap-10">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`text-[13px] tracking-wide transition-all duration-300 pb-1 ${
-                item.name === "Insights"
-                  ? "text-[#e8edf5] border-b border-[#4a90d9]"
-                  : "text-[#6b7a94] hover:text-[#e8edf5] border-b border-transparent"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-12 bg-gradient-to-b from-[#0d1424] to-[#0a0f1a]">

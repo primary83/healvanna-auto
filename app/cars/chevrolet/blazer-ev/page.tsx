@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ChargingSection from "../../../components/ChargingSection";
 import MaintenanceSchedule from "../../../components/MaintenanceSchedule";
+import Navigation from "../../../components/Navigation";
 
 export default function BlazerEVPage() {
   const variants = [
@@ -14,34 +15,7 @@ export default function BlazerEVPage() {
 
   return (
     <main className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-gradient-to-b from-[#0a0f1a]/95 to-transparent backdrop-blur-xl">
-        <Link href="/" className="text-[22px] font-light tracking-[0.12em]">
-          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
-        </Link>
-        <div className="hidden md:flex items-center gap-8">
-          {[
-            { name: "HOME", href: "/" },
-            { name: "CARS", href: "/cars" },
-            { name: "CARE", href: "/care" },
-            { name: "CRAFT", href: "/craft" },
-            { name: "SHOP", href: "/shop" },
-            { name: "BLOG", href: "/blog" },
-          ].map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`text-xs tracking-[0.12em] transition-colors duration-300 ${
-                item.name === "CARS"
-                  ? "text-[#4a90d9] border-b border-[#4a90d9] pb-1"
-                  : "text-[#8a919e] hover:text-[#e8edf5]"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
       <div className="pt-24 pb-12 px-6 md:px-12">
