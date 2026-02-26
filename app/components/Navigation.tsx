@@ -28,6 +28,7 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
     { name: "SERVICES", href: "#", hasDropdown: true },
     { name: "DIRECTORY", href: "/directory" },
     { name: "CARS", href: "/cars" },
+    { name: "MY GARAGE", href: "/my-garage" },
     { name: "CHARGE", href: "/charge" },
     { name: "DIAGNOSE", href: "/diagnose" },
     { name: "BLOG", href: "/blog" },
