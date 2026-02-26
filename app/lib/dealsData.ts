@@ -884,14 +884,3 @@ export const STATES = [
   "Tennessee", "Texas", "Virginia", "Washington", "Wisconsin",
 ];
 
-export function generateDealCode(title: string, shop: string): string {
-  let hash = 0;
-  const str = title + shop;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash;
-  }
-  const code = Math.abs(hash).toString(36).toUpperCase().slice(0, 6).padEnd(6, "0");
-  return "HV-" + code;
-}

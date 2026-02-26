@@ -9,8 +9,6 @@ import {
   DEAL_TYPES,
   SERVICE_FILTERS,
   STATES,
-  generateDealCode,
-  Deal,
 } from "../lib/dealsData";
 
 const BADGE_COLORS: Record<string, { bg: string; text: string }> = {
@@ -37,8 +35,6 @@ export default function DealsPage() {
   const [selectedState, setSelectedState] = useState("Florida");
   const [dealTypeFilter, setDealTypeFilter] = useState("");
   const [serviceFilter, setServiceFilter] = useState("");
-  const [modalDeal, setModalDeal] = useState<Deal | null>(null);
-
   const filteredDeals = useMemo(() => {
     if (selectedState !== "Florida") return [];
     return DEALS.filter((d) => {
@@ -256,12 +252,14 @@ export default function DealsPage() {
                             {deal.city}, FL
                           </div>
                           <div className="flex gap-2">
-                            <button
-                              onClick={() => setModalDeal(deal)}
-                              className="flex-1 px-4 py-2.5 text-[12px] font-medium bg-[#4a90d9] text-[#0a0f1a] rounded-lg hover:bg-[#5a9ee5] transition-colors"
+                            <a
+                              href={deal.dealsPage}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 px-4 py-2.5 text-[12px] font-medium text-center bg-[#4a90d9] text-[#0a0f1a] rounded-lg hover:bg-[#5a9ee5] transition-colors"
                             >
-                              Show Deal
-                            </button>
+                              Get This Deal
+                            </a>
                             <a
                               href={`https://www.google.com/maps/search/${encodeURIComponent(deal.shop + " " + deal.city + " Florida")}`}
                               target="_blank"
@@ -336,99 +334,6 @@ export default function DealsPage() {
           </p>
         </div>
       </section>
-
-      {/* Modal */}
-      {modalDeal && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-6"
-          onClick={() => setModalDeal(null)}
-        >
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-          <div
-            className="relative bg-[#0d1424] border border-[rgba(74,144,217,0.2)] rounded-2xl p-8 max-w-[440px] w-full shadow-[0_25px_80px_-15px_rgba(0,0,0,0.8)]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close */}
-            <button
-              onClick={() => setModalDeal(null)}
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg text-[#6b7a94] hover:text-[#e8edf5] hover:bg-[rgba(74,144,217,0.1)] transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            {/* Badge */}
-            <div className="mb-4">
-              <span
-                className={`px-3 py-1 text-[11px] tracking-[0.05em] font-semibold rounded-md ${
-                  BADGE_COLORS[modalDeal.dealType]?.bg
-                } ${BADGE_COLORS[modalDeal.dealType]?.text}`}
-              >
-                {BADGE_LABELS[modalDeal.dealType]}
-              </span>
-            </div>
-
-            {/* Title & Shop */}
-            <h3 className="text-lg font-medium text-[#e8edf5] mb-1">
-              {modalDeal.title}
-            </h3>
-            <p className="text-[13px] text-[#6b7a94] mb-6">
-              {modalDeal.shop} · {modalDeal.city}, FL
-            </p>
-
-            {/* Deal Code */}
-            <div className="bg-[rgba(74,144,217,0.06)] border border-[rgba(74,144,217,0.15)] rounded-xl p-5 mb-6 text-center">
-              <div className="text-[10px] tracking-[0.2em] uppercase text-[#6b7a94] mb-2">
-                Deal Code
-              </div>
-              <div className="text-2xl font-mono font-bold text-[#4a90d9] tracking-wider">
-                {generateDealCode(modalDeal.title, modalDeal.shop)}
-              </div>
-              <p className="text-[12px] text-[#6b7a94] mt-2">
-                Show this screen at the shop or mention code{" "}
-                <span className="text-[#e8edf5] font-medium">
-                  {generateDealCode(modalDeal.title, modalDeal.shop)}
-                </span>
-              </p>
-            </div>
-
-            {/* Expiration */}
-            <div className="text-[12px] text-[#3d4a61] mb-6">
-              {modalDeal.expiration === "Ongoing"
-                ? "This is an ongoing deal with no set expiration."
-                : `Expires: ${modalDeal.expiration}`}
-            </div>
-
-            {/* Links */}
-            <div className="space-y-2">
-              <a
-                href={modalDeal.dealsPage}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full px-5 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] rounded-lg hover:bg-[#5a9ee5] transition-colors"
-              >
-                Visit Shop Website
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                </svg>
-              </a>
-              <a
-                href={`https://www.google.com/maps/search/${encodeURIComponent(modalDeal.shop + " " + modalDeal.city + " Florida")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full px-5 py-3 text-[13px] font-medium text-[#6b7a94] bg-[rgba(74,144,217,0.08)] rounded-lg hover:text-[#e8edf5] hover:bg-[rgba(74,144,217,0.15)] transition-colors"
-              >
-                Get Directions
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
 
       <Footer />
     </div>
