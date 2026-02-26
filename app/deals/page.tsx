@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
@@ -10,6 +11,8 @@ import {
   SERVICE_FILTERS,
   STATES,
 } from "../lib/dealsData";
+import { useVercelGeo } from "../hooks/useVercelGeo";
+import { REGION_TO_STATE, haversineDistance } from "../lib/floridaCities";
 
 const BADGE_COLORS: Record<string, { bg: string; text: string }> = {
   bogo: { bg: "bg-[rgba(168,85,247,0.15)]", text: "text-[#a855f7]" },
@@ -31,18 +34,132 @@ const BADGE_LABELS: Record<string, string> = {
   bundle: "BUNDLE",
 };
 
-export default function DealsPage() {
+function DealsPageContent() {
+  const searchParams = useSearchParams();
+  const geo = useVercelGeo();
+
   const [selectedState, setSelectedState] = useState("Florida");
   const [dealTypeFilter, setDealTypeFilter] = useState("");
   const [serviceFilter, setServiceFilter] = useState("");
+  const [userLat, setUserLat] = useState<number | null>(null);
+  const [userLng, setUserLng] = useState<number | null>(null);
+  const [userCity, setUserCity] = useState<string | null>(null);
+  const [userRegion, setUserRegion] = useState<string | null>(null);
+  const [locationSource, setLocationSource] = useState<"vercel" | "zip" | "none">("none");
+  const [showZipInput, setShowZipInput] = useState(false);
+  const [zipInput, setZipInput] = useState("");
+  const [zipLoading, setZipLoading] = useState(false);
+  const [zipError, setZipError] = useState("");
+
+  // Read ?service= query param on mount
+  useEffect(() => {
+    const serviceParam = searchParams.get("service");
+    if (serviceParam) {
+      const match = SERVICE_FILTERS.find(
+        (sf) => sf.toLowerCase() === serviceParam.toLowerCase()
+      );
+      if (match) {
+        setServiceFilter(match);
+        setDealTypeFilter("");
+      }
+    }
+  }, [searchParams]);
+
+  // Process geo detection
+  useEffect(() => {
+    if (geo.isLoading || !geo.detected) return;
+
+    setUserCity(geo.city);
+    setUserRegion(geo.region);
+    setLocationSource("vercel");
+
+    if (geo.latitude && geo.longitude) {
+      setUserLat(geo.latitude);
+      setUserLng(geo.longitude);
+    }
+
+    // Auto-select state if detected
+    if (geo.region) {
+      const stateName = REGION_TO_STATE[geo.region];
+      if (stateName && STATES.includes(stateName)) {
+        setSelectedState(stateName);
+      } else {
+        // Non-listed state → keep Florida selected (where deals are)
+        setSelectedState("Florida");
+      }
+    }
+  }, [geo.isLoading, geo.detected, geo.city, geo.region, geo.latitude, geo.longitude]);
+
+  // ZIP code lookup via Nominatim
+  const handleZipLookup = useCallback(async () => {
+    if (!zipInput.trim() || !/^\d{5}$/.test(zipInput.trim())) {
+      setZipError("Enter a valid 5-digit ZIP code");
+      return;
+    }
+    setZipLoading(true);
+    setZipError("");
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/search?postalcode=${zipInput.trim()}&country=US&format=json&limit=1`
+      );
+      const data = await res.json();
+      if (data.length > 0) {
+        const lat = parseFloat(data[0].lat);
+        const lng = parseFloat(data[0].lon);
+        setUserLat(lat);
+        setUserLng(lng);
+        // Extract city/state from display_name
+        const parts = data[0].display_name.split(", ");
+        setUserCity(parts[0] || zipInput.trim());
+        // Try to find state from parts
+        const stateMatch = parts.find((p: string) =>
+          Object.values(REGION_TO_STATE).includes(p)
+        );
+        if (stateMatch) {
+          setUserRegion(
+            Object.entries(REGION_TO_STATE).find(
+              ([, v]) => v === stateMatch
+            )?.[0] || null
+          );
+          if (STATES.includes(stateMatch)) {
+            setSelectedState(stateMatch);
+          } else {
+            setSelectedState("Florida");
+          }
+        }
+        setLocationSource("zip");
+        setShowZipInput(false);
+        setZipInput("");
+      } else {
+        setZipError("ZIP code not found. Try another.");
+      }
+    } catch {
+      setZipError("Lookup failed. Try again.");
+    } finally {
+      setZipLoading(false);
+    }
+  }, [zipInput]);
+
+  // Filter + proximity sort deals
   const filteredDeals = useMemo(() => {
     if (selectedState !== "Florida") return [];
-    return DEALS.filter((d) => {
+    let deals = DEALS.filter((d) => {
       if (dealTypeFilter && d.dealType !== dealTypeFilter) return false;
       if (serviceFilter && !d.categories.includes(serviceFilter)) return false;
       return true;
     });
-  }, [selectedState, dealTypeFilter, serviceFilter]);
+
+    // Sort by distance if user location available
+    if (userLat !== null && userLng !== null) {
+      deals = [...deals].sort((a, b) => {
+        const distA = haversineDistance(userLat, userLng, a.lat, a.lng);
+        const distB = haversineDistance(userLat, userLng, b.lat, b.lng);
+        return distA - distB;
+      });
+    }
+
+    return deals;
+  }, [selectedState, dealTypeFilter, serviceFilter, userLat, userLng]);
 
   const stats = useMemo(() => {
     const shops = new Set(DEALS.map((d) => d.shop));
@@ -53,6 +170,51 @@ export default function DealsPage() {
     setDealTypeFilter("");
     setServiceFilter("");
   };
+
+  // Get distance for a deal
+  const getDealDistance = (dealLat: number, dealLng: number): string | null => {
+    if (userLat === null || userLng === null) return null;
+    const dist = haversineDistance(userLat, userLng, dealLat, dealLng);
+    if (dist < 1) return "<1 mi";
+    return `${Math.round(dist)} mi`;
+  };
+
+  // Location banner text
+  const getLocationBanner = () => {
+    if (geo.isLoading) {
+      return { type: "loading" as const, text: "Detecting your location..." };
+    }
+    if (locationSource === "vercel" && userCity && userRegion) {
+      const stateName = REGION_TO_STATE[userRegion] || userRegion;
+      const isInFlorida = userRegion === "FL";
+      if (isInFlorida) {
+        return {
+          type: "detected" as const,
+          text: `Showing deals near ${userCity}, FL`,
+          sub: "sorted by distance",
+        };
+      }
+      return {
+        type: "out_of_state" as const,
+        text: `You're in ${userCity}, ${stateName}`,
+        sub: "showing Florida deals sorted by distance to you",
+      };
+    }
+    if (locationSource === "zip" && userCity) {
+      return {
+        type: "zip" as const,
+        text: `Showing deals near ${userCity}`,
+        sub: "sorted by distance",
+      };
+    }
+    return {
+      type: "none" as const,
+      text: "Showing all deals",
+      sub: null,
+    };
+  };
+
+  const banner = getLocationBanner();
 
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
@@ -72,6 +234,96 @@ export default function DealsPage() {
             Save on auto repairs, maintenance, and EV services near you.
             Real deals from real shops, updated regularly.
           </p>
+        </div>
+      </section>
+
+      {/* Location Banner */}
+      <section className="px-6 md:px-12 pb-4">
+        <div className="max-w-[1000px] mx-auto">
+          <div className="flex items-center justify-center gap-3 py-3 px-5 rounded-xl bg-[rgba(74,144,217,0.06)] border border-[rgba(74,144,217,0.1)]">
+            {banner.type === "loading" ? (
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 border-2 border-[#4a90d9] border-t-transparent rounded-full animate-spin" />
+                <span className="text-[13px] text-[#6b7a94] animate-pulse">
+                  {banner.text}
+                </span>
+              </div>
+            ) : (
+              <>
+                <svg
+                  className="w-4 h-4 text-[#4a90d9] flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                  />
+                </svg>
+                <div className="flex items-center gap-2 flex-wrap justify-center">
+                  <span className="text-[13px] text-[#e8edf5] font-medium">
+                    {banner.text}
+                  </span>
+                  {banner.sub && (
+                    <span className="text-[11px] text-[#6b7a94]">
+                      — {banner.sub}
+                    </span>
+                  )}
+                </div>
+                <button
+                  onClick={() => setShowZipInput(!showZipInput)}
+                  className="text-[11px] text-[#4a90d9] hover:text-[#5a9ee5] transition-colors ml-2 whitespace-nowrap"
+                >
+                  {locationSource !== "none" ? "Change" : "Enter ZIP"}
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* ZIP Input */}
+          {showZipInput && (
+            <div className="flex items-center justify-center gap-2 mt-3">
+              <input
+                type="text"
+                value={zipInput}
+                onChange={(e) => {
+                  setZipInput(e.target.value.replace(/\D/g, "").slice(0, 5));
+                  setZipError("");
+                }}
+                onKeyDown={(e) => e.key === "Enter" && handleZipLookup()}
+                placeholder="Enter ZIP code"
+                className="w-32 px-3 py-2 text-[13px] bg-[#0d1424] border border-[rgba(74,144,217,0.2)] rounded-lg text-[#e8edf5] focus:border-[#4a90d9] focus:outline-none transition-colors text-center"
+                maxLength={5}
+              />
+              <button
+                onClick={handleZipLookup}
+                disabled={zipLoading}
+                className="px-4 py-2 text-[12px] font-medium bg-[#4a90d9] text-[#0a0f1a] rounded-lg hover:bg-[#5a9ee5] transition-colors disabled:opacity-50"
+              >
+                {zipLoading ? "..." : "Go"}
+              </button>
+              <button
+                onClick={() => {
+                  setShowZipInput(false);
+                  setZipError("");
+                }}
+                className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors"
+              >
+                Cancel
+              </button>
+              {zipError && (
+                <span className="text-[11px] text-[#ef4444]">{zipError}</span>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
@@ -202,6 +454,7 @@ export default function DealsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {filteredDeals.map((deal) => {
                     const badge = BADGE_COLORS[deal.dealType] || BADGE_COLORS.dollar_off;
+                    const distance = getDealDistance(deal.lat, deal.lng);
                     return (
                       <div
                         key={deal.id}
@@ -248,8 +501,13 @@ export default function DealsPage() {
                         <div className="pt-3 border-t border-[rgba(74,144,217,0.08)]">
                           <div className="text-[12px] text-[#6b7a94] mb-3">
                             <span className="text-[#e8edf5] font-medium">{deal.shop}</span>
-                            <span className="mx-1.5">·</span>
+                            <span className="mx-1.5">&middot;</span>
                             {deal.city}, FL
+                            {distance && (
+                              <span className="ml-1.5 text-[#3d4a61]">
+                                ({distance})
+                              </span>
+                            )}
                           </div>
                           <div className="flex gap-2">
                             <a
@@ -337,5 +595,19 @@ export default function DealsPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function DealsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5] flex items-center justify-center">
+          <div className="w-6 h-6 border-2 border-[#4a90d9] border-t-transparent rounded-full animate-spin" />
+        </div>
+      }
+    >
+      <DealsPageContent />
+    </Suspense>
   );
 }

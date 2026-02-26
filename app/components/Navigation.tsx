@@ -8,6 +8,17 @@ interface NavigationProps {
   activeItem?: string;
 }
 
+// Map service slugs to deal filter categories
+const SERVICE_TO_DEAL_FILTER: Record<string, string> = {
+  "car-detailing": "detailing",
+  "car-wrapping": "",
+  "body-shops": "body work",
+  "collision-repair": "body work",
+  "auto-glass": "",
+  "auto-painting": "paint",
+  "car-washing": "detailing",
+};
+
 export default function Navigation({ activeItem = "" }: NavigationProps) {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -77,10 +88,15 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
                       Automotive Services
                     </div>
                     <div className="grid grid-cols-2 gap-2">
-                      {SERVICE_CATEGORIES.map((service) => (
+                      {SERVICE_CATEGORIES.map((service) => {
+                        const dealFilter = SERVICE_TO_DEAL_FILTER[service.slug];
+                        const href = dealFilter
+                          ? `/deals?service=${encodeURIComponent(dealFilter)}`
+                          : `/deals`;
+                        return (
                         <Link
                           key={service.slug}
-                          href={`/${service.slug}`}
+                          href={href}
                           className="flex items-start gap-3 p-3 rounded-lg hover:bg-[rgba(74,144,217,0.08)] transition-colors group"
                         >
                           <div className="w-9 h-9 rounded-lg bg-[rgba(74,144,217,0.1)] flex items-center justify-center flex-shrink-0 group-hover:bg-[rgba(74,144,217,0.2)] transition-colors">
@@ -109,11 +125,12 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
                             </div>
                           </div>
                         </Link>
-                      ))}
+                        );
+                      })}
                     </div>
                     <div className="mt-4 pt-4 border-t border-[rgba(74,144,217,0.1)] flex items-center justify-between">
                       <Link
-                        href="/services"
+                        href="/deals"
                         className="text-[11px] text-[#4a90d9] hover:text-[#6ba8eb] transition-colors tracking-[0.1em] uppercase font-medium"
                       >
                         View All Services &rarr;
@@ -194,16 +211,22 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
               <div className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-3 font-medium">
                 Services
               </div>
-              {SERVICE_CATEGORIES.map((service) => (
+              {SERVICE_CATEGORIES.map((service) => {
+                const dealFilter = SERVICE_TO_DEAL_FILTER[service.slug];
+                const href = dealFilter
+                  ? `/deals?service=${encodeURIComponent(dealFilter)}`
+                  : `/deals`;
+                return (
                 <Link
                   key={service.slug}
-                  href={`/${service.slug}`}
+                  href={href}
                   className="block text-sm text-[#6b7a94] hover:text-[#e8edf5] transition-colors py-1.5"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {service.name}
                 </Link>
-              ))}
+                );
+              })}
             </div>
             <div className="pt-4 border-t border-[rgba(74,144,217,0.1)]">
               <Link
