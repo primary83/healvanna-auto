@@ -8,10 +8,11 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
 const PRESETS = [
-  { label: "Tesla Model 3 vs BMW i4 vs Polestar 2", ids: ["tesla-model-3", "bmw-i4", "polestar-2"] },
+  { label: "Honda Prologue vs Toyota bZ4X vs Subaru Solterra", ids: ["honda-prologue", "toyota-bz4x", "subaru-solterra"] },
   { label: "Model Y vs Ioniq 5 vs Mustang Mach-E", ids: ["tesla-model-y", "hyundai-ioniq-5", "ford-mustang-mach-e"] },
-  { label: "Rivian R1T vs Cybertruck vs F-150 Lightning", ids: ["rivian-r1t", "tesla-cybertruck", "ford-f-150-lightning"] },
-  { label: "Lucid Air vs Mercedes EQS vs BMW i7", ids: ["lucid-air-touring", "mercedes-eqs", "bmw-i7"] },
+  { label: "Dodge Charger Daytona vs BMW i4 vs Polestar 2", ids: ["dodge-charger-daytona", "bmw-i4", "polestar-2"] },
+  { label: "GMC Hummer EV vs Rivian R1T vs Cybertruck", ids: ["gmc-hummer-ev-pickup", "rivian-r1t", "tesla-cybertruck"] },
+  { label: "Acura ZDX vs Cadillac LYRIQ vs Lexus RZ 450e", ids: ["acura-zdx", "cadillac-lyriq", "lexus-rz-450e"] },
 ];
 
 interface CompareRowProps {
@@ -224,9 +225,12 @@ function CompareEVsContent() {
             {selectedEVs.length > 0 && (
               <button
                 onClick={clearAll}
-                className="text-[11px] text-[#6b7a94] hover:text-red-400 transition-colors ml-2"
+                className="flex items-center gap-1.5 px-4 py-2 text-[12px] font-medium text-[#ef4444] border border-[rgba(239,68,68,0.25)] rounded-lg hover:bg-[rgba(239,68,68,0.08)] hover:border-[rgba(239,68,68,0.4)] transition-all ml-2"
               >
-                Clear all
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                Clear Comparison
               </button>
             )}
           </div>
