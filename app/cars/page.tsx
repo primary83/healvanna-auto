@@ -182,6 +182,79 @@ export default function CarsPage() {
       image: "/cars/vinfast/vf8.jpg",
       link: "/cars/vinfast",
     },
+    // Row 7: Honda, Nissan, Toyota, Lexus
+    {
+      name: "Honda",
+      models: ["Prologue"],
+      modelCount: 1,
+      image: "/cars/honda/prologue.png",
+      link: "/cars/honda",
+    },
+    {
+      name: "Nissan",
+      models: ["Ariya", "LEAF"],
+      modelCount: 2,
+      image: "/cars/nissan/ariya.png",
+      link: "/cars/nissan",
+    },
+    {
+      name: "Toyota",
+      models: ["bZ4X"],
+      modelCount: 1,
+      image: "/cars/toyota/bz4x.png",
+      link: "/cars/toyota",
+    },
+    {
+      name: "Lexus",
+      models: ["RZ 450e"],
+      modelCount: 1,
+      image: "/cars/lexus/rz-450e.png",
+      link: "/cars/lexus",
+    },
+    // Row 8: Subaru, Acura, Mini, Fiat
+    {
+      name: "Subaru",
+      models: ["Solterra"],
+      modelCount: 1,
+      image: "/cars/subaru/solterra.png",
+      link: "/cars/subaru",
+    },
+    {
+      name: "Acura",
+      models: ["ZDX"],
+      modelCount: 1,
+      image: "/cars/acura/zdx.png",
+      link: "/cars/acura",
+    },
+    {
+      name: "Mini",
+      models: ["Cooper SE", "Countryman SE"],
+      modelCount: 2,
+      image: "/cars/mini/cooper-se.png",
+      link: "/cars/mini",
+    },
+    {
+      name: "Fiat",
+      models: ["500e"],
+      modelCount: 1,
+      image: "/cars/fiat/500e.png",
+      link: "/cars/fiat",
+    },
+    // Row 9: Dodge, GMC
+    {
+      name: "Dodge",
+      models: ["Charger Daytona"],
+      modelCount: 1,
+      image: "/cars/dodge/charger-daytona.png",
+      link: "/cars/dodge",
+    },
+    {
+      name: "GMC",
+      models: ["Hummer EV SUV", "Hummer EV Pickup", "Sierra EV"],
+      modelCount: 3,
+      image: "/cars/gmc/hummer-ev-suv.png",
+      link: "/cars/gmc",
+    },
   ];
 
   const filters = [
