@@ -147,6 +147,40 @@ export const CHARGING_SPECS: Record<string, ChargingSpecs> = {
   "vinfast/vf8": { batteryCapacity: 88, maxChargeSpeed: 200, connectorType: "CCS" },
   "vinfast/vf9": { batteryCapacity: 92, maxChargeSpeed: 230, connectorType: "CCS" },
 
+  // Honda — CCS, 150 kW (Ultium platform)
+  "honda/prologue": { batteryCapacity: 85, maxChargeSpeed: 150, connectorType: "CCS" },
+
+  // Nissan — CCS/CHAdeMO
+  "nissan/ariya": { batteryCapacity: 87, maxChargeSpeed: 130, connectorType: "CCS" },
+  "nissan/leaf": { batteryCapacity: 62, maxChargeSpeed: 100, connectorType: "CHAdeMO" },
+
+  // Toyota — CCS, 150 kW
+  "toyota/bz4x": { batteryCapacity: 72, maxChargeSpeed: 150, connectorType: "CCS" },
+
+  // Lexus — CCS, 150 kW
+  "lexus/rz-450e": { batteryCapacity: 72, maxChargeSpeed: 150, connectorType: "CCS" },
+
+  // Subaru — CCS, 150 kW
+  "subaru/solterra": { batteryCapacity: 72, maxChargeSpeed: 150, connectorType: "CCS" },
+
+  // Acura — CCS, 190 kW (Ultium platform)
+  "acura/zdx": { batteryCapacity: 102, maxChargeSpeed: 190, connectorType: "CCS" },
+
+  // Mini — CCS, 130 kW
+  "mini/cooper-se": { batteryCapacity: 54, maxChargeSpeed: 130, connectorType: "CCS" },
+  "mini/countryman-se": { batteryCapacity: 67, maxChargeSpeed: 130, connectorType: "CCS" },
+
+  // Fiat — CCS, 85 kW
+  "fiat/500e": { batteryCapacity: 42, maxChargeSpeed: 85, connectorType: "CCS" },
+
+  // Dodge — CCS, 350 kW (800V STLA architecture)
+  "dodge/charger-daytona": { batteryCapacity: 100, maxChargeSpeed: 350, connectorType: "CCS" },
+
+  // GMC — CCS, 350 kW (Ultium platform)
+  "gmc/hummer-ev-suv": { batteryCapacity: 200, maxChargeSpeed: 350, connectorType: "CCS" },
+  "gmc/hummer-ev-pickup": { batteryCapacity: 213, maxChargeSpeed: 350, connectorType: "CCS" },
+  "gmc/sierra-ev": { batteryCapacity: 200, maxChargeSpeed: 350, connectorType: "CCS" },
+
   // Flat-path aliases for duplicate model pages
   "air-grand-touring": { batteryCapacity: 112, maxChargeSpeed: 300, connectorType: "NACS" },
   "air-pure": { batteryCapacity: 88, maxChargeSpeed: 250, connectorType: "NACS" },
