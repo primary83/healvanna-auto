@@ -160,6 +160,73 @@ function DealsPageContent() {
     return `${Math.round(dist)} mi`;
   };
 
+  // Parse dollar amount from discountLabel (e.g. "$29.99", "$80 OFF")
+  const parseDollarAmount = (label: string): number | null => {
+    const match = label.match(/\$(\d+\.?\d*)/);
+    return match ? parseFloat(match[1]) : null;
+  };
+
+  // Price comparison summary — only when service filter is active
+  const comparisonSummary = useMemo(() => {
+    if (!serviceFilter) return null;
+
+    const pricedDeals: { deal: (typeof filteredDeals)[0]; price: number }[] = [];
+    for (const deal of filteredDeals) {
+      const price = parseDollarAmount(deal.discountLabel);
+      if (price !== null) {
+        pricedDeals.push({ deal, price });
+      }
+    }
+
+    const hasPrices = pricedDeals.length > 0;
+    let priceRange = "";
+    let bestDeal: (typeof filteredDeals)[0] | null = null;
+    let bestDealPrice = "";
+    let bestDealDistance: string | null = null;
+
+    if (hasPrices) {
+      const prices = pricedDeals.map((p) => p.price);
+      const minPrice = Math.min(...prices);
+      const maxPrice = Math.max(...prices);
+      priceRange =
+        minPrice === maxPrice
+          ? `$${minPrice % 1 === 0 ? minPrice : minPrice.toFixed(2)}`
+          : `$${minPrice % 1 === 0 ? minPrice : minPrice.toFixed(2)} – $${maxPrice % 1 === 0 ? maxPrice : maxPrice.toFixed(2)}`;
+
+      // Best deal = lowest dollar amount
+      const best = pricedDeals.reduce((a, b) => (a.price <= b.price ? a : b));
+      bestDeal = best.deal;
+      bestDealPrice = `$${best.price % 1 === 0 ? best.price : best.price.toFixed(2)}`;
+      bestDealDistance = getDealDistance(best.deal.lat, best.deal.lng);
+    }
+
+    // Location string
+    let locationStr = "";
+    if (userCity) {
+      locationStr = userRegion
+        ? ` near ${userCity}, ${userRegion}`
+        : ` near ${userCity}`;
+    }
+
+    // Capitalize service name
+    const serviceName = serviceFilter
+      .split(" ")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+
+    return {
+      serviceName,
+      locationStr,
+      priceRange,
+      bestDeal,
+      bestDealPrice,
+      bestDealDistance,
+      dealCount: filteredDeals.length,
+      hasPrices,
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serviceFilter, filteredDeals, userCity, userRegion, userLat, userLng]);
+
   // Location banner text
   const getLocationBanner = () => {
     if (geo.isLoading) {
@@ -329,6 +396,76 @@ function DealsPageContent() {
           </div>
         </div>
       </section>
+
+      {/* Price Comparison Summary */}
+      {comparisonSummary && (
+        <section className="px-6 md:px-12 pb-4">
+          <div className="max-w-[1000px] mx-auto">
+            <div className="rounded-xl bg-[rgba(52,211,153,0.06)] border border-[rgba(52,211,153,0.15)] px-5 py-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0 items-center">
+                {/* Service + Location */}
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-[rgba(52,211,153,0.12)] flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4 text-[#34d399]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6Z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-[13px] font-medium text-[#e8edf5]">
+                      {comparisonSummary.serviceName}
+                    </div>
+                    {comparisonSummary.locationStr && (
+                      <div className="text-[11px] text-[#6b7a94]">
+                        {comparisonSummary.locationStr}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Price Range */}
+                {comparisonSummary.hasPrices && (
+                  <div className="lg:text-center lg:border-l lg:border-[rgba(52,211,153,0.1)]">
+                    <div className="text-[11px] text-[#6b7a94] mb-0.5">Price range</div>
+                    <div className="text-[15px] font-semibold text-[#34d399]">
+                      {comparisonSummary.priceRange}
+                    </div>
+                  </div>
+                )}
+
+                {/* Best Deal */}
+                {comparisonSummary.hasPrices && comparisonSummary.bestDeal && (
+                  <div className="lg:text-center lg:border-l lg:border-[rgba(52,211,153,0.1)]">
+                    <div className="text-[11px] text-[#6b7a94] mb-0.5">Best deal</div>
+                    <div className="text-[13px] text-[#e8edf5]">
+                      <span className="font-medium">{comparisonSummary.bestDeal.shop}</span>
+                      <span className="text-[#34d399] font-semibold ml-1">
+                        {comparisonSummary.bestDealPrice}
+                      </span>
+                      {comparisonSummary.bestDealDistance && (
+                        <span className="text-[#3d4a61] text-[11px] ml-1">
+                          ({comparisonSummary.bestDealDistance})
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Deal Count */}
+                <div className="lg:text-center lg:border-l lg:border-[rgba(52,211,153,0.1)]">
+                  <div className="text-[11px] text-[#6b7a94] mb-0.5">Found</div>
+                  <div className="text-[15px] font-semibold text-[#e8edf5]">
+                    {comparisonSummary.dealCount}{" "}
+                    <span className="text-[13px] font-normal text-[#6b7a94]">
+                      {comparisonSummary.dealCount === 1 ? "deal" : "deals"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Filters */}
           <section className="px-6 md:px-12 pb-6">
