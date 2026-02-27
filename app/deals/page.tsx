@@ -65,27 +65,16 @@ function DealsPageContent() {
     }
   }, [searchParams]);
 
-  // Primary: Browser Geolocation API, fallback: Vercel geo headers
+  // Track whether browser geolocation already resolved so Vercel fallback can kick in
+  const [browserGeoResolved, setBrowserGeoResolved] = useState(false);
+  const [browserGeoDenied, setBrowserGeoDenied] = useState(false);
+
+  // Step 1: Try browser Geolocation API
   useEffect(() => {
     let cancelled = false;
 
-    const applyVercelFallback = () => {
-      if (cancelled) return;
-      if (geo.isLoading) return; // wait for Vercel geo to finish
-      if (geo.detected) {
-        setUserCity(geo.city);
-        setUserRegion(geo.region);
-        setLocationSource("vercel");
-        if (geo.latitude && geo.longitude) {
-          setUserLat(geo.latitude);
-          setUserLng(geo.longitude);
-        }
-      }
-      setGeoLoading(false);
-    };
-
     if (!navigator.geolocation) {
-      applyVercelFallback();
+      setBrowserGeoDenied(true);
       return;
     }
 
@@ -113,18 +102,38 @@ function DealsPageContent() {
         } catch {
           // Coords are set, city/state just won't show — that's fine
         }
-        if (!cancelled) setGeoLoading(false);
+        if (!cancelled) {
+          setBrowserGeoResolved(true);
+          setGeoLoading(false);
+        }
       },
       () => {
-        // User denied or error — fall back to Vercel geo
-        if (!cancelled) applyVercelFallback();
+        // User denied or error — mark denied so Vercel fallback takes over
+        if (!cancelled) setBrowserGeoDenied(true);
       },
       { timeout: 5000, maximumAge: 300000 }
     );
 
     return () => { cancelled = true; };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [geo.isLoading, geo.detected, geo.city, geo.region, geo.latitude, geo.longitude]);
+  }, []);
+
+  // Step 2: If browser geo was denied/unavailable, fall back to Vercel geo headers
+  useEffect(() => {
+    if (!browserGeoDenied) return; // still waiting on browser geo
+    if (geo.isLoading) return; // still waiting on Vercel geo
+    if (browserGeoResolved) return; // browser already succeeded
+
+    if (geo.detected) {
+      setUserCity(geo.city);
+      setUserRegion(geo.region);
+      setLocationSource("vercel");
+      if (geo.latitude && geo.longitude) {
+        setUserLat(geo.latitude);
+        setUserLng(geo.longitude);
+      }
+    }
+    setGeoLoading(false);
+  }, [browserGeoDenied, browserGeoResolved, geo.isLoading, geo.detected, geo.city, geo.region, geo.latitude, geo.longitude]);
 
   // ZIP code lookup via Nominatim — falls back to nearest deals if ZIP has no local deals
   const handleZipLookup = useCallback(async () => {
@@ -203,6 +212,24 @@ function DealsPageContent() {
 
     return deals;
   }, [dealTypeFilter, serviceFilter, userLat, userLng]);
+
+  // Split deals into "Near You" (within 30 mi) and "More Deals" groups
+  const NEAR_RADIUS = 30; // miles
+  const { nearDeals, moreDeals } = useMemo(() => {
+    if (userLat === null || userLng === null) {
+      return { nearDeals: [], moreDeals: filteredDeals };
+    }
+    const near: typeof filteredDeals = [];
+    const more: typeof filteredDeals = [];
+    for (const deal of filteredDeals) {
+      if (haversineDistance(userLat, userLng, deal.lat, deal.lng) <= NEAR_RADIUS) {
+        near.push(deal);
+      } else {
+        more.push(deal);
+      }
+    }
+    return { nearDeals: near, moreDeals: more };
+  }, [filteredDeals, userLat, userLng]);
 
   const stats = useMemo(() => {
     const shops = new Set(DEALS.map((d) => d.shop));
@@ -340,6 +367,86 @@ function DealsPageContent() {
 
   const banner = getLocationBanner();
 
+  const renderDealCard = (deal: (typeof filteredDeals)[0]) => {
+    const badge = BADGE_COLORS[deal.dealType] || BADGE_COLORS.dollar_off;
+    const distance = getDealDistance(deal.lat, deal.lng);
+    return (
+      <div
+        key={deal.id}
+        className="bg-[#0d1424] border border-[rgba(74,144,217,0.12)] rounded-2xl p-5 hover:border-[rgba(74,144,217,0.35)] hover:shadow-[0_0_30px_-10px_rgba(74,144,217,0.15)] transition-all duration-300 flex flex-col"
+      >
+        {/* Top row: badge + discount */}
+        <div className="flex items-start justify-between mb-3">
+          <span
+            className={`px-2.5 py-1 text-[10px] tracking-[0.05em] font-semibold rounded-md ${badge.bg} ${badge.text}`}
+          >
+            {BADGE_LABELS[deal.dealType]}
+          </span>
+          <span className="text-[18px] font-bold text-[#34d399]">
+            {deal.discountLabel}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-[14px] font-medium text-[#e8edf5] mb-1.5 leading-snug">
+          {deal.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-[12px] text-[#6b7a94] leading-relaxed line-clamp-2 mb-3">
+          {deal.description}
+        </p>
+
+        {/* Category tags */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {deal.categories.slice(0, 3).map((cat) => (
+            <span
+              key={cat}
+              className="px-2 py-0.5 text-[10px] rounded-md bg-[rgba(74,144,217,0.06)] text-[#3d4a61] border border-[rgba(74,144,217,0.08)]"
+            >
+              {cat}
+            </span>
+          ))}
+        </div>
+
+        {/* Spacer */}
+        <div className="flex-1" />
+
+        {/* Footer */}
+        <div className="pt-3 border-t border-[rgba(74,144,217,0.08)]">
+          <div className="text-[12px] text-[#6b7a94] mb-3">
+            <span className="text-[#e8edf5] font-medium">{deal.shop}</span>
+            <span className="mx-1.5">&middot;</span>
+            {deal.city}, FL
+            {distance && (
+              <span className="ml-1.5 text-[#3d4a61]">
+                ({distance})
+              </span>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <a
+              href={deal.dealsPage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 px-4 py-2.5 text-[12px] font-medium text-center bg-[#4a90d9] text-[#0a0f1a] rounded-lg hover:bg-[#5a9ee5] transition-colors"
+            >
+              Get This Deal
+            </a>
+            <a
+              href={`https://www.google.com/maps/search/${encodeURIComponent(deal.shop + " " + deal.city + " Florida")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2.5 text-[12px] font-medium text-[#6b7a94] bg-[rgba(74,144,217,0.08)] rounded-lg hover:text-[#e8edf5] hover:bg-[rgba(74,144,217,0.15)] transition-colors"
+            >
+              Directions
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       <Navigation activeItem="" />
@@ -364,7 +471,13 @@ function DealsPageContent() {
       {/* Location Banner */}
       <section className="px-6 md:px-12 pb-4">
         <div className="max-w-[1000px] mx-auto">
-          <div className="flex items-center justify-center gap-3 py-3 px-5 rounded-xl bg-[rgba(74,144,217,0.06)] border border-[rgba(74,144,217,0.1)]">
+          <div className={`flex items-center justify-center gap-3 py-4 px-6 rounded-xl border ${
+            banner.type === "nearest"
+              ? "bg-[rgba(245,158,11,0.06)] border-[rgba(245,158,11,0.15)]"
+              : banner.type === "detected" || banner.type === "zip"
+                ? "bg-[rgba(16,185,129,0.06)] border-[rgba(16,185,129,0.15)]"
+                : "bg-[rgba(74,144,217,0.06)] border-[rgba(74,144,217,0.1)]"
+          }`}>
             {banner.type === "loading" ? (
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 border-2 border-[#4a90d9] border-t-transparent rounded-full animate-spin" />
@@ -375,7 +488,11 @@ function DealsPageContent() {
             ) : (
               <>
                 <svg
-                  className="w-4 h-4 text-[#4a90d9] flex-shrink-0"
+                  className={`w-5 h-5 flex-shrink-0 ${
+                    banner.type === "nearest" ? "text-[#f59e0b]"
+                    : banner.type === "detected" || banner.type === "zip" ? "text-[#10B981]"
+                    : "text-[#4a90d9]"
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -393,7 +510,11 @@ function DealsPageContent() {
                   />
                 </svg>
                 <div className="flex items-center gap-2 flex-wrap justify-center">
-                  <span className="text-[13px] text-[#e8edf5] font-medium">
+                  <span className={`text-[15px] font-semibold ${
+                    banner.type === "nearest" ? "text-[#f59e0b]"
+                    : banner.type === "detected" || banner.type === "zip" ? "text-[#e8edf5]"
+                    : "text-[#e8edf5]"
+                  }`}>
                     {banner.text}
                   </span>
                   {banner.sub && (
@@ -602,87 +723,50 @@ function DealsPageContent() {
           <section className="px-6 md:px-12 pb-8">
             <div className="max-w-[1000px] mx-auto">
               {filteredDeals.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {filteredDeals.map((deal) => {
-                    const badge = BADGE_COLORS[deal.dealType] || BADGE_COLORS.dollar_off;
-                    const distance = getDealDistance(deal.lat, deal.lng);
-                    return (
-                      <div
-                        key={deal.id}
-                        className="bg-[#0d1424] border border-[rgba(74,144,217,0.12)] rounded-2xl p-5 hover:border-[rgba(74,144,217,0.35)] hover:shadow-[0_0_30px_-10px_rgba(74,144,217,0.15)] transition-all duration-300 flex flex-col"
-                      >
-                        {/* Top row: badge + discount */}
-                        <div className="flex items-start justify-between mb-3">
-                          <span
-                            className={`px-2.5 py-1 text-[10px] tracking-[0.05em] font-semibold rounded-md ${badge.bg} ${badge.text}`}
-                          >
-                            {BADGE_LABELS[deal.dealType]}
-                          </span>
-                          <span className="text-[18px] font-bold text-[#34d399]">
-                            {deal.discountLabel}
-                          </span>
-                        </div>
-
-                        {/* Title */}
-                        <h3 className="text-[14px] font-medium text-[#e8edf5] mb-1.5 leading-snug">
-                          {deal.title}
-                        </h3>
-
-                        {/* Description */}
-                        <p className="text-[12px] text-[#6b7a94] leading-relaxed line-clamp-2 mb-3">
-                          {deal.description}
-                        </p>
-
-                        {/* Category tags */}
-                        <div className="flex flex-wrap gap-1.5 mb-4">
-                          {deal.categories.slice(0, 3).map((cat) => (
-                            <span
-                              key={cat}
-                              className="px-2 py-0.5 text-[10px] rounded-md bg-[rgba(74,144,217,0.06)] text-[#3d4a61] border border-[rgba(74,144,217,0.08)]"
-                            >
-                              {cat}
-                            </span>
-                          ))}
-                        </div>
-
-                        {/* Spacer */}
-                        <div className="flex-1" />
-
-                        {/* Footer */}
-                        <div className="pt-3 border-t border-[rgba(74,144,217,0.08)]">
-                          <div className="text-[12px] text-[#6b7a94] mb-3">
-                            <span className="text-[#e8edf5] font-medium">{deal.shop}</span>
-                            <span className="mx-1.5">&middot;</span>
-                            {deal.city}, FL
-                            {distance && (
-                              <span className="ml-1.5 text-[#3d4a61]">
-                                ({distance})
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex gap-2">
-                            <a
-                              href={deal.dealsPage}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-1 px-4 py-2.5 text-[12px] font-medium text-center bg-[#4a90d9] text-[#0a0f1a] rounded-lg hover:bg-[#5a9ee5] transition-colors"
-                            >
-                              Get This Deal
-                            </a>
-                            <a
-                              href={`https://www.google.com/maps/search/${encodeURIComponent(deal.shop + " " + deal.city + " Florida")}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="px-4 py-2.5 text-[12px] font-medium text-[#6b7a94] bg-[rgba(74,144,217,0.08)] rounded-lg hover:text-[#e8edf5] hover:bg-[rgba(74,144,217,0.15)] transition-colors"
-                            >
-                              Directions
-                            </a>
-                          </div>
-                        </div>
+                <>
+                  {/* Near You section */}
+                  {nearDeals.length > 0 && (
+                    <div className="mb-8">
+                      <div className="flex items-center gap-2 mb-4">
+                        <svg className="w-4 h-4 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                        </svg>
+                        <h2 className="text-[13px] font-semibold tracking-[0.08em] uppercase text-[#10B981]">
+                          Near You
+                        </h2>
+                        <span className="text-[11px] text-[#6b7a94]">
+                          ({nearDeals.length} {nearDeals.length === 1 ? "deal" : "deals"} within {NEAR_RADIUS} mi)
+                        </span>
                       </div>
-                    );
-                  })}
-                </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {nearDeals.map((deal) => renderDealCard(deal))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* More Deals section */}
+                  {moreDeals.length > 0 && (
+                    <div>
+                      {nearDeals.length > 0 && (
+                        <div className="flex items-center gap-2 mb-4">
+                          <svg className="w-4 h-4 text-[#4a90d9]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
+                          </svg>
+                          <h2 className="text-[13px] font-semibold tracking-[0.08em] uppercase text-[#4a90d9]">
+                            More Deals in Florida
+                          </h2>
+                          <span className="text-[11px] text-[#6b7a94]">
+                            ({moreDeals.length})
+                          </span>
+                        </div>
+                      )}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {moreDeals.map((deal) => renderDealCard(deal))}
+                      </div>
+                    </div>
+                  )}
+                </>
               ) : (
                 <div className="text-center py-16">
                   <svg
