@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Find EV Charging Stations Near You | Healvanna Auto",
   description:
-    "Locate EV charging stations nearby. Filter by DC Fast, Level 2, or free chargers. Get estimated charge times for your electric vehicle.",
+    "Find EV charging stations near you. Real-time availability, pricing, and directions for all major charging networks.",
   openGraph: {
     title: "Find EV Charging Stations Near You | Healvanna Auto",
     description:
-      "Locate EV charging stations nearby. Filter by DC Fast, Level 2, or free chargers. Get estimated charge times for your electric vehicle.",
+      "Find EV charging stations near you. Real-time availability, pricing, and directions for all major charging networks.",
     type: "website",
   },
 };

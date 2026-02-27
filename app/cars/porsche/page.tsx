@@ -98,6 +98,32 @@ export default function PorscheBrand() {
         </div>
       </section>
 
+      
+      {/* You Might Also Like */}
+      <section className="px-4 pb-16">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-xl font-semibold text-white mb-6">You Might Also Like</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <Link href="/cars/bmw" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">BMW</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/mercedes" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Mercedes</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/audi" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Audi</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/tesla" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Tesla</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+          </div>
+        </div>
+      </section>
+
       <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center text-slate-400"><p>© 2026 Healvanna Auto. All rights reserved.</p></div>
       </footer>

@@ -220,6 +220,33 @@ export default function Polestar2Page() {
       <ChargingSection brand="Polestar" model="2" slug="polestar/polestar-2" range={320} theme="sapphire" />
       <MaintenanceSchedule brand="Polestar" model="2" theme="sapphire" />
 
+      
+      {/* Compare With */}
+      <section className="px-4 pb-12">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-lg font-semibold text-white mb-4">Compare With Competitors</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <Link href="/cars/tesla/model-3" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">Tesla Model 3</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+              <Link href="/cars/bmw/i4" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">BMW i4</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+              <Link href="/cars/hyundai/ioniq-6" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">Hyundai Ioniq 6</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+          </div>
+          <div className="mt-4">
+            <Link href="/cars/polestar" className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors">
+              ← All Polestar Models
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">

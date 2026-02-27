@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "List Your Business — Partner With Healvanna Auto",
   description:
-    "Get your auto shop in front of thousands of car owners. Apply to be featured on Healvanna's Deal Hunter directory — free to join, no hidden fees.",
+    "Partner with Healvanna Auto. List your shop, reach EV owners, and grow your business.",
   alternates: { canonical: "/partner" },
   openGraph: {
     title: "List Your Business — Partner With Healvanna Auto",

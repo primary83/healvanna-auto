@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Car Service Deals & Coupons Near You | Healvanna Auto",
   description:
-    "Find the best auto repair deals, oil change coupons, tire specials, and EV service discounts near you. Save on car maintenance with verified local shop deals.",
+    "Find the best EV service deals near you. Detailing, wrapping, collision repair, and more from verified local shops.",
   openGraph: {
     title: "Car Service Deals & Coupons Near You | Healvanna Auto",
     description:
-      "Find the best auto repair deals, oil change coupons, tire specials, and EV service discounts near you. Save on car maintenance with verified local shop deals.",
+      "Find the best EV service deals near you. Detailing, wrapping, collision repair, and more from verified local shops.",
     type: "website",
   },
 };

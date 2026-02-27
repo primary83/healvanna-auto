@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Electric Vehicle Directory - Browse EVs by Brand & Model",
   description:
-    "Explore our complete directory of electric vehicles. Compare Tesla, Porsche, Rivian, BMW, and more. Specs, range, pricing, and expert insights for every model.",
+    "Browse and compare electric vehicles from 25+ brands. Filter by category — luxury, performance, American, European, and more.",
   keywords: [
     "electric vehicles",
     "EV directory",

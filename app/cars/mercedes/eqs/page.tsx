@@ -118,6 +118,33 @@ export default function MercedesEQS() {
       <ChargingSection brand="Mercedes" model="EQS" slug="mercedes/eqs" range={350} theme="slate" />
       <MaintenanceSchedule brand="Mercedes" model="EQS" theme="slate" />
 
+      
+      {/* Compare With */}
+      <section className="px-4 pb-12">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-lg font-semibold text-white mb-4">Compare With Competitors</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <Link href="/cars/bmw/i7" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">BMW i7</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+              <Link href="/cars/lucid/air-grand-touring" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">Lucid Air GT</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+              <Link href="/cars/tesla/model-s" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">Tesla Model S</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+          </div>
+          <div className="mt-4">
+            <Link href="/cars/mercedes" className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors">
+              ← All Mercedes Models
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center text-slate-400"><p>© 2026 Healvanna Auto. All rights reserved.</p></div>
       </footer>

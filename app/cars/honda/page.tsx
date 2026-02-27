@@ -184,6 +184,32 @@ export default function HondaBrand() {
       </section>
 
       <Footer />
-    </main>
+    
+      {/* You Might Also Like */}
+      <section className="px-4 pb-16">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-xl font-semibold text-white mb-6">You Might Also Like</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <Link href="/cars/toyota" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Toyota</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/nissan" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Nissan</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/hyundai" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Hyundai</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/subaru" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Subaru</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+          </div>
+        </div>
+      </section>
+
+</main>
   );
 }

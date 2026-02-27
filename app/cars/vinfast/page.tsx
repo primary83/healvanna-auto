@@ -68,6 +68,32 @@ export default function VinFastPage() {
         </div>
       </div>
 
+      
+      {/* You Might Also Like */}
+      <section className="px-4 pb-16">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-xl font-semibold text-white mb-6">You Might Also Like</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <Link href="/cars/hyundai" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Hyundai</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/kia" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Kia</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/nissan" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Nissan</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/toyota" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Toyota</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+          </div>
+        </div>
+      </section>
+
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]"><div className="max-w-7xl mx-auto"><div className="flex flex-col md:flex-row justify-between items-center gap-4"><div className="text-[11px] text-[#6b7a94]">© 2024 Healvanna Auto. All rights reserved.</div><div className="flex gap-6">{["Privacy", "Terms", "Cookies"].map((link) => (<Link key={link} href={`/${link.toLowerCase()}`} className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors">{link}</Link>))}</div></div></div></footer>
     </main>
   );

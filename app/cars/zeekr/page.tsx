@@ -204,6 +204,32 @@ export default function ZeekrPage() {
       </section>
 
       {/* Footer */}
+      
+      {/* You Might Also Like */}
+      <section className="px-4 pb-16">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-xl font-semibold text-white mb-6">You Might Also Like</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <Link href="/cars/byd" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">BYD</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/nio" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">NIO</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/xpeng" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">XPeng</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+              <Link href="/cars/xiaomi" className="block px-6 py-4 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 hover:bg-slate-800/50 transition-all text-center">
+                <div className="text-white font-medium mb-1">Xiaomi</div>
+                <div className="text-emerald-400 text-sm">View Models →</div>
+              </Link>
+          </div>
+        </div>
+      </section>
+
       <footer className="bg-[#0a0f1a] pt-16 pb-8 px-12 border-t border-[rgba(74,144,217,0.15)]">
         <div className="grid grid-cols-6 gap-10 max-w-[1200px] mx-auto mb-12">
           {[

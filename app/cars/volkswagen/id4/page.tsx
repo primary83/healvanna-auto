@@ -133,6 +133,33 @@ export default function ID4Page() {
       <ChargingSection brand="Volkswagen" model="ID.4" slug="volkswagen/id4" range={275} theme="slate" />
       <MaintenanceSchedule brand="Volkswagen" model="ID.4" theme="slate" />
 
-    </main>
+    
+      {/* Compare With */}
+      <section className="px-4 pb-12">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-lg font-semibold text-white mb-4">Compare With Competitors</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <Link href="/cars/hyundai/ioniq-5" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">Hyundai Ioniq 5</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+              <Link href="/cars/kia/ev6" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">Kia EV6</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+              <Link href="/cars/chevrolet/equinox-ev" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">Chevrolet Equinox EV</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+          </div>
+          <div className="mt-4">
+            <Link href="/cars/volkswagen" className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors">
+              ← All Volkswagen Models
+            </Link>
+          </div>
+        </div>
+      </section>
+
+</main>
   );
 }

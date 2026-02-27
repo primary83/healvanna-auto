@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "What Should This Cost? | AI-Powered Auto Service Estimator | Healvanna Auto",
   description:
-    "Get instant cost estimates for auto services. Snap a photo of your car or damage and our AI estimates repair costs — or use the manual estimator. Free, fast, and transparent.",
+    "Get instant AI-powered cost estimates for EV repairs, detailing, and body work. Free and transparent.",
   keywords: [
     "auto repair cost estimator",
     "car service cost calculator",

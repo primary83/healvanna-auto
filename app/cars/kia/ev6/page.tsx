@@ -105,6 +105,33 @@ export default function KiaEV6Page() {
       </section>
 
       {/* Footer */}
+      
+      {/* Compare With */}
+      <section className="px-4 pb-12">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-lg font-semibold text-white mb-4">Compare With Competitors</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <Link href="/cars/hyundai/ioniq-5" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">Hyundai Ioniq 5</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+              <Link href="/cars/tesla/model-y" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">Tesla Model Y</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+              <Link href="/cars/ford/mustang-mach-e" className="block px-5 py-3.5 bg-slate-800/30 rounded-xl border border-slate-700/30 hover:border-emerald-500/30 transition-all">
+                <div className="text-white font-medium text-sm">Ford Mustang Mach-E</div>
+                <div className="text-emerald-400 text-xs mt-1">Compare →</div>
+              </Link>
+          </div>
+          <div className="mt-4">
+            <Link href="/cars/kia" className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors">
+              ← All Kia Models
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <footer className="bg-[#0a0f1a] py-12 px-6 md:px-12 border-t border-[rgba(74,144,217,0.15)]">
         <div className="max-w-7xl mx-auto text-center text-[#6b7a94] text-sm">
           © 2026 Healvanna Auto. All rights reserved.

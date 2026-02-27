@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Compare Electric Vehicles Side by Side | Healvanna Auto",
   description:
-    "Compare electric vehicles side by side. Price, range, 0-60, top speed, and full specs for Tesla, BMW, Rivian, Mercedes, Porsche, Lucid, Hyundai, Kia, and more.",
+    "Compare electric vehicles side by side. Range, price, charging speed, and more for every major EV.",
   alternates: { canonical: "/compare-evs" },
   openGraph: {
     title: "Compare Electric Vehicles - Healvanna Auto",
