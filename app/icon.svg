@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="82" ry="82" fill="#0f172a"/>
+  <!-- Left stem -->
+  <rect x="87" y="87" width="97" height="338" rx="12" fill="#10B981"/>
+  <!-- Right stem -->
+  <rect x="328" y="87" width="97" height="338" rx="12" fill="#10B981"/>
+  <!-- Crossbar -->
+  <rect x="183" y="213" width="146" height="87" fill="#10B981"/>
+  <!-- Lightning bolt slash through crossbar -->
+  <polygon points="
+    287,198
+    305,198
+    243,315
+    225,315
+  " fill="#0f172a"/>
+</svg>
