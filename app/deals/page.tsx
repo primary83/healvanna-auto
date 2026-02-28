@@ -53,6 +53,18 @@ const SERVICE_TYPES = [
   { name: "Brake Service", icon: "🔧", filter: "brakes" },
   { name: "Tires", icon: "🔘", filter: "tires" },
   { name: "AC Service", icon: "❄️", filter: "AC service" },
+  { name: "Wrapping", icon: "🎨", filter: "wrapping" },
+  { name: "Body Shops", icon: "🏪", filter: "body work" },
+  { name: "Collision", icon: "💥", filter: "collision" },
+  { name: "Auto Glass", icon: "🪟", filter: "auto glass" },
+  { name: "Painting", icon: "🖌️", filter: "paint" },
+  { name: "Car Wash", icon: "🚿", filter: "car wash" },
+  { name: "Ceramic Coating", icon: "💎", filter: "ceramic coating" },
+  { name: "Tire Rotation", icon: "🔄", filter: "tire rotation" },
+  { name: "Alignment", icon: "📐", filter: "alignment" },
+  { name: "Inspection", icon: "🔍", filter: "inspection" },
+  { name: "Maintenance", icon: "🛠️", filter: "maintenance" },
+  { name: "Battery", icon: "🔋", filter: "battery" },
 ];
 
 const DEAL_TYPE_BROWSE = [
@@ -63,6 +75,14 @@ const DEAL_TYPE_BROWSE = [
   { name: "Bundle Deals", icon: "📦", filter: "bundle" },
   { name: "Dollar Off", icon: "💵", filter: "dollar_off" },
   { name: "Percent Off", icon: "🏷️", filter: "percent_off" },
+];
+
+const BROWSE_STATES = [
+  { name: "Florida", abbr: "FL", active: true },
+  { name: "Georgia", abbr: "GA", active: false },
+  { name: "Alabama", abbr: "AL", active: false },
+  { name: "South Carolina", abbr: "SC", active: false },
+  { name: "Texas", abbr: "TX", active: false },
 ];
 
 const NEAR_RADIUS = 30; // miles
@@ -547,12 +567,52 @@ function DealsPageContent() {
                       {city.name}
                     </div>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-[12px] text-[#34d399]">{count} deals</span>
+                      <span className="text-[12px] text-[#34d399]">{count} {count === 1 ? "deal" : "deals"}</span>
                       {dist !== null && (
                         <span className="text-[11px] text-[#3d4a61]">{dist} mi</span>
                       )}
                     </div>
                   </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ───────── Browse by State ───────── */}
+      {activeSection === "all" && (
+        <section className="px-6 md:px-12 pb-10">
+          <div className="max-w-[1200px] mx-auto">
+            <SectionHeading
+              icon={<span>🗺️</span>}
+              title="Deals by State"
+              subtitle="Browse deals across the Southeast and beyond"
+            />
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {BROWSE_STATES.map((state) => {
+                const count = state.active ? DEALS.length : 0;
+                return state.active ? (
+                  <button
+                    key={state.abbr}
+                    onClick={() => { setCityFilter(null); setDealTypeFilter(""); setServiceFilter(""); setActiveSection("all"); }}
+                    className="group p-4 rounded-xl border border-[rgba(16,185,129,0.15)] bg-[#0d1424] hover:border-[rgba(16,185,129,0.3)] hover:bg-[rgba(16,185,129,0.04)] transition-all duration-300 text-left"
+                  >
+                    <div className="text-[15px] font-medium text-[#e8edf5] group-hover:text-[#10B981] transition-colors">
+                      {state.name}
+                    </div>
+                    <div className="text-[12px] text-[#34d399] mt-1">{count} {count === 1 ? "deal" : "deals"}</div>
+                  </button>
+                ) : (
+                  <div
+                    key={state.abbr}
+                    className="p-4 rounded-xl border border-[rgba(74,144,217,0.05)] bg-[#0d1424]/50 opacity-50 cursor-default text-left"
+                  >
+                    <div className="text-[15px] font-medium text-[#6b7a94]">
+                      {state.name}
+                    </div>
+                    <div className="text-[11px] text-[#3d4a61] mt-1">Coming Soon</div>
+                  </div>
                 );
               })}
             </div>
@@ -569,20 +629,23 @@ function DealsPageContent() {
               title="Deals by Service Type"
               subtitle="Find deals for the service you need"
             />
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
               {SERVICE_TYPES.map((st) => {
                 const count = DEALS.filter(d => d.categories.includes(st.filter)).length;
                 return (
                   <button
                     key={st.filter}
-                    onClick={() => { setServiceFilter(st.filter); setActiveSection("service"); setCityFilter(null); setDealTypeFilter(""); }}
-                    className="group p-4 rounded-xl border border-[rgba(74,144,217,0.1)] bg-[#0d1424] hover:border-[rgba(74,144,217,0.3)] hover:bg-[rgba(74,144,217,0.04)] transition-all duration-300 text-center"
+                    onClick={count > 0 ? () => { setServiceFilter(st.filter); setActiveSection("service"); setCityFilter(null); setDealTypeFilter(""); } : undefined}
+                    className={`group p-4 rounded-xl border transition-all duration-300 text-center ${count > 0
+                      ? "border-[rgba(74,144,217,0.1)] bg-[#0d1424] hover:border-[rgba(74,144,217,0.3)] hover:bg-[rgba(74,144,217,0.04)] cursor-pointer"
+                      : "border-[rgba(74,144,217,0.05)] bg-[#0d1424]/50 opacity-50 cursor-default"
+                    }`}
                   >
                     <div className="text-[24px] mb-2">{st.icon}</div>
-                    <div className="text-[13px] font-medium text-[#e8edf5] group-hover:text-[#4a90d9] transition-colors">
+                    <div className={`text-[13px] font-medium transition-colors ${count > 0 ? "text-[#e8edf5] group-hover:text-[#4a90d9]" : "text-[#6b7a94]"}`}>
                       {st.name}
                     </div>
-                    <div className="text-[11px] text-[#34d399] mt-1">{count} deals</div>
+                    <div className={`text-[11px] mt-1 ${count > 0 ? "text-[#34d399]" : "text-[#3d4a61]"}`}>{count} {count === 1 ? "deal" : "deals"}</div>
                   </button>
                 );
               })}
@@ -615,7 +678,7 @@ function DealsPageContent() {
                         <div className="text-[13px] font-medium text-[#e8edf5] group-hover:text-[#4a90d9] transition-colors">
                           {dt.name}
                         </div>
-                        <div className="text-[11px] text-[#34d399]">{count} deals</div>
+                        <div className="text-[11px] text-[#34d399]">{count} {count === 1 ? "deal" : "deals"}</div>
                       </div>
                     </div>
                   </button>
