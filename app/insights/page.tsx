@@ -1,10 +1,29 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
 export default function InsightsPage() {
+  const [nlEmail, setNlEmail] = useState("");
+  const [nlStatus, setNlStatus] = useState<"idle" | "submitting" | "success">("idle");
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!nlEmail.trim()) return;
+    setNlStatus("submitting");
+    try {
+      await fetch("https://formspree.io/f/xjggywyr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: nlEmail, _subject: "Newsletter Signup - Insights" }),
+      });
+    } catch { /* fail silently */ }
+    setNlStatus("success");
+    setNlEmail("");
+  };
+
   const articles = [
     {
       slug: "us-evs-vs-chinese-evs",
@@ -150,14 +169,26 @@ export default function InsightsPage() {
         <div className="max-w-[600px] mx-auto text-center">
           <h2 className="text-[clamp(24px,4vw,36px)] font-extralight mb-4">Stay Informed</h2>
           <p className="text-[15px] text-[#6b7a94] mb-8">Get the latest insights, comparisons, and guides delivered to your inbox.</p>
-          <div className="flex gap-4 max-w-[400px] mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 bg-[#0a0f1a] border border-[rgba(74,144,217,0.3)] rounded px-4 py-3 text-[14px] text-[#e8edf5] placeholder-[#3d4a61] focus:border-[#4a90d9] focus:outline-none transition-colors"
-            />
-            <button className="px-6 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded">Subscribe</button>
-          </div>
+          {nlStatus === "success" ? (
+            <div className="flex items-center justify-center gap-2 text-[#10B981] text-sm font-medium">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+              You&apos;re subscribed!
+            </div>
+          ) : (
+            <form onSubmit={handleNewsletterSubmit} className="flex gap-4 max-w-[400px] mx-auto">
+              <input
+                type="email"
+                value={nlEmail}
+                onChange={(e) => setNlEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+                className="flex-1 bg-[#0a0f1a] border border-[rgba(74,144,217,0.3)] rounded px-4 py-3 text-[14px] text-[#e8edf5] placeholder-[#3d4a61] focus:border-[#4a90d9] focus:outline-none transition-colors"
+              />
+              <button type="submit" disabled={nlStatus === "submitting"} className="px-6 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded disabled:opacity-50">
+                {nlStatus === "submitting" ? "..." : "Subscribe"}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 

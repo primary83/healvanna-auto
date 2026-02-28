@@ -346,10 +346,22 @@ export default function VinylWrapsGuide() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubscribed(true);
-    setEmail("");
+    if (!email.trim()) return;
+    try {
+      await fetch("https://formspree.io/f/xjggywyr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, _subject: "Newsletter Signup" }),
+      });
+      setSubscribed(true);
+      setEmail("");
+    } catch {
+      // Silently fail - show success anyway for UX
+      setSubscribed(true);
+      setEmail("");
+    }
   };
 
   return (

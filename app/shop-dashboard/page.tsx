@@ -77,7 +77,18 @@ export default function ShopDashboardPage() {
               </div>
             ) : (
               <form
-                onSubmit={(e) => { e.preventDefault(); if (email.trim()) setSubmitted(true); }}
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  if (!email.trim()) return;
+                  try {
+                    await fetch("https://formspree.io/f/xjggywyr", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ email, _subject: "Shop Dashboard Launch Notification" }),
+                    });
+                  } catch { /* fail silently */ }
+                  setSubmitted(true);
+                }}
                 className="flex flex-col sm:flex-row gap-3"
               >
                 <input

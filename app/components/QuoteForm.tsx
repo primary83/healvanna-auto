@@ -17,9 +17,15 @@ export default function QuoteForm({ serviceName }: QuoteFormProps) {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In production, this would POST to an API endpoint
+    try {
+      await fetch("https://formspree.io/f/xjggywyr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, _subject: `Quote Request: ${serviceName}` }),
+      });
+    } catch { /* fail silently */ }
     setSubmitted(true);
   };
 
