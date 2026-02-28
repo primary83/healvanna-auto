@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Navigation from "../../../components/Navigation";
+import Footer from "../../../components/Footer";
 
 export default function MarketInsightsCategory() {
   const [nlEmail, setNlEmail] = useState("");
@@ -22,13 +23,6 @@ export default function MarketInsightsCategory() {
     setNlStatus("success");
     setNlEmail("");
   };
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Vehicles", href: "/vehicles" },
-    { name: "Care", href: "/care" },
-    { name: "Insights", href: "/insights" },
-  ];
-
   // This category shows ALL articles as a comprehensive index
   const articles = [
     {
@@ -180,52 +174,7 @@ export default function MarketInsightsCategory() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="px-12 py-16 bg-[#070b12] border-t border-[rgba(74,144,217,0.1)]">
-        <div className="grid grid-cols-4 gap-12 max-w-[1200px] mx-auto mb-12">
-          {[
-            { title: "Vehicles", links: [
-              { name: "Browse All", href: "/vehicles" },
-              { name: "Electric", href: "/vehicles?type=electric" },
-              { name: "Luxury", href: "/vehicles?type=luxury" }
-            ]},
-            { title: "Care", links: [
-              { name: "Find Services", href: "/care" },
-              { name: "Detailing", href: "/care?service=detailing" },
-              { name: "Body Shops", href: "/care?service=bodyshop" }
-            ]},
-            { title: "Insights", links: [
-              { name: "All Articles", href: "/insights" },
-              { name: "Comparisons", href: "/insights/category/market-insights" },
-              { name: "Guides", href: "/insights" }
-            ]},
-            { title: "Company", links: [
-              { name: "About", href: "/about" },
-              { name: "Contact", href: "/contact" },
-              { name: "For Business", href: "#" }
-            ]},
-          ].map((column, index) => (
-            <div key={index}>
-              <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">{column.title}</h4>
-              {column.links.map((link) => (
-                <Link key={link.name} href={link.href} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)] max-w-[1200px] mx-auto">
-          <div className="text-[11px] text-[#3d4a61]">© 2025 Healvanna. All rights reserved.</div>
-          <div className="flex gap-6">
-            {[
-              { name: "Privacy", href: "/privacy" },
-              { name: "Terms", href: "/terms" },
-              { name: "Cookies", href: "#" }
-            ].map((link) => (
-              <Link key={link.name} href={link.href} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
