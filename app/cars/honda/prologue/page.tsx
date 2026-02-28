@@ -89,7 +89,7 @@ export default function HondaPrologue() {
                 <a
                   href="https://www.honda.com/prologue"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
                 >
                   Configure on Honda.com
@@ -100,7 +100,7 @@ export default function HondaPrologue() {
                 <a
                   href="https://www.honda.com/find-a-dealer"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors"
                 >
                   Find Honda Dealer

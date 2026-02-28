@@ -89,7 +89,7 @@ export default function SubaruSolterra() {
                 <a
                   href="https://www.subaru.com/vehicles/solterra"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
                 >
                   Configure on Subaru.com
@@ -100,7 +100,7 @@ export default function SubaruSolterra() {
                 <a
                   href="https://www.subaru.com/retailers"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors"
                 >
                   Find Subaru Dealer

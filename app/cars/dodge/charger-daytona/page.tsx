@@ -81,7 +81,7 @@ export default function DodgeChargerDaytona() {
                 <a
                   href="https://www.dodge.com/charger-ev"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
                 >
                   Configure on Dodge.com
@@ -92,7 +92,7 @@ export default function DodgeChargerDaytona() {
                 <a
                   href="https://www.dodge.com/dealer-locator"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors"
                 >
                   Find Dodge Dealer

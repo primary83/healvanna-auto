@@ -176,7 +176,7 @@ export default function TeslaModelSPlaid() {
               <a 
                 href="https://www.tesla.com/models" 
                 target="_blank" 
-                rel="noopener noreferrer"
+                rel="noopener noreferrer sponsored"
                 className="px-8 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded"
               >
                 Configure on Tesla.com
@@ -393,7 +393,7 @@ export default function TeslaModelSPlaid() {
           <div className="text-center mt-8 text-[13px] text-[#6b7a94]">
             Prices shown are base MSRP. Final price varies with options and destination charges. 
             <br />
-            Federal tax credits of up to $7,500 may apply. Check <a href="https://www.tesla.com" target="_blank" rel="noopener noreferrer" className="text-[#4a90d9] hover:underline">Tesla.com</a> for current pricing.
+            Federal tax credits of up to $7,500 may apply. Check <a href="https://www.tesla.com" target="_blank" rel="noopener noreferrer sponsored" className="text-[#4a90d9] hover:underline">Tesla.com</a> for current pricing.
           </div>
         </div>
       </section>
@@ -452,7 +452,7 @@ export default function TeslaModelSPlaid() {
             <a 
               href="https://www.tesla.com/models/design" 
               target="_blank" 
-              rel="noopener noreferrer"
+              rel="noopener noreferrer sponsored"
               className="px-10 py-4 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded"
             >
               Build Your Model S

@@ -83,7 +83,7 @@ export default function MiniCountrymanSE() {
                 <a
                   href="https://www.miniusa.com/model/countryman"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
                 >
                   Configure on Mini.com
@@ -94,7 +94,7 @@ export default function MiniCountrymanSE() {
                 <a
                   href="https://www.miniusa.com/find-a-dealer"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors"
                 >
                   Find Mini Dealer

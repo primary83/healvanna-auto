@@ -208,7 +208,7 @@ export default function TampaWindowTinting() {
               Browse verified tint shops in the {cityData.name} Bay area.
             </p>
             <Link
-              href="/services/window-tinting"
+              href="/directory"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#4a90d9] text-white font-medium hover:bg-[#6ba8eb] transition-colors"
             >
               Find Tint Shops

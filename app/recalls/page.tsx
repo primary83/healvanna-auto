@@ -412,7 +412,7 @@ export default function RecallsPage() {
             <a
               href="https://www.nhtsa.gov/recalls"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer sponsored"
               className="text-[#4a90d9] hover:underline"
             >
               nhtsa.gov/recalls

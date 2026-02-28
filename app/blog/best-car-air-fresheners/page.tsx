@@ -163,8 +163,8 @@ export default function BestCarAirFresheners() {
             <h3 className="text-xl font-bold text-white mb-6">Related Articles</h3>
             <div className="grid md:grid-cols-3 gap-4">
               <Link href="/blog/best-interior-detailing-products" className="group p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-emerald-500/30 transition-colors"><p className="text-white font-medium group-hover:text-emerald-400 transition-colors text-sm">Best Interior Detailing Products</p></Link>
-              <Link href="/blog/leather-vs-fabric-seats" className="group p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-emerald-500/30 transition-colors"><p className="text-white font-medium group-hover:text-emerald-400 transition-colors text-sm">Leather vs Fabric Seats: Pros and Cons</p></Link>
-              <Link href="/blog/car-detailing-mistakes" className="group p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-emerald-500/30 transition-colors"><p className="text-white font-medium group-hover:text-emerald-400 transition-colors text-sm">Common Car Detailing Mistakes to Avoid</p></Link>
+              <Link href="/blog/leather-restoration-classic-cars" className="group p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-emerald-500/30 transition-colors"><p className="text-white font-medium group-hover:text-emerald-400 transition-colors text-sm">Leather Restoration for Classic Cars</p></Link>
+              <Link href="/blog/detail-car-like-pro-at-home" className="group p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-emerald-500/30 transition-colors"><p className="text-white font-medium group-hover:text-emerald-400 transition-colors text-sm">Detail Your Car Like a Pro at Home</p></Link>
             </div>
           </div>
 

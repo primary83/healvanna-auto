@@ -118,7 +118,7 @@ export default function PorscheTaycanTurboS() {
             </div>
 
             <div className="flex gap-4">
-              <a href="https://www.porsche.com/usa/models/taycan/" target="_blank" rel="noopener noreferrer" className="px-8 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded">Configure on Porsche.com</a>
+              <a href="https://www.porsche.com/usa/models/taycan/" target="_blank" rel="noopener noreferrer sponsored" className="px-8 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] hover:bg-[#6ba8eb] transition-all duration-300 rounded">Configure on Porsche.com</a>
               <Link href="/care" className="px-8 py-3 text-[13px] font-medium bg-transparent border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded">Find Detailers Near You</Link>
             </div>
           </div>

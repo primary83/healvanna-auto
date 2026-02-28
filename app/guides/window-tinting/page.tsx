@@ -537,7 +537,7 @@ export default function WindowTintingGuide() {
                   Find verified window tinting shops in your area.
                 </p>
                 <Link
-                  href="/services/window-tinting"
+                  href="/directory"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#4a90d9] text-white font-medium hover:bg-[#6ba8eb] transition-colors"
                 >
                   Find Tint Shops Near You

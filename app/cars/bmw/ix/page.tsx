@@ -89,7 +89,7 @@ export default function BMWiX() {
                 <a 
                   href="https://www.bmwusa.com/vehicles/all-electric/ix/overview.html" 
                   target="_blank" 
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
                 >
                   Build Your iX
@@ -100,7 +100,7 @@ export default function BMWiX() {
                 <a 
                   href="https://www.bmwusa.com/dealer-locator.html" 
                   target="_blank" 
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors"
                 >
                   Find Dealer

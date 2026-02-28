@@ -329,7 +329,7 @@ export default function StartMobileDetailingBusiness() {
             <h3 className="text-2xl font-bold text-white mb-4">Already a Detailing Professional?</h3>
             <p className="text-slate-300 mb-6">List your business in our directory and connect with customers searching for detailing services in your area.</p>
             <Link
-              href="/for-business"
+              href="/business"
               className="inline-flex items-center px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold rounded-xl transition-colors"
             >
               List Your Business

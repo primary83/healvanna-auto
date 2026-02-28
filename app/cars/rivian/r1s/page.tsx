@@ -90,7 +90,7 @@ export default function RivianR1S() {
                 <a 
                   href="https://rivian.com/r1s" 
                   target="_blank" 
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
                 >
                   Configure on Rivian.com
@@ -101,7 +101,7 @@ export default function RivianR1S() {
                 <a 
                   href="https://rivian.com/experience" 
                   target="_blank" 
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors"
                 >
                   Book Test Drive

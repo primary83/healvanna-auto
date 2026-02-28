@@ -89,7 +89,7 @@ export default function Fiat500e() {
                 <a
                   href="https://www.fiatusa.com/500e"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
                 >
                   Configure on Fiat.com
@@ -100,7 +100,7 @@ export default function Fiat500e() {
                 <a
                   href="https://www.fiatusa.com/dealer-locator"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors"
                 >
                   Find Fiat Dealer

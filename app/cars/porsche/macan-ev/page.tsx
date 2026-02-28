@@ -45,10 +45,10 @@ export default function PorscheMacanEV() {
                 <div><div className="text-3xl font-bold text-white">3.1s</div><div className="text-slate-400">0-60 (Turbo)</div></div>
               </div>
               <div className="flex gap-4">
-                <a href="https://www.porsche.com/usa/models/macan/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2">
+                <a href="https://www.porsche.com/usa/models/macan/" target="_blank" rel="noopener noreferrer sponsored" className="px-6 py-3 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2">
                   Configure on Porsche.com <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                 </a>
-                <a href="https://www.porsche.com/usa/dealersearch/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors">Find Dealer</a>
+                <a href="https://www.porsche.com/usa/dealersearch/" target="_blank" rel="noopener noreferrer sponsored" className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors">Find Dealer</a>
               </div>
             </div>
             <div className="relative">

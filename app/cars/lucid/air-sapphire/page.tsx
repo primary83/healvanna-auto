@@ -50,7 +50,7 @@ export default function LucidAirSapphirePage() {
             </div>
 
             <div className="flex gap-4">
-              <a href="https://www.lucidmotors.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-[#446688] text-white rounded-lg font-medium hover:bg-[#557799] transition-colors flex items-center gap-2">
+              <a href="https://www.lucidmotors.com" target="_blank" rel="noopener noreferrer sponsored" className="px-6 py-3 bg-[#446688] text-white rounded-lg font-medium hover:bg-[#557799] transition-colors flex items-center gap-2">
                 Configure on Lucid.com
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

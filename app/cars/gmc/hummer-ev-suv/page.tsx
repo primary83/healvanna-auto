@@ -83,7 +83,7 @@ export default function GMCHummerEVSUV() {
                 <a
                   href="https://www.gmc.com/hummer-ev-suv"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
                 >
                   Configure on GMC.com
@@ -94,7 +94,7 @@ export default function GMCHummerEVSUV() {
                 <a
                   href="https://www.gmc.com/dealer-locator"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer sponsored"
                   className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors"
                 >
                   Find GMC Dealer

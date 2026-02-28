@@ -164,7 +164,7 @@ export default function ProtectCarPaintSummerHeat() {
             <h3 className="text-xl font-bold text-white mb-6">Related Articles</h3>
             <div className="grid md:grid-cols-3 gap-4">
               <Link href="/blog/is-ppf-worth-it" className="group p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-emerald-500/30 transition-colors"><p className="text-white font-medium group-hover:text-emerald-400 transition-colors text-sm">Is Paint Protection Film Worth It?</p></Link>
-              <Link href="/blog/ceramic-coating-care" className="group p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-emerald-500/30 transition-colors"><p className="text-white font-medium group-hover:text-emerald-400 transition-colors text-sm">How to Care for Ceramic Coatings</p></Link>
+              <Link href="/blog/ceramic-coating-maintenance-tips" className="group p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-emerald-500/30 transition-colors"><p className="text-white font-medium group-hover:text-emerald-400 transition-colors text-sm">How to Care for Ceramic Coatings</p></Link>
               <Link href="/blog/remove-water-spots-from-car" className="group p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-emerald-500/30 transition-colors"><p className="text-white font-medium group-hover:text-emerald-400 transition-colors text-sm">How to Remove Water Spots From Your Car</p></Link>
             </div>
           </div>
