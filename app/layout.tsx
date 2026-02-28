@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import StructuredData from "./components/StructuredData";
 import "./globals.css";
+
+const GA_ID = "G-66FXKNEX5R";
 
 export const metadata: Metadata = {
   title: {
@@ -89,6 +92,18 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="theme-color" content="#0a0f1a" />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
       </head>
       <body className="antialiased">
         <StructuredData data={{
