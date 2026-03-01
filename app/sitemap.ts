@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { SERVICE_CATEGORIES, MAJOR_CITIES } from "./lib/services";
 import { BLOG_CATEGORIES } from "./lib/blogCategories";
 import { getAllStates, getCitiesByState } from "./lib/directoryData";
+import { DEAL_CITIES, DEAL_SERVICE_CATEGORIES, getDealsForCityService } from "./lib/dealCities";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://healvanna.com";
@@ -451,6 +452,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   ];
 
+  // Deal city pages: /deals/orlando, /deals/miami, etc.
+  const dealCityPages: MetadataRoute.Sitemap = DEAL_CITIES.map((city) => ({
+    url: `${baseUrl}/deals/${city.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  // Deal city+service pages: /deals/orlando/oil-change, etc.
+  const dealCityServicePages: MetadataRoute.Sitemap = DEAL_CITIES.flatMap((city) =>
+    DEAL_SERVICE_CATEGORIES
+      .filter((s) => getDealsForCityService(city.slug, s.slug).length > 0)
+      .map((s) => ({
+        url: `${baseUrl}/deals/${city.slug}/${s.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
+      }))
+  );
+
   return [
     ...staticPages,
     ...servicePages,
@@ -467,5 +488,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...carePages,
     ...craftPages,
     ...directoryPages,
+    ...dealCityPages,
+    ...dealCityServicePages,
   ];
 }
