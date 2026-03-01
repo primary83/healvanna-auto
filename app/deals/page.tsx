@@ -83,6 +83,8 @@ const BROWSE_STATES = [
   { name: "Alabama", abbr: "AL", active: false },
   { name: "South Carolina", abbr: "SC", active: false },
   { name: "Texas", abbr: "TX", active: false },
+  { name: "California", abbr: "CA", active: false },
+  { name: "New York", abbr: "NY", active: false },
 ];
 
 const NEAR_RADIUS = 30; // miles
