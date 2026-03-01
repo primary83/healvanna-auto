@@ -2,9 +2,11 @@
 
 import { useState, useCallback, useEffect, useMemo } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { EV_MODELS } from "../lib/carData";
+import { DEALS } from "../lib/dealsData";
 
 // Dynamically import map to avoid SSR issues with Leaflet
 const ChargeMap = dynamic(() => import("./ChargeMap"), { ssr: false });
@@ -42,13 +44,79 @@ const brandGroups = EV_MODELS.reduce(
 );
 const sortedBrands = Object.keys(brandGroups).sort();
 
+// Networks for filter dropdown and browse section
+const NETWORKS = [
+  "ChargePoint Network",
+  "Tesla",
+  "Tesla Destination",
+  "Electrify America",
+  "EVgo",
+  "Blink Network",
+  "SemaConnect",
+  "Volta",
+  "FLO",
+  "EV Connect",
+  "OpConnect",
+  "GreenLots",
+];
+
+// Connector types for filter dropdown
+const CONNECTOR_TYPES: { label: string; value: string }[] = [
+  { label: "J1772", value: "J1772" },
+  { label: "CCS (J1772COMBO)", value: "J1772COMBO" },
+  { label: "CHAdeMO", value: "CHADEMO" },
+  { label: "Tesla (NACS)", value: "TESLA" },
+  { label: "NEMA 14-50", value: "NEMA1450" },
+];
+
+// Distance radius options
+const RADIUS_OPTIONS = [
+  { label: "5 mi", value: "5" },
+  { label: "10 mi", value: "10" },
+  { label: "25 mi", value: "25" },
+  { label: "50 mi", value: "50" },
+];
+
+// Browse by state data
+const BROWSE_STATES = [
+  { name: "Florida", abbr: "FL", active: true },
+  { name: "California", abbr: "CA", active: true },
+  { name: "Texas", abbr: "TX", active: true },
+  { name: "New York", abbr: "NY", active: true },
+  { name: "Georgia", abbr: "GA", active: true },
+  { name: "Washington", abbr: "WA", active: true },
+  { name: "Colorado", abbr: "CO", active: true },
+  { name: "North Carolina", abbr: "NC", active: true },
+  { name: "Illinois", abbr: "IL", active: true },
+  { name: "Virginia", abbr: "VA", active: true },
+  { name: "Oregon", abbr: "OR", active: true },
+  { name: "Arizona", abbr: "AZ", active: true },
+];
+
+// Haversine distance in miles
+function haversineDistance(
+  lat1: number,
+  lng1: number,
+  lat2: number,
+  lng2: number
+): number {
+  const R = 3959; // Earth's radius in miles
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLng = ((lng2 - lng1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLng / 2) *
+      Math.sin(dLng / 2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
 function estimateChargeTime(
   rangeNumeric: number,
   chargerKw: number
 ): string {
-  // Approximate battery capacity: range * 0.3 kWh/mi
   const batteryKwh = rangeNumeric * 0.3;
-  // 10% to 80% = 70% of capacity
   const chargeKwh = batteryKwh * 0.7;
   const minutes = Math.round((chargeKwh / chargerKw) * 60);
   if (minutes < 60) return `~${minutes} min`;
@@ -88,6 +156,16 @@ export default function ChargePage() {
   const [hasSearched, setHasSearched] = useState(false);
   const [detectingLocation, setDetectingLocation] = useState(false);
 
+  // New filter states
+  const [networkFilter, setNetworkFilter] = useState("");
+  const [connectorFilter, setConnectorFilter] = useState("");
+  const [radiusFilter, setRadiusFilter] = useState("25");
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+
+  // Email capture state
+  const [emailInput, setEmailInput] = useState("");
+  const [emailStatus, setEmailStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
   const selectedEv = EV_MODELS.find((ev) => ev.id === selectedVehicle);
 
   // Auto-select vehicle from ?vehicle= query param
@@ -96,7 +174,6 @@ export default function ChargePage() {
     const vehicleParam = params.get("vehicle");
     if (!vehicleParam) return;
 
-    // Match slug format "brand/model" against EV_MODELS
     const match = EV_MODELS.find(
       (ev) =>
         `${ev.brandSlug}/${ev.slug}` === vehicleParam || ev.id === vehicleParam
@@ -140,7 +217,6 @@ export default function ChargePage() {
       let lat: string | null = null;
       let lng: string | null = null;
 
-      // Check if locationInput is coordinates
       const coordMatch = locationInput.match(
         /^(-?\d+\.?\d*),\s*(-?\d+\.?\d*)$/
       );
@@ -148,7 +224,6 @@ export default function ChargePage() {
         lat = coordMatch[1];
         lng = coordMatch[2];
       } else if (locationInput.trim()) {
-        // Geocode text location using Nominatim (OpenStreetMap)
         const geoRes = await fetch(
           `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(locationInput.trim())}&format=json&limit=1&countrycodes=us`,
           { headers: { "User-Agent": "HealvannaAuto/1.0" } }
@@ -172,10 +247,19 @@ export default function ChargePage() {
         return;
       }
 
-      // Update map center from geocoded/detected location
       setMapCenter([parseFloat(lat), parseFloat(lng)]);
 
-      const params = new URLSearchParams({ lat, lng, limit: "30" });
+      const params = new URLSearchParams({
+        lat,
+        lng,
+        limit: "40",
+        radius: radiusFilter,
+      });
+
+      // Pass network and connector filters to API
+      if (networkFilter) params.set("ev_network", networkFilter);
+      if (connectorFilter) params.set("ev_connector_type", connectorFilter);
+
       const res = await fetch(`/api/chargers?${params.toString()}`);
       const data = await res.json();
 
@@ -194,7 +278,7 @@ export default function ChargePage() {
     } finally {
       setLoading(false);
     }
-  }, [locationInput, mapCenter]);
+  }, [locationInput, mapCenter, radiusFilter, networkFilter, connectorFilter]);
 
   const filteredStations = useMemo(() => {
     switch (filter) {
@@ -213,6 +297,20 @@ export default function ChargePage() {
         return stations;
     }
   }, [stations, filter]);
+
+  // Nearby deals based on map center / search location
+  const nearbyDeals = useMemo(() => {
+    if (!mapCenter) return [];
+    return DEALS.filter((deal) => {
+      const dist = haversineDistance(
+        mapCenter[0],
+        mapCenter[1],
+        deal.lat,
+        deal.lng
+      );
+      return dist <= 30;
+    }).slice(0, 4);
+  }, [mapCenter]);
 
   const detectLocation = useCallback(() => {
     if (!("geolocation" in navigator)) {
@@ -236,6 +334,31 @@ export default function ChargePage() {
     );
   }, []);
 
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!emailInput.trim()) return;
+    setEmailStatus("sending");
+    try {
+      const res = await fetch("https://formspree.io/f/xjggywyr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: emailInput,
+          source: "charge-page",
+          message: "EV Charging Updates signup",
+        }),
+      });
+      if (res.ok) {
+        setEmailStatus("sent");
+        setEmailInput("");
+      } else {
+        setEmailStatus("error");
+      }
+    } catch {
+      setEmailStatus("error");
+    }
+  };
+
   const filters: { label: string; value: FilterType }[] = [
     { label: "All", value: "all" },
     { label: "DC Fast", value: "dc_fast" },
@@ -247,8 +370,26 @@ export default function ChargePage() {
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       <Navigation activeItem="CHARGE" />
 
+      {/* Breadcrumbs */}
+      <nav
+        aria-label="Breadcrumb"
+        className="pt-28 px-6 md:px-12"
+      >
+        <div className="max-w-[1400px] mx-auto">
+          <ol className="flex items-center gap-1.5 text-[11px] text-[#3d4a61]">
+            <li>
+              <Link href="/" className="hover:text-[#4a90d9] transition-colors">
+                Home
+              </Link>
+            </li>
+            <li>/</li>
+            <li className="text-[#6b7a94]">Charge</li>
+          </ol>
+        </div>
+      </nav>
+
       {/* Header */}
-      <section className="pt-32 pb-6 px-6 md:px-12">
+      <section className="pt-4 pb-6 px-6 md:px-12">
         <div className="max-w-[1400px] mx-auto text-center">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">
             Charge
@@ -258,8 +399,8 @@ export default function ChargePage() {
             <span className="italic text-[#4a90d9]">Chargers</span>
           </h1>
           <p className="text-[15px] text-[#6b7a94] max-w-[600px] mx-auto">
-            Locate charging stations near you. Select your vehicle for
-            personalized charge time estimates.
+            Search 85,000+ EV charging stations across the US. Filter by
+            network, connector type, and charging speed.
           </p>
         </div>
       </section>
@@ -372,6 +513,84 @@ export default function ChargePage() {
               </button>
             </div>
           </div>
+
+          {/* Advanced Filters Toggle */}
+          <button
+            onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+            className="mt-3 text-[12px] text-[#4a90d9] hover:text-[#5a9ee5] transition-colors flex items-center gap-1"
+          >
+            <svg
+              className={`w-3 h-3 transition-transform ${showAdvancedFilters ? "rotate-180" : ""}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+            {showAdvancedFilters ? "Hide Filters" : "More Filters"}
+          </button>
+
+          {/* Advanced Filters Row */}
+          {showAdvancedFilters && (
+            <div className="flex flex-col sm:flex-row gap-3 mt-3 p-4 bg-[rgba(15,22,40,0.5)] border border-[rgba(74,144,217,0.1)] rounded-xl">
+              {/* Network Filter */}
+              <div className="flex-1">
+                <label className="block text-[11px] tracking-[0.05em] uppercase text-[#6b7a94] mb-1.5 font-medium">
+                  Network
+                </label>
+                <select
+                  value={networkFilter}
+                  onChange={(e) => setNetworkFilter(e.target.value)}
+                  className="w-full px-3 py-2.5 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.15)] rounded-lg text-[#e8edf5] text-[12px] focus:outline-none focus:border-[#4a90d9] transition-colors appearance-none"
+                >
+                  <option value="" className="bg-[#0a0f1a]">All Networks</option>
+                  {NETWORKS.map((n) => (
+                    <option key={n} value={n} className="bg-[#0a0f1a]">
+                      {n}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Connector Filter */}
+              <div className="flex-1">
+                <label className="block text-[11px] tracking-[0.05em] uppercase text-[#6b7a94] mb-1.5 font-medium">
+                  Connector Type
+                </label>
+                <select
+                  value={connectorFilter}
+                  onChange={(e) => setConnectorFilter(e.target.value)}
+                  className="w-full px-3 py-2.5 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.15)] rounded-lg text-[#e8edf5] text-[12px] focus:outline-none focus:border-[#4a90d9] transition-colors appearance-none"
+                >
+                  <option value="" className="bg-[#0a0f1a]">All Connectors</option>
+                  {CONNECTOR_TYPES.map((ct) => (
+                    <option key={ct.value} value={ct.value} className="bg-[#0a0f1a]">
+                      {ct.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Distance Radius */}
+              <div className="flex-1">
+                <label className="block text-[11px] tracking-[0.05em] uppercase text-[#6b7a94] mb-1.5 font-medium">
+                  Distance Radius
+                </label>
+                <select
+                  value={radiusFilter}
+                  onChange={(e) => setRadiusFilter(e.target.value)}
+                  className="w-full px-3 py-2.5 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.15)] rounded-lg text-[#e8edf5] text-[12px] focus:outline-none focus:border-[#4a90d9] transition-colors appearance-none"
+                >
+                  {RADIUS_OPTIONS.map((r) => (
+                    <option key={r.value} value={r.value} className="bg-[#0a0f1a]">
+                      {r.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
 
           {/* Filter Chips */}
           {hasSearched && (
@@ -555,6 +774,54 @@ export default function ChargePage() {
                         ))}
                       </div>
 
+                      {/* Access Hours & Pricing */}
+                      <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#6b7a94] mb-2">
+                        {station.accessTime && (
+                          <span className="flex items-center gap-1">
+                            <svg className="w-3 h-3 text-[#3d4a61]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            {station.accessTime}
+                          </span>
+                        )}
+                        {station.pricing && (
+                          <span className="flex items-center gap-1">
+                            <svg className="w-3 h-3 text-[#3d4a61]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span className="truncate max-w-[180px]">{station.pricing}</span>
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Phone & Directions */}
+                      <div className="flex items-center gap-2 mb-2">
+                        {station.phone && (
+                          <a
+                            href={`tel:${station.phone}`}
+                            className="flex items-center gap-1 text-[11px] text-[#4a90d9] hover:text-[#5a9ee5] transition-colors"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                            </svg>
+                            {station.phone}
+                          </a>
+                        )}
+                        <a
+                          href={`https://www.google.com/maps/dir/?api=1&destination=${station.lat},${station.lng}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 text-[11px] text-[#34d399] hover:text-[#4ade80] transition-colors ml-auto"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m0 0l3-3m-3 3l-3-3m12-3v8.25m0 0l3-3m-3 3l-3-3" />
+                          </svg>
+                          Get Directions
+                        </a>
+                      </div>
+
                       {/* Estimated charge time */}
                       {selectedEv && (
                         <div className="pt-2 border-t border-[rgba(74,144,217,0.08)]">
@@ -579,10 +846,7 @@ export default function ChargePage() {
                               )}
                             </span>
                             <span className="text-[#3d4a61]">
-                              10%→80% at{" "}
-                              {getStationMaxKw(station) >= 50
-                                ? `${getStationMaxKw(station)} kW`
-                                : `${getStationMaxKw(station)} kW`}
+                              10%&rarr;80% at {getStationMaxKw(station)} kW
                             </span>
                           </div>
                         </div>
@@ -654,15 +918,203 @@ export default function ChargePage() {
         </div>
       </section>
 
+      {/* Nearby Deals Cross-Sell */}
+      {nearbyDeals.length > 0 && hasSearched && (
+        <section className="px-6 md:px-12 pb-10">
+          <div className="max-w-[1400px] mx-auto">
+            <h2 className="text-[20px] font-light tracking-tight mb-1">
+              Auto Service <span className="italic text-[#4a90d9]">Deals</span> Nearby
+            </h2>
+            <p className="text-[13px] text-[#6b7a94] mb-5">
+              While you charge, check out these deals from shops near your search area.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {nearbyDeals.map((deal) => (
+                <Link
+                  key={deal.id}
+                  href={`/deals?city=${encodeURIComponent(deal.city)}`}
+                  className="p-4 rounded-xl bg-[rgba(15,22,40,0.6)] border border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.35)] transition-all duration-300 group"
+                >
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <span className="px-2 py-0.5 text-[10px] tracking-[0.03em] rounded-md bg-[rgba(52,211,153,0.1)] text-[#34d399] border border-[rgba(52,211,153,0.2)] font-medium">
+                      {deal.discountLabel}
+                    </span>
+                    <span className="text-[10px] text-[#3d4a61]">{deal.city}</span>
+                  </div>
+                  <h3 className="text-[13px] font-medium text-[#e8edf5] leading-snug mb-1 group-hover:text-[#4a90d9] transition-colors">
+                    {deal.title}
+                  </h3>
+                  <p className="text-[11px] text-[#6b7a94]">{deal.shop}</p>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-4 text-center">
+              <Link
+                href="/deals"
+                className="text-[13px] text-[#4a90d9] hover:text-[#5a9ee5] transition-colors"
+              >
+                View all deals &rarr;
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Browse by Network */}
+      <section className="px-6 md:px-12 pb-10">
+        <div className="max-w-[1400px] mx-auto">
+          <h2 className="text-[20px] font-light tracking-tight mb-1">
+            Browse by <span className="italic text-[#4a90d9]">Network</span>
+          </h2>
+          <p className="text-[13px] text-[#6b7a94] mb-5">
+            Find charging stations from your preferred network.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {NETWORKS.map((network) => (
+              <button
+                key={network}
+                onClick={() => {
+                  setNetworkFilter(network);
+                  setShowAdvancedFilters(true);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className={`p-3 rounded-xl text-center border transition-all duration-300 hover:-translate-y-0.5 ${
+                  networkFilter === network
+                    ? "bg-[rgba(74,144,217,0.15)] border-[rgba(74,144,217,0.4)] text-[#4a90d9]"
+                    : "bg-[rgba(15,22,40,0.6)] border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.3)] text-[#e8edf5]"
+                }`}
+              >
+                <svg
+                  className="w-5 h-5 mx-auto mb-1.5 text-[#4a90d9]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                  />
+                </svg>
+                <span className="text-[11px] font-medium leading-tight block">
+                  {network}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Browse by State */}
+      <section className="px-6 md:px-12 pb-10">
+        <div className="max-w-[1400px] mx-auto">
+          <h2 className="text-[20px] font-light tracking-tight mb-1">
+            Browse by <span className="italic text-[#4a90d9]">State</span>
+          </h2>
+          <p className="text-[13px] text-[#6b7a94] mb-5">
+            Explore charging infrastructure across the country.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {BROWSE_STATES.map((state) => (
+              <button
+                key={state.abbr}
+                onClick={() => {
+                  setLocationInput(state.name);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="p-3 rounded-xl text-center bg-[rgba(15,22,40,0.6)] border border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.3)] transition-all duration-300 hover:-translate-y-0.5"
+              >
+                <span className="text-[16px] font-medium text-[#4a90d9] block">
+                  {state.abbr}
+                </span>
+                <span className="text-[11px] text-[#6b7a94] block mt-0.5">
+                  {state.name}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Email Capture */}
+      <section className="px-6 md:px-12 pb-10">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="p-6 md:p-8 rounded-2xl bg-[rgba(15,22,40,0.6)] border border-[rgba(74,144,217,0.12)] text-center">
+            <svg
+              className="w-8 h-8 mx-auto mb-3 text-[#4a90d9]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+              />
+            </svg>
+            <h2 className="text-[20px] font-light tracking-tight mb-2">
+              Get EV Charging <span className="italic text-[#4a90d9]">Updates</span>
+            </h2>
+            <p className="text-[13px] text-[#6b7a94] mb-5 max-w-[500px] mx-auto">
+              New stations, price changes, and charging tips delivered to your
+              inbox. No spam.
+            </p>
+            {emailStatus === "sent" ? (
+              <div className="text-[#34d399] text-[14px] font-medium">
+                You&apos;re signed up! We&apos;ll keep you in the loop.
+              </div>
+            ) : (
+              <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3 max-w-[460px] mx-auto">
+                <input
+                  type="email"
+                  value={emailInput}
+                  onChange={(e) => setEmailInput(e.target.value)}
+                  placeholder="your@email.com"
+                  required
+                  className="flex-1 px-4 py-3 bg-[rgba(10,15,26,0.6)] border border-[rgba(74,144,217,0.15)] rounded-lg text-[#e8edf5] text-[13px] placeholder-[#3d4a61] focus:outline-none focus:border-[#4a90d9] transition-colors"
+                />
+                <button
+                  type="submit"
+                  disabled={emailStatus === "sending"}
+                  className="px-6 py-3 text-[13px] font-medium bg-[#4a90d9] text-[#0a0f1a] rounded-lg hover:bg-[#5a9ee5] transition-all duration-200 disabled:opacity-60 whitespace-nowrap"
+                >
+                  {emailStatus === "sending" ? "Subscribing..." : "Subscribe"}
+                </button>
+              </form>
+            )}
+            {emailStatus === "error" && (
+              <p className="text-[12px] text-[#ef4444] mt-2">
+                Something went wrong. Please try again.
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* Disclaimer */}
       <section className="px-6 md:px-12 pb-16">
         <div className="max-w-[1400px] mx-auto">
-          <p className="text-[11px] text-[#3d4a61] leading-relaxed max-w-[800px]">
-            Charging station data provided by the U.S. Department of
-            Energy&apos;s Alternative Fuels Station Locator. Healvanna is not
-            affiliated with or endorsed by the U.S. Department of Energy or
-            NREL. Station availability and details may vary.
-          </p>
+          <div className="p-4 rounded-xl bg-[rgba(15,22,40,0.4)] border border-[rgba(74,144,217,0.08)]">
+            <h3 className="text-[12px] font-medium text-[#6b7a94] mb-2 uppercase tracking-[0.05em]">
+              Data Sources &amp; Disclaimer
+            </h3>
+            <p className="text-[11px] text-[#3d4a61] leading-relaxed">
+              Charging station data is provided by the U.S. Department of
+              Energy&apos;s Alternative Fuels Station Locator, powered by the
+              National Renewable Energy Laboratory (NREL). Data is updated
+              regularly but station availability, pricing, hours of operation,
+              and connector compatibility may vary from what is displayed.
+              Always verify details with the charging network or station
+              operator before traveling. Charge time estimates are
+              approximations based on vehicle specifications and may differ
+              based on battery state of charge, temperature, and charging
+              infrastructure. Healvanna is not affiliated with or endorsed by
+              the U.S. Department of Energy, NREL, or any charging network
+              listed on this page.
+            </p>
+          </div>
         </div>
       </section>
 
