@@ -7,6 +7,35 @@ import Footer from "../components/Footer";
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Healvanna Auto",
+          url: "https://healvanna.com",
+          logo: "https://healvanna.com/favicon.ico",
+          description: "Premium automotive services directory connecting car owners with verified detailers, body shops, collision repair, and auto glass specialists across the United States.",
+          foundingDate: "2025",
+          areaServed: [
+            { "@type": "State", name: "Florida" },
+            { "@type": "State", name: "California" },
+            { "@type": "State", name: "Texas" },
+            { "@type": "State", name: "New York" },
+            { "@type": "State", name: "Georgia" },
+          ],
+          knowsAbout: [
+            "Car Detailing", "Ceramic Coating", "Paint Protection Film",
+            "Body Shop Services", "Collision Repair", "Auto Glass",
+            "Electric Vehicle Maintenance", "Car Wrapping",
+          ],
+          contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "customer service",
+            url: "https://healvanna.com/contact",
+          },
+        }) }}
+      />
       <Navigation activeItem="ABOUT" />
 
       {/* Hero Section */}

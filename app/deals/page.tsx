@@ -416,8 +416,26 @@ function DealsPageContent() {
   /* ───────── City deals count ───────── */
   const cityDealCount = (cityName: string) => DEALS.filter(d => d.city === cityName).length;
 
+  // ItemList structured data for SEO
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Car Service Deals in Florida",
+    numberOfItems: DEALS.length,
+    itemListElement: DEALS.slice(0, 20).map((deal, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: deal.title,
+      url: deal.dealsPage,
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <Navigation activeItem="" />
 
       {/* Hero */}
