@@ -16,12 +16,18 @@ export const metadata: Metadata = {
     "dent repair cost",
     "AI car damage assessment",
   ],
+  alternates: { canonical: "/cost-estimator" },
   openGraph: {
     title: "What Should This Cost? | AI Auto Service Estimator",
     description:
       "Snap a photo and get instant cost estimates for car repairs, detailing, wrapping, painting, and more.",
     type: "website",
     url: "https://healvanna.com/cost-estimator",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Auto Service Cost Estimator | Healvanna Auto",
+    description: "Get instant AI-powered cost estimates for car repairs, detailing, and body work.",
   },
 };
 

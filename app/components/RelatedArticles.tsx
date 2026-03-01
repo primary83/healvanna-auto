@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getRelatedArticles } from "../lib/blogServiceMap";
 
 interface RelatedArticlesProps {
@@ -32,11 +33,12 @@ export default function RelatedArticles({ serviceSlug, serviceName, cityName }: 
               className="bg-[rgba(15,22,40,0.5)] rounded-xl overflow-hidden border border-[rgba(74,144,217,0.1)] hover:border-[rgba(74,144,217,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] group block"
             >
               <div className="h-[140px] overflow-hidden bg-gradient-to-b from-[rgba(74,144,217,0.05)] to-transparent">
-                <img
+                <Image
                   src={article.image}
                   alt={article.title}
+                  width={400}
+                  height={140}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
                 />
               </div>
               <div className="p-5">
