@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import RelatedDeals from "../../components/RelatedDeals";
 
 export default function ScenicEvRoadTrips() {
   return (
@@ -277,6 +278,13 @@ export default function ScenicEvRoadTrips() {
           </div>
         </div>
       </section>
-    </main>
+    
+      {/* Related Deals */}
+      <section className="px-4 pb-12">
+        <div className="max-w-4xl mx-auto">
+          <RelatedDeals serviceCategories={["EV service", "maintenance"]} />
+        </div>
+      </section>
+      </main>
   );
 }

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import RelatedDeals from "../../components/RelatedDeals";
 
 export default function BestElectricSUVsFamilies2026() {
   return (
@@ -462,6 +463,13 @@ export default function BestElectricSUVsFamilies2026() {
           </div>
         </div>
       </section>
-    </main>
+    
+      {/* Related Deals */}
+      <section className="px-4 pb-12">
+        <div className="max-w-4xl mx-auto">
+          <RelatedDeals serviceCategories={["EV service"]} />
+        </div>
+      </section>
+      </main>
   );
 }

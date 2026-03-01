@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import RelatedDeals from "../../components/RelatedDeals";
 
 export default function CarWaxingSchedule() {
   return (
@@ -141,6 +142,13 @@ export default function CarWaxingSchedule() {
           </div>
         </div>
       </section>
-    </main>
+    
+      {/* Related Deals */}
+      <section className="px-4 pb-12">
+        <div className="max-w-4xl mx-auto">
+          <RelatedDeals serviceCategories={["detailing"]} />
+        </div>
+      </section>
+      </main>
   );
 }

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import RelatedDeals from "../../components/RelatedDeals";
 
 export default function EVPaintProtectionGuide() {
   return (
@@ -431,6 +432,13 @@ export default function EVPaintProtectionGuide() {
           </div>
         </div>
       </section>
-    </main>
+    
+      {/* Related Deals */}
+      <section className="px-4 pb-12">
+        <div className="max-w-4xl mx-auto">
+          <RelatedDeals serviceCategories={["detailing", "EV service", "paint"]} />
+        </div>
+      </section>
+      </main>
   );
 }
