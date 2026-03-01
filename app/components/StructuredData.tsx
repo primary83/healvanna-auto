@@ -106,6 +106,79 @@ export function generateFAQSchema(
   };
 }
 
+// Generate Article schema for blog posts
+export function generateArticleSchema(article: {
+  title: string;
+  description: string;
+  slug: string;
+  datePublished: string;
+  dateModified: string;
+  author: string;
+  image: string;
+  category: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    image: `https://healvanna.com${article.image}`,
+    datePublished: article.datePublished,
+    dateModified: article.dateModified,
+    author: {
+      "@type": "Organization",
+      name: article.author,
+      url: "https://healvanna.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Healvanna Auto",
+      url: "https://healvanna.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://healvanna.com/favicon.ico",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://healvanna.com/blog/${article.slug}`,
+    },
+    articleSection: article.category,
+  };
+}
+
+// Generate OfferCatalog schema for deal listings
+export function generateOfferCatalogSchema(deals: {
+  title: string;
+  shop: string;
+  description: string;
+  url: string;
+  city: string;
+  state: string;
+}[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    name: "Car Service Deals",
+    itemListElement: deals.map((deal, i) => ({
+      "@type": "Offer",
+      position: i + 1,
+      name: deal.title,
+      description: deal.description,
+      offeredBy: {
+        "@type": "AutoRepair",
+        name: deal.shop,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: deal.city,
+          addressRegion: deal.state,
+        },
+      },
+      url: deal.url,
+    })),
+  };
+}
+
 // Generate BreadcrumbList schema
 export function generateBreadcrumbSchema(
   items: { name: string; url: string }[]
