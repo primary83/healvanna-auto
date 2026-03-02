@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navigation from "../../components/Navigation";
+import BrandHubSections from "../../components/BrandHubSections";
 
 export default function NIOPage() {
   const nioModels = [
@@ -236,6 +237,9 @@ export default function NIOPage() {
           </div>
         </div>
       </section>
+
+
+      <BrandHubSections brandSlug="nio" />
 
       <footer className="bg-[#0a0f1a] py-12 px-12 border-t border-[rgba(74,144,217,0.15)]">
         <div className="max-w-7xl mx-auto text-center text-[#6b7a94] text-sm">

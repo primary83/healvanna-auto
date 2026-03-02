@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
+import BrandHubSections from "../../components/BrandHubSections";
 
 export default function HondaBrand() {
   const models = [
@@ -209,6 +210,9 @@ export default function HondaBrand() {
           </div>
         </div>
       </section>
+
+
+      <BrandHubSections brandSlug="honda" />
 
 </main>
   );

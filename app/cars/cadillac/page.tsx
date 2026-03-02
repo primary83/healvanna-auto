@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../../components/Navigation";
+import BrandHubSections from "../../components/BrandHubSections";
 
 export default function CadillacPage() {
   const models = [
@@ -228,6 +229,9 @@ export default function CadillacPage() {
           </div>
         </div>
       </section>
+
+
+      <BrandHubSections brandSlug="cadillac" />
 
       <footer className="px-6 md:px-12 py-12 border-t border-[#1a2235]">
         <div className="max-w-7xl mx-auto">

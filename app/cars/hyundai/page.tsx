@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navigation from "../../components/Navigation";
+import BrandHubSections from "../../components/BrandHubSections";
 
 export default function HyundaiPage() {
   const hyundaiModels = [
@@ -228,6 +229,9 @@ export default function HyundaiPage() {
           </div>
         </div>
       </section>
+
+
+      <BrandHubSections brandSlug="hyundai" />
 
       <footer className="bg-[#0a0f1a] pt-16 pb-8 px-12 border-t border-[rgba(74,144,217,0.15)]">
         <div className="grid grid-cols-6 gap-10 max-w-[1200px] mx-auto mb-12">

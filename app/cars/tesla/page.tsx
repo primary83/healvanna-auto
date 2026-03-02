@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navigation from "../../components/Navigation";
+import BrandHubSections from "../../components/BrandHubSections";
 
 export default function TeslaBrand() {
   const teslaModels = [
@@ -260,6 +261,9 @@ export default function TeslaBrand() {
           </div>
         </div>
       </section>
+
+
+      <BrandHubSections brandSlug="tesla" />
 
       <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center text-slate-400">

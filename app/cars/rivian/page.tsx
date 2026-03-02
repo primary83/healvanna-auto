@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Navigation from "../../components/Navigation";
+import BrandHubSections from "../../components/BrandHubSections";
 
 export default function RivianBrand() {
   const vehicles = [
@@ -179,6 +180,9 @@ export default function RivianBrand() {
           </div>
         </div>
       </section>
+
+
+      <BrandHubSections brandSlug="rivian" />
 
       <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center text-slate-400">

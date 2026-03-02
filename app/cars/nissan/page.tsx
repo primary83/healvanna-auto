@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
+import BrandHubSections from "../../components/BrandHubSections";
 
 export default function NissanBrand() {
   const models = [
@@ -219,6 +220,9 @@ export default function NissanBrand() {
           </div>
         </div>
       </section>
+
+
+      <BrandHubSections brandSlug="nissan" />
 
 </main>
   );

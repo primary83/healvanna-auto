@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../../components/Navigation";
+import BrandHubSections from "../../components/BrandHubSections";
 
 export default function VolkswagenPage() {
   const models = [
@@ -210,6 +211,9 @@ export default function VolkswagenPage() {
           </div>
         </div>
       </section>
+
+
+      <BrandHubSections brandSlug="volkswagen" />
 
       <footer className="bg-[#080c14] py-16 px-6 md:px-12">
         <div className="max-w-[1200px] mx-auto">
