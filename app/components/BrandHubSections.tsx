@@ -10,6 +10,12 @@ export default function BrandHubSections({ brandSlug }: { brandSlug: string }) {
 
   if (!data) return null;
 
+  // Build cross-links from ALL brands in the data, excluding the current brand
+  const allCrossLinks = Object.values(BRAND_HUB_DATA)
+    .filter((b) => b.slug !== brandSlug)
+    .map((b) => ({ slug: b.slug, name: b.brandName }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
   // FAQPage JSON-LD schema
   const faqSchema = data.faqItems.length > 0 ? {
     "@context": "https://schema.org",
@@ -202,7 +208,7 @@ export default function BrandHubSections({ brandSlug }: { brandSlug: string }) {
       )}
 
       {/* Browse Other Brands */}
-      {data.crossLinks.length > 0 && (
+      {allCrossLinks.length > 0 && (
         <section className="py-12 px-6 md:px-12 border-t border-[rgba(74,144,217,0.08)]">
           <div className="max-w-[1400px] mx-auto">
             <div className="text-[10px] tracking-[0.3em] uppercase text-[#4a90d9] font-medium mb-2">
@@ -212,7 +218,7 @@ export default function BrandHubSections({ brandSlug }: { brandSlug: string }) {
               Browse Other EV Brands
             </h2>
             <div className="flex flex-wrap gap-2">
-              {data.crossLinks.map((link) => (
+              {allCrossLinks.map((link) => (
                 <Link
                   key={link.slug}
                   href={`/cars/${link.slug}`}

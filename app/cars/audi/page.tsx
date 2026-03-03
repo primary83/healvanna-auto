@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../../components/Navigation";
 import BrandHubSections from "../../components/BrandHubSections";
+import Footer from "../../components/Footer";
 
 export default function AudiPage() {
   const models = [
@@ -227,27 +228,7 @@ export default function AudiPage() {
 
 
       <BrandHubSections brandSlug="audi" />
-
-      <footer className="bg-[#080c14] py-16 px-6 md:px-12">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)]">
-            <div className="text-[11px] text-[#3d4a61] mb-4 md:mb-0">
-              © 2026 Healvanna. All rights reserved.
-            </div>
-            <div className="flex gap-6">
-              {["Privacy", "Terms", "Cookies"].map((link) => (
-                <Link
-                  key={link}
-                  href={`/${link.toLowerCase()}`}
-                  className="text-[11px] text-[#6b7a94] hover:text-[#e8edf5] transition-colors"
-                >
-                  {link}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

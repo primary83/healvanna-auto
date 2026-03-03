@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navigation from "../../components/Navigation";
 import BrandHubSections from "../../components/BrandHubSections";
+import Footer from "../../components/Footer";
 
 export default function VolvoPage() {
   const volvoModels = [
@@ -232,57 +233,7 @@ export default function VolvoPage() {
 
 
       <BrandHubSections brandSlug="volvo" />
-
-      <footer className="bg-[#080c14] py-16 px-12">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-4 gap-12 mb-12">
-            <div>
-              <Link href="/" className="text-xl font-light tracking-wider cursor-pointer">
-                HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
-              </Link>
-              <p className="text-[#6b7a94] text-sm mt-4 leading-relaxed">
-                Premium electric vehicles for the modern driver. Experience the future of sustainable luxury.
-              </p>
-            </div>
-            {[
-              { title: "Vehicles", links: [
-                { name: "All Cars", href: "/cars" },
-                { name: "SUVs", href: "/cars?type=suv" },
-                { name: "Sedans", href: "/cars?type=sedan" },
-                { name: "Compare", href: "/compare" }
-              ]},
-              { title: "Services", links: [
-                { name: "Care", href: "/care" },
-                { name: "Craft", href: "/craft" },
-                { name: "Shop", href: "/shop" },
-                { name: "Support", href: "/support" }
-              ]},
-              { title: "Company", links: [
-                { name: "About", href: "/about" },
-                { name: "For Business", href: "/business" },
-                { name: "Contact", href: "/contact" }
-              ]},
-            ].map((column, index) => (
-              <div key={index}>
-                <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">{column.title}</h4>
-                {column.links.map((link) => (
-                  <Link key={link.name} href={link.href} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>
-                ))}
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)] max-w-[1200px] mx-auto">
-            <div className="text-[11px] text-[#3d4a61]">© 2026 Healvanna. All rights reserved.</div>
-            <div className="flex gap-6">
-              {[
-                { name: "Privacy", href: "/privacy" },
-                { name: "Terms", href: "/terms" },
-                { name: "Cookies", href: "#" }
-              ].map((link) => <Link key={link.name} href={link.href} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">{link.name}</Link>)}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

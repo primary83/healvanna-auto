@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Navigation from "../../components/Navigation";
 import BrandHubSections from "../../components/BrandHubSections";
+import Footer from "../../components/Footer";
 
 export default function PorscheBrand() {
   const vehicles = [
@@ -127,10 +128,7 @@ export default function PorscheBrand() {
 
 
       <BrandHubSections brandSlug="porsche" />
-
-      <footer className="bg-slate-950 border-t border-slate-800/50 py-12 px-4">
-        <div className="max-w-7xl mx-auto text-center text-slate-400"><p>© 2026 Healvanna Auto. All rights reserved.</p></div>
-      </footer>
+      <Footer />
     </main>
   );
 }
