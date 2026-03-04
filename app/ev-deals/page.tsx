@@ -8,7 +8,7 @@ import { EV_DEALS, MARKET_PULSE, GAS_CARS, EV_BRANDS } from "../lib/evDealsData"
 import type { EvDeal } from "../lib/evDealsData";
 import { getSlugForDeal } from "../lib/evDetailData";
 
-const BODY_TYPES = ["all", "sedan", "suv", "truck", "hatchback"] as const;
+const BODY_TYPES = ["all", "sedan", "suv", "truck", "hatchback", "van"] as const;
 const PRICE_RANGES = [
   { label: "All Prices", min: 0, max: Infinity },
   { label: "Under $30k", min: 0, max: 30000 },
@@ -181,7 +181,7 @@ export default function EvDealsPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-[rgba(15,22,40,0.6)] border border-[rgba(74,144,217,0.12)] rounded-xl p-4 text-center">
-              <div className="text-[28px] font-bold text-emerald-400">25</div>
+              <div className="text-[28px] font-bold text-emerald-400">50</div>
               <div className="text-[11px] text-[#6b7a94] uppercase tracking-wider">EVs Compared</div>
             </div>
             <div className="bg-[rgba(15,22,40,0.6)] border border-[rgba(74,144,217,0.12)] rounded-xl p-4 text-center">
