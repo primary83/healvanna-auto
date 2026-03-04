@@ -515,13 +515,46 @@ export default function EvDealsPage() {
                       Fast charge: <span className="text-[#e8edf5]">{deal.chargingSpeed}/15min</span>
                     </div>
 
+                    {/* Quick-Look Tabs */}
+                    <div className="flex gap-1 mb-3 flex-wrap">
+                      {(["gasSavings", "ownership", "battery", "platforms"] as const).map((tab) => {
+                        const labels: Record<string, string> = {
+                          gasSavings: "Gas Savings",
+                          ownership: "Ownership Cost",
+                          battery: "Battery",
+                          platforms: "Where to Buy",
+                        };
+                        const isActive = isExpanded && expandedTab === tab;
+                        return (
+                          <button
+                            key={tab}
+                            onClick={() => {
+                              if (isActive) {
+                                setExpandedId(null);
+                              } else {
+                                setExpandedId(deal.id);
+                                setExpandedTab(tab);
+                              }
+                            }}
+                            className={`px-2.5 py-1 text-[10px] font-medium rounded-md border transition-all ${
+                              isActive
+                                ? "bg-emerald-500/20 border-emerald-500/30 text-emerald-400"
+                                : "bg-[rgba(15,22,40,0.8)] border-[rgba(74,144,217,0.08)] text-[#6b7a94] hover:text-[#e8edf5] hover:border-[rgba(74,144,217,0.2)]"
+                            }`}
+                          >
+                            {labels[tab]}
+                          </button>
+                        );
+                      })}
+                    </div>
+
                     {/* Action Buttons */}
                     <div className="flex gap-2">
                       <Link
                         href={`/ev-deals/${getSlugForDeal(deal.id)}`}
                         className="flex-1 py-2 text-center text-[12px] font-medium bg-[rgba(74,144,217,0.1)] border border-[rgba(74,144,217,0.2)] rounded-lg hover:bg-[rgba(74,144,217,0.2)] transition-all text-[#4a90d9]"
                       >
-                        View Details
+                        Full Details &rarr;
                       </Link>
                       <button
                         onClick={() => toggleCompare(deal.id)}
@@ -541,22 +574,72 @@ export default function EvDealsPage() {
                     <div className="border-t border-[rgba(74,144,217,0.08)] bg-[rgba(10,15,26,0.5)]">
                       {/* Tabs */}
                       <div className="flex border-b border-[rgba(74,144,217,0.08)]">
-                        {["ownership", "battery", "platforms"].map((tab) => (
-                          <button
-                            key={tab}
-                            onClick={() => setExpandedTab(tab)}
-                            className={`flex-1 py-3 text-[12px] font-medium capitalize transition-all ${
-                              expandedTab === tab
-                                ? "text-[#4a90d9] border-b-2 border-[#4a90d9]"
-                                : "text-[#6b7a94] hover:text-[#e8edf5]"
-                            }`}
-                          >
-                            {tab === "ownership" ? "Ownership Costs" : tab === "battery" ? "Battery Deep-Dive" : "Where to Buy"}
-                          </button>
-                        ))}
+                        {(["gasSavings", "ownership", "battery", "platforms"] as const).map((tab) => {
+                          const tabLabels: Record<string, string> = {
+                            gasSavings: "Gas Savings",
+                            ownership: "Ownership Cost",
+                            battery: "Battery Deep-Dive",
+                            platforms: "Where to Buy",
+                          };
+                          return (
+                            <button
+                              key={tab}
+                              onClick={() => setExpandedTab(tab)}
+                              className={`flex-1 py-3 text-[12px] font-medium transition-all ${
+                                expandedTab === tab
+                                  ? "text-[#4a90d9] border-b-2 border-[#4a90d9]"
+                                  : "text-[#6b7a94] hover:text-[#e8edf5]"
+                              }`}
+                            >
+                              {tabLabels[tab]}
+                            </button>
+                          );
+                        })}
                       </div>
 
                       <div className="p-6">
+                        {expandedTab === "gasSavings" && (
+                          <div className="grid md:grid-cols-2 gap-6">
+                            <div>
+                              <h4 className="text-[14px] font-semibold mb-4">Annual Fuel Savings vs Gas</h4>
+                              <div className="space-y-3">
+                                <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+                                  <div className="text-[11px] text-emerald-400/80 uppercase mb-1">Annual Savings</div>
+                                  <div className="text-[28px] font-bold text-emerald-400">{formatPrice(deal.fuelSavings.annual)}</div>
+                                  <div className="text-[12px] text-[#6b7a94]">{formatPrice(deal.fuelSavings.monthly)}/mo less than gas</div>
+                                </div>
+                                <div className="p-4 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.12)] rounded-xl">
+                                  <div className="text-[11px] text-[#6b7a94] uppercase mb-1">5-Year Savings</div>
+                                  <div className="text-[24px] font-bold text-emerald-400">{formatPrice(deal.fuelSavings.fiveYear)}</div>
+                                  <div className="text-[12px] text-[#6b7a94]">Based on 12,000 miles/yr, $3.50/gal</div>
+                                </div>
+                              </div>
+                            </div>
+                            <div>
+                              <h4 className="text-[14px] font-semibold mb-4">Cost Per Mile</h4>
+                              <div className="space-y-2">
+                                <div className="flex justify-between py-2 border-b border-[rgba(74,144,217,0.08)]">
+                                  <span className="text-[12px] text-[#6b7a94]">Electric Cost/Mile</span>
+                                  <span className="text-[12px] font-medium text-emerald-400">~$0.04</span>
+                                </div>
+                                <div className="flex justify-between py-2 border-b border-[rgba(74,144,217,0.08)]">
+                                  <span className="text-[12px] text-[#6b7a94]">Gas Cost/Mile (avg)</span>
+                                  <span className="text-[12px] font-medium text-red-400">~$0.14</span>
+                                </div>
+                                <div className="flex justify-between py-2 border-b border-[rgba(74,144,217,0.08)]">
+                                  <span className="text-[12px] text-[#6b7a94]">Savings/Mile</span>
+                                  <span className="text-[12px] font-bold text-emerald-400">~$0.10</span>
+                                </div>
+                              </div>
+                              <div className="mt-4 p-3 bg-[rgba(74,144,217,0.1)] border border-[rgba(74,144,217,0.2)] rounded-lg">
+                                <div className="text-[12px] text-[#4a90d9] font-medium">Charging Speed</div>
+                                <div className="text-[16px] font-bold">{deal.chargingSpeed} in 15 min</div>
+                                <div className="text-[11px] text-[#6b7a94]">Efficiency: {deal.efficiency} mi/kWh</div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
                         {expandedTab === "ownership" && (
                           <div className="grid md:grid-cols-2 gap-6">
                             <div>
