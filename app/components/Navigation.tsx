@@ -35,6 +35,12 @@ const NAV_ITEMS: NavItem[] = [
     icon: "tag",
   },
   {
+    name: "EV BEST PRICE",
+    href: "/ev-deals",
+    green: true,
+    icon: "dollar",
+  },
+  {
     name: "CARS",
     href: "/cars",
     dropdown: [
@@ -71,14 +77,6 @@ const NAV_ITEMS: NavItem[] = [
     name: "BLOG",
     href: "/blog",
   },
-  {
-    name: "FOR SHOPS",
-    href: "/partner",
-    dropdown: [
-      { label: "Partner With Us", href: "/partner", description: "List your business" },
-      { label: "Shop Dashboard", href: "/shop-dashboard", description: "Manage your listing" },
-    ],
-  },
 ];
 
 function BoltIcon() {
@@ -93,6 +91,14 @@ function TagIcon() {
   return (
     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
+    </svg>
+  );
+}
+
+function DollarIcon() {
+  return (
+    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
   );
 }
@@ -143,6 +149,7 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
               >
                 {item.icon === "bolt" && <BoltIcon />}
                 {item.icon === "tag" && <TagIcon />}
+                {item.icon === "dollar" && <DollarIcon />}
                 {item.name}
               </Link>
             );
@@ -264,6 +271,7 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
                   >
                     {item.icon === "bolt" && <BoltIcon />}
                     {item.icon === "tag" && <TagIcon />}
+                    {item.icon === "dollar" && <DollarIcon />}
                     {item.name}
                   </Link>
                 );

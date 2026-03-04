@@ -91,6 +91,9 @@ export default function Footer() {
           <Link href="/deals" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             Deal Hunter
           </Link>
+          <Link href="/ev-deals" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            EV Best Price
+          </Link>
         </div>
 
         {/* Directory */}
@@ -131,6 +134,9 @@ export default function Footer() {
           </Link>
           <Link href="/partner" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             List Your Business
+          </Link>
+          <Link href="/shop-dashboard" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+            Shop Dashboard
           </Link>
           <Link href="/shop" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             Shop
