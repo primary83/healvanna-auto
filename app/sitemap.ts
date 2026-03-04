@@ -167,8 +167,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 93 articles)
+  // Blog posts (all 103 articles)
   const blogSlugs = [
+    "best-evs-under-30k",
+    "best-electric-suvs-families",
+    "tesla-model-y-vs-hyundai-ioniq-5",
+    "best-used-evs-2026",
+    "electric-trucks-compared",
+    "ev-ownership-cost-guide",
+    "best-luxury-evs",
+    "gas-vs-electric-savings",
+    "best-evs-road-trips",
+    "first-time-ev-buyer-guide",
     "auto-glass-repair-vs-replacement",
     "best-car-air-fresheners",
     "best-dashcams-car-protection-2026",

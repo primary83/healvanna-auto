@@ -1,5 +1,7 @@
 import StructuredData, { generateArticleSchema, generateBreadcrumbSchema } from "./StructuredData";
 import { blogMeta } from "../lib/blogMeta";
+import Navigation from "./Navigation";
+import Footer from "./Footer";
 
 export default function BlogArticleWrapper({
   slug,
@@ -32,7 +34,9 @@ export default function BlogArticleWrapper({
     <>
       <StructuredData data={articleSchema} />
       <StructuredData data={breadcrumbSchema} />
+      <Navigation />
       {children}
+      <Footer />
     </>
   );
 }
