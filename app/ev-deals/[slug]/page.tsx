@@ -7,24 +7,21 @@ import {
   ALL_SLUGS,
   getDealBySlug,
   EV_DETAILS,
-  getSlugForDeal,
 } from "../../lib/evDetailData";
-import { EV_DEALS } from "../../lib/evDealsData";
-
 export function generateStaticParams() {
   return ALL_SLUGS.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata {
-  const deal = getDealBySlug(params.slug);
-  const detail = EV_DETAILS[params.slug];
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const deal = getDealBySlug(slug);
+  const detail = EV_DETAILS[slug];
   if (!deal || !detail) return { title: "EV Not Found" };
 
-  const best = deal.bestUsedPrice ?? deal.bestNewPrice ?? deal.msrp;
   const title = `${deal.year} ${deal.brand} ${deal.model} Best Price — Compare Deals from 6+ Platforms | HealVanna`;
   const description = `Find the best price on the ${deal.year} ${deal.brand} ${deal.model}. Compare new and used prices from Carvana, CarMax, AutoTrader, Cars.com, CarGurus. ${deal.range} mi range, True Value Score ${deal.trueValueScore}/100. Updated March 2026.`;
 
@@ -34,10 +31,10 @@ export function generateMetadata({
     openGraph: {
       title: `${deal.year} ${deal.brand} ${deal.model} Best Price — Compare Deals`,
       description,
-      url: `/ev-deals/${params.slug}`,
+      url: `/ev-deals/${slug}`,
       type: "website",
     },
-    alternates: { canonical: `/ev-deals/${params.slug}` },
+    alternates: { canonical: `/ev-deals/${slug}` },
   };
 }
 
@@ -67,9 +64,10 @@ function trendColor(pct: number) {
   return "text-red-400";
 }
 
-export default function EvDetailPage({ params }: { params: { slug: string } }) {
-  const deal = getDealBySlug(params.slug);
-  const detail = EV_DETAILS[params.slug];
+export default async function EvDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const deal = getDealBySlug(slug);
+  const detail = EV_DETAILS[slug];
   if (!deal || !detail) notFound();
 
   const bestPrice = deal.bestUsedPrice ?? deal.bestNewPrice ?? deal.msrp;
@@ -124,7 +122,7 @@ export default function EvDetailPage({ params }: { params: { slug: string } }) {
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://healvanna.com" },
       { "@type": "ListItem", position: 2, name: "EV Best Price", item: "https://healvanna.com/ev-deals" },
-      { "@type": "ListItem", position: 3, name: `${deal.brand} ${deal.model}`, item: `https://healvanna.com/ev-deals/${params.slug}` },
+      { "@type": "ListItem", position: 3, name: `${deal.brand} ${deal.model}`, item: `https://healvanna.com/ev-deals/${slug}` },
     ],
   };
 
@@ -591,7 +589,7 @@ export default function EvDetailPage({ params }: { params: { slug: string } }) {
               method="POST"
               className="flex gap-2"
             >
-              <input type="hidden" name="source" value={`ev-deals-${params.slug}`} />
+              <input type="hidden" name="source" value={`ev-deals-${slug}`} />
               <input
                 type="email"
                 name="email"
