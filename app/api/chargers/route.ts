@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const NREL_API_KEY = process.env.NREL_API_KEY;
 const NREL_BASE_URL =
-  "https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json";
+  "https://developer.nlr.gov/api/alt-fuel-stations/v1/nearest.json";
 
 export async function GET(request: NextRequest) {
   try {
