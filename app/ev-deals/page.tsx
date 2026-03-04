@@ -6,6 +6,7 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { EV_DEALS, MARKET_PULSE, GAS_CARS, EV_BRANDS } from "../lib/evDealsData";
 import type { EvDeal } from "../lib/evDealsData";
+import { getSlugForDeal } from "../lib/evDetailData";
 
 const BODY_TYPES = ["all", "sedan", "suv", "truck", "hatchback"] as const;
 const PRICE_RANGES = [
@@ -516,15 +517,12 @@ export default function EvDealsPage() {
 
                     {/* Action Buttons */}
                     <div className="flex gap-2">
-                      <button
-                        onClick={() => {
-                          setExpandedId(isExpanded ? null : deal.id);
-                          setExpandedTab("ownership");
-                        }}
-                        className="flex-1 py-2 text-[12px] font-medium bg-[rgba(74,144,217,0.1)] border border-[rgba(74,144,217,0.2)] rounded-lg hover:bg-[rgba(74,144,217,0.2)] transition-all text-[#4a90d9]"
+                      <Link
+                        href={`/ev-deals/${getSlugForDeal(deal.id)}`}
+                        className="flex-1 py-2 text-center text-[12px] font-medium bg-[rgba(74,144,217,0.1)] border border-[rgba(74,144,217,0.2)] rounded-lg hover:bg-[rgba(74,144,217,0.2)] transition-all text-[#4a90d9]"
                       >
-                        {isExpanded ? "Close Details" : "View Details"}
-                      </button>
+                        View Details
+                      </Link>
                       <button
                         onClick={() => toggleCompare(deal.id)}
                         className={`px-3 py-2 text-[12px] font-medium rounded-lg border transition-all ${

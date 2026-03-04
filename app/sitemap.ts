@@ -3,6 +3,7 @@ import { SERVICE_CATEGORIES, MAJOR_CITIES } from "./lib/services";
 import { BLOG_CATEGORIES } from "./lib/blogCategories";
 import { getAllStates, getCitiesByState } from "./lib/directoryData";
 import { DEAL_CITIES, DEAL_SERVICE_CATEGORIES, getDealsForCityService } from "./lib/dealCities";
+import { ALL_SLUGS } from "./lib/evDetailData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://healvanna.com";
@@ -472,6 +473,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }))
   );
 
+  // EV deal model detail pages: /ev-deals/tesla-model-3, etc.
+  const evDealDetailPages: MetadataRoute.Sitemap = ALL_SLUGS.map((slug) => ({
+    url: `${baseUrl}/ev-deals/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...staticPages,
     ...servicePages,
@@ -490,5 +499,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...directoryPages,
     ...dealCityPages,
     ...dealCityServicePages,
+    ...evDealDetailPages,
   ];
 }
