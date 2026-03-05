@@ -175,7 +175,7 @@ export default function EvDealsPage() {
             EV Best Price <span className="text-emerald-400 font-medium">Finder</span>
           </h1>
           <p className="text-[16px] text-[#6b7a94] max-w-2xl mb-6">
-            Compare real prices on 25 popular electric vehicles from Carvana, CarMax, AutoTrader, and more.
+            Compare real prices on 50 popular electric vehicles from Carvana, CarMax, AutoTrader, and more.
             Find the best deal with our True Value Score, ownership cost breakdowns, and Gas Savings Calculator.
           </p>
 
