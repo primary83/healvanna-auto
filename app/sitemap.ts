@@ -167,8 +167,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 103 articles)
+  // Blog posts (all 113 articles)
   const blogSlugs = [
+    "honda-prologue-vs-toyota-bz4x",
+    "best-luxury-electric-suvs-compared",
+    "dodge-charger-daytona-review",
+    "best-small-evs-city-driving",
+    "best-three-row-electric-suvs",
+    "porsche-taycan-vs-macan-electric",
+    "best-evs-under-40k",
+    "kia-niro-ev-vs-chevy-bolt-euv",
+    "vw-id-buzz-review",
+    "every-electric-suv-ranked",
     "best-evs-under-30k",
     "best-electric-suvs-families",
     "tesla-model-y-vs-hyundai-ioniq-5",
