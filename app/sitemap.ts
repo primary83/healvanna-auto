@@ -59,6 +59,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/ev-vs-hybrid`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/deals`,
       lastModified: new Date(),
       changeFrequency: "weekly",
@@ -167,8 +173,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 113 articles)
+  // Blog posts (all 118 articles)
   const blogSlugs = [
+    "ev-vs-hybrid-which-should-you-buy",
+    "toyota-rav4-hybrid-vs-hyundai-ioniq5",
+    "honda-crv-hybrid-vs-prologue-electric",
+    "best-hybrids-for-ev-considerers",
+    "used-ev-vs-used-hybrid-2026",
     "honda-prologue-vs-toyota-bz4x",
     "best-luxury-electric-suvs-compared",
     "dodge-charger-daytona-review",

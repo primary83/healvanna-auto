@@ -77,6 +77,57 @@ export default function Blog() {
   const categories = ["All", "Guides", "Technology", "Reviews", "Comparison", "Insights", "Events"];
 
   const blogPosts = [
+    // EV vs Hybrid Blog Posts
+    {
+      id: 274,
+      title: "EV vs Hybrid: Which Should You Buy in 2026?",
+      excerpt: "The biggest car buying decision of 2026 — go full electric or play it safe with a hybrid? We compare costs, charging, range, and lifestyle fit.",
+      category: "Guides",
+      image: "/blog/ev-vs-hybrid-guide.png",
+      date: "March 4, 2026",
+      readTime: "14 min read",
+      slug: "ev-vs-hybrid-which-should-you-buy",
+    },
+    {
+      id: 273,
+      title: "Toyota RAV4 Hybrid vs Hyundai Ioniq 5: Hybrid or Full Electric?",
+      excerpt: "America's best-selling hybrid vs America's favorite non-Tesla EV. Which wins on price, range, tech, and ownership costs?",
+      category: "Comparison",
+      image: "/blog/rav4-hybrid-vs-ioniq5.png",
+      date: "March 3, 2026",
+      readTime: "13 min read",
+      slug: "toyota-rav4-hybrid-vs-hyundai-ioniq5",
+    },
+    {
+      id: 272,
+      title: "Honda CR-V Hybrid vs Honda Prologue: Upgrade to Full Electric?",
+      excerpt: "Honda makes both a great hybrid and a great EV. Compare the CR-V Hybrid and Prologue on price, range, reliability, and ownership costs.",
+      category: "Comparison",
+      image: "/blog/crv-hybrid-vs-prologue.png",
+      date: "March 2, 2026",
+      readTime: "12 min read",
+      slug: "honda-crv-hybrid-vs-prologue-electric",
+    },
+    {
+      id: 271,
+      title: "Best Hybrids for People Thinking About Going Electric",
+      excerpt: "Not ready for a full EV? These hybrids will ease you into electric driving and make your next car decision easier.",
+      category: "Guides",
+      image: "/blog/best-hybrids-for-ev-considerers.png",
+      date: "March 1, 2026",
+      readTime: "13 min read",
+      slug: "best-hybrids-for-ev-considerers",
+    },
+    {
+      id: 270,
+      title: "Used EV vs Used Hybrid: Where's the Better Deal in 2026?",
+      excerpt: "Used EVs have cratered in price, creating incredible deals. Compare used EV vs used hybrid on price, reliability, and total cost.",
+      category: "Guides",
+      image: "/blog/used-ev-vs-used-hybrid.png",
+      date: "February 28, 2026",
+      readTime: "12 min read",
+      slug: "used-ev-vs-used-hybrid-2026",
+    },
     // EV Model Pages Blog Posts — Batch 2
     {
       id: 269,

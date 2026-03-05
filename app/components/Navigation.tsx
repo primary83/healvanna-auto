@@ -46,6 +46,7 @@ const NAV_ITEMS: NavItem[] = [
     dropdown: [
       { label: "Browse EVs", href: "/cars", description: "Explore electric vehicles" },
       { label: "Compare EVs", href: "/compare-evs", description: "Side-by-side comparison" },
+      { label: "EV vs Hybrid", href: "/ev-vs-hybrid", description: "Find your perfect match" },
       { label: "My Garage", href: "/my-garage", description: "Maintenance schedule" },
     ],
   },

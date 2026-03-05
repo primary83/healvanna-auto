@@ -12,6 +12,51 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
+  "ev-vs-hybrid-which-should-you-buy": {
+    title: "EV vs Hybrid: Which Should You Buy in 2026?",
+    excerpt: "The biggest car buying decision of 2026 — go full electric or play it safe with a hybrid? We compare costs, charging, range, and lifestyle fit.",
+    datePublished: "2026-03-04",
+    dateModified: "2026-03-04",
+    author: "Healvanna Auto Editorial",
+    image: "/blog/ev-vs-hybrid-guide.png",
+    category: "Guides",
+  },
+  "toyota-rav4-hybrid-vs-hyundai-ioniq5": {
+    title: "Toyota RAV4 Hybrid vs Hyundai Ioniq 5: Hybrid or Go Full Electric?",
+    excerpt: "The RAV4 Hybrid is America's best-selling hybrid. The Ioniq 5 is America's favorite non-Tesla EV. We compare price, range, tech, and ownership costs.",
+    datePublished: "2026-03-03",
+    dateModified: "2026-03-03",
+    author: "Healvanna Auto Editorial",
+    image: "/blog/rav4-hybrid-vs-ioniq5.png",
+    category: "Comparison",
+  },
+  "honda-crv-hybrid-vs-prologue-electric": {
+    title: "Honda CR-V Hybrid vs Honda Prologue: Should You Upgrade to Full Electric?",
+    excerpt: "Honda now makes both a great hybrid and a great EV. Compare the CR-V Hybrid and Prologue on price, range, reliability, and total ownership costs.",
+    datePublished: "2026-03-02",
+    dateModified: "2026-03-02",
+    author: "Healvanna Auto Editorial",
+    image: "/blog/crv-hybrid-vs-prologue.png",
+    category: "Comparison",
+  },
+  "best-hybrids-for-ev-considerers": {
+    title: "Best Hybrids for People Thinking About Going Electric",
+    excerpt: "Not ready for a full EV? These hybrids will ease you into electric driving and make your next car decision easier. Top PHEVs and hybrids ranked.",
+    datePublished: "2026-03-01",
+    dateModified: "2026-03-01",
+    author: "Healvanna Auto Editorial",
+    image: "/blog/best-hybrids-for-ev-considerers.png",
+    category: "Guides",
+  },
+  "used-ev-vs-used-hybrid-2026": {
+    title: "Used EV vs Used Hybrid: Where's the Better Deal in 2026?",
+    excerpt: "Used EVs have cratered in price, creating incredible deals. Compare used EV vs used hybrid on price, reliability, battery health, and total cost.",
+    datePublished: "2026-02-28",
+    dateModified: "2026-02-28",
+    author: "Healvanna Auto Editorial",
+    image: "/blog/used-ev-vs-used-hybrid.png",
+    category: "Guides",
+  },
   "honda-prologue-vs-toyota-bz4x": {
     title: "Honda Prologue vs Toyota bZ4X: Best Affordable Electric SUV?",
     excerpt: "Two mainstream automakers finally have real EVs. Compare the Honda Prologue and Toyota bZ4X on price, range, charging, interior, and total ownership costs.",
