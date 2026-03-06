@@ -48,6 +48,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Compare EVs", href: "/compare-evs", description: "Side-by-side comparison" },
       { label: "EV vs Hybrid", href: "/ev-vs-hybrid", description: "Find your perfect match" },
       { label: "My Garage", href: "/my-garage", description: "Maintenance schedule" },
+      { label: "EV Tools", href: "/ev-tools", description: "Match, savings & readiness" },
     ],
   },
   {

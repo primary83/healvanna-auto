@@ -6,6 +6,7 @@ import Image from "next/image";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import ServiceSearchBar from "./components/ServiceSearchBar";
+import SavingsCalculatorWidget from "./components/SavingsCalculatorWidget";
 import { SERVICE_CATEGORIES } from "./lib/services";
 
 function NewsletterForm() {
@@ -225,6 +226,13 @@ export default function Home() {
               <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">{stat.label}</div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* EV Savings Calculator Widget */}
+      <section className="py-16 px-6 md:px-12 bg-[#0d1424] border-b border-[rgba(74,144,217,0.08)]">
+        <div className="max-w-[900px] mx-auto">
+          <SavingsCalculatorWidget />
         </div>
       </section>
 

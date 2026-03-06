@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import SavingsCalculatorWidget from "../components/SavingsCalculatorWidget";
 
 const questions = [
   {
@@ -375,6 +376,13 @@ export default function EvVsHybridPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* EV Savings Calculator Widget */}
+        <section className="py-12 px-4">
+          <div className="max-w-[900px] mx-auto">
+            <SavingsCalculatorWidget />
           </div>
         </section>
 

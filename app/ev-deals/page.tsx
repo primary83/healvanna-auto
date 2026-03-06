@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { EV_DEALS, MARKET_PULSE, GAS_CARS, EV_BRANDS } from "../lib/evDealsData";
 import type { EvDeal } from "../lib/evDealsData";
 import { getSlugForDeal } from "../lib/evDetailData";
+import SavingsCalculatorWidget from "../components/SavingsCalculatorWidget";
 
 const BODY_TYPES = ["all", "sedan", "suv", "truck", "hatchback", "van"] as const;
 const PRICE_RANGES = [
@@ -397,6 +398,13 @@ export default function EvDealsPage() {
               </button>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* EV Savings Calculator Widget */}
+      <section className="py-8 px-6 md:px-12">
+        <div className="max-w-[900px] mx-auto">
+          <SavingsCalculatorWidget />
         </div>
       </section>
 
