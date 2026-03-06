@@ -1,6 +1,7 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams, useRouter } from "next/navigation";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
@@ -71,6 +72,17 @@ function BlogNewsletter() {
 }
 
 export default function Blog() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0a0f1a]" />}>
+      <BlogContent />
+    </Suspense>
+  );
+}
+
+function BlogContent() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const activeTag = searchParams.get("tag") || "";
   const [activeCategory, setActiveCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -87,6 +99,7 @@ export default function Blog() {
       date: "March 6, 2026",
       readTime: "12 min read",
       slug: "best-evs-for-condo-dwellers",
+      tags: ["condo-ev","apartment-living","no-home-charger","ev-buying-guide","2026"],
     },
     {
       id: 283,
@@ -97,6 +110,7 @@ export default function Blog() {
       date: "March 6, 2026",
       readTime: "13 min read",
       slug: "best-evs-for-rideshare-drivers",
+      tags: ["rideshare","uber","lyft","ev-buying-guide","cost-savings"],
     },
     {
       id: 282,
@@ -107,6 +121,7 @@ export default function Blog() {
       date: "March 5, 2026",
       readTime: "15 min read",
       slug: "first-ev-buyers-complete-guide",
+      tags: ["first-ev","buyer-apos-s-guide","beginners","electric-cars","2026"],
     },
     {
       id: 281,
@@ -117,6 +132,7 @@ export default function Blog() {
       date: "March 5, 2026",
       readTime: "12 min read",
       slug: "best-luxury-evs-florida",
+      tags: ["luxury-evs","florida","miami","palm-beach","premium-electric-cars"],
     },
     {
       id: 280,
@@ -127,6 +143,7 @@ export default function Blog() {
       date: "March 4, 2026",
       readTime: "13 min read",
       slug: "best-family-evs-suburban-drivers",
+      tags: ["family-evs","suburban","suvs","safety","2026"],
     },
     {
       id: 279,
@@ -137,6 +154,7 @@ export default function Blog() {
       date: "March 4, 2026",
       readTime: "11 min read",
       slug: "do-evs-need-oil-changes-maintenance-guide",
+      tags: ["ev-maintenance","oil-changes","electric-car-care","ev-ownership","2026"],
     },
     {
       id: 278,
@@ -147,6 +165,7 @@ export default function Blog() {
       date: "March 3, 2026",
       readTime: "12 min read",
       slug: "home-ev-charger-installation-guide",
+      tags: ["home-charging","ev-charger","level-2","installation","2026"],
     },
     {
       id: 277,
@@ -157,6 +176,7 @@ export default function Blog() {
       date: "March 3, 2026",
       readTime: "11 min read",
       slug: "ev-ppf-ceramic-coating-guide",
+      tags: ["ppf","ceramic-coating","paint-protection","ev-detailing","2026"],
     },
     {
       id: 276,
@@ -167,6 +187,7 @@ export default function Blog() {
       date: "March 2, 2026",
       readTime: "12 min read",
       slug: "orlando-to-miami-ev-road-trip-guide",
+      tags: ["orlando","miami","road-trip","ev-charging","florida"],
     },
     {
       id: 275,
@@ -177,6 +198,7 @@ export default function Blog() {
       date: "March 1, 2026",
       readTime: "13 min read",
       slug: "i95-florida-ev-charging-guide",
+      tags: ["i-95","florida","ev-charging","road-trip","jacksonville-to-miami"],
     },
     // EV vs Hybrid Blog Posts
     {
@@ -188,6 +210,7 @@ export default function Blog() {
       date: "March 4, 2026",
       readTime: "14 min read",
       slug: "ev-vs-hybrid-which-should-you-buy",
+      tags: ["ev-vs-hybrid","buying-guide","electric-cars","hybrid-cars","2026"],
     },
     {
       id: 273,
@@ -198,6 +221,7 @@ export default function Blog() {
       date: "March 3, 2026",
       readTime: "13 min read",
       slug: "toyota-rav4-hybrid-vs-hyundai-ioniq5",
+      tags: ["rav4-hybrid","ioniq-5","ev-vs-hybrid","comparison","toyota","hyundai"],
     },
     {
       id: 272,
@@ -208,6 +232,7 @@ export default function Blog() {
       date: "March 2, 2026",
       readTime: "12 min read",
       slug: "honda-crv-hybrid-vs-prologue-electric",
+      tags: ["honda-cr-v","honda-prologue","ev-vs-hybrid","comparison","honda"],
     },
     {
       id: 271,
@@ -218,6 +243,7 @@ export default function Blog() {
       date: "March 1, 2026",
       readTime: "13 min read",
       slug: "best-hybrids-for-ev-considerers",
+      tags: ["hybrids","phev","gateway-to-ev","buying-guide","2026"],
     },
     {
       id: 270,
@@ -228,6 +254,7 @@ export default function Blog() {
       date: "February 28, 2026",
       readTime: "12 min read",
       slug: "used-ev-vs-used-hybrid-2026",
+      tags: ["used-evs","used-hybrids","budget-cars","buying-guide","2026"],
     },
     // EV Model Pages Blog Posts — Batch 2
     {
@@ -239,6 +266,7 @@ export default function Blog() {
       date: "March 4, 2026",
       readTime: "13 min read",
       slug: "honda-prologue-vs-toyota-bz4x",
+      tags: ["honda-prologue","toyota-bz4x","comparison","electric-suvs","2026"],
     },
     {
       id: 268,
@@ -249,6 +277,7 @@ export default function Blog() {
       date: "March 3, 2026",
       readTime: "14 min read",
       slug: "best-luxury-electric-suvs-compared",
+      tags: ["luxury-evs","cadillac-lyriq","genesis-gv60","audi-q4","comparison"],
     },
     {
       id: 267,
@@ -259,6 +288,7 @@ export default function Blog() {
       date: "March 2, 2026",
       readTime: "12 min read",
       slug: "dodge-charger-daytona-review",
+      tags: ["dodge-charger","muscle-car","electric","reviews","2026"],
     },
     {
       id: 266,
@@ -269,6 +299,7 @@ export default function Blog() {
       date: "March 1, 2026",
       readTime: "11 min read",
       slug: "best-small-evs-city-driving",
+      tags: ["city-evs","volvo-ex30","mini-cooper","fiat-500e","comparison"],
     },
     {
       id: 265,
@@ -279,6 +310,7 @@ export default function Blog() {
       date: "February 28, 2026",
       readTime: "15 min read",
       slug: "best-three-row-electric-suvs",
+      tags: ["three-row-suvs","family-evs","ioniq-9","volvo-ex90","escalade-iq"],
     },
     {
       id: 264,
@@ -289,6 +321,7 @@ export default function Blog() {
       date: "February 26, 2026",
       readTime: "13 min read",
       slug: "porsche-taycan-vs-macan-electric",
+      tags: ["porsche-taycan","porsche-macan","luxury-evs","comparison","performance"],
     },
     {
       id: 263,
@@ -299,6 +332,7 @@ export default function Blog() {
       date: "February 24, 2026",
       readTime: "14 min read",
       slug: "best-evs-under-40k",
+      tags: ["budget-evs","under-40k","buying-guide","electric-cars","2026"],
     },
     {
       id: 262,
@@ -309,6 +343,7 @@ export default function Blog() {
       date: "February 22, 2026",
       readTime: "11 min read",
       slug: "kia-niro-ev-vs-chevy-bolt-euv",
+      tags: ["kia-niro-ev","chevy-bolt-euv","budget-evs","comparison","crossovers"],
     },
     {
       id: 261,
@@ -319,6 +354,7 @@ export default function Blog() {
       date: "February 20, 2026",
       readTime: "12 min read",
       slug: "vw-id-buzz-review",
+      tags: ["vw-id-buzz","electric-van","reviews","volkswagen","family-ev"],
     },
     {
       id: 260,
@@ -329,6 +365,7 @@ export default function Blog() {
       date: "February 18, 2026",
       readTime: "18 min read",
       slug: "every-electric-suv-ranked",
+      tags: ["electric-suvs","rankings","buying-guide","true-value-score","2026"],
     },
     // EV Model Pages Blog Posts — Batch 1
     {
@@ -340,6 +377,7 @@ export default function Blog() {
       date: "March 3, 2026",
       readTime: "12 min read",
       slug: "best-evs-under-30k",
+      tags: ["budget-evs","buying-guide","affordable","electric-cars","2026"],
     },
     {
       id: 258,
@@ -350,6 +388,7 @@ export default function Blog() {
       date: "March 2, 2026",
       readTime: "14 min read",
       slug: "best-electric-suvs-families",
+      tags: ["electric-suv","family-cars","reviews","ev-buying-guide"],
     },
     {
       id: 257,
@@ -360,6 +399,7 @@ export default function Blog() {
       date: "March 1, 2026",
       readTime: "13 min read",
       slug: "tesla-model-y-vs-hyundai-ioniq-5",
+      tags: ["tesla-model-y","hyundai-ioniq-5","comparison","ev-reviews"],
     },
     {
       id: 256,
@@ -370,6 +410,7 @@ export default function Blog() {
       date: "February 28, 2026",
       readTime: "13 min read",
       slug: "best-used-evs-2026",
+      tags: ["used-evs","buying-guide","budget","pre-owned","2026"],
     },
     {
       id: 255,
@@ -380,6 +421,7 @@ export default function Blog() {
       date: "February 25, 2026",
       readTime: "14 min read",
       slug: "electric-trucks-compared",
+      tags: ["electric-trucks","cybertruck","f-150-lightning","rivian-r1t","comparison"],
     },
     {
       id: 254,
@@ -390,6 +432,7 @@ export default function Blog() {
       date: "February 22, 2026",
       readTime: "15 min read",
       slug: "ev-ownership-cost-guide",
+      tags: ["ev-costs","ownership-guide","savings","comparison","2026"],
     },
     {
       id: 253,
@@ -400,6 +443,7 @@ export default function Blog() {
       date: "February 20, 2026",
       readTime: "13 min read",
       slug: "best-luxury-evs",
+      tags: ["luxury-evs","premium","reviews","lucid-air","bmw"],
     },
     {
       id: 252,
@@ -410,6 +454,7 @@ export default function Blog() {
       date: "February 18, 2026",
       readTime: "12 min read",
       slug: "gas-vs-electric-savings",
+      tags: ["gas-vs-electric","savings","cost-comparison","ev-benefits"],
     },
     {
       id: 251,
@@ -420,6 +465,7 @@ export default function Blog() {
       date: "February 15, 2026",
       readTime: "13 min read",
       slug: "best-evs-road-trips",
+      tags: ["road-trips","range","charging","ev-travel","2026"],
     },
     {
       id: 250,
@@ -430,6 +476,7 @@ export default function Blog() {
       date: "February 12, 2026",
       readTime: "16 min read",
       slug: "first-time-ev-buyer-guide",
+      tags: ["beginner-guide","first-ev","buying-guide","ev-101","2026"],
     },
     // Batch 10 Articles (Final!)
     {
@@ -441,6 +488,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "10 min read",
       slug: "maintain-car-wrap",
+      tags: ["car-wrap","vinyl-maintenance","wrap-care","vehicle-wrapping"],
     },
     {
       id: 248,
@@ -451,6 +499,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "12 min read",
       slug: "ev-lease-vs-buy",
+      tags: ["lease-vs-buy","ev-financing","tax-credits","electric-vehicles"],
     },
     {
       id: 247,
@@ -461,6 +510,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "11 min read",
       slug: "best-detailing-kits-beginners",
+      tags: ["detailing-kits","beginner-guide","product-reviews","car-detailing"],
     },
     // Batch 9 Articles
     {
@@ -472,6 +522,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "12 min read",
       slug: "road-trip-car-prep",
+      tags: ["road-trip","car-maintenance","travel","car-prep"],
     },
     {
       id: 245,
@@ -482,6 +533,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "10 min read",
       slug: "best-tire-shine-products",
+      tags: ["tire-shine","tire-dressing","product-reviews","car-detailing"],
     },
     {
       id: 244,
@@ -492,6 +544,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "11 min read",
       slug: "clay-bar-guide",
+      tags: ["clay-bar","paint-decontamination","car-detailing","paint-care"],
     },
     // Batch 8 Articles
     {
@@ -503,6 +556,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "12 min read",
       slug: "ev-battery-warranty-guide",
+      tags: ["battery-warranty","ev-technology","electric-vehicles","buyer-guide"],
     },
     {
       id: 242,
@@ -513,6 +567,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "10 min read",
       slug: "best-car-air-fresheners",
+      tags: ["air-fresheners","car-interior","product-reviews","odor-elimination"],
     },
     {
       id: 241,
@@ -523,6 +578,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "12 min read",
       slug: "ev-towing-guide",
+      tags: ["ev-towing","electric-trucks","tow-ratings","range-planning"],
     },
     {
       id: 240,
@@ -533,6 +589,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "11 min read",
       slug: "protect-car-paint-summer-heat",
+      tags: ["paint-protection","summer-care","ceramic-coating","uv-protection"],
     },
     // Batch 7 Articles
     {
@@ -544,6 +601,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "11 min read",
       slug: "ev-regenerative-braking-explained",
+      tags: ["regenerative-braking","ev-technology","one-pedal-driving","electric-vehicles"],
     },
     {
       id: 238,
@@ -554,6 +612,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "12 min read",
       slug: "best-interior-detailing-products",
+      tags: ["interior-detailing","car-products","cleaning","car-care"],
     },
     {
       id: 237,
@@ -564,6 +623,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "13 min read",
       slug: "ev-home-charging-installation-guide",
+      tags: ["ev-charging","home-installation","level-2","electric-vehicles"],
     },
     {
       id: 236,
@@ -574,6 +634,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "11 min read",
       slug: "choose-car-wrap-color",
+      tags: ["vinyl-wrap","car-color","customization","car-care"],
     },
     // Batch 6 Articles
     {
@@ -585,6 +646,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "12 min read",
       slug: "sedan-vs-suv-ev",
+      tags: ["ev-sedan","ev-suv","comparison","electric-vehicles"],
     },
     {
       id: 234,
@@ -595,6 +657,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "13 min read",
       slug: "ev-battery-degradation-guide",
+      tags: ["ev-battery","degradation","electric-vehicles","battery-life"],
     },
     {
       id: 233,
@@ -605,6 +668,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "11 min read",
       slug: "remove-water-spots-from-car",
+      tags: ["water-spots","paint-correction","detailing","car-care"],
     },
     {
       id: 232,
@@ -615,6 +679,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "12 min read",
       slug: "best-dashcams-car-protection-2026",
+      tags: ["dashcam","car-protection","safety","accessories"],
     },
     // Service SEO Articles
     {
@@ -626,6 +691,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "11 min read",
       slug: "is-ppf-worth-it",
+      tags: ["ppf","paint-protection","detailing","car-care"],
     },
     {
       id: 230,
@@ -636,6 +702,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "13 min read",
       slug: "detail-car-like-pro-at-home",
+      tags: ["detailing","diy","car-care","guides"],
     },
     {
       id: 229,
@@ -646,6 +713,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "12 min read",
       slug: "ev-vs-gas-maintenance-costs",
+      tags: ["ev-maintenance","gas-vs-electric","cost-comparison","ownership"],
     },
     {
       id: 228,
@@ -656,6 +724,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "11 min read",
       slug: "ceramic-coating-maintenance-tips",
+      tags: ["ceramic-coating","maintenance","detailing","paint-protection"],
     },
     {
       id: 227,
@@ -666,6 +735,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "12 min read",
       slug: "ev-insurance-guide",
+      tags: ["ev-insurance","electric-cars","cost-guide","ownership"],
     },
     {
       id: 226,
@@ -676,6 +746,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "10 min read",
       slug: "protect-car-parking-lot-damage",
+      tags: ["parking-lot","paint-protection","door-dings","car-care"],
     },
     {
       id: 225,
@@ -686,6 +757,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "14 min read",
       slug: "tesla-model-y-vs-ioniq-5",
+      tags: ["tesla","hyundai","model-y","ioniq-5","comparison"],
     },
     {
       id: 224,
@@ -696,6 +768,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "11 min read",
       slug: "car-wash-soap-guide",
+      tags: ["car-wash","soap-guide","detailing","car-care"],
     },
     {
       id: 223,
@@ -706,6 +779,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "13 min read",
       slug: "vinyl-wrapping-ev-guide",
+      tags: ["vinyl-wrap","ev-customization","car-wrapping","paint-protection"],
     },
     {
       id: 222,
@@ -716,6 +790,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "11 min read",
       slug: "car-scratch-removal-guide",
+      tags: ["scratch-removal","paint-correction","diy","car-care"],
     },
     {
       id: 221,
@@ -726,6 +801,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "12 min read",
       slug: "ev-window-tinting-guide",
+      tags: ["window-tinting","ev-upgrades","ceramic-tint","tesla"],
     },
     {
       id: 220,
@@ -736,6 +812,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "14 min read",
       slug: "electric-pickup-trucks-compared",
+      tags: ["electric-trucks","cybertruck","rivian-r1t","f-150-lightning","comparison"],
     },
     {
       id: 219,
@@ -746,6 +823,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "13 min read",
       slug: "winter-ev-care-guide",
+      tags: ["winter-care","ev-maintenance","paint-protection","road-salt","detailing"],
     },
     {
       id: 218,
@@ -756,6 +834,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "12 min read",
       slug: "ev-road-trip-accessories",
+      tags: ["ev-accessories","road-trip","charging","ev-gear"],
     },
     {
       id: 217,
@@ -766,6 +845,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "15 min read",
       slug: "start-mobile-detailing-business",
+      tags: ["mobile-detailing","business-guide","car-detailing","entrepreneurship"],
     },
     {
       id: 216,
@@ -776,6 +856,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "13 min read",
       slug: "ev-resale-value-2026",
+      tags: ["ev-resale-value","depreciation","tesla","used-evs","buying-guide"],
     },
     {
       id: 215,
@@ -786,6 +867,7 @@ export default function Blog() {
       date: "February 11, 2026",
       readTime: "14 min read",
       slug: "ev-paint-protection-guide",
+      tags: ["ev-paint-protection","ceramic-coating","ppf","tesla","car-detailing"],
     },
     {
       id: 201,
@@ -796,6 +878,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "12 min read",
       slug: "ceramic-coating-cost-2026",
+      tags: ["ceramic-coating","cost-guide","car-detailing","paint-protection"],
     },
     {
       id: 202,
@@ -806,6 +889,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "14 min read",
       slug: "car-wrap-vs-paint",
+      tags: ["car-wrapping","custom-paint","vehicle-customization","vinyl-wrap"],
     },
     {
       id: 203,
@@ -816,6 +900,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "11 min read",
       slug: "choose-body-shop-after-accident",
+      tags: ["body-shops","collision-repair","insurance-claims","auto-body"],
     },
     {
       id: 204,
@@ -826,6 +911,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "10 min read",
       slug: "auto-glass-repair-vs-replacement",
+      tags: ["auto-glass","windshield-repair","windshield-replacement","adas"],
     },
     {
       id: 205,
@@ -836,6 +922,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "11 min read",
       slug: "is-car-detailing-worth-it",
+      tags: ["car-detailing","auto-care","paint-protection","interior-cleaning"],
     },
     {
       id: 206,
@@ -846,6 +933,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "13 min read",
       slug: "custom-car-paint-jobs",
+      tags: ["custom-paint","auto-painting","car-customization","paint-jobs"],
     },
     {
       id: 207,
@@ -856,6 +944,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "11 min read",
       slug: "find-best-collision-repair-shop",
+      tags: ["collision-repair","auto-body","insurance-claims","car-accident"],
     },
     {
       id: 208,
@@ -866,6 +955,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "10 min read",
       slug: "hand-wash-vs-automatic-car-wash",
+      tags: ["car-washing","paint-care","hand-wash","auto-detailing"],
     },
     {
       id: 209,
@@ -876,6 +966,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "12 min read",
       slug: "interior-detailing-checklist",
+      tags: ["interior-detailing","car-cleaning","auto-detailing","upholstery-care"],
     },
     {
       id: 210,
@@ -886,6 +977,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "11 min read",
       slug: "vinyl-wrap-care-guide",
+      tags: ["vinyl-wrap","wrap-care","car-wrapping","vehicle-protection"],
     },
     // New Blog Posts — Batch 1 (Vehicle Comparisons, EV Buying, Car Care)
     {
@@ -897,6 +989,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "16 min read",
       slug: "hyundai-ioniq-6-vs-tesla-model-3",
+      tags: ["electric-vehicles","ev-comparison","hyundai-ioniq-6","tesla-model-3"],
     },
     {
       id: 302,
@@ -907,6 +1000,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "15 min read",
       slug: "kia-ev6-gt-review",
+      tags: ["electric-vehicles","ev-reviews","kia-ev6-gt","performance-evs"],
     },
     {
       id: 303,
@@ -917,6 +1011,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "16 min read",
       slug: "bmw-i4-vs-mercedes-eqe",
+      tags: ["electric-vehicles","luxury-evs","bmw-i4","mercedes-eqe"],
     },
     {
       id: 304,
@@ -927,6 +1022,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "15 min read",
       slug: "chevrolet-equinox-ev-review",
+      tags: ["electric-vehicles","ev-reviews","chevrolet-equinox-ev","affordable-evs"],
     },
     {
       id: 305,
@@ -937,6 +1033,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "16 min read",
       slug: "should-you-buy-used-ev",
+      tags: ["electric-vehicles","used-cars","ev-buying-guide","car-buying-tips"],
     },
     {
       id: 306,
@@ -947,6 +1044,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "15 min read",
       slug: "best-used-evs-under-25k",
+      tags: ["electric-vehicles","used-cars","budget-evs","car-reviews"],
     },
     {
       id: 307,
@@ -957,6 +1055,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "15 min read",
       slug: "ev-battery-health-check",
+      tags: ["electric-vehicles","ev-maintenance","battery-health","car-buying-tips"],
     },
     {
       id: 308,
@@ -967,6 +1066,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "15 min read",
       slug: "cold-weather-ev-range",
+      tags: ["electric-vehicles","ev-range","winter-driving","cold-weather","ev-tips"],
     },
     {
       id: 309,
@@ -977,6 +1077,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "16 min read",
       slug: "winter-car-care-checklist",
+      tags: ["car-care","winter-driving","vehicle-maintenance","car-detailing","paint-protection"],
     },
     {
       id: 310,
@@ -987,6 +1088,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "16 min read",
       slug: "ev-charging-cost-comparison",
+      tags: ["electric-vehicles","ev-charging","cost-comparison","ev-tips","home-charging"],
     },
     // New Blog Posts — Batch 2 (Charging, Myths, Car Care, Business)
     {
@@ -998,6 +1100,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "15 min read",
       slug: "ev-charging-levels-explained",
+      tags: ["electric-vehicles","ev-charging","technology","ev-tips"],
     },
     {
       id: 312,
@@ -1008,6 +1111,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "16 min read",
       slug: "ev-myths-debunked",
+      tags: ["electric-vehicles","ev-myths","ev-education","buyer-guide"],
     },
     {
       id: 313,
@@ -1018,6 +1122,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "15 min read",
       slug: "ev-maintenance-myths",
+      tags: ["electric-vehicles","ev-maintenance","car-care","ev-tips"],
     },
     {
       id: 314,
@@ -1028,6 +1133,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "15 min read",
       slug: "how-to-remove-swirl-marks",
+      tags: ["car-care","paint-correction","detailing-tips","diy-guide"],
     },
     {
       id: 315,
@@ -1038,6 +1144,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "15 min read",
       slug: "window-tinting-guide",
+      tags: ["car-care","window-tinting","vehicle-protection","diy-guide"],
     },
     {
       id: 316,
@@ -1048,6 +1155,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "14 min read",
       slug: "headlight-restoration-guide",
+      tags: ["car-care","headlights","vehicle-safety","diy-guide"],
     },
     {
       id: 317,
@@ -1058,6 +1166,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "14 min read",
       slug: "car-waxing-schedule",
+      tags: ["car-care","waxing","paint-protection","detailing-tips"],
     },
     {
       id: 318,
@@ -1068,6 +1177,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "16 min read",
       slug: "ev-fleet-management-business",
+      tags: ["electric-vehicles","fleet-management","business-guide","ev-technology"],
     },
     {
       id: 319,
@@ -1078,6 +1188,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "16 min read",
       slug: "start-car-detailing-business",
+      tags: ["business","car-detailing","entrepreneurship","startup-guide"],
     },
     {
       id: 320,
@@ -1088,6 +1199,7 @@ export default function Blog() {
       date: "January 26, 2026",
       readTime: "16 min read",
       slug: "scenic-ev-road-trips",
+      tags: ["electric-vehicles","road-trips","ev-travel","adventure"],
     },
     // Market Intelligence / Insights articles
     {
@@ -1143,6 +1255,7 @@ export default function Blog() {
       date: "January 25, 2026",
       readTime: "14 min read",
       slug: "ppf-vs-ceramic-coating",
+      tags: ["ppf","ceramic-coating","paint-protection","luxury-cars"],
       isInsight: true,
     },
     {
@@ -1165,7 +1278,8 @@ export default function Blog() {
       image: "/blog/real-cost-owning-ev-2026.png",
       date: "January 24, 2026",
       readTime: "14 min read",
-      slug: "real-cost-owning-ev-2026"
+      slug: "real-cost-owning-ev-2026",
+      tags: ["ev-costs","electric-vehicles","cost-of-ownership","buying-guide"]
     },
     {
       id: 24,
@@ -1175,7 +1289,8 @@ export default function Blog() {
       image: "/blog/ev-range-anxiety.png",
       date: "January 24, 2026",
       readTime: "12 min read",
-      slug: "ev-range-anxiety"
+      slug: "ev-range-anxiety",
+      tags: ["range-anxiety","ev-range","electric-vehicles","charging"]
     },
     {
       id: 25,
@@ -1185,7 +1300,8 @@ export default function Blog() {
       image: "/blog/tesla-alternatives.png",
       date: "January 24, 2026",
       readTime: "15 min read",
-      slug: "tesla-alternatives"
+      slug: "tesla-alternatives",
+      tags: ["tesla-alternatives","ev-comparison","electric-vehicles","reviews"]
     },
     {
       id: 26,
@@ -1195,7 +1311,8 @@ export default function Blog() {
       image: "/blog/solid-state-batteries.png",
       date: "January 24, 2026",
       readTime: "13 min read",
-      slug: "solid-state-batteries"
+      slug: "solid-state-batteries",
+      tags: ["solid-state-batteries","ev-technology","battery-tech","future-evs"]
     },
     {
       id: 27,
@@ -1205,7 +1322,8 @@ export default function Blog() {
       image: "/blog/ev-environment-impact.png",
       date: "January 24, 2026",
       readTime: "14 min read",
-      slug: "ev-environment-impact"
+      slug: "ev-environment-impact",
+      tags: ["environment","ev-impact","sustainability","carbon-emissions"]
     },
     {
       id: 28,
@@ -1215,7 +1333,8 @@ export default function Blog() {
       image: "/blog/leasing-vs-buying-ev.png",
       date: "January 24, 2026",
       readTime: "13 min read",
-      slug: "leasing-vs-buying-ev"
+      slug: "leasing-vs-buying-ev",
+      tags: ["leasing","buying-guide","ev-financing","tax-credits"]
     },
     {
       id: 17,
@@ -1225,7 +1344,8 @@ export default function Blog() {
       image: "/blog/ceramic-coating-tesla-model-3.png",
       date: "January 24, 2026",
       readTime: "15 min read",
-      slug: "ceramic-coating-tesla-model-3"
+      slug: "ceramic-coating-tesla-model-3",
+      tags: ["ceramic-coating","tesla-model-3","paint-protection","detailing-guide"]
     },
     {
       id: 18,
@@ -1235,7 +1355,8 @@ export default function Blog() {
       image: "/blog/ppf-vs-ceramic-coating.png",
       date: "January 24, 2026",
       readTime: "14 min read",
-      slug: "ppf-vs-ceramic-coating"
+      slug: "ppf-vs-ceramic-coating",
+      tags: ["ppf","ceramic-coating","paint-protection","luxury-cars"]
     },
     {
       id: 19,
@@ -1245,7 +1366,8 @@ export default function Blog() {
       image: "/blog/matte-paint-protection.png",
       date: "January 24, 2026",
       readTime: "13 min read",
-      slug: "matte-paint-protection"
+      slug: "matte-paint-protection",
+      tags: ["matte-paint","exotic-cars","paint-protection","detailing-guide"]
     },
     {
       id: 20,
@@ -1255,7 +1377,8 @@ export default function Blog() {
       image: "/blog/ev-collision-repair.png",
       date: "January 24, 2026",
       readTime: "15 min read",
-      slug: "ev-collision-repair-guide"
+      slug: "ev-collision-repair-guide",
+      tags: ["ev-repair","tesla","collision-repair","body-shop"]
     },
     {
       id: 21,
@@ -1265,7 +1388,8 @@ export default function Blog() {
       image: "/blog/leather-restoration-classic.png",
       date: "January 24, 2026",
       readTime: "14 min read",
-      slug: "leather-restoration-classic-cars"
+      slug: "leather-restoration-classic-cars",
+      tags: ["leather-restoration","classic-cars","interior-care","diy-guide"]
     },
     {
       id: 22,
@@ -1275,7 +1399,8 @@ export default function Blog() {
       image: "/blog/paint-correction-black-cars.png",
       date: "January 24, 2026",
       readTime: "14 min read",
-      slug: "paint-correction-black-cars"
+      slug: "paint-correction-black-cars",
+      tags: ["paint-correction","black-cars","detailing","swirl-removal"]
     },
     {
       id: 1,
@@ -1315,7 +1440,8 @@ export default function Blog() {
       image: "/blog/ev-charging-etiquette.png",
       date: "February 11, 2026",
       readTime: "10 min read",
-      slug: "ev-charging-etiquette"
+      slug: "ev-charging-etiquette",
+      tags: ["ev-charging","etiquette","public-charging","electric-vehicles"]
     },
     {
       id: 5,
@@ -1405,7 +1531,8 @@ export default function Blog() {
       image: "/blog/electric-car-show-2026.png",
       date: "January 15, 2026",
       readTime: "8 min read",
-      slug: "top-electric-car-shows-2026"
+      slug: "top-electric-car-shows-2026",
+      tags: ["electric-car-shows","electrify-expo","ev-events-2026","test-drive-evs"]
     },
     {
       id: 14,
@@ -1415,7 +1542,8 @@ export default function Blog() {
       image: "/blog/electrify-expo-2026.png",
       date: "January 14, 2026",
       readTime: "7 min read",
-      slug: "what-to-expect-electrify-expo-2026"
+      slug: "what-to-expect-electrify-expo-2026",
+      tags: ["electrify-expo","ev-festival","test-drives","ev-events"]
     },
     {
       id: 15,
@@ -1425,7 +1553,8 @@ export default function Blog() {
       image: "/blog/ev-battery-technology-2026.png",
       date: "January 12, 2026",
       readTime: "10 min read",
-      slug: "ev-battery-technology-2026"
+      slug: "ev-battery-technology-2026",
+      tags: ["ev-batteries","solid-state","technology","ev-innovation"]
     },
     {
       id: 16,
@@ -1435,7 +1564,8 @@ export default function Blog() {
       image: "/blog/electric-suv-family-2026.png",
       date: "January 10, 2026",
       readTime: "12 min read",
-      slug: "best-electric-suvs-families-2026"
+      slug: "best-electric-suvs-families-2026",
+      tags: ["electric-suv","family-cars","reviews","ev-buying-guide"]
     }
   ];
 
@@ -1445,9 +1575,16 @@ export default function Blog() {
     []
   );
 
-  const filteredPosts = activeCategory === "All"
-    ? sortedPosts
-    : sortedPosts.filter(post => post.category === activeCategory);
+  const filteredPosts = useMemo(() => {
+    let posts = sortedPosts;
+    if (activeTag) {
+      posts = posts.filter(post => post.tags?.includes(activeTag));
+    }
+    if (activeCategory !== "All") {
+      posts = posts.filter(post => post.category === activeCategory);
+    }
+    return posts;
+  }, [sortedPosts, activeTag, activeCategory]);
 
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
   const paginatedPosts = filteredPosts.slice(
@@ -1459,6 +1596,12 @@ export default function Blog() {
     setActiveCategory(category);
     setCurrentPage(1);
   };
+
+  const clearTagFilter = () => {
+    router.push("/blog");
+  };
+
+  const activeTagLabel = activeTag.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 
   const scrollToGrid = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1481,6 +1624,27 @@ export default function Blog() {
           </p>
         </div>
       </section>
+
+      {/* Tag Filter Banner */}
+      {activeTag && (
+        <section className="px-6 pb-6">
+          <div className="max-w-[1200px] mx-auto">
+            <div className="flex items-center gap-3 px-5 py-3 bg-[rgba(74,144,217,0.1)] rounded-xl border border-[rgba(74,144,217,0.2)]">
+              <span className="text-[14px] text-[#6b7a94]">Filtering by:</span>
+              <span className="px-3 py-1 bg-[#4a90d9] text-white text-[13px] font-medium rounded-full">{activeTagLabel}</span>
+              <button
+                onClick={clearTagFilter}
+                className="ml-auto flex items-center gap-1 px-3 py-1 text-[13px] text-[#6b7a94] hover:text-white bg-[rgba(74,144,217,0.1)] hover:bg-[rgba(74,144,217,0.2)] rounded-full transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                Clear
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Category Filter */}
       <section className="px-6 pb-12">

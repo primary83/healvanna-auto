@@ -216,21 +216,21 @@ export default function KiaNiroEvVsChevyBoltEuv() {
           {/* Tags */}
           <div className="border-t border-slate-700/50 pt-8 mt-12">
             <div className="flex flex-wrap gap-3 mb-8">
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">
+              <Link href="/blog?tag=kia-niro-ev" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">
                 Kia Niro EV
-              </span>
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">
+              </Link>
+              <Link href="/blog?tag=chevy-bolt-euv" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">
                 Chevy Bolt EUV
-              </span>
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">
+              </Link>
+              <Link href="/blog?tag=budget-evs" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">
                 Budget EVs
-              </span>
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">
+              </Link>
+              <Link href="/blog?tag=comparison" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">
                 Comparison
-              </span>
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">
+              </Link>
+              <Link href="/blog?tag=crossovers" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">
                 Crossovers
-              </span>
+              </Link>
             </div>
 
             <Link

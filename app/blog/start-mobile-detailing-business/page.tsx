@@ -360,10 +360,10 @@ export default function StartMobileDetailingBusiness() {
           {/* Tags */}
           <div className="border-t border-slate-700/50 pt-8 mt-12">
             <div className="flex flex-wrap gap-3 mb-8">
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">Mobile Detailing</span>
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">Business Guide</span>
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">Car Detailing</span>
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">Entrepreneurship</span>
+              <Link href="/blog?tag=mobile-detailing" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">Mobile Detailing</Link>
+              <Link href="/blog?tag=business-guide" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">Business Guide</Link>
+              <Link href="/blog?tag=car-detailing" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">Car Detailing</Link>
+              <Link href="/blog?tag=entrepreneurship" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">Entrepreneurship</Link>
             </div>
             <Link
               href="/blog"

@@ -240,18 +240,18 @@ export default function TopElectricCarShows2026() {
           {/* Share & Tags */}
           <div className="border-t border-slate-700/50 pt-8 mt-12">
             <div className="flex flex-wrap gap-3 mb-8">
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">
+              <Link href="/blog?tag=electric-car-shows" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">
                 Electric Car Shows
-              </span>
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">
+              </Link>
+              <Link href="/blog?tag=electrify-expo" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">
                 Electrify Expo
-              </span>
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">
+              </Link>
+              <Link href="/blog?tag=ev-events-2026" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">
                 EV Events 2026
-              </span>
-              <span className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50">
+              </Link>
+              <Link href="/blog?tag=test-drive-evs" className="px-4 py-2 bg-slate-800/50 rounded-full text-sm text-slate-400 border border-slate-700/50 hover:border-emerald-500/30 hover:text-emerald-400 transition-colors">
                 Test Drive EVs
-              </span>
+              </Link>
             </div>
 
             <Link
