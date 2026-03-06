@@ -23,7 +23,7 @@ export default function BestEvsForRideshareDrivers() {
             </div>
           </div>
           <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-12">
-            <Image src="/blog/best-evs-rideshare-drivers.png" alt="Best electric vehicles for Uber and Lyft rideshare drivers" fill className="object-cover" priority />
+            <Image src="/images/blog/best-evs-rideshare-drivers.png" alt="Best electric vehicles for Uber and Lyft rideshare drivers" fill className="object-cover" priority />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
           </div>
         </div>
