@@ -173,8 +173,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 118 articles)
+  // Blog posts (all 128 articles)
   const blogSlugs = [
+    "best-evs-for-condo-dwellers",
+    "best-evs-for-rideshare-drivers",
+    "first-ev-buyers-complete-guide",
+    "best-luxury-evs-florida",
+    "best-family-evs-suburban-drivers",
+    "do-evs-need-oil-changes-maintenance-guide",
+    "home-ev-charger-installation-guide",
+    "ev-ppf-ceramic-coating-guide",
+    "orlando-to-miami-ev-road-trip-guide",
+    "i95-florida-ev-charging-guide",
     "ev-vs-hybrid-which-should-you-buy",
     "toyota-rav4-hybrid-vs-hyundai-ioniq5",
     "honda-crv-hybrid-vs-prologue-electric",
