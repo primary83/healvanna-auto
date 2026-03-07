@@ -179,8 +179,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 128 articles)
+  // Blog posts (all 138 articles)
   const blogSlugs = [
+    "best-evs-for-teachers",
+    "best-evs-under-30000",
+    "tesla-model-3-vs-chevy-equinox-ev",
+    "best-evs-long-distance-driving",
+    "how-long-do-ev-batteries-last",
+    "best-evs-for-nurses",
+    "best-evs-for-retirees",
+    "rivian-r2-vs-ford-mustang-mach-e",
+    "best-evs-florida-retirees",
+    "tampa-to-key-west-ev-road-trip",
     "best-evs-for-condo-dwellers",
     "best-evs-for-rideshare-drivers",
     "first-ev-buyers-complete-guide",
