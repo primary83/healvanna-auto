@@ -179,8 +179,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 148 articles)
+  // Blog posts (all 158 articles)
   const blogSlugs = [
+    "best-affordable-evs-2026",
+    "ev-running-costs-vs-gas-car",
+    "best-evs-for-anxious-first-timers",
+    "how-to-charge-ev-at-home-complete-guide",
+    "best-evs-for-dog-owners",
+    "ev-lease-vs-buy-2026",
+    "best-evs-for-families-2026",
+    "what-happens-ev-battery-dies",
+    "best-used-evs-to-buy-2026",
+    "ev-vs-hybrid-2026-honest-comparison",
     "ford-f150-lightning-vs-rivian-r1t",
     "kia-ev6-vs-hyundai-ioniq6",
     "tesla-model-3-vs-bmw-i4",

@@ -31,7 +31,7 @@
 - Article schema, OG tags, canonical URLs on every post
 - Tags link to /blog?tag=[tagname]
 - Categories: Guides, Technology, Reviews, Comparison, Insights, Events, EV Buying Guide, EV Ownership, EV Road Trips
-- Current count: 148 articles
+- Current count: 158 articles
 
 ## EV DEALS SYSTEM
 - 50 EV models with deal cards
@@ -93,6 +93,6 @@
 - Add to EV model pages and blog posts when approved
 
 ## CURRENT COUNTS
-- Blog articles: 148
+- Blog articles: 158
 - EV models: 50
-- Last updated: March 6, 2026
+- Last updated: March 8, 2026
