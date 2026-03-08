@@ -179,8 +179,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 138 articles)
+  // Blog posts (all 148 articles)
   const blogSlugs = [
+    "ford-f150-lightning-vs-rivian-r1t",
+    "kia-ev6-vs-hyundai-ioniq6",
+    "tesla-model-3-vs-bmw-i4",
+    "chevy-equinox-ev-vs-ford-mustang-mach-e",
+    "best-evs-for-police-officers",
+    "best-evs-for-real-estate-agents",
+    "best-evs-for-small-business-owners",
+    "best-evs-for-college-students",
+    "best-evs-miami-drivers",
+    "best-evs-orlando-drivers",
     "best-evs-for-teachers",
     "best-evs-under-30000",
     "tesla-model-3-vs-chevy-equinox-ev",
