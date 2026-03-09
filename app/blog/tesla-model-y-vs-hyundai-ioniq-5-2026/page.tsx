@@ -23,7 +23,7 @@ export default function TeslaModelYVsHyundaiIoniq52026() {
             </div>
           </div>
           <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-12">
-            <Image src="/images/blog/tesla-model-y-vs-hyundai-ioniq-5-2026.png" alt="Tesla Model Y vs Hyundai Ioniq 5 comparison 2026" fill className="object-cover" priority />
+            <Image src="/images/blog/tesla-model-y-vs-ioniq5.png" alt="Tesla Model Y vs Hyundai Ioniq 5 comparison 2026" fill className="object-cover" priority />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
           </div>
         </div>

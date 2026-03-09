@@ -23,7 +23,7 @@ export default function BestEvsForApartmentDwellers() {
             </div>
           </div>
           <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-12">
-            <Image src="/images/blog/best-evs-for-apartment-dwellers.png" alt="Best electric vehicles for apartment dwellers without home charging" fill className="object-cover" priority />
+            <Image src="/images/blog/ev-apartment-dwellers.png" alt="Best electric vehicles for apartment dwellers without home charging" fill className="object-cover" priority />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
           </div>
         </div>

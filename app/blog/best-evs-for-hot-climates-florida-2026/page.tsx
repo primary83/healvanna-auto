@@ -23,7 +23,7 @@ export default function BestEvsForHotClimatesFlorida2026() {
             </div>
           </div>
           <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-12">
-            <Image src="/images/blog/best-evs-for-hot-climates-florida-2026.png" alt="Best electric vehicles for hot climates and Florida drivers in 2026" fill className="object-cover" priority />
+            <Image src="/images/blog/ev-hot-climate-florida.png" alt="Best electric vehicles for hot climates and Florida drivers in 2026" fill className="object-cover" priority />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
           </div>
         </div>

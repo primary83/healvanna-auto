@@ -23,7 +23,7 @@ export default function HowToNegotiateBestEvPriceAtDealer() {
             </div>
           </div>
           <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-12">
-            <Image src="/images/blog/how-to-negotiate-best-ev-price-at-dealer.png" alt="How to negotiate the best electric vehicle price at a dealership" fill className="object-cover" priority />
+            <Image src="/images/blog/ev-negotiate-dealer-price.png" alt="How to negotiate the best electric vehicle price at a dealership" fill className="object-cover" priority />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
           </div>
         </div>
