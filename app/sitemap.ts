@@ -179,8 +179,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 158 articles)
+  // Blog posts (all 168 articles)
   const blogSlugs = [
+    "best-evs-for-nurses-and-healthcare-workers",
+    "best-evs-for-uber-lyft-drivers-2026",
+    "how-long-do-ev-batteries-last-2026",
+    "best-ev-tax-credits-by-state-2026",
+    "best-evs-for-hot-climates-florida-2026",
+    "tesla-model-y-vs-hyundai-ioniq-5-2026",
+    "best-evs-for-seniors-2026",
+    "ev-road-trip-guide-florida-2026",
+    "best-evs-for-apartment-dwellers",
+    "how-to-negotiate-best-ev-price-at-dealer",
     "best-affordable-evs-2026",
     "ev-running-costs-vs-gas-car",
     "best-evs-for-anxious-first-timers",
