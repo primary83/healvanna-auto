@@ -179,8 +179,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 168 articles)
+  // Blog posts (all 178 articles)
   const blogSlugs = [
+    "best-evs-for-teachers-2026",
+    "best-evs-real-estate-agents-2026",
+    "ford-f150-lightning-vs-rivian-r1t-2026",
+    "best-evs-long-distance-commuters-2026",
+    "tesla-model-3-vs-bmw-i4-2026",
+    "best-7-seater-evs-families-2026",
+    "ev-maintenance-guide-2026",
+    "best-evs-pet-owners-2026",
+    "best-evs-small-business-owners-2026",
+    "home-ev-charger-installation-guide-2026",
     "best-evs-for-nurses-and-healthcare-workers",
     "best-evs-for-uber-lyft-drivers-2026",
     "how-long-do-ev-batteries-last-2026",
