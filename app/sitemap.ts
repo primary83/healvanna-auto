@@ -179,8 +179,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 178 articles)
+  // Blog posts (all 188 articles)
   const blogSlugs = [
+    "best-evs-first-time-buyers-2026",
+    "ev-vs-gas-total-cost-ownership-2026",
+    "best-evs-hot-climates-2026",
+    "how-long-do-ev-batteries-last-2026",
+    "best-electric-trucks-2026",
+    "tesla-model-y-vs-ford-mustang-mach-e-2026",
+    "best-evs-city-driving-2026",
+    "ev-home-charging-guide-2026",
+    "hyundai-ioniq-5-vs-kia-ev6-2026",
+    "best-evs-highway-driving-long-trips-2026",
     "best-evs-for-teachers-2026",
     "best-evs-real-estate-agents-2026",
     "ford-f150-lightning-vs-rivian-r1t-2026",
