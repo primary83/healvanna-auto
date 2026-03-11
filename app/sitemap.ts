@@ -179,7 +179,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 188 articles)
+  // Blog posts (all 194 articles)
   const blogSlugs = [
     "best-evs-first-time-buyers-2026",
     "ev-vs-gas-total-cost-ownership-2026",
