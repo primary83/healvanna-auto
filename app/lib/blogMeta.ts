@@ -210,15 +210,6 @@ export const blogMeta: Record<string, BlogMetaEntry> = {
     image: "/images/blog/ev-uber-lyft-drivers.png",
     category: "EV Buying Guide",
   },
-  "how-long-do-ev-batteries-last-2026": {
-    title: "How Long Do EV Batteries Last? Honest Guide for 2026",
-    excerpt: "How long do EV batteries really last? Real degradation data, warranty coverage by brand, and practical tips to extend your EV battery life in 2026.",
-    datePublished: "2026-03-09",
-    dateModified: "2026-03-09",
-    author: "Healvanna Auto Editorial",
-    image: "/images/blog/ev-battery-lifespan.png",
-    category: "EV Ownership",
-  },
   "best-ev-tax-credits-by-state-2026": {
     title: "Best EV Tax Credits by State 2026 — Complete Guide",
     excerpt: "Complete guide to EV tax credits and incentives by state in 2026 — federal credits, state rebates, and how to stack savings for maximum value.",
