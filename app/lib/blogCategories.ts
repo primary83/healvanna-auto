@@ -8,6 +8,13 @@ export interface BlogCategory {
 
 export const BLOG_CATEGORIES: BlogCategory[] = [
   {
+    slug: "ev-news",
+    name: "EV News & Industry Updates",
+    description:
+      "Breaking news and analysis from the electric vehicle industry — new model launches, discontinuations, sales data, and market trends.",
+    matchCategories: ["News"],
+  },
+  {
     slug: "ev-guides",
     name: "Electric Vehicle Guides",
     description:

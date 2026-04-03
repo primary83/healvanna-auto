@@ -12,6 +12,52 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
+  // News Articles — April 2026
+  "tesla-model-s-x-discontinued": {
+    title: "Tesla Model S and Model X Officially Discontinued — The End of an Era",
+    excerpt: "Tesla has officially discontinued the Model S and Model X after 14 years. Here's what happened, what it means for owners, and where Tesla goes from here.",
+    datePublished: "2026-04-01",
+    dateModified: "2026-04-01",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/tesla-model-s-x-discontinued-hero.png",
+    category: "News",
+  },
+  "q1-2026-ev-sales-scorecard": {
+    title: "Q1 2026 EV Sales Scorecard — Winners, Losers, and What the Numbers Really Mean",
+    excerpt: "New EV sales dropped 28% in Q1 2026 but some brands are surging. Here's the complete brand-by-brand breakdown of who's winning, who's losing, and why.",
+    datePublished: "2026-04-01",
+    dateModified: "2026-04-01",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/q1-2026-ev-sales-hero.png",
+    category: "Insights",
+  },
+  "used-evs-boom-2026": {
+    title: "Used EVs Are Now Almost the Same Price as Gas Cars — Why 2026 Is the Year to Buy",
+    excerpt: "Used EVs now average just $1,300 more than gas cars. Lease returns are flooding dealer lots with barely-used Tesla Model 3s, Ioniq 5s, and more. Here's how to get the deal of the decade.",
+    datePublished: "2026-04-01",
+    dateModified: "2026-04-01",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/used-evs-boom-hero.png",
+    category: "Insights",
+  },
+  "bmw-ix3-world-car-of-the-year": {
+    title: "BMW iX3 Wins 2026 World Car of the Year — First Look at BMW's Neue Klasse Revolution",
+    excerpt: "The BMW iX3 just won both World Car of the Year and World Electric Vehicle at the New York Auto Show. Here's everything you need to know about BMW's most important car in decades.",
+    datePublished: "2026-04-01",
+    dateModified: "2026-04-01",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/bmw-ix3-hero.png",
+    category: "News",
+  },
+  "kia-ev3-arrives-in-us": {
+    title: "Kia EV3 Finally Hits the US — Everything You Need to Know",
+    excerpt: "The Kia EV3 just debuted at the New York Auto Show with 320 miles of range, fast charging, and a price under $35K. Here's everything we know.",
+    datePublished: "2026-04-01",
+    dateModified: "2026-04-01",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/kia-ev3-hero.png",
+    category: "News",
+  },
   "best-evs-first-time-buyers-2026": {
     title: "Best EVs for First-Time Buyers 2026",
     excerpt: "The best electric vehicles for first-time car buyers in 2026 — affordable, simple, and stress-free EVs that make switching easy.",

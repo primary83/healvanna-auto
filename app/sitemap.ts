@@ -179,8 +179,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 194 articles)
+  // Blog posts (all 199 articles)
   const blogSlugs = [
+    "tesla-model-s-x-discontinued",
+    "q1-2026-ev-sales-scorecard",
+    "used-evs-boom-2026",
+    "bmw-ix3-world-car-of-the-year",
+    "kia-ev3-arrives-in-us",
     "best-evs-first-time-buyers-2026",
     "ev-vs-gas-total-cost-ownership-2026",
     "best-evs-hot-climates-2026",
