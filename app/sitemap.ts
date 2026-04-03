@@ -179,8 +179,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 199 articles)
+  // Blog posts (all 204 articles)
   const blogSlugs = [
+    "every-new-ev-2026-tracker",
+    "honda-sony-afeela-canceled",
+    "rivian-r2-green-car-of-the-year",
+    "byd-exports-2026",
+    "gas-prices-ev-savings-2026",
     "tesla-model-s-x-discontinued",
     "q1-2026-ev-sales-scorecard",
     "used-evs-boom-2026",

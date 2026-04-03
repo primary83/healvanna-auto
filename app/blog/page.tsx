@@ -89,7 +89,58 @@ function BlogContent() {
   const categories = ["All", "News", "Guides", "Technology", "Reviews", "Comparison", "Insights", "Events"];
 
   const blogPosts = [
-    // News Articles — April 2026
+    // News Articles — April 2026 (Batch 2: Articles 6-10)
+    {
+      id: 340,
+      title: "Every New EV Launching in the US in 2026 — The Complete Tracker",
+      excerpt: "Over 30 new electric vehicles are launching in the US in 2026. Here's every model confirmed — specs, pricing, and when you can buy them.",
+      category: "News",
+      image: "/images/blog/every-new-ev-2026-hero.png",
+      date: "April 2026",
+      readTime: "16 min read",
+      slug: "every-new-ev-2026-tracker",
+    },
+    {
+      id: 339,
+      title: "Honda and Sony Officially Kill the Afeela EV — What Went Wrong and What's Next",
+      excerpt: "Sony Honda Mobility has canceled the Afeela 1 electric car. Here's why the project failed and what Honda is doing instead.",
+      category: "News",
+      image: "/images/blog/afeela-canceled-hero.png",
+      date: "April 2026",
+      readTime: "10 min read",
+      slug: "honda-sony-afeela-canceled",
+    },
+    {
+      id: 338,
+      title: "Rivian R2 Wins 2026 Electric Green Car of the Year — and Robotaxis Are Coming to Miami",
+      excerpt: "The Rivian R2 just won Electric Green Car of the Year. Plus, Rivian's robotaxi service is coming to Miami in 2028.",
+      category: "News",
+      image: "/images/blog/rivian-r2-coastal-hero.png",
+      date: "April 2026",
+      readTime: "11 min read",
+      slug: "rivian-r2-green-car-of-the-year",
+    },
+    {
+      id: 337,
+      title: "BYD Eyes 1.5 Million Exports in 2026 as Oil Shock Supercharges Global EV Demand",
+      excerpt: "BYD is targeting 1.5 million overseas EV sales in 2026. Here's what the Chinese EV giant's expansion means for American car buyers.",
+      category: "News",
+      image: "/images/blog/byd-exports-port-hero.png",
+      date: "April 2026",
+      readTime: "11 min read",
+      slug: "byd-exports-2026",
+    },
+    {
+      id: 336,
+      title: "Gas Prices Are Surging in 2026 — Here's Exactly How Much You'd Save by Going Electric",
+      excerpt: "Gas prices are climbing past $4/gallon. We ran the real numbers on switching to an EV — fuel, maintenance, and total cost compared.",
+      category: "Insights",
+      image: "/images/blog/gas-prices-ev-savings-hero.png",
+      date: "April 2026",
+      readTime: "13 min read",
+      slug: "gas-prices-ev-savings-2026",
+    },
+    // News Articles — April 2026 (Batch 1: Articles 1-5)
     {
       id: 335,
       title: "Tesla Model S and Model X Officially Discontinued — The End of an Era",
