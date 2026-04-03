@@ -61,7 +61,9 @@ export default function QuoteForm({ serviceName }: QuoteFormProps) {
 
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <label className="sr-only" htmlFor="quote-name">Full Name</label>
           <input
+            id="quote-name"
             type="text"
             placeholder="Full Name"
             required
@@ -69,7 +71,9 @@ export default function QuoteForm({ serviceName }: QuoteFormProps) {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="px-4 py-3 bg-[rgba(10,15,26,0.8)] border border-[rgba(74,144,217,0.15)] rounded text-sm text-[#e8edf5] placeholder-[#3d4a61] focus:outline-none focus:border-[#4a90d9] transition-colors"
           />
+          <label className="sr-only" htmlFor="quote-email">Email</label>
           <input
+            id="quote-email"
             type="email"
             placeholder="Email"
             required
@@ -79,14 +83,18 @@ export default function QuoteForm({ serviceName }: QuoteFormProps) {
           />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <label className="sr-only" htmlFor="quote-phone">Phone Number</label>
           <input
+            id="quote-phone"
             type="tel"
             placeholder="Phone Number"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             className="px-4 py-3 bg-[rgba(10,15,26,0.8)] border border-[rgba(74,144,217,0.15)] rounded text-sm text-[#e8edf5] placeholder-[#3d4a61] focus:outline-none focus:border-[#4a90d9] transition-colors"
           />
+          <label className="sr-only" htmlFor="quote-zip">ZIP Code</label>
           <input
+            id="quote-zip"
             type="text"
             placeholder="ZIP Code"
             required
@@ -95,14 +103,18 @@ export default function QuoteForm({ serviceName }: QuoteFormProps) {
             className="px-4 py-3 bg-[rgba(10,15,26,0.8)] border border-[rgba(74,144,217,0.15)] rounded text-sm text-[#e8edf5] placeholder-[#3d4a61] focus:outline-none focus:border-[#4a90d9] transition-colors"
           />
         </div>
+        <label className="sr-only" htmlFor="quote-vehicle">Vehicle</label>
         <input
+          id="quote-vehicle"
           type="text"
           placeholder="Vehicle (e.g. 2024 Tesla Model 3)"
           value={formData.vehicleType}
           onChange={(e) => setFormData({ ...formData, vehicleType: e.target.value })}
           className="w-full px-4 py-3 bg-[rgba(10,15,26,0.8)] border border-[rgba(74,144,217,0.15)] rounded text-sm text-[#e8edf5] placeholder-[#3d4a61] focus:outline-none focus:border-[#4a90d9] transition-colors"
         />
+        <label className="sr-only" htmlFor="quote-message">Service details</label>
         <textarea
+          id="quote-message"
           placeholder={`Describe what ${serviceName.toLowerCase()} service you need...`}
           rows={3}
           value={formData.message}

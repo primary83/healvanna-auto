@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: "Healvanna Auto - Premium Car Directory | Where Cars Get Better",
     template: "%s | Healvanna Auto"
   },
-  description: "Healvanna Auto is your curated guide to premium car ownership. Discover luxury vehicles, electric cars, verified detailers, ceramic coating specialists, body shops, and expert automotive insights.",
+  description: "Your curated guide to electric vehicles, car services, and detailing. Browse EV deals, find trusted specialists, and explore expert automotive insights.",
   keywords: [
     "premium car directory",
     "luxury car guide",

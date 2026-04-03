@@ -128,9 +128,14 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-[#0a0f1a]/95 backdrop-blur-xl border-b border-[rgba(74,144,217,0.1)]">
+    <>
+    {/* Skip to content */}
+    <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:bg-emerald-500 focus:text-white focus:rounded focus:text-sm">
+      Skip to main content
+    </a>
+    <nav aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-[#0a0f1a]/95 backdrop-blur-xl border-b border-[rgba(74,144,217,0.1)]">
       {/* Logo */}
-      <Link href="/" className="text-[22px] font-light tracking-[0.12em]">
+      <Link href="/" className="text-[22px] font-light tracking-[0.12em]" aria-label="Healvanna Auto — home">
         HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
       </Link>
 
@@ -247,6 +252,8 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
       <button
         className="lg:hidden text-[#e8edf5]"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={mobileMenuOpen}
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           {mobileMenuOpen ? (
@@ -325,5 +332,6 @@ export default function Navigation({ activeItem = "" }: NavigationProps) {
         </div>
       )}
     </nav>
+    </>
   );
 }

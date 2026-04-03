@@ -46,7 +46,9 @@ function BlogNewsletter() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 justify-center max-w-[500px] mx-auto">
+            <label htmlFor="newsletter-email" className="sr-only">Email address</label>
             <input
+              id="newsletter-email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

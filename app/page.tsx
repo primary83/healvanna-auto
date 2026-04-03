@@ -138,11 +138,12 @@ export default function Home() {
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
 
   return (
-    <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
+    <div id="main-content" className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       <Navigation activeItem="HOME" />
 
       {/* Hero Slider */}
       <section className="min-h-screen relative overflow-hidden">
+        <h1 className="sr-only">Premium Car Ownership — EV Directory, Trusted Services &amp; Expert Insights</h1>
         {heroSlides.map((slide, index) => (
           <div
             key={index}
@@ -156,10 +157,10 @@ export default function Home() {
               <div className={`w-full px-6 md:px-16 transition-all duration-1000 ${isLoaded && currentSlide === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
                 <div className="max-w-[800px]">
                   <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">{slide.category}</div>
-                  <h1 className="text-[clamp(36px,5.5vw,60px)] font-extralight leading-[1.05] mb-4 tracking-tight">
+                  <h2 className="text-[clamp(36px,5.5vw,60px)] font-extralight leading-[1.05] mb-4 tracking-tight">
                     {slide.title}<br />
                     <span className="italic text-[#4a90d9]">{slide.titleAccent}</span>
-                  </h1>
+                  </h2>
                   <p className="text-[14px] text-[#6b7a94] leading-relaxed mb-8 max-w-[450px]">{slide.subtitle}</p>
                   <div className="flex flex-col sm:flex-row items-start gap-4 mb-8">
                     <Link
@@ -207,8 +208,8 @@ export default function Home() {
         </div>
 
         <div className="absolute bottom-10 right-6 md:right-16 flex gap-3">
-          <button onClick={prevSlide} className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">←</button>
-          <button onClick={nextSlide} className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">→</button>
+          <button onClick={prevSlide} aria-label="Previous slide" className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">←</button>
+          <button onClick={nextSlide} aria-label="Next slide" className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">→</button>
         </div>
       </section>
 
