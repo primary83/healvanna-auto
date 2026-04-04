@@ -91,6 +91,37 @@ function BlogContent() {
   const categories = ["All", "News", "Guides", "Technology", "Reviews", "Comparison", "Insights", "Events"];
 
   const blogPosts = [
+    // Event Articles — April 2026 (Batch 3: Articles 11-13)
+    {
+      id: 343,
+      title: "Electrify Expo Atlanta 2026 — The Biggest Public EV Experience Is Coming in October",
+      excerpt: "Electrify Expo Atlanta returns October 10-11, 2026. Test drive dozens of EVs, e-bikes, and electric tech in one massive weekend.",
+      category: "Events",
+      image: "/images/blog/electrify-expo-atlanta-hero.png",
+      date: "April 2026",
+      readTime: "11 min read",
+      slug: "electrify-expo-atlanta",
+    },
+    {
+      id: 342,
+      title: "The Battery Show South & EV World Congress 2026 — Atlanta's Biggest EV Industry Event",
+      excerpt: "The Battery Show South and EV World Congress hit Atlanta on April 16-17, 2026. The Southeast's premier battery and EV technology expo.",
+      category: "Events",
+      image: "/images/blog/battery-show-south-hero.png",
+      date: "April 2026",
+      readTime: "11 min read",
+      slug: "battery-show-south-atlanta",
+    },
+    {
+      id: 341,
+      title: "GNEM Electric Mobility Summit 2026 — What to Know Before You Go",
+      excerpt: "The GNEM Electric Mobility Summit comes to Athens, GA on April 14-15, 2026. Battery supply chains, fleet electrification, EV safety, and more.",
+      category: "Events",
+      image: "/images/blog/gnem-summit-hero.png",
+      date: "April 2026",
+      readTime: "10 min read",
+      slug: "gnem-electric-mobility-summit",
+    },
     // News Articles — April 2026 (Batch 2: Articles 6-10)
     {
       id: 340,

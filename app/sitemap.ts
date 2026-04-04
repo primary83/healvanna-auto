@@ -179,8 +179,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 204 articles)
+  // Blog posts (all 207 articles)
   const blogSlugs = [
+    "electrify-expo-atlanta",
+    "battery-show-south-atlanta",
+    "gnem-electric-mobility-summit",
     "every-new-ev-2026-tracker",
     "honda-sony-afeela-canceled",
     "rivian-r2-green-car-of-the-year",

@@ -12,6 +12,34 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
+  // Event Articles — April 2026 (Batch 3: Articles 11-13)
+  "electrify-expo-atlanta": {
+    title: "Electrify Expo Atlanta 2026 — The Biggest Public EV Experience Is Coming in October",
+    excerpt: "Electrify Expo Atlanta returns October 10-11, 2026. Test drive dozens of EVs, e-bikes, and electric tech in one massive weekend event.",
+    datePublished: "2026-04-03",
+    dateModified: "2026-04-03",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/electrify-expo-atlanta-hero.png",
+    category: "Events",
+  },
+  "battery-show-south-atlanta": {
+    title: "The Battery Show South & EV World Congress 2026 — Atlanta's Biggest EV Industry Event",
+    excerpt: "The Battery Show South and EV World Congress hit Atlanta's Georgia World Congress Center on April 16-17, 2026. Your guide to the Southeast's premier battery and EV technology expo.",
+    datePublished: "2026-04-03",
+    dateModified: "2026-04-03",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/battery-show-south-hero.png",
+    category: "Events",
+  },
+  "gnem-electric-mobility-summit": {
+    title: "GNEM Electric Mobility Summit 2026 — What to Know Before You Go",
+    excerpt: "The GNEM Electric Mobility Summit comes to Athens, GA on April 14-15, 2026. Battery supply chains, fleet electrification, EV safety, and more.",
+    datePublished: "2026-04-03",
+    dateModified: "2026-04-03",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/gnem-summit-hero.png",
+    category: "Events",
+  },
   // News Articles — April 2026 (Batch 2: Articles 6-10)
   "every-new-ev-2026-tracker": {
     title: "Every New EV Launching in the US in 2026 — The Complete Tracker",
