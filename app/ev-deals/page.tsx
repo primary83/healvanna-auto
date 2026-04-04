@@ -168,7 +168,7 @@ export default function EvDealsPage() {
 
           <div className="flex items-center gap-3 mb-4">
             <div className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-emerald-400 text-[11px] font-semibold tracking-wide uppercase">
-              Updated March 2026
+              Updated April 2026
             </div>
           </div>
 
@@ -208,7 +208,7 @@ export default function EvDealsPage() {
             Market Intelligence
           </div>
           <h2 className="text-[24px] font-light tracking-tight mb-6">
-            EV Market Pulse — March 2026
+            EV Market Pulse — April 2026
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
             {MARKET_PULSE.map((mp) => (

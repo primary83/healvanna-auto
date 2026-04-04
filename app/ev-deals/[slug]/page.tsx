@@ -23,7 +23,7 @@ export async function generateMetadata({
   if (!deal || !detail) return { title: "EV Not Found" };
 
   const title = `${deal.year} ${deal.brand} ${deal.model} Best Price — Compare Deals from 6+ Platforms | HealVanna`;
-  const description = `Find the best price on the ${deal.year} ${deal.brand} ${deal.model}. Compare new and used prices from Carvana, CarMax, AutoTrader, Cars.com, CarGurus. ${deal.range} mi range, True Value Score ${deal.trueValueScore}/100. Updated March 2026.`;
+  const description = `Find the best price on the ${deal.year} ${deal.brand} ${deal.model}. Compare new and used prices from Carvana, CarMax, AutoTrader, Cars.com, CarGurus. ${deal.range} mi range, True Value Score ${deal.trueValueScore}/100. Updated April 2026.`;
 
   return {
     title,
@@ -245,7 +245,7 @@ export default async function EvDetailPage({ params }: { params: Promise<{ slug:
             </div>
             <div className="px-5 py-3 border-t border-[rgba(74,144,217,0.08)] flex items-center justify-between">
               <span className="text-[11px] text-[#3d4a61]">MSRP: <span className="line-through">{formatPrice(deal.msrp)}</span></span>
-              <span className="text-[11px] text-[#3d4a61]">Prices last verified March 2026. Click to view current listing.</span>
+              <span className="text-[11px] text-[#3d4a61]">Prices last verified April 2026. Click to view current listing.</span>
             </div>
           </div>
         </div>
