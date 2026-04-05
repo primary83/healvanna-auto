@@ -169,8 +169,8 @@ export const blogMeta: Record<string, BlogMetaEntry> = {
     category: "Guides",
   },
   "best-electric-trucks-2026": {
-    title: "Best Electric Trucks 2026 — Ranked and Compared",
-    excerpt: "The best electric pickup trucks in 2026 — towing capacity, range, payload, pricing, and which truck wins for work, recreation, and daily driving.",
+    title: "Best Electric Trucks 2026 — Cybertruck vs Lightning vs R1T vs Silverado EV Compared",
+    excerpt: "We ranked every electric pickup truck in 2026 by towing, range, payload, and real-world value. See which EV truck actually wins.",
     datePublished: "2026-03-11",
     dateModified: "2026-03-11",
     author: "Healvanna Auto Editorial",
@@ -196,8 +196,8 @@ export const blogMeta: Record<string, BlogMetaEntry> = {
     category: "Guides",
   },
   "ev-home-charging-guide-2026": {
-    title: "EV Home Charging Guide — Level 1 vs Level 2 vs DCFC 2026",
-    excerpt: "Everything you need to know about charging your EV at home — Level 1 vs Level 2 chargers, installation costs, best home chargers, and overnight charging tips.",
+    title: "How to Charge Your EV at Home — Costs, Installation & Best Chargers 2026",
+    excerpt: "Home EV charging costs $500–$1,500 to install. We break down Level 1 vs Level 2, the best chargers to buy, and how to cut your electricity bill in half.",
     datePublished: "2026-03-11",
     dateModified: "2026-03-11",
     author: "Healvanna Auto Editorial",
@@ -925,8 +925,8 @@ export const blogMeta: Record<string, BlogMetaEntry> = {
     category: "Buying Guide",
   },
   "electric-trucks-compared": {
-    title: "Electric Trucks Compared: Best EV Pickups for 2026",
-    excerpt: "Cybertruck vs Rivian R1T vs F-150 Lightning vs Silverado EV — specs, towing, payload, and real-world performance compared.",
+    title: "Electric Trucks Compared — Cybertruck vs Lightning vs R1T vs Silverado EV 2026",
+    excerpt: "We tested every electric pickup truck head-to-head. Towing, payload, range, and which EV truck is actually worth buying in 2026.",
     datePublished: "2026-02-25",
     dateModified: "2026-02-25",
     author: "Healvanna Auto Editorial",
@@ -1087,8 +1087,8 @@ export const blogMeta: Record<string, BlogMetaEntry> = {
     category: "Car Care",
   },
   "ev-home-charging-installation-guide": {
-    title: "EV Charging at Home: Complete Installation Guide",
-    excerpt: "Level 2 charger selection, electrical requirements, installation costs, tax credits, and everything you need for home EV charging.",
+    title: "How to Install a Home EV Charger — Costs, Electrician Tips & Best Level 2 Chargers",
+    excerpt: "Home EV charger installation costs $500–$1,500. We cover electrical panel requirements, the best Level 2 chargers, and how to save with off-peak rates.",
     datePublished: "2026-02-11",
     dateModified: "2026-02-11",
     author: "Healvanna Auto Editorial",
