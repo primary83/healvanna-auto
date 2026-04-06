@@ -179,8 +179,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 207 articles)
+  // Blog posts (all 217 articles)
   const blogSlugs = [
+    "best-evs-for-road-trips-2026",
+    "ev-charging-at-home-complete-guide-2026",
+    "best-used-evs-under-25000-2026",
+    "ev-maintenance-costs-vs-gas-cars-2026",
+    "ev-winter-driving-tips-2026",
+    "tesla-vs-hyundai-vs-chevy-ev-comparison-2026",
+    "how-ev-tax-credits-work-2026",
+    "ev-myths-debunked-2026",
+    "ev-road-trip-planning-guide-2026",
+    "cheapest-evs-to-own-2026",
     "electrify-expo-atlanta",
     "battery-show-south-atlanta",
     "gnem-electric-mobility-summit",
