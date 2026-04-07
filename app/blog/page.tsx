@@ -91,7 +91,7 @@ function BlogContent() {
   const categories = ["All", "News", "Guides", "Technology", "Reviews", "Comparison", "Insights", "Events"];
 
   const blogPosts = [
-    // April 8, 2026 — News, Technology (Articles 19-23)
+    // April 7, 2026 — News, Technology (Articles 19-23)
     { id: 363, title: "Jeep Recon: The 650-HP Electric Off-Roader That Changes Everything", excerpt: "The 2026 Jeep Recon is a 650-hp electric off-roader with 250 miles of range, 33-inch tires, and 9.1 inches of ground clearance.", category: "News", image: "/images/blog/jeep-recon-hero.png", date: "April 7, 2026", readTime: "14 min read", slug: "jeep-recon-electric-off-roader" },
     { id: 362, title: "EV Charging Network Report Card 2026 — Which Networks Are Actually Reliable?", excerpt: "We rank every major EV charging network on reliability, speed, coverage, and user experience.", category: "Technology", image: "/images/blog/ev-charging-network-hero.png", date: "April 7, 2026", readTime: "15 min read", slug: "ev-charging-network-report-card-2026" },
     { id: 361, title: "The Slate Truck: A $20,000 Electric Pickup Backed by Jeff Bezos — Is This the EV America's Been Waiting For?", excerpt: "The Slate Truck is a bare-bones electric pickup starting around $20,000 with 150,000+ reservations.", category: "News", image: "/images/blog/slate-truck-hero.png", date: "April 7, 2026", readTime: "13 min read", slug: "slate-truck-cheapest-ev-pickup" },

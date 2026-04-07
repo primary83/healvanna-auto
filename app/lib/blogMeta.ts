@@ -12,7 +12,7 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
-  // April 8, 2026 — News, Technology (Articles 19-23)
+  // April 7, 2026 — News, Technology (Articles 19-23)
   "jeep-recon-electric-off-roader": {
     title: "Jeep Recon: The 650-HP Electric Off-Roader That Changes Everything",
     excerpt: "The 2026 Jeep Recon is a 650-hp electric off-roader with 250 miles of range, 33-inch tires, and 9.1 inches of ground clearance. Here's everything you need to know.",
