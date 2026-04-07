@@ -179,8 +179,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 217 articles)
+  // Blog posts (all 222 articles)
   const blogSlugs = [
+    "evs-sweep-2026-world-car-awards",
+    "toyota-bz-best-selling-non-tesla-ev",
+    "subaru-trailseeker-uncharted-ev-launch",
+    "vehicle-to-grid-ev-power-home",
+    "tesla-roadster-april-2026-unveil",
     "best-evs-for-road-trips-2026",
     "ev-charging-at-home-complete-guide-2026",
     "best-used-evs-under-25000-2026",

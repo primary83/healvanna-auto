@@ -12,6 +12,52 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
+  // April 2026 — News, Technology (Articles 14-18)
+  "evs-sweep-2026-world-car-awards": {
+    title: "EVs Sweep Every 2026 World Car Award — Here's What Won and Why It Matters",
+    excerpt: "Electric vehicles won every category at the 2026 World Car Awards — a first in 22 years. BMW iX3, Lucid Gravity, Hyundai IONIQ 6 N, and more.",
+    datePublished: "2026-04-06",
+    dateModified: "2026-04-06",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/evs-sweep-world-car-awards-hero.png",
+    category: "News",
+  },
+  "toyota-bz-best-selling-non-tesla-ev": {
+    title: "Toyota bZ Is Now America's Best-Selling Non-Tesla EV — How the Slowest Starter Won the Race",
+    excerpt: "The Toyota bZ sold 10,029 units in Q1 2026 — up 79% — making it America's top-selling non-Tesla EV. Here's how Toyota went from skeptic to leader.",
+    datePublished: "2026-04-06",
+    dateModified: "2026-04-06",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/toyota-bz-best-selling-ev-hero.png",
+    category: "News",
+  },
+  "subaru-trailseeker-uncharted-ev-launch": {
+    title: "Subaru Goes All-In on Electric — Two New EVs That Could Win Over the Brand's Most Loyal Fans",
+    excerpt: "Subaru launches the 3-row Trailseeker and sporty Uncharted crossover — both with AWD, 300+ miles of range, and Tesla Supercharger access.",
+    datePublished: "2026-04-06",
+    dateModified: "2026-04-06",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/subaru-trailseeker-uncharted-hero.png",
+    category: "News",
+  },
+  "vehicle-to-grid-ev-power-home": {
+    title: "Vehicle-to-Grid: Your EV Could Power Your Home During a Hurricane — Here's How",
+    excerpt: "V2G technology lets your EV power your home for days during outages. Here's how it works, which cars support it, and why Florida homeowners should pay attention.",
+    datePublished: "2026-04-06",
+    dateModified: "2026-04-06",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/vehicle-to-grid-ev-power-home-hero.png",
+    category: "Technology",
+  },
+  "tesla-roadster-april-2026-unveil": {
+    title: "Tesla Roadster Is Finally Coming — Everything We Know About the April 2026 Unveil",
+    excerpt: "Elon Musk confirms the Tesla Roadster unveil is happening in April 2026. Here's everything we know about specs, pricing, and when you can buy one.",
+    datePublished: "2026-04-06",
+    dateModified: "2026-04-06",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/tesla-roadster-2026-hero.png",
+    category: "News",
+  },
   // April 5, 2026 — Guides, Tips, Education, Finance
   "best-evs-for-road-trips-2026": {
     title: "Best EVs for Road Trips 2026 — Long Range, Fast Charging, Zero Stress",
