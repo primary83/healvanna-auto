@@ -32,8 +32,8 @@ export const blogMeta: Record<string, BlogMetaEntry> = {
     category: "Technology",
   },
   "slate-truck-cheapest-ev-pickup": {
-    title: "The Slate Truck: A $20,000 Electric Pickup Backed by Jeff Bezos — Is This the EV America's Been Waiting For?",
-    excerpt: "The Slate Truck is a bare-bones electric pickup starting around $20,000 with 150,000+ reservations and backing from Jeff Bezos. Here's everything we know.",
+    title: "The Slate Truck: A $25,000 Electric Pickup Backed by Jeff Bezos — Is This the EV America's Been Waiting For?",
+    excerpt: "The Slate Truck is a customizable electric pickup starting around $25,000 with 150,000+ reservations, two battery options (52.7/84.3 kWh), and Tesla Supercharger access.",
     datePublished: "2026-04-07",
     dateModified: "2026-04-07",
     author: "Healvanna Auto Editorial",
