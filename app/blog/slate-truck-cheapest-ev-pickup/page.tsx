@@ -58,6 +58,12 @@ export default function SlateTruckCheapestEvPickup() {
 
             <p className="text-slate-300 leading-relaxed mb-6">There&apos;s also a growing appetite for <strong className="text-emerald-400">simplicity</strong>. Not every buyer wants adaptive cruise control, ambient lighting, and a subscription to unlock heated seats. Many truck buyers just want a reliable vehicle that starts every morning, carries a payload, and doesn&apos;t cost a fortune to fuel. The Slate&apos;s operating cost &mdash; roughly <strong className="text-emerald-400">$30&ndash;$40 per month</strong> in electricity versus $200+ in gasoline &mdash; makes the total cost of ownership argument even more compelling. For more options in this price range, check out our guide to the <Link href="/blog/best-affordable-evs-2026" className="text-emerald-400 hover:text-emerald-300">best affordable EVs for 2026</Link>.</p>
 
+            {/* In-article image: side profile */}
+            <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden my-12">
+              <Image src="/images/blog/slate-truck-side-profile.png" alt="Slate Truck side profile showing the compact two-door pickup design" fill className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent" />
+            </div>
+
             <h2 className="text-2xl md:text-3xl font-bold text-white mt-12 mb-6">Where It Fits in the EV Landscape</h2>
 
             <p className="text-slate-300 leading-relaxed mb-6">The honest answer: nowhere, because nothing like it currently exists. There is <strong className="text-emerald-400">no electric pickup truck under $40,000</strong> on sale today. The cheapest EV truck is the <Link href="/cars/chevrolet" className="text-emerald-400 hover:text-emerald-300">Chevrolet Silverado EV</Link> Work Truck at roughly $57,000. The Ford F-150 Lightning Pro starts around $55,000. The Rivian R1T begins at $69,900. The Cybertruck starts at $60,990.</p>
@@ -96,7 +102,7 @@ export default function SlateTruckCheapestEvPickup() {
 
             <p className="text-slate-300 leading-relaxed mb-6"><strong className="text-emerald-400">Final range specifications.</strong> The two battery options &mdash; <strong className="text-emerald-400">52.7 kWh and 84.3 kWh</strong> &mdash; are confirmed, but EPA range ratings haven&apos;t been published yet. The larger pack should deliver meaningfully more range for buyers who need it, while the smaller pack keeps the base price accessible.</p>
 
-            <p className="text-slate-300 leading-relaxed mb-6"><strong className="text-emerald-400">Build quality and crash testing.</strong> A $20,000 truck needs to be affordable, not unsafe. NHTSA and IIHS ratings will be critical for mainstream adoption. Buyers will want to see that cost-cutting didn&apos;t compromise structural integrity.</p>
+            <p className="text-slate-300 leading-relaxed mb-6"><strong className="text-emerald-400">Build quality and crash testing.</strong> A $25,000 truck needs to be affordable, not unsafe. NHTSA and IIHS ratings will be critical for mainstream adoption. Buyers will want to see that cost-cutting didn&apos;t compromise structural integrity.</p>
 
             <p className="text-slate-300 leading-relaxed mb-6">The Slate Truck is the most exciting EV proposition in years precisely because it isn&apos;t trying to be exciting. It&apos;s trying to be <strong className="text-emerald-400">useful, affordable, and adaptable</strong> &mdash; three things that the EV industry has struggled to deliver simultaneously. The Blank Slate customization model, SUV conversion kit, Tesla Supercharger access, and RepairPal service network show that CEO Peter Faricy is thinking about the full ownership experience, not just the sticker price. If the Warsaw factory delivers on schedule in late 2026, Slate won&apos;t just sell trucks &mdash; it will change the conversation about who electric vehicles are for. Track every new EV launch in our <Link href="/blog/every-new-ev-2026-tracker" className="text-emerald-400 hover:text-emerald-300">Every New EV 2026 Tracker</Link>, or <Link href="/ev-deals" className="text-emerald-400 hover:text-emerald-300">browse current EV deals</Link> to find something available right now.</p>
           </article>
