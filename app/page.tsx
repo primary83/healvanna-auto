@@ -270,20 +270,28 @@ export default function Home() {
       <section className="py-12 px-6 md:px-12 bg-[#0a0f1a] border-b border-[rgba(74,144,217,0.08)]">
         <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div ref={stat1.ref}>
-            <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#10B981] mb-1 tabular-nums">{stat1.count.toLocaleString()}+</div>
-            <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium">Charging Stations Mapped</div>
+            <Link href="/charge" className="group block">
+              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#10B981] mb-1 tabular-nums group-hover:text-[#34D399] transition-colors">{stat1.count.toLocaleString()}+</div>
+              <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">Charging Stations Mapped</div>
+            </Link>
           </div>
           <div ref={stat2.ref}>
-            <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 tabular-nums">{stat2.count}+</div>
-            <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium">Expert Guides</div>
+            <Link href="/blog" className="group block">
+              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 tabular-nums group-hover:text-[#6ba8eb] transition-colors">{stat2.count}+</div>
+              <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">Expert Guides</div>
+            </Link>
           </div>
           <div ref={stat3.ref}>
-            <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#10B981] mb-1 tabular-nums">{stat3.count}+</div>
-            <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium">EVs Tracked</div>
+            <Link href="/ev-deals" className="group block">
+              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#10B981] mb-1 tabular-nums group-hover:text-[#34D399] transition-colors">{stat3.count}+</div>
+              <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">EVs Tracked</div>
+            </Link>
           </div>
           <div ref={stat4.ref}>
-            <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 tabular-nums">{stat4.count.toLocaleString()}</div>
-            <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium">Diagnostic Codes</div>
+            <Link href="/diagnose" className="group block">
+              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 tabular-nums group-hover:text-[#6ba8eb] transition-colors">{stat4.count.toLocaleString()}</div>
+              <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">Diagnostic Codes</div>
+            </Link>
           </div>
         </div>
       </section>
