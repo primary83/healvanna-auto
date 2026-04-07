@@ -12,7 +12,53 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
-  // April 2026 — News, Technology (Articles 14-18)
+  // April 8, 2026 — News, Technology (Articles 19-23)
+  "jeep-recon-electric-off-roader": {
+    title: "Jeep Recon: The 650-HP Electric Off-Roader That Changes Everything",
+    excerpt: "The 2026 Jeep Recon is a 650-hp electric off-roader with 250 miles of range, 33-inch tires, and 9.1 inches of ground clearance. Here's everything you need to know.",
+    datePublished: "2026-04-08",
+    dateModified: "2026-04-08",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/jeep-recon-hero.png",
+    category: "News",
+  },
+  "ev-charging-network-report-card-2026": {
+    title: "EV Charging Network Report Card 2026 — Which Networks Are Actually Reliable?",
+    excerpt: "We rank every major EV charging network on reliability, speed, coverage, and user experience. Tesla Supercharger, ChargePoint, Electrify America, and more.",
+    datePublished: "2026-04-08",
+    dateModified: "2026-04-08",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/ev-charging-network-hero.png",
+    category: "Technology",
+  },
+  "slate-truck-cheapest-ev-pickup": {
+    title: "The Slate Truck: A $20,000 Electric Pickup Backed by Jeff Bezos — Is This the EV America's Been Waiting For?",
+    excerpt: "The Slate Truck is a bare-bones electric pickup starting around $20,000 with 150,000+ reservations and backing from Jeff Bezos. Here's everything we know.",
+    datePublished: "2026-04-08",
+    dateModified: "2026-04-08",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/slate-truck-hero.png",
+    category: "News",
+  },
+  "mercedes-steer-by-wire-2026": {
+    title: "Mercedes Steer-by-Wire Is Coming in 2026 — Why This Invisible Technology Changes How Every EV Drives",
+    excerpt: "Mercedes-Benz is bringing steer-by-wire to the facelifted EQS — the first German automaker to ditch the mechanical steering column. Here's why it matters.",
+    datePublished: "2026-04-08",
+    dateModified: "2026-04-08",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/mercedes-steer-by-wire-hero.png",
+    category: "Technology",
+  },
+  "solid-state-batteries-toyota-2026": {
+    title: "Solid-State Batteries Are Finally Real — Toyota and Sumitomo Just Proved It",
+    excerpt: "Toyota and Sumitomo just announced a joint agreement to build solid-state batteries for EVs. This technology could double range, charge in 10 minutes, and last 20 years.",
+    datePublished: "2026-04-08",
+    dateModified: "2026-04-08",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/solid-state-battery-hero.png",
+    category: "Technology",
+  },
+  // April 7, 2026 — News, Technology (Articles 14-18)
   "evs-sweep-2026-world-car-awards": {
     title: "EVs Sweep Every 2026 World Car Award — Here's What Won and Why It Matters",
     excerpt: "Electric vehicles won every category at the 2026 World Car Awards — a first in 22 years. BMW iX3, Lucid Gravity, Hyundai IONIQ 6 N, and more.",

@@ -179,8 +179,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 222 articles)
+  // Blog posts (all 227 articles)
   const blogSlugs = [
+    "jeep-recon-electric-off-roader",
+    "ev-charging-network-report-card-2026",
+    "slate-truck-cheapest-ev-pickup",
+    "mercedes-steer-by-wire-2026",
+    "solid-state-batteries-toyota-2026",
     "evs-sweep-2026-world-car-awards",
     "toyota-bz-best-selling-non-tesla-ev",
     "subaru-trailseeker-uncharted-ev-launch",

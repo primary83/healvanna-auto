@@ -12,7 +12,7 @@
 - /ev-deals/[slug] — 50 individual model pages
 - /ev-vs-hybrid — EV vs Hybrid guide with quiz
 - /ev-tools — EV Match & Savings Hub (4-step tool)
-- /blog — 222 blog articles with tag filtering
+- /blog — 227 blog articles with tag filtering
 - /blog/[slug] — Individual blog posts
 - /cars — Brand hub pages
 - /services — Automotive service directory
@@ -31,7 +31,7 @@
 - Article schema, OG tags, canonical URLs on every post
 - Tags link to /blog?tag=[tagname]
 - Categories: News, Guides, Technology, Reviews, Comparison, Insights, Events, EV Buying Guide, EV Ownership, EV Road Trips
-- Current count: 222 articles
+- Current count: 227 articles
 
 ## EV DEALS SYSTEM
 - 50 EV models with deal cards
@@ -93,6 +93,6 @@
 - Add to EV model pages and blog posts when approved
 
 ## CURRENT COUNTS
-- Blog articles: 222
+- Blog articles: 227
 - EV models: 50
 - Last updated: April 6, 2026
