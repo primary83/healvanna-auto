@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Navigation from "./components/Navigation";
@@ -8,6 +8,38 @@ import Footer from "./components/Footer";
 import ServiceSearchBar from "./components/ServiceSearchBar";
 import SavingsCalculatorWidget from "./components/SavingsCalculatorWidget";
 import { SERVICE_CATEGORIES } from "./lib/services";
+
+function useCountUp(target: number, duration = 2000) {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setStarted(true); },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!started) return;
+    const steps = 60;
+    const increment = target / steps;
+    let current = 0;
+    const interval = setInterval(() => {
+      current += increment;
+      if (current >= target) { setCount(target); clearInterval(interval); }
+      else setCount(Math.floor(current));
+    }, duration / steps);
+    return () => clearInterval(interval);
+  }, [started, target, duration]);
+
+  return { count, ref };
+}
 
 function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -70,49 +102,15 @@ function NewsletterForm() {
 }
 
 export default function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const stat1 = useCountUp(85000);
+  const stat2 = useCountUp(222);
+  const stat3 = useCountUp(50);
+  const stat4 = useCountUp(4286);
 
   useEffect(() => {
     setTimeout(() => setIsLoaded(true), 100);
   }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const heroSlides = [
-    {
-      title: "Premium Car",
-      titleAccent: "Services",
-      subtitle: "Find trusted automotive service providers — detailing, wrapping, body shops, collision repair, and more. Verified specialists near you.",
-      category: "Service Directory",
-      image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1920&q=80",
-      exploreLink: "/services",
-      learnMoreLink: "/insights",
-    },
-    {
-      title: "Trusted",
-      titleAccent: "Specialists",
-      subtitle: "Verified detailers, ceramic coating experts, and restoration craftsmen. Find premium care for your premium vehicle.",
-      category: "Find Your Pro",
-      image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1920&q=80",
-      exploreLink: "/services",
-      learnMoreLink: "/insights",
-    },
-    {
-      title: "Quality",
-      titleAccent: "Craftsmanship",
-      subtitle: "From body shops to auto glass, collision repair to custom painting. Every service category covered with real reviews.",
-      category: "All Services",
-      image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1920&q=80",
-      exploreLink: "/services",
-      learnMoreLink: "/insights",
-    },
-  ];
 
   const careServices = [
     { id: 1, name: "Precision Auto Spa", category: "Premium Detailing", city: "Austin, TX", specialties: ["EV-Safe", "Ceramic Coating", "Paint Correction"], verified: true, image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80", description: "Austin's premier EV detailing specialists. Factory-trained on Tesla, Rivian, and Lucid vehicles.", link: "/care/precision-auto-spa" },
@@ -133,100 +131,100 @@ export default function Home() {
     { title: "EV Blog", subtitle: "Guides · Reviews · News", image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80", link: "/blog" },
   ];
 
-  const goToSlide = (index: number) => setCurrentSlide(index);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-
   return (
     <div id="main-content" className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       <Navigation activeItem="HOME" />
 
-      {/* Hero Slider */}
-      <section className="min-h-screen relative overflow-hidden">
-        <h1 className="sr-only">Premium Car Ownership — EV Directory, Trusted Services &amp; Expert Insights</h1>
-        {heroSlides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              currentSlide === index ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
-          >
-            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1a]/95 via-[#0a0f1a]/70 to-transparent" />
-            <div className="absolute inset-0 flex items-center pt-24 pb-20">
-              <div className={`w-full px-6 md:px-16 transition-all duration-1000 ${isLoaded && currentSlide === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-                <div className="max-w-[800px]">
-                  <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">{slide.category}</div>
-                  <h2 className="text-[clamp(36px,5.5vw,60px)] font-extralight leading-[1.05] mb-4 tracking-tight">
-                    {slide.title}<br />
-                    <span className="italic text-[#4a90d9]">{slide.titleAccent}</span>
-                  </h2>
-                  <p className="text-[14px] text-[#6b7a94] leading-relaxed mb-8 max-w-[450px]">{slide.subtitle}</p>
-                  <div className="flex flex-col sm:flex-row items-start gap-4 mb-8">
-                    <Link
-                      href="/deals"
-                      className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#10B981] hover:bg-[#059669] text-white text-[15px] font-semibold rounded-lg transition-all duration-300 shadow-[0_4px_24px_rgba(16,185,129,0.3)] hover:shadow-[0_8px_32px_rgba(16,185,129,0.4)] hover:-translate-y-0.5"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                      </svg>
-                      Find Car Service Deals Near You
-                    </Link>
-                    <Link
-                      href="/partner"
-                      className="inline-flex items-center gap-1.5 px-4 py-4 text-[13px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300"
-                    >
-                      Own a shop? Partner with us
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                      </svg>
-                    </Link>
-                  </div>
-                </div>
-                <div className="max-w-[800px]">
-                  <ServiceSearchBar />
-                </div>
-              </div>
+      {/* Hero — EV-Forward */}
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.08)_0%,_transparent_50%),_radial-gradient(ellipse_at_bottom_left,_rgba(74,144,217,0.06)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1920&q=80')] bg-cover bg-center opacity-[0.07]" />
+        <div className={`relative w-full px-6 md:px-16 pt-32 pb-20 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="max-w-[800px]">
+            <div className="text-[10px] tracking-[0.35em] uppercase text-[#10B981] mb-5 font-medium">Your Complete Electric Vehicle Hub</div>
+            <h1 className="text-[clamp(36px,5.5vw,64px)] font-extralight leading-[1.05] mb-6 tracking-tight">
+              Your Complete<br />
+              <span className="italic text-[#10B981] font-light">Electric Vehicle</span> Hub
+            </h1>
+            <p className="text-[16px] text-[#8b97ad] leading-relaxed mb-10 max-w-[520px]">Compare EVs. Find charging stations. Track prices. Get expert guides. Everything you need for the electric era &mdash; in one place.</p>
+            <div className="flex flex-col sm:flex-row items-start gap-4">
+              <Link
+                href="/cars"
+                className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#10B981] hover:bg-[#059669] text-white text-[15px] font-semibold rounded-lg transition-all duration-300 shadow-[0_4px_24px_rgba(16,185,129,0.3)] hover:shadow-[0_8px_32px_rgba(16,185,129,0.4)] hover:-translate-y-0.5"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0H21M3.375 14.25h-.375a3 3 0 0 1-3-3V8.25m9.75 5.625V8.25m0 0H7.5M12.75 8.25l2.56-3.2a1.5 1.5 0 0 1 1.17-.55H21" />
+                </svg>
+                Explore EVs
+              </Link>
+              <Link
+                href="/charge"
+                className="inline-flex items-center gap-2.5 px-8 py-4 bg-transparent text-[#e8edf5] text-[15px] font-semibold rounded-lg border border-[rgba(74,144,217,0.3)] hover:border-[#4a90d9] hover:text-[#4a90d9] transition-all duration-300 hover:-translate-y-0.5"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                </svg>
+                Find Charging
+              </Link>
             </div>
           </div>
-        ))}
-
-        {/* Slider Controls */}
-        <div className="absolute bottom-10 left-6 md:left-16 flex items-center gap-6">
-          <div className="flex gap-3">
-            {heroSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`h-[3px] transition-all duration-300 rounded-full ${
-                  currentSlide === index ? "w-12 bg-[#4a90d9]" : "w-6 bg-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.5)]"
-                }`}
-              />
-            ))}
-          </div>
-          <span className="text-[11px] tracking-[0.1em] text-[#6b7a94] font-medium">0{currentSlide + 1} / 0{heroSlides.length}</span>
-        </div>
-
-        <div className="absolute bottom-10 right-6 md:right-16 flex gap-3">
-          <button onClick={prevSlide} aria-label="Previous slide" className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">←</button>
-          <button onClick={nextSlide} aria-label="Next slide" className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">→</button>
         </div>
       </section>
 
-      {/* Trust Stats Bar */}
-      <section className="py-10 px-6 md:px-12 bg-[#0d1424] border-b border-[rgba(74,144,217,0.08)]">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            { value: "All", label: "Service Categories", href: "/services" },
-            { value: "50+", label: "Cities Nationwide", href: "/car-detailing" },
-            { value: "Free", label: "Business Listings", href: "/business" },
-            { value: "100%", label: "Verified Providers", href: "/about" },
-          ].map((stat) => (
-            <Link key={stat.label} href={stat.href} className="group">
-              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 group-hover:text-[#6ba8eb] transition-colors">{stat.value}</div>
-              <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">{stat.label}</div>
-            </Link>
-          ))}
+      {/* Social Proof Stats */}
+      <section className="py-12 px-6 md:px-12 bg-[#0d1424] border-y border-[rgba(74,144,217,0.08)]">
+        <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div ref={stat1.ref}>
+            <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#10B981] mb-1 tabular-nums">{stat1.count.toLocaleString()}+</div>
+            <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium">Charging Stations Mapped</div>
+          </div>
+          <div ref={stat2.ref}>
+            <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 tabular-nums">{stat2.count}+</div>
+            <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium">Expert Guides</div>
+          </div>
+          <div ref={stat3.ref}>
+            <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#10B981] mb-1 tabular-nums">{stat3.count}+</div>
+            <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium">EVs Tracked</div>
+          </div>
+          <div ref={stat4.ref}>
+            <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 tabular-nums">{stat4.count.toLocaleString()}</div>
+            <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium">Diagnostic Codes</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Three-Path Navigation */}
+      <section className="py-20 px-6 md:px-12 bg-[#0a0f1a]">
+        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Link href="/cars" className="group bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded-2xl p-8 border border-[rgba(16,185,129,0.15)] hover:border-[rgba(16,185,129,0.5)] transition-all duration-400 hover:-translate-y-2 hover:shadow-[0_32px_64px_-16px_rgba(16,185,129,0.15)] block">
+            <div className="w-14 h-14 rounded-xl bg-[rgba(16,185,129,0.1)] flex items-center justify-center mb-5 group-hover:bg-[rgba(16,185,129,0.2)] transition-colors">
+              <svg className="w-7 h-7 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0H21M3.375 14.25h-.375a3 3 0 0 1-3-3V8.25m9.75 5.625V8.25m0 0H7.5M12.75 8.25l2.56-3.2a1.5 1.5 0 0 1 1.17-.55H21" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-medium text-[#e8edf5] mb-2 group-hover:text-[#10B981] transition-colors">Explore EVs</h3>
+            <p className="text-[14px] text-[#6b7a94] leading-relaxed">Compare models, track prices, find deals</p>
+          </Link>
+
+          <Link href="/services" className="group bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded-2xl p-8 border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.5)] transition-all duration-400 hover:-translate-y-2 hover:shadow-[0_32px_64px_-16px_rgba(74,144,217,0.15)] block">
+            <div className="w-14 h-14 rounded-xl bg-[rgba(74,144,217,0.1)] flex items-center justify-center mb-5 group-hover:bg-[rgba(74,144,217,0.2)] transition-colors">
+              <svg className="w-7 h-7 text-[#4a90d9]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.049.58.025 1.193-.14 1.743" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-medium text-[#e8edf5] mb-2 group-hover:text-[#4a90d9] transition-colors">Find Services</h3>
+            <p className="text-[14px] text-[#6b7a94] leading-relaxed">Trusted shops, detailing, body repair near you</p>
+          </Link>
+
+          <Link href="/blog" className="group bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded-2xl p-8 border border-[rgba(16,185,129,0.15)] hover:border-[rgba(16,185,129,0.5)] transition-all duration-400 hover:-translate-y-2 hover:shadow-[0_32px_64px_-16px_rgba(16,185,129,0.15)] block">
+            <div className="w-14 h-14 rounded-xl bg-[rgba(16,185,129,0.1)] flex items-center justify-center mb-5 group-hover:bg-[rgba(16,185,129,0.2)] transition-colors">
+              <svg className="w-7 h-7 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-medium text-[#e8edf5] mb-2 group-hover:text-[#10B981] transition-colors">Learn &amp; Research</h3>
+            <p className="text-[14px] text-[#6b7a94] leading-relaxed">Expert guides, news, diagnostic tools</p>
+          </Link>
         </div>
       </section>
 
