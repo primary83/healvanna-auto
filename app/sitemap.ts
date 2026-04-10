@@ -179,8 +179,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 227 articles)
+  // Blog posts (all 228 articles)
   const blogSlugs = [
+    "best-electric-pickup-trucks-2026-buyers-guide",
     "jeep-recon-electric-off-roader",
     "ev-charging-network-report-card-2026",
     "slate-truck-cheapest-ev-pickup",

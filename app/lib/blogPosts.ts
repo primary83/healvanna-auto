@@ -11,6 +11,9 @@ export interface BlogPost {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
+  // April 7, 2026 — Buyer's Guide (Article 24)
+  { id: 364, title: "Best Electric Pickup Trucks in 2026: Complete Buyer's Guide", excerpt: "The complete guide to every electric pickup truck in 2026. Compare the F-150 Lightning, Cybertruck, Rivian R1T, Silverado EV, and more — specs, pricing, towing, and honest pros and cons.", category: "Guides", image: "/images/blog/electric-pickup-truck-guide-hero.png", date: "April 7, 2026", readTime: "16 min read", slug: "best-electric-pickup-trucks-2026-buyers-guide" },
+
   // April 7, 2026 — News, Technology (Articles 19-23)
   { id: 363, title: "Jeep Recon: The 650-HP Electric Off-Roader That Changes Everything", excerpt: "The 2026 Jeep Recon is a 650-hp electric off-roader with 250 miles of range, 33-inch tires, and 9.1 inches of ground clearance.", category: "News", image: "/images/blog/jeep-recon-hero.png", date: "April 7, 2026", readTime: "14 min read", slug: "jeep-recon-electric-off-roader" },
   { id: 362, title: "EV Charging Network Report Card 2026 — Which Networks Are Actually Reliable?", excerpt: "We rank every major EV charging network on reliability, speed, coverage, and user experience. Tesla Supercharger, ChargePoint, Electrify America, and more.", category: "Technology", image: "/images/blog/ev-charging-network-hero.png", date: "April 7, 2026", readTime: "15 min read", slug: "ev-charging-network-report-card-2026" },

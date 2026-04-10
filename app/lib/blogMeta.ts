@@ -12,6 +12,16 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
+  // April 7, 2026 — Buyer's Guide (Article 24)
+  "best-electric-pickup-trucks-2026-buyers-guide": {
+    title: "Best Electric Pickup Trucks in 2026: Complete Buyer's Guide",
+    excerpt: "The complete guide to every electric pickup truck in 2026. Compare the F-150 Lightning, Cybertruck, Rivian R1T, Silverado EV, and more — specs, pricing, towing, and honest pros and cons.",
+    datePublished: "2026-04-07",
+    dateModified: "2026-04-07",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/electric-pickup-truck-guide-hero.png",
+    category: "Guides",
+  },
   // April 7, 2026 — News, Technology (Articles 19-23)
   "jeep-recon-electric-off-roader": {
     title: "Jeep Recon: The 650-HP Electric Off-Roader That Changes Everything",
@@ -352,7 +362,7 @@ export const blogMeta: Record<string, BlogMetaEntry> = {
     category: "Guides",
   },
   "best-electric-trucks-2026": {
-    title: "Best Electric Trucks 2026 — Cybertruck vs Lightning vs R1T vs Silverado EV Compared",
+    title: "Every Electric Pickup Truck You Can Buy in 2026 — Specs, Prices & Rankings",
     excerpt: "We ranked every electric pickup truck in 2026 by towing, range, payload, and real-world value. See which EV truck actually wins.",
     datePublished: "2026-03-11",
     dateModified: "2026-03-11",
@@ -1108,7 +1118,7 @@ export const blogMeta: Record<string, BlogMetaEntry> = {
     category: "Buying Guide",
   },
   "electric-trucks-compared": {
-    title: "Electric Trucks Compared — Cybertruck vs Lightning vs R1T vs Silverado EV 2026",
+    title: "Best Electric Pickup Trucks Compared 2026 — Cybertruck vs Lightning vs R1T vs Silverado EV Ranked",
     excerpt: "We tested every electric pickup truck head-to-head. Towing, payload, range, and which EV truck is actually worth buying in 2026.",
     datePublished: "2026-02-25",
     dateModified: "2026-02-25",
