@@ -179,8 +179,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 228 articles)
+  // Blog posts (all 238 articles)
   const blogSlugs = [
+    "bmw-ix3-us",
+    "polestar-tesla",
+    "equinox-ev-deal",
+    "best-ev-deals-april",
+    "mercedes-cla-electric",
+    "rivian-r2-epa",
+    "hormuz-gas-prices",
+    "ev-prices-parity",
+    "canceled-evs-2026",
+    "tesla-fsd-europe",
     "best-electric-pickup-trucks-2026-buyers-guide",
     "jeep-recon-electric-off-roader",
     "ev-charging-network-report-card-2026",
