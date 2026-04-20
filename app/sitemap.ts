@@ -179,8 +179,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 238 articles)
+  // Blog posts (all 241 articles)
   const blogSlugs = [
+    "tesla-robotaxi-texas-expansion",
+    "mercedes-c-class-electric-reveal",
+    "byd-sealion-05-cheap-ev",
     "bmw-ix3-us",
     "polestar-tesla",
     "equinox-ev-deal",

@@ -11,6 +11,11 @@ export interface BlogPost {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
+  // April 19, 2026 — Articles 35-37
+  { id: 377, title: "Tesla Robotaxi Expands to Texas While Waymo Already Owns Florida — The Autonomous Ride-Hailing War Heats Up", excerpt: "Tesla just expanded Robotaxi to Houston and Dallas. Meanwhile, Waymo opened to ALL Orlando and Miami riders just 3 days earlier.", category: "News", image: "/images/blog/tesla-robotaxi-houston-dallas-hero.png", date: "April 19, 2026", readTime: "14 min read", slug: "tesla-robotaxi-texas-expansion" },
+  { id: 376, title: "Mercedes C-Class Electric Revealed — The 39-Inch Hyperscreen Changes Everything", excerpt: "Mercedes just revealed the interior of the all-new C-Class Electric — dominated by a 39.1-inch screen that stretches the entire dashboard.", category: "News", image: "/images/blog/mercedes-c-class-electric-hero.png", date: "April 19, 2026", readTime: "12 min read", slug: "mercedes-c-class-electric-reveal" },
+  { id: 375, title: "BYD's $16,000 Electric SUV Is Here — And It Has a Built-In Refrigerator", excerpt: "BYD just unveiled the new Sealion 05 EV starting at around $16,000 — less than half the price of a Tesla Model Y.", category: "News", image: "/images/blog/byd-sealion-05-hero.png", date: "April 19, 2026", readTime: "11 min read", slug: "byd-sealion-05-cheap-ev" },
+
   // April 12, 2026 — Articles 25-34
   { id: 374, title: "BMW iX3 Confirmed for US This Summer at $60,000", excerpt: "BMW has confirmed the iX3 is coming to the US this summer with a starting price of $60,000.", category: "News", image: "/images/blog/bmw-ix3-us-hero.png", date: "April 12, 2026", readTime: "12 min read", slug: "bmw-ix3-us" },
   { id: 373, title: "Polestar Is Offering Tesla Owners Huge Discounts to Switch", excerpt: "Polestar is targeting Tesla owners with aggressive trade-in bonuses and loyalty discounts.", category: "News", image: "/images/blog/polestar-tesla-hero.png", date: "April 12, 2026", readTime: "11 min read", slug: "polestar-tesla" },

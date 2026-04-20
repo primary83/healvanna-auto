@@ -12,6 +12,34 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
+  // April 19, 2026 — Articles 35-37
+  "tesla-robotaxi-texas-expansion": {
+    title: "Tesla Robotaxi Expands to Texas While Waymo Already Owns Florida — The Autonomous Ride-Hailing War Heats Up",
+    excerpt: "Tesla just expanded Robotaxi to Houston and Dallas. Meanwhile, Waymo opened to ALL Orlando and Miami riders just 3 days earlier. Here's what Florida readers need to know.",
+    datePublished: "2026-04-19",
+    dateModified: "2026-04-19",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/tesla-robotaxi-houston-dallas-hero.png",
+    category: "News",
+  },
+  "mercedes-c-class-electric-reveal": {
+    title: "Mercedes C-Class Electric Revealed — The 39-Inch Hyperscreen Changes Everything",
+    excerpt: "Mercedes just revealed the interior of the all-new C-Class Electric — and it's dominated by a 39.1-inch screen that stretches the entire dashboard. Here's everything we know.",
+    datePublished: "2026-04-19",
+    dateModified: "2026-04-19",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/mercedes-c-class-electric-hero.png",
+    category: "News",
+  },
+  "byd-sealion-05-cheap-ev": {
+    title: "BYD's $16,000 Electric SUV Is Here — And It Has a Built-In Refrigerator",
+    excerpt: "BYD just unveiled the new Sealion 05 EV starting at around $16,000 — less than half the price of a Tesla Model Y. Here's what it offers and why Americans can't buy one.",
+    datePublished: "2026-04-19",
+    dateModified: "2026-04-19",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/byd-sealion-05-hero.png",
+    category: "News",
+  },
   // April 12, 2026 — Articles 25-34
   "bmw-ix3-us": {
     title: "BMW iX3 Confirmed for US This Summer at $60,000",
