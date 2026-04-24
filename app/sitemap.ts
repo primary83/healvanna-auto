@@ -179,8 +179,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 241 articles)
+  // Blog posts (all 251 articles)
   const blogSlugs = [
+    "best-evs-first-time-buyers-guide",
+    "ev-vs-gas-5-year-maintenance-breakdown",
+    "ev-battery-recycling-2026",
+    "best-electric-family-suvs-2026",
+    "ev-charging-costs-explained",
+    "ev-vs-hybrid-vs-gas-2026",
+    "best-evs-florida-drivers-2026",
+    "home-ev-charging-level-1-vs-level-2",
+    "ev-road-trip-planning-101",
+    "used-ev-buyers-guide-2026",
     "tesla-robotaxi-texas-expansion",
     "mercedes-c-class-electric-reveal",
     "byd-sealion-05-cheap-ev",
