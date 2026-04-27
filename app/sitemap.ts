@@ -179,8 +179,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 251 articles)
+  // Blog posts (all 261 articles)
   const blogSlugs = [
+    "best-ev-route-planning-apps-2026",
+    "ev-prices-stabilizing-2026",
+    "best-awd-evs-winter-2026",
+    "ev-lease-return-surge-2026",
+    "ev-runs-out-of-battery",
+    "can-you-flat-tow-ev",
+    "first-week-with-ev-2026",
+    "five-minute-ev-charging-2026",
+    "best-time-buy-ev-2026",
+    "smaller-ev-batteries-2026",
     "best-evs-first-time-buyers-guide",
     "ev-vs-gas-5-year-maintenance-breakdown",
     "ev-battery-recycling-2026",
