@@ -95,4 +95,4 @@
 ## CURRENT COUNTS
 - Blog articles: 251
 - EV models: 50
-- Last updated: April 27, 2026
+- Last updated: May 6, 2026

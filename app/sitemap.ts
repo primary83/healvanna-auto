@@ -179,8 +179,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 261 articles)
+  // Blog posts (all 266 articles)
   const blogSlugs = [
+    "future-of-intelligence-auto-china-2026",
+    "western-automakers-after-beijing-auto-show-2026",
+    "auto-china-2026-ev-battery-technology",
+    "byd-yangwang-aito-m9-nio-es9-beijing-2026",
+    "beijing-auto-show-2026-top-10-reveals",
     "best-ev-route-planning-apps-2026",
     "ev-prices-stabilizing-2026",
     "best-awd-evs-winter-2026",

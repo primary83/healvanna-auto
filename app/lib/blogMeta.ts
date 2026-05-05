@@ -12,6 +12,52 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
+  // May 2-6, 2026 — Beijing Auto Show 2026 cluster (Articles 58-62)
+  "future-of-intelligence-auto-china-2026": {
+    title: "How \"Future of Intelligence\" Played Out at Auto China 2026",
+    excerpt: "Huawei HIMA, Xiaomi, XPeng, and Chinese AI giants turned Auto China 2026 into a showcase for autonomous driving, smart cockpits, and physical AI. Here's what that means for the global industry.",
+    datePublished: "2026-05-06",
+    dateModified: "2026-05-06",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/future-of-intelligence-auto-china-2026-hero.png",
+    category: "News",
+  },
+  "western-automakers-after-beijing-auto-show-2026": {
+    title: "Why Western Automakers Should Be Worried After Beijing Auto Show 2026",
+    excerpt: "Tesla, Ford, GM, Volkswagen, and BMW all face a Chinese EV market that has changed permanently. Beijing Auto Show 2026 made the gap impossible to ignore.",
+    datePublished: "2026-05-05",
+    dateModified: "2026-05-05",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/western-automakers-after-beijing-auto-show-2026-hero.png",
+    category: "News",
+  },
+  "auto-china-2026-ev-battery-technology": {
+    title: "Auto China 2026: EV Battery Technology Breakthroughs That Change the Game",
+    excerpt: "CATL's Shenxing solid-state cells, BYD's 1,200V architecture, and ultra-fast charging at scale — Auto China 2026 was the year battery technology stopped being the bottleneck.",
+    datePublished: "2026-05-04",
+    dateModified: "2026-05-04",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/auto-china-2026-ev-battery-technology-hero.png",
+    category: "News",
+  },
+  "byd-yangwang-aito-m9-nio-es9-beijing-2026": {
+    title: "BYD Yangwang, AITO M9, and Nio ES9 — Beijing's Headline Cars Decoded",
+    excerpt: "A deep dive into the three Chinese EVs that defined Beijing Auto Show 2026: BYD's Yangwang U9 Xtreme, AITO's M9 flagship SUV, and Nio's ES9.",
+    datePublished: "2026-05-03",
+    dateModified: "2026-05-03",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/byd-yangwang-aito-m9-nio-es9-beijing-2026-hero.png",
+    category: "News",
+  },
+  "beijing-auto-show-2026-top-10-reveals": {
+    title: "Beijing Auto Show 2026: The 10 Most Important Reveals From Auto China",
+    excerpt: "1,451 vehicles, 181 global premieres, 1.28 million visitors. Here are the 10 reveals from Beijing Auto Show 2026 that will define the next year of the global EV industry.",
+    datePublished: "2026-05-02",
+    dateModified: "2026-05-02",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/beijing-auto-show-2026-top-10-reveals-hero.png",
+    category: "News",
+  },
   // April 27, 2026 — Articles 48-57 (battery, buying, charging, ownership, market)
   "best-ev-route-planning-apps-2026": {
     title: "Best EV Route Planning Apps 2026",
