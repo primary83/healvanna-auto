@@ -12,6 +12,16 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
+  // May 9, 2026 — Nio ES9 luxury features deep dive (companion to Beijing cluster)
+  "nio-es9-luxury-features-beijing-2026": {
+    title: "Inside the Nio ES9: 10 Luxury Features That Redefine What $85,000 Buys",
+    excerpt: "Smart-tinting windows, 47-speaker audio, foot massage, in-car safe, video conferencing, zero-gravity recline. The Nio ES9 packs 40+ industry-firsts into a sub-$90K luxury SUV.",
+    datePublished: "2026-05-09",
+    dateModified: "2026-05-09",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/nio-es9-luxury-features-beijing-2026-hero.png",
+    category: "News",
+  },
   // May 2-6, 2026 — Beijing Auto Show 2026 cluster (Articles 58-62)
   "future-of-intelligence-auto-china-2026": {
     title: "How \"Future of Intelligence\" Played Out at Auto China 2026",

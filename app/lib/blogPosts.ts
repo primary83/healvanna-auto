@@ -11,6 +11,9 @@ export interface BlogPost {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
+  // May 9, 2026 — Nio ES9 luxury features deep dive (Beijing companion)
+  { id: 403, title: "Inside the Nio ES9: 10 Luxury Features That Redefine What $85,000 Buys", excerpt: "Smart-tinting windows, 47-speaker audio, foot massage, in-car safe, video conferencing, zero-gravity recline. The Nio ES9 packs 40+ industry-firsts into a sub-$90K luxury SUV.", category: "News", image: "/images/blog/nio-es9-luxury-features-beijing-2026-hero.png", date: "May 9, 2026", readTime: "11 min read", slug: "nio-es9-luxury-features-beijing-2026" },
+
   // May 6, 2026 — Refreshed evergreen buyer's guide (replaces April 5 short version)
   { id: 351, title: "Best Used EVs Under $25,000 in 2026: A Practical Buyer's Guide", excerpt: "The 2026 used EV market is the most buyer-friendly moment in EV history. A practical guide to what to buy, how to verify battery health, and how to avoid expensive mistakes.", category: "Guides", image: "/images/blog/best-used-evs-under-25000-2026-hero.png", date: "May 6, 2026", readTime: "14 min read", slug: "best-used-evs-under-25000-2026" },
 
