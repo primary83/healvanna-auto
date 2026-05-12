@@ -179,8 +179,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts (all 267 articles)
+  // Blog posts (all 268 articles)
   const blogSlugs = [
+    "best-family-evs-under-50000-2026",
     "nio-es9-luxury-features-beijing-2026",
     "future-of-intelligence-auto-china-2026",
     "western-automakers-after-beijing-auto-show-2026",

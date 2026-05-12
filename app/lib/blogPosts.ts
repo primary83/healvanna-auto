@@ -11,6 +11,9 @@ export interface BlogPost {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
+  // May 11, 2026 — Family EV buyer's guide (evergreen, sub-$50K)
+  { id: 404, title: "Best Family EVs Under $50,000 in 2026: A Practical Buyer's Guide", excerpt: "Eight serious family EVs under $50,000 in 2026, organized by family size and use case. Equinox EV, Prologue, Ioniq 5, Mach-E, ID.4, Solterra, Trailseeker, plus three-row picks and a Model Y reality check.", category: "Guides", image: "/images/blog/best-family-evs-under-50000-2026-hero.png", date: "May 11, 2026", readTime: "16 min read", slug: "best-family-evs-under-50000-2026" },
+
   // May 9, 2026 — Nio ES9 luxury features deep dive (Beijing companion)
   { id: 403, title: "Inside the Nio ES9: 10 Luxury Features That Redefine What $85,000 Buys", excerpt: "Smart-tinting windows, 47-speaker audio, foot massage, in-car safe, video conferencing, zero-gravity recline. The Nio ES9 packs 40+ industry-firsts into a sub-$90K luxury SUV.", category: "News", image: "/images/blog/nio-es9-luxury-features-beijing-2026-hero.png", date: "May 9, 2026", readTime: "11 min read", slug: "nio-es9-luxury-features-beijing-2026" },
 

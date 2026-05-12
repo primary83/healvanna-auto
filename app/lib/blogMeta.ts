@@ -12,6 +12,16 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
+  // May 11, 2026 — Family EV buyer's guide (evergreen, sub-$50K)
+  "best-family-evs-under-50000-2026": {
+    title: "Best Family EVs Under $50,000 in 2026: A Practical Buyer's Guide",
+    excerpt: "Eight serious family EVs under $50,000 in 2026, organized by family size and use case. Equinox EV, Prologue, Ioniq 5, Mach-E, ID.4, Solterra, Trailseeker, plus three-row picks and a Model Y reality check.",
+    datePublished: "2026-05-11",
+    dateModified: "2026-05-11",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/best-family-evs-under-50000-2026-hero.png",
+    category: "Guides",
+  },
   // May 9, 2026 — Nio ES9 luxury features deep dive (companion to Beijing cluster)
   "nio-es9-luxury-features-beijing-2026": {
     title: "Inside the Nio ES9: 10 Luxury Features That Redefine What $85,000 Buys",

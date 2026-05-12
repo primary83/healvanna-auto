@@ -93,6 +93,6 @@
 - Add to EV model pages and blog posts when approved
 
 ## CURRENT COUNTS
-- Blog articles: 267
+- Blog articles: 268
 - EV models: 50
-- Last updated: May 9, 2026
+- Last updated: May 11, 2026
