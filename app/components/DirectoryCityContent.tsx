@@ -69,10 +69,15 @@ export default function DirectoryCityContent({
         if (searchQuery) params.set("term", searchQuery);
 
         const res = await fetch(`/api/places?${params.toString()}`);
-        if (!res.ok) throw new Error("Failed to fetch providers");
+        if (!res.ok) {
+          const errorBody = await res.json().catch(() => ({}));
+          console.error("[/api/places] Failed:", res.status, errorBody);
+          throw new Error(`Failed to fetch providers: ${res.status} ${errorBody.error || ""}`);
+        }
         const data = await res.json();
         setProviders(data.providers || []);
-      } catch {
+      } catch (err) {
+        console.error("[DirectoryCityContent] Provider fetch error:", err);
         setError("Unable to load providers. Please try again.");
       } finally {
         setIsLoading(false);

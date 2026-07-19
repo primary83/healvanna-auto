@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useGeoLocation, calculateDistance } from "../hooks/useGeoLocation";
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
 
 interface Provider {
   id: string;
@@ -49,7 +48,11 @@ const sortOptions = [
   { label: "Most Reviews", value: "reviews" },
 ];
 
-export default function CarePage() {
+function CarePageContent() {
+  const searchParams = useSearchParams();
+  const vehicleParam = searchParams.get("vehicle");
+  const serviceParam = searchParams.get("service");
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedLocation, setSelectedLocation] = useState("My Location");
@@ -57,6 +60,13 @@ export default function CarePage() {
   const [providers, setProviders] = useState<Provider[]>([]);
   const [isLoadingProviders, setIsLoadingProviders] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Set initial category based on service param
+  useEffect(() => {
+    if (serviceParam === "ppf" || serviceParam === "protection") {
+      setSelectedCategory("Paint Protection");
+    }
+  }, [serviceParam]);
 
   // IP-based geolocation
   const { latitude: userLat, longitude: userLon, isLoading: isLoadingLocation, detectedLocation } = useGeoLocation();
@@ -85,7 +95,7 @@ export default function CarePage() {
     };
   }, [selectedLocation, userLat, userLon, detectedLocation]);
 
-  // Fetch providers from Google Places API when location changes
+  // Fetch providers from Yelp API when location changes
   useEffect(() => {
     const fetchProviders = async () => {
       if (!centerLat || !centerLon) return;
@@ -94,7 +104,7 @@ export default function CarePage() {
       setError(null);
 
       try {
-        // Google Places categories for auto detailing and related services
+        // Yelp categories for auto detailing and related services
         const categories = "autodetailing,carwash,autocustomization";
         const params = new URLSearchParams({
           latitude: centerLat.toString(),
@@ -108,18 +118,16 @@ export default function CarePage() {
           params.append("term", searchQuery);
         }
 
-        const response = await fetch(`/api/places?${params.toString()}`);
+        const response = await fetch(`/api/yelp?${params.toString()}`);
 
         if (!response.ok) {
-          const errorBody = await response.json().catch(() => ({}));
-          console.error("[/api/places] Failed:", response.status, errorBody);
-          throw new Error(`Failed to fetch providers: ${response.status} ${errorBody.error || ""}`);
+          throw new Error("Failed to fetch providers");
         }
 
         const data = await response.json();
         setProviders(data.providers || []);
       } catch (err) {
-        console.error("[care] Provider fetch error:", err);
+        console.error("Error fetching providers:", err);
         setError("Unable to load providers. Please try again later.");
       } finally {
         setIsLoadingProviders(false);
@@ -174,10 +182,66 @@ export default function CarePage() {
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       {/* Navigation */}
-      <Navigation activeItem="SERVICES" />
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-[#0a0f1a]/95 backdrop-blur-xl border-b border-[rgba(74,144,217,0.1)]">
+        <Link href="/" className="text-[22px] font-light tracking-[0.12em] cursor-pointer">
+          HEALVANNA <span className="text-[#4a90d9] font-medium">AUTO</span>
+        </Link>
+        <div className="hidden md:flex gap-10">
+          {[
+            { name: "HOME", href: "/" },
+            { name: "CARS", href: "/cars" },
+            { name: "CARE", href: "/care" },
+            { name: "CRAFT", href: "/craft" },
+            { name: "INSIGHTS", href: "/insights" },
+          ].map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`text-xs tracking-[0.12em] cursor-pointer transition-colors duration-300 pb-2 ${
+                item.name === "CARE"
+                  ? "text-[#e8edf5] border-b border-[#4a90d9]"
+                  : "text-[#6b7a94] hover:text-[#e8edf5] border-b border-transparent"
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
+      {/* Vehicle Context Banner */}
+      {vehicleParam && (
+        <section className="pt-28 pb-0 px-6 md:px-12">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="bg-gradient-to-r from-[rgba(74,144,217,0.15)] to-[rgba(74,144,217,0.05)] border border-[rgba(74,144,217,0.25)] rounded-lg px-5 py-4 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-[rgba(74,144,217,0.2)] flex items-center justify-center">
+                  <svg className="w-5 h-5 text-[#4a90d9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-[10px] tracking-[0.15em] uppercase text-[#6b7a94] mb-0.5">Finding services for</div>
+                  <div className="text-[15px] font-medium text-[#e8edf5]">{vehicleParam}</div>
+                </div>
+              </div>
+              <Link
+                href="/cars"
+                className="text-[11px] text-[#4a90d9] hover:text-[#6ba8eb] transition-colors flex items-center gap-1"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back to Cars
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Header */}
-      <section className="pt-32 pb-8 px-6 md:px-12">
+      <section className={`${vehicleParam ? 'pt-6' : 'pt-32'} pb-8 px-6 md:px-12`}>
         <div className="max-w-[1400px] mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] font-medium">Care Directory</div>
@@ -192,10 +256,20 @@ export default function CarePage() {
             )}
           </div>
           <h1 className="text-[clamp(32px,5vw,56px)] font-extralight tracking-tight mb-4">
-            Premium Detailing & <span className="font-semibold bg-gradient-to-r from-[#e8edf5] to-[#4a90d9] bg-clip-text text-transparent">Protection</span>
+            {vehicleParam ? (
+              <>
+                <span className="font-semibold bg-gradient-to-r from-[#e8edf5] to-[#4a90d9] bg-clip-text text-transparent">{vehicleParam}</span> Care Specialists
+              </>
+            ) : (
+              <>
+                Premium Detailing & <span className="font-semibold bg-gradient-to-r from-[#e8edf5] to-[#4a90d9] bg-clip-text text-transparent">Protection</span>
+              </>
+            )}
           </h1>
           <p className="text-[15px] text-[#6b7a94] max-w-[600px] leading-relaxed">
-            Find verified specialists in auto detailing, ceramic coating, PPF installation, and interior restoration. Real reviews and ratings powered by Google.
+            {vehicleParam
+              ? `Find verified specialists who can provide expert care for your ${vehicleParam}. Detailing, ceramic coating, PPF installation, and more.`
+              : "Find verified specialists in auto detailing, ceramic coating, PPF installation, and interior restoration. Real reviews and ratings powered by Yelp."}
           </p>
         </div>
       </section>
@@ -278,16 +352,18 @@ export default function CarePage() {
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-[rgba(15,22,40,0.6)] rounded-xl overflow-hidden border border-[rgba(74,144,217,0.12)] animate-pulse">
-                  <div className="h-40 bg-[rgba(74,144,217,0.1)]"></div>
-                  <div className="p-5">
-                    <div className="h-4 bg-[rgba(74,144,217,0.1)] rounded mb-2 w-3/4"></div>
-                    <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/2 mb-3"></div>
-                    <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/3 mb-4"></div>
-                    <div className="flex gap-2">
-                      <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-16"></div>
-                      <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-24"></div>
+                <div key={i} className="bg-[rgba(15,22,40,0.6)] rounded-xl p-5 border border-[rgba(74,144,217,0.12)] animate-pulse">
+                  <div className="flex gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-lg bg-[rgba(74,144,217,0.1)]"></div>
+                    <div className="flex-1">
+                      <div className="h-4 bg-[rgba(74,144,217,0.1)] rounded mb-2 w-3/4"></div>
+                      <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/2"></div>
                     </div>
+                  </div>
+                  <div className="h-3 bg-[rgba(74,144,217,0.1)] rounded w-1/3 mb-4"></div>
+                  <div className="flex gap-2">
+                    <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-16"></div>
+                    <div className="h-6 bg-[rgba(74,144,217,0.1)] rounded w-24"></div>
                   </div>
                 </div>
               ))}
@@ -314,64 +390,59 @@ export default function CarePage() {
                   href={provider.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[rgba(15,22,40,0.6)] rounded-xl overflow-hidden border border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.35)] transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 cursor-pointer group"
+                  className="bg-[rgba(15,22,40,0.6)] rounded-xl p-5 border border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.35)] transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 cursor-pointer group"
                 >
-                  {/* Hero Image */}
-                  <div className="relative h-40 w-full bg-gradient-to-br from-[rgba(74,144,217,0.15)] to-[rgba(15,22,40,0.8)]">
-                    {provider.image ? (
-                      <img
-                        src={provider.image}
-                        alt={provider.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <svg className="w-12 h-12 text-[#4a90d9]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  {/* Top Row: Image + Info */}
+                  <div className="flex gap-4 mb-4">
+                    {/* Image Container */}
+                    <div className="w-14 h-14 rounded-lg bg-[rgba(74,144,217,0.1)] flex items-center justify-center flex-shrink-0 overflow-hidden">
+                      {provider.image ? (
+                        <img
+                          src={provider.image}
+                          alt={provider.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <svg className="w-7 h-7 text-[#4a90d9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
-                      </div>
-                    )}
-                    {/* Open/Closed badge */}
-                    <div className="absolute top-3 left-3">
-                      <span className={`text-[10px] font-semibold px-2.5 py-1 rounded-md backdrop-blur-sm ${
-                        provider.isOpen
-                          ? "bg-[rgba(34,197,94,0.2)] text-[#22c55e] border border-[rgba(34,197,94,0.3)]"
-                          : "bg-[rgba(239,68,68,0.2)] text-[#ef4444] border border-[rgba(239,68,68,0.3)]"
-                      }`}>
-                        {provider.isOpen ? "Open Now" : "Closed"}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[rgba(15,22,40,0.8)] to-transparent" />
-                  </div>
-
-                  {/* Info Section */}
-                  <div className="p-5">
-                    <h3 className="text-[15px] font-semibold text-[#e8edf5] mb-1 truncate group-hover:text-[#4a90d9] transition-colors">
-                      {provider.name}
-                    </h3>
-                    <p className="text-[12px] text-[#6b7a94] truncate mb-3">
-                      {provider.address}
-                    </p>
-
-                    {/* Rating Row */}
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="text-[#f5c518] text-sm">★</span>
-                      <span className="text-[13px] font-medium text-[#e8edf5]">{provider.rating}</span>
-                      <span className="text-[12px] text-[#6b7a94]">({provider.reviewCount})</span>
-                      <span className="text-[12px] text-[#4a90d9] ml-1">{provider.distanceText}</span>
-                      {provider.priceRange && (
-                        <span className="text-[12px] text-[#6b7a94] ml-auto">{provider.priceRange}</span>
                       )}
                     </div>
 
-                    {/* Category Tag */}
-                    <div className="flex flex-wrap gap-2">
-                      <span className="text-[10px] font-medium px-3 py-1.5 rounded-md bg-[rgba(74,144,217,0.12)] text-[#4a90d9]">
-                        {provider.category}
-                      </span>
+                    {/* Provider Info */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-[15px] font-semibold text-[#e8edf5] mb-1 truncate group-hover:text-[#4a90d9] transition-colors">
+                        {provider.name}
+                      </h3>
+                      <p className="text-[12px] text-[#6b7a94] truncate">
+                        {provider.address}
+                      </p>
                     </div>
+                  </div>
+
+                  {/* Rating Row */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-[#f5c518] text-sm">★</span>
+                    <span className="text-[13px] font-medium text-[#e8edf5]">{provider.rating}</span>
+                    <span className="text-[12px] text-[#6b7a94]">({provider.reviewCount})</span>
+                    <span className="text-[12px] text-[#4a90d9] ml-1">{provider.distanceText}</span>
+                    {provider.priceRange && (
+                      <span className="text-[12px] text-[#6b7a94] ml-auto">{provider.priceRange}</span>
+                    )}
+                  </div>
+
+                  {/* Status & Category Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    <span className={`text-[10px] font-semibold px-3 py-1.5 rounded-md ${
+                      provider.isOpen
+                        ? "bg-[rgba(34,197,94,0.15)] text-[#22c55e]"
+                        : "bg-[rgba(239,68,68,0.15)] text-[#ef4444]"
+                    }`}>
+                      {provider.isOpen ? "Open" : "Closed"}
+                    </span>
+                    <span className="text-[10px] font-medium px-3 py-1.5 rounded-md bg-[rgba(74,144,217,0.12)] text-[#4a90d9]">
+                      {provider.category}
+                    </span>
                   </div>
                 </a>
               ))}
@@ -380,11 +451,11 @@ export default function CarePage() {
         </div>
       </section>
 
-      {/* Google Attribution */}
+      {/* Yelp Attribution */}
       <section className="px-6 md:px-12 pb-8">
         <div className="max-w-[1400px] mx-auto text-center">
           <p className="text-[11px] text-[#3d4a61]">
-            Business data provided by <span className="text-[#4285f4]">Google</span>
+            Business data provided by <span className="text-[#c41200]">Yelp</span>
           </p>
         </div>
       </section>
@@ -403,7 +474,51 @@ export default function CarePage() {
       </section>
 
       {/* Footer */}
-      <Footer />
+      <footer className="bg-[#0a0f1a] pt-16 pb-8 px-6 md:px-12 border-t border-[rgba(74,144,217,0.15)]">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 max-w-[1200px] mx-auto mb-12">
+          {[
+            { title: "Cars", links: ["Electric Vehicles", "Luxury Sedans", "SUVs", "All Brands"] },
+            { title: "Care", links: ["Detailing", "Ceramic Coating", "PPF", "Interior"] },
+            { title: "Craft", links: ["EV Body Shops", "Luxury Collision", "Restoration"] },
+            { title: "Insights", links: ["Comparisons", "Buying Guides", "Maintenance"] },
+            { title: "Company", links: ["About", "For Business", "Contact"] },
+          ].map((column, index) => (
+            <div key={index}>
+              <h4 className="text-[10px] tracking-[0.2em] uppercase text-[#4a90d9] mb-4 font-medium">{column.title}</h4>
+              {column.links.map((link) => (
+                <a key={link} className="block text-[13px] text-[#6b7a94] mb-2.5 cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">
+                  {link}
+                </a>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[rgba(74,144,217,0.15)] max-w-[1200px] mx-auto gap-4">
+          <div className="text-[11px] text-[#3d4a61]">© 2024 Healvanna Auto. All rights reserved.</div>
+          <div className="flex gap-6">
+            {["Privacy", "Terms", "Cookies"].map((link) => (
+              <span key={link} className="text-[11px] text-[#6b7a94] cursor-pointer hover:text-[#e8edf5] transition-colors duration-300">
+                {link}
+              </span>
+            ))}
+          </div>
+        </div>
+      </footer>
     </div>
+  );
+}
+
+export default function CarePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5] flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-[#4a90d9] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-[#6b7a94]">Loading...</p>
+        </div>
+      </div>
+    }>
+      <CarePageContent />
+    </Suspense>
   );
 }

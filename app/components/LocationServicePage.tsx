@@ -105,10 +105,15 @@ function LocationServiceContent({
         }
 
         const response = await fetch(`/api/places?${params.toString()}`);
-        if (!response.ok) throw new Error("Failed to fetch providers");
+        if (!response.ok) {
+          const errorBody = await response.json().catch(() => ({}));
+          console.error("[/api/places] Failed:", response.status, errorBody);
+          throw new Error(`Failed to fetch providers: ${response.status} ${errorBody.error || ""}`);
+        }
         const data = await response.json();
         setProviders(data.providers || []);
-      } catch {
+      } catch (err) {
+        console.error("[LocationServicePage] Provider fetch error:", err);
         setError("Unable to load providers. Please try again later.");
       } finally {
         setIsLoading(false);
