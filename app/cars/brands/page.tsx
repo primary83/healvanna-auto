@@ -449,8 +449,8 @@ export default function AllBrandsPage() {
               <p className="text-gray-400">Vehicle Models</p>
             </div>
             <div>
-              <p className="text-4xl font-extralight text-[#4a90d9] mb-2">100%</p>
-              <p className="text-gray-400">Expert Reviewed</p>
+              <p className="text-4xl font-extralight text-[#4a90d9] mb-2">In-Depth</p>
+              <p className="text-gray-400">Expert Reviews</p>
             </div>
             <div>
               <p className="text-4xl font-extralight text-[#4a90d9] mb-2">Weekly</p>

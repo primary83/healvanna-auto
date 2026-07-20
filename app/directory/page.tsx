@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title:
     "Car Services Directory - Find Auto Service Providers in All 50 States | Healvanna Auto",
   description:
-    "Browse verified car service providers across all 50 states. Find car detailing, body shops, collision repair, auto glass, ceramic coating, and more near you.",
+    "Browse car service providers across all 50 states. Find car detailing, body shops, collision repair, auto glass, ceramic coating, and more near you.",
   alternates: { canonical: "/directory" },
 };
 
@@ -24,6 +24,8 @@ export default function DirectoryPage() {
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       <Navigation activeItem="DIRECTORY" />
+
+      <main>
 
       {/* Hero */}
       <section className="pt-32 pb-16 px-6 md:px-12">
@@ -37,7 +39,7 @@ export default function DirectoryPage() {
             <span className="italic text-[#4a90d9]">Providers</span> Near You
           </h1>
           <p className="text-[#6b7a94] text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-            Browse verified car service providers across all 50 states. From
+            Browse car service providers across all 50 states. From
             detailing to collision repair, find the right shop for your vehicle.
           </p>
           <div className="flex justify-center gap-8 md:gap-16">
@@ -230,6 +232,8 @@ export default function DirectoryPage() {
           </Link>
         </div>
       </section>
+
+      </main>
 
       <Footer />
     </div>

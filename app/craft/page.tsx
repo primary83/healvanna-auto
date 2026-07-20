@@ -174,6 +174,8 @@ export default function CraftPage() {
       {/* Navigation */}
       <Navigation activeItem="SERVICES" />
 
+      <main>
+
       {/* Header */}
       <section className="pt-32 pb-8 px-6 md:px-12">
         <div className="max-w-[1400px] mx-auto">
@@ -205,6 +207,7 @@ export default function CraftPage() {
             <div className="flex-1 relative">
               <input
                 type="text"
+                aria-label="Search providers"
                 placeholder="Search by name, specialty, or certification..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -215,6 +218,7 @@ export default function CraftPage() {
               </svg>
             </div>
             <select
+              aria-label="Filter by location"
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
               className="px-5 py-4 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.2)] rounded text-[#e8edf5] text-sm focus:outline-none focus:border-[#4a90d9] cursor-pointer min-w-[180px]"
@@ -226,6 +230,7 @@ export default function CraftPage() {
               ))}
             </select>
             <select
+              aria-label="Sort providers"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
               className="px-5 py-4 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.2)] rounded text-[#e8edf5] text-sm focus:outline-none focus:border-[#4a90d9] cursor-pointer"
@@ -273,6 +278,7 @@ export default function CraftPage() {
       {/* Provider Grid - Directory Style */}
       <section className="px-6 md:px-12 pb-24">
         <div className="max-w-[1400px] mx-auto">
+          <h2 className="sr-only">Providers near {displayLocation || "you"}</h2>
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {[...Array(6)].map((_, i) => (
@@ -385,7 +391,7 @@ export default function CraftPage() {
               <div>
                 <h3 className="text-2xl font-light mb-4">Insurance Claim Assistance</h3>
                 <p className="text-[#6b7a94] mb-6">
-                  All our verified shops work directly with major insurance providers. Get OEM-quality repairs without the hassle of dealing with adjusters.
+                  All our listed shops work directly with major insurance providers. Get OEM-quality repairs without the hassle of dealing with adjusters.
                 </p>
                 <div className="flex flex-wrap gap-4 text-sm text-[#6b7a94]">
                   <span className="flex items-center gap-2">
@@ -419,6 +425,8 @@ export default function CraftPage() {
       </section>
 
       {/* Footer */}
+      </main>
+
       <Footer />
     </div>
   );

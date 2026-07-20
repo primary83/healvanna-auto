@@ -78,6 +78,8 @@ export default function ProviderDetailPage() {
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       <Navigation activeItem="DIRECTORY" />
 
+      <main>
+
       {isLoading ? (
         <div className="pt-32 pb-20 px-6 md:px-12">
           <div className="max-w-[1000px] mx-auto animate-pulse">
@@ -199,7 +201,7 @@ export default function ProviderDetailPage() {
                     </h1>
                     {provider.verified && (
                       <span className="mt-2 text-[9px] tracking-[0.1em] uppercase px-2.5 py-1 bg-[rgba(74,144,217,0.15)] text-[#4a90d9] rounded-sm font-semibold flex-shrink-0">
-                        Verified
+                        In Business
                       </span>
                     )}
                   </div>
@@ -472,6 +474,8 @@ export default function ProviderDetailPage() {
           />
         </>
       ) : null}
+
+      </main>
 
       <Footer />
     </div>

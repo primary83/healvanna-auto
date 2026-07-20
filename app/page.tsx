@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Navigation from "./components/Navigation";
@@ -8,38 +8,6 @@ import Footer from "./components/Footer";
 import ServiceSearchBar from "./components/ServiceSearchBar";
 import SavingsCalculatorWidget from "./components/SavingsCalculatorWidget";
 import { SERVICE_CATEGORIES } from "./lib/services";
-
-function useCountUp(target: number, duration = 2000) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setStarted(true); },
-      { threshold: 0.3 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!started) return;
-    const steps = 60;
-    const increment = target / steps;
-    let current = 0;
-    const interval = setInterval(() => {
-      current += increment;
-      if (current >= target) { setCount(target); clearInterval(interval); }
-      else setCount(Math.floor(current));
-    }, duration / steps);
-    return () => clearInterval(interval);
-  }, [started, target, duration]);
-
-  return { count, ref };
-}
 
 function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -104,10 +72,6 @@ function NewsletterForm() {
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const stat1 = useCountUp(85000);
-  const stat2 = useCountUp(222);
-  const stat3 = useCountUp(50);
-  const stat4 = useCountUp(4286);
 
   useEffect(() => {
     setTimeout(() => setIsLoaded(true), 100);
@@ -124,7 +88,7 @@ export default function Home() {
     {
       title: "Premium Car",
       titleAccent: "Services",
-      subtitle: "Find trusted automotive service providers — detailing, wrapping, body shops, collision repair, and more. Verified specialists near you.",
+      subtitle: "Find trusted automotive service providers — detailing, wrapping, body shops, collision repair, and more. Real listings and reviews near you.",
       category: "Service Directory",
       image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1920&q=80",
       exploreLink: "/services",
@@ -133,7 +97,7 @@ export default function Home() {
     {
       title: "Trusted",
       titleAccent: "Specialists",
-      subtitle: "Verified detailers, ceramic coating experts, and restoration craftsmen. Find premium care for your premium vehicle.",
+      subtitle: "Detailers, ceramic coating experts, and restoration craftsmen. Find premium care for your premium vehicle.",
       category: "Find Your Pro",
       image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1920&q=80",
       exploreLink: "/services",
@@ -174,8 +138,10 @@ export default function Home() {
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
 
   return (
-    <div id="main-content" className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
+    <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       <Navigation activeItem="HOME" />
+
+      <main id="main-content">
 
       {/* Hero Slider */}
       <section className="min-h-screen relative overflow-hidden">
@@ -256,7 +222,7 @@ export default function Home() {
             { value: "All", label: "Service Categories", href: "/services" },
             { value: "50+", label: "Cities Nationwide", href: "/car-detailing" },
             { value: "Free", label: "Business Listings", href: "/business" },
-            { value: "100%", label: "Verified Providers", href: "/about" },
+            { value: "Live", label: "Business Data", href: "/about" },
           ].map((stat) => (
             <Link key={stat.label} href={stat.href} className="group">
               <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 group-hover:text-[#6ba8eb] transition-colors">{stat.value}</div>
@@ -269,27 +235,27 @@ export default function Home() {
       {/* Social Proof Stats */}
       <section className="py-12 px-6 md:px-12 bg-[#0a0f1a] border-b border-[rgba(74,144,217,0.08)]">
         <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div ref={stat1.ref}>
+          <div>
             <Link href="/charge" className="group block">
-              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#10B981] mb-1 tabular-nums group-hover:text-[#34D399] transition-colors">{stat1.count.toLocaleString()}+</div>
+              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#10B981] mb-1 tabular-nums group-hover:text-[#34D399] transition-colors">85,000+</div>
               <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">Charging Stations Mapped</div>
             </Link>
           </div>
-          <div ref={stat2.ref}>
+          <div>
             <Link href="/blog" className="group block">
-              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 tabular-nums group-hover:text-[#6ba8eb] transition-colors">{stat2.count}+</div>
+              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 tabular-nums group-hover:text-[#6ba8eb] transition-colors">268+</div>
               <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">Expert Guides</div>
             </Link>
           </div>
-          <div ref={stat3.ref}>
+          <div>
             <Link href="/ev-deals" className="group block">
-              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#10B981] mb-1 tabular-nums group-hover:text-[#34D399] transition-colors">{stat3.count}+</div>
+              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#10B981] mb-1 tabular-nums group-hover:text-[#34D399] transition-colors">50+</div>
               <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">EVs Tracked</div>
             </Link>
           </div>
-          <div ref={stat4.ref}>
+          <div>
             <Link href="/diagnose" className="group block">
-              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 tabular-nums group-hover:text-[#6ba8eb] transition-colors">{stat4.count.toLocaleString()}</div>
+              <div className="text-[clamp(28px,3vw,36px)] font-extralight text-[#4a90d9] mb-1 tabular-nums group-hover:text-[#6ba8eb] transition-colors">4,286</div>
               <div className="text-[12px] tracking-[0.1em] uppercase text-[#6b7a94] font-medium group-hover:text-[#e8edf5] transition-colors">Diagnostic Codes</div>
             </Link>
           </div>
@@ -328,7 +294,7 @@ export default function Home() {
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Services</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Automotive Service Directory</h2>
-          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Find verified specialists across every automotive service category.</p>
+          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Find specialists across every automotive service category.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-[1300px] mx-auto">
           {SERVICE_CATEGORIES.map((service) => (
@@ -457,7 +423,7 @@ export default function Home() {
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Care</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Premium Detailing & Protection</h2>
-          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Verified specialists in detailing, ceramic coating, and paint protection for discerning owners.</p>
+          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Specialists in detailing, ceramic coating, and paint protection for discerning owners.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-[1300px] mx-auto">
           {careServices.map((service) => (
@@ -468,7 +434,7 @@ export default function Home() {
               <div className="p-6">
                 <div className="flex justify-between items-start mb-2.5">
                   <div className="text-[9px] tracking-[0.2em] uppercase text-[#4a90d9] font-medium">{service.category}</div>
-                  {service.verified && <span className="text-[8px] tracking-[0.1em] uppercase px-2 py-1 bg-[rgba(74,144,217,0.15)] text-[#4a90d9] rounded-sm font-semibold">✓ Verified</span>}
+                  {service.verified && <span className="text-[8px] tracking-[0.1em] uppercase px-2 py-1 bg-[rgba(74,144,217,0.15)] text-[#4a90d9] rounded-sm font-semibold">✓ In Business</span>}
                 </div>
                 <div className="text-lg font-medium mb-1">{service.name}</div>
                 <div className="text-xs text-[#6b7a94] mb-3.5">{service.city}</div>
@@ -502,7 +468,7 @@ export default function Home() {
               <div className="p-6">
                 <div className="flex justify-between items-start mb-2.5">
                   <div className="text-[9px] tracking-[0.2em] uppercase text-[#4a90d9] font-medium">{service.category}</div>
-                  {service.verified && <span className="text-[8px] tracking-[0.1em] uppercase px-2 py-1 bg-[rgba(74,144,217,0.15)] text-[#4a90d9] rounded-sm font-semibold">✓ Verified</span>}
+                  {service.verified && <span className="text-[8px] tracking-[0.1em] uppercase px-2 py-1 bg-[rgba(74,144,217,0.15)] text-[#4a90d9] rounded-sm font-semibold">✓ In Business</span>}
                 </div>
                 <div className="text-lg font-medium mb-1">{service.name}</div>
                 <div className="text-xs text-[#6b7a94] mb-3.5">{service.city}</div>
@@ -530,7 +496,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-[1300px] mx-auto">
           {[
             { title: "US EVs vs Chinese EVs", category: "Comparison", description: "A deep dive into how American and Chinese electric vehicles stack up in range, tech, and value.", image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80", link: "/insights/us-evs-vs-chinese-evs" },
-            { title: "Best Ceramic Coatings 2024", category: "Guide", description: "We tested the top ceramic coating brands to find the best protection for your premium vehicle.", image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80", link: "/insights/best-ceramic-coatings-2024" },
+            { title: "Best Ceramic Coatings", category: "Guide", description: "We tested the top ceramic coating brands to find the best protection for your premium vehicle.", image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80", link: "/insights/best-ceramic-coatings-2024" },
             { title: "EV Maintenance Guide", category: "Guide", description: "Everything you need to know about maintaining your electric vehicle for peak performance.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80", link: "/insights/ev-maintenance-guide" },
           ].map((article, index) => (
             <Link key={index} href={article.link} className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block">
@@ -557,10 +523,12 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/70 to-[#0a0f1a]/90" />
         <div className="relative text-center max-w-[600px] px-6">
           <h2 className="text-[clamp(32px,5vw,48px)] font-extralight mb-4 tracking-tight">Your Guide to Premium Auto</h2>
-          <p className="text-base text-[#6b7a94] mb-8 leading-relaxed">Join thousands of enthusiasts who trust Healvanna for expert vehicle guides and verified service providers.</p>
+          <p className="text-base text-[#6b7a94] mb-8 leading-relaxed">Join thousands of enthusiasts who trust Healvanna for expert vehicle guides and local service providers.</p>
           <NewsletterForm />
         </div>
       </section>
+
+      </main>
 
       <Footer />
     </div>

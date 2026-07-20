@@ -139,6 +139,8 @@ export default function ProviderDetailPage() {
 
       <Navigation />
 
+      <main>
+
       {/* Breadcrumbs */}
       <div className="px-6 md:px-12 pt-32 pb-2">
         <div className="max-w-[1100px] mx-auto">
@@ -194,7 +196,7 @@ export default function ProviderDetailPage() {
                 <h1 className="text-2xl sm:text-3xl font-semibold text-[#e8edf5]">{provider.name}</h1>
                 {provider.verified && (
                   <span className="text-[9px] tracking-[0.1em] uppercase px-2.5 py-1 bg-[rgba(74,144,217,0.15)] text-[#4a90d9] rounded-md font-semibold">
-                    Verified
+                    In Business
                   </span>
                 )}
               </div>
@@ -401,6 +403,8 @@ export default function ProviderDetailPage() {
           </div>
         </div>
       </section>
+
+      </main>
 
       <Footer />
 

@@ -94,6 +94,8 @@ export default function DirectoryCityContent({
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       <Navigation activeItem="DIRECTORY" />
 
+      <main>
+
       {/* Hero + Breadcrumbs */}
       <section className="pt-24 pb-6 px-6 md:px-12">
         <div className="max-w-[1200px] mx-auto">
@@ -393,6 +395,8 @@ export default function DirectoryCityContent({
         }
         onClear={() => setCompareList([])}
       />
+
+      </main>
 
       <Footer />
     </div>

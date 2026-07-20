@@ -26,7 +26,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     description:
       "Professional auto detailing services that restore and protect your vehicle's appearance. From full interior cleaning to paint correction and ceramic coatings.",
     seoDescription:
-      "Find the best car detailing services near you. Professional auto detailing, paint correction, ceramic coating, and interior cleaning by verified specialists.",
+      "Find the best car detailing services near you. Professional auto detailing, paint correction, ceramic coating, and interior cleaning by local specialists.",
     icon: ICONS.detailing,
     searchQuery: "car detailing auto detailing ceramic coating",
     subcategories: [
@@ -114,7 +114,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     description:
       "Trusted body shops specializing in cosmetic repairs, dent removal, and paint correction. Restore your vehicle to its original condition.",
     seoDescription:
-      "Find certified body shops near you. Expert cosmetic repair, paintless dent removal, and paint correction by verified professionals.",
+      "Find certified body shops near you. Expert cosmetic repair, paintless dent removal, and paint correction by local professionals.",
     icon: ICONS.bodyShop,
     searchQuery: "auto body shop",
     subcategories: [

@@ -72,20 +72,18 @@ export default function BestCeramicCoatings() {
           <div className="flex items-center gap-2 text-sm text-[#6b7a94] mb-8">
             <Link href="/" className="hover:text-[#4a90d9] transition-colors">Home</Link><span>/</span>
             <Link href="/insights" className="hover:text-[#4a90d9] transition-colors">Insights</Link><span>/</span>
-            <span className="text-[#e8edf5]">Best Ceramic Coatings 2024</span>
+            <span className="text-[#e8edf5]">Best Ceramic Coatings</span>
           </div>
 
           <div className="mb-6">
             <span className="px-3 py-1 bg-[rgba(74,144,217,0.15)] text-[#4a90d9] text-xs tracking-wider uppercase rounded-full">Guide</span>
           </div>
           
-          <h1 className="text-[clamp(36px,5vw,56px)] font-extralight tracking-tight mb-6 leading-tight">Best Ceramic Coatings 2024</h1>
+          <h1 className="text-[clamp(36px,5vw,56px)] font-extralight tracking-tight mb-6 leading-tight">Best Ceramic Coatings</h1>
           <p className="text-xl text-[#6b7a94] mb-8 leading-relaxed">We tested the top ceramic coating brands to find the best protection for your premium vehicle. Here's our comprehensive ranking based on durability, gloss, hydrophobic properties, and value.</p>
           
           <div className="flex items-center gap-6 text-sm text-[#6b7a94]">
             <span>By Healvanna Editorial</span>
-            <span>•</span>
-            <span>Updated January 2024</span>
             <span>•</span>
             <span>12 min read</span>
           </div>

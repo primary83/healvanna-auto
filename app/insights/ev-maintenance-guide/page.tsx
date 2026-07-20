@@ -245,7 +245,7 @@ export default function EVMaintenanceGuide() {
           <div className="grid md:grid-cols-2 gap-6">
             <Link href="/insights/best-ceramic-coatings-2024" className="bg-[rgba(15,22,40,0.5)] rounded-lg border border-[rgba(74,144,217,0.15)] p-6 hover:border-[rgba(74,144,217,0.4)] transition-all">
               <div className="text-xs text-[#4a90d9] mb-2">GUIDE</div>
-              <h3 className="text-lg font-medium mb-2">Best Ceramic Coatings 2024</h3>
+              <h3 className="text-lg font-medium mb-2">Best Ceramic Coatings</h3>
               <p className="text-sm text-[#6b7a94]">Our ranking of the top ceramic coating brands for your premium vehicle.</p>
             </Link>
             <Link href="/insights/us-evs-vs-chinese-evs" className="bg-[rgba(15,22,40,0.5)] rounded-lg border border-[rgba(74,144,217,0.15)] p-6 hover:border-[rgba(74,144,217,0.4)] transition-all">

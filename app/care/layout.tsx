@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Premium Car Care - Detailing, Ceramic Coating & PPF Specialists",
   description:
-    "Find verified detailing specialists, ceramic coating experts, and paint protection film installers. Premium car care from trusted professionals near you.",
+    "Find detailing specialists, ceramic coating experts, and paint protection film installers. Premium car care from professionals near you.",
   keywords: [
     "car detailing",
     "ceramic coating",
@@ -16,13 +16,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Premium Car Care Specialists | Healvanna Auto",
     description:
-      "Verified detailers, ceramic coating experts, and PPF installers. Premium protection from trusted professionals.",
+      "Detailers, ceramic coating experts, and PPF installers. Premium protection from experienced professionals.",
     url: "https://healvanna.com/care",
   },
   twitter: {
     card: "summary_large_image",
     title: "Premium Car Care Specialists | Healvanna Auto",
-    description: "Verified detailers, ceramic coating experts, and PPF installers. Premium protection from trusted professionals.",
+    description: "Detailers, ceramic coating experts, and PPF installers. Premium protection from experienced professionals.",
   },
 };
 

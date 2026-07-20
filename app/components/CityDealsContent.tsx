@@ -67,6 +67,8 @@ export default function CityDealsContent({ city, deals, services }: CityDealsCon
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       <Navigation activeItem="deals" />
 
+      <main>
+
       <section className="pt-32 pb-6 px-6 md:px-12">
         <div className="max-w-[1200px] mx-auto">
           <Breadcrumbs
@@ -215,6 +217,8 @@ export default function CityDealsContent({ city, deals, services }: CityDealsCon
           </Link>
         </div>
       </section>
+
+      </main>
 
       <Footer />
     </div>

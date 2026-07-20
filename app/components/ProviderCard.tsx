@@ -84,14 +84,14 @@ export default function ProviderCard({ provider, onCompareToggle, isCompareSelec
 
       {/* Info Section */}
       <div className="px-5 pb-5 pt-4">
-        {/* Name + Verified */}
+        {/* Name + Open status */}
         <div className="flex items-start justify-between gap-2 mb-1">
           <h3 className="text-[15px] font-semibold text-[#e8edf5] truncate group-hover:text-[#4a90d9] transition-colors">
             {provider.name}
           </h3>
           {provider.verified && (
             <span className="text-[8px] tracking-[0.1em] uppercase px-2 py-0.5 bg-[rgba(74,144,217,0.15)] text-[#4a90d9] rounded-sm font-semibold flex-shrink-0">
-              Verified
+              In Business
             </span>
           )}
         </div>

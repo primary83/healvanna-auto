@@ -57,6 +57,8 @@ export default async function StatePage({
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       <Navigation activeItem="DIRECTORY" />
 
+      <main>
+
       {/* Breadcrumbs */}
       <div className="pt-24 px-6 md:px-12">
         <div className="max-w-[1200px] mx-auto">
@@ -264,6 +266,8 @@ export default async function StatePage({
           </Link>
         </div>
       </section>
+
+      </main>
 
       <Footer />
     </div>

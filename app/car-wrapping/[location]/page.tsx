@@ -19,7 +19,7 @@ export async function generateMetadata({
   if (!city) return { title: "Not Found" };
 
   const title = `Best ${service.name} in ${city.city}, ${city.stateCode} - Vinyl Wrap & PPF`;
-  const description = `Find the best ${service.name.toLowerCase()} shops in ${city.city}, ${city.stateCode}. Compare top-rated wrap installers with real reviews and verified certifications.`;
+  const description = `Find the best ${service.name.toLowerCase()} shops in ${city.city}, ${city.stateCode}. Compare top-rated wrap installers with real reviews and ratings.`;
 
   return {
     title,

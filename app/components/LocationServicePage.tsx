@@ -225,11 +225,13 @@ function LocationServiceContent({
 
       <Navigation activeItem="SERVICES" />
 
+      <main>
+
       <ServiceHero
         label={service.name}
         title={`Best ${service.name} in`}
         titleAccent={locationString}
-        description={`Find top-rated ${service.name.toLowerCase()} providers in ${locationString}. Verified specialists with real reviews and ratings.`}
+        description={`Find top-rated ${service.name.toLowerCase()} providers in ${locationString}. Real reviews and ratings.`}
         detectedLocation={locationString}
         breadcrumbs={breadcrumbs}
       />
@@ -284,6 +286,7 @@ function LocationServiceContent({
             <div className="flex-1 relative">
               <input
                 type="text"
+                aria-label="Search providers"
                 placeholder={`Search ${service.name.toLowerCase()} in ${cityName}...`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -304,6 +307,7 @@ function LocationServiceContent({
               </svg>
             </div>
             <select
+              aria-label="Sort providers"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
               className="px-5 py-4 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.2)] rounded text-[#e8edf5] text-sm focus:outline-none focus:border-[#4a90d9] cursor-pointer"
@@ -367,6 +371,7 @@ function LocationServiceContent({
       {/* Provider Grid */}
       <section className="px-6 md:px-12 pb-16">
         <div className="max-w-[1400px] mx-auto">
+          <h2 className="sr-only">Providers near {cityName}</h2>
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {[...Array(6)].map((_, i) => (
@@ -577,7 +582,7 @@ function LocationServiceContent({
             Own a {service.name} Business in {cityName}?
           </h3>
           <p className="text-[#6b7a94] mb-6">
-            Join our network of verified automotive service specialists and get
+            Join our network of automotive service specialists and get
             discovered by local vehicle owners.
           </p>
           <Link
@@ -608,6 +613,8 @@ function LocationServiceContent({
         onRemove={(id) => setCompareList((prev) => prev.filter((p) => p.id !== id))}
         onClear={() => setCompareList([])}
       />
+
+      </main>
 
       <Footer />
     </div>

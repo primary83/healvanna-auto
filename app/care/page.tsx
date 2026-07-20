@@ -176,6 +176,8 @@ export default function CarePage() {
       {/* Navigation */}
       <Navigation activeItem="SERVICES" />
 
+      <main>
+
       {/* Header */}
       <section className="pt-32 pb-8 px-6 md:px-12">
         <div className="max-w-[1400px] mx-auto">
@@ -195,7 +197,7 @@ export default function CarePage() {
             Premium Detailing & <span className="font-semibold bg-gradient-to-r from-[#e8edf5] to-[#4a90d9] bg-clip-text text-transparent">Protection</span>
           </h1>
           <p className="text-[15px] text-[#6b7a94] max-w-[600px] leading-relaxed">
-            Find verified specialists in auto detailing, ceramic coating, PPF installation, and interior restoration. Real reviews and ratings powered by Google.
+            Find specialists in auto detailing, ceramic coating, PPF installation, and interior restoration. Real reviews and ratings powered by Google.
           </p>
         </div>
       </section>
@@ -207,6 +209,7 @@ export default function CarePage() {
             <div className="flex-1 relative">
               <input
                 type="text"
+                aria-label="Search providers"
                 placeholder="Search by name or service..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -217,6 +220,7 @@ export default function CarePage() {
               </svg>
             </div>
             <select
+              aria-label="Filter by location"
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
               className="px-5 py-4 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.2)] rounded text-[#e8edf5] text-sm focus:outline-none focus:border-[#4a90d9] cursor-pointer min-w-[180px]"
@@ -228,6 +232,7 @@ export default function CarePage() {
               ))}
             </select>
             <select
+              aria-label="Sort providers"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
               className="px-5 py-4 bg-[rgba(15,22,40,0.8)] border border-[rgba(74,144,217,0.2)] rounded text-[#e8edf5] text-sm focus:outline-none focus:border-[#4a90d9] cursor-pointer"
@@ -264,7 +269,7 @@ export default function CarePage() {
               <span className="text-[#ef4444]">{error}</span>
             ) : (
               <>
-                Showing <span className="text-[#e8edf5] font-medium">{filteredProviders.length}</span> verified providers
+                Showing <span className="text-[#e8edf5] font-medium">{filteredProviders.length}</span> providers
                 {displayLocation && <span> near <span className="text-[#4a90d9]">{displayLocation}</span></span>}
               </>
             )}
@@ -275,6 +280,7 @@ export default function CarePage() {
       {/* Provider Grid - Directory Style */}
       <section className="px-6 md:px-12 pb-24">
         <div className="max-w-[1400px] mx-auto">
+          <h2 className="sr-only">Providers near {displayLocation || "you"}</h2>
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {[...Array(6)].map((_, i) => (
@@ -394,7 +400,7 @@ export default function CarePage() {
         <div className="max-w-[800px] mx-auto text-center bg-[rgba(74,144,217,0.05)] border border-[rgba(74,144,217,0.15)] rounded-lg p-12">
           <h3 className="text-2xl font-light mb-4">Are You a Premium Service Provider?</h3>
           <p className="text-[#6b7a94] mb-6">
-            Join our network of verified automotive care specialists. Get discovered by discerning vehicle owners looking for quality service.
+            Join our network of automotive care specialists. Get discovered by discerning vehicle owners looking for quality service.
           </p>
           <Link href="/contact" className="inline-block px-8 py-3 bg-[#4a90d9] text-[#0a0f1a] font-medium rounded hover:bg-[#6ba8eb] transition-colors">
             Apply to Join
@@ -403,6 +409,8 @@ export default function CarePage() {
       </section>
 
       {/* Footer */}
+      </main>
+
       <Footer />
     </div>
   );

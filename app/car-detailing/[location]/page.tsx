@@ -19,7 +19,7 @@ export async function generateMetadata({
   if (!city) return { title: "Not Found" };
 
   const title = `Best ${service.name} in ${city.city}, ${city.stateCode} - Top Rated Shops`;
-  const description = `Find the best ${service.name.toLowerCase()} services in ${city.city}, ${city.stateCode}. Compare top-rated detailers with real reviews, ratings, and verified certifications.`;
+  const description = `Find the best ${service.name.toLowerCase()} services in ${city.city}, ${city.stateCode}. Compare top-rated detailers with real reviews and ratings.`;
 
   return {
     title,

@@ -121,7 +121,7 @@ const stats = [
   { value: "50K+", label: "Monthly Visitors" },
   { value: "85%", label: "Premium Vehicle Owners" },
   { value: "4.8", label: "Average Partner Rating" },
-  { value: "200+", label: "Verified Partners" }
+  { value: "200+", label: "Partner Listings" }
 ];
 
 export default function ForBusinessPage() {
