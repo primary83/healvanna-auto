@@ -147,8 +147,8 @@ export default function ServiceSearchBar() {
             }}
             onFocus={() => setShowSuggestions(true)}
             onKeyDown={handleKeyDown}
-            placeholder="What does your car need?"
-            aria-label="Search for car services"
+            placeholder="What does your Tesla or EV need?"
+            aria-label="Search for Tesla and EV services"
             className="w-full pl-12 pr-4 py-4 sm:py-5 bg-transparent text-white placeholder:text-[#6b7a94] text-[15px] outline-none"
           />
         </div>

@@ -86,29 +86,29 @@ export default function Home() {
 
   const heroSlides = [
     {
-      title: "Premium Car",
-      titleAccent: "Services",
-      subtitle: "Find trusted automotive service providers — detailing, wrapping, body shops, collision repair, and more. Real listings and reviews near you.",
-      category: "Service Directory",
+      title: "Find Trusted Tesla & EV Specialists",
+      titleAccent: "in Orlando",
+      subtitle: "Compare local repair shops, ceramic coating installers, PPF experts, tint shops, and collision centers — built for your electric vehicle.",
+      category: "Orlando EV Specialists",
       image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1920&q=80",
       exploreLink: "/services",
       learnMoreLink: "/insights",
     },
     {
-      title: "Trusted",
-      titleAccent: "Specialists",
-      subtitle: "Detailers, ceramic coating experts, and restoration craftsmen. Find premium care for your premium vehicle.",
-      category: "Find Your Pro",
+      title: "Tesla Repair & Collision",
+      titleAccent: "Done Right in Orlando",
+      subtitle: "EV-certified body shops and collision centers with the training and equipment to handle high-voltage systems — right here in Orlando.",
+      category: "Orlando EV Specialists",
       image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1920&q=80",
       exploreLink: "/services",
       learnMoreLink: "/insights",
     },
     {
-      title: "Quality",
-      titleAccent: "Craftsmanship",
-      subtitle: "From body shops to auto glass, collision repair to custom painting. Every service category covered with real reviews.",
-      category: "All Services",
-      image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1920&q=80",
+      title: "Ceramic, PPF & Tint",
+      titleAccent: "for Your EV in Orlando",
+      subtitle: "Protect your Tesla or EV with local ceramic coating installers, paint protection film experts, and window tint shops built for electric vehicles.",
+      category: "Orlando EV Specialists",
+      image: "/images/hero/tesla-hero-slide-3.webp",
       exploreLink: "/services",
       learnMoreLink: "/insights",
     },
@@ -145,7 +145,7 @@ export default function Home() {
 
       {/* Hero Slider */}
       <section className="min-h-screen relative overflow-hidden">
-        <h1 className="sr-only">Premium Car Ownership — EV Directory, Trusted Services &amp; Expert Insights</h1>
+        <h1 className="sr-only">Find Trusted Tesla &amp; EV Specialists in Orlando</h1>
         {heroSlides.map((slide, index) => (
           <div
             key={index}
@@ -166,22 +166,19 @@ export default function Home() {
                   <p className="text-[14px] text-[#6b7a94] leading-relaxed mb-8 max-w-[450px]">{slide.subtitle}</p>
                   <div className="flex flex-col sm:flex-row items-start gap-4 mb-8">
                     <Link
-                      href="/deals"
+                      href="/directory"
                       className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#10B981] hover:bg-[#059669] text-white text-[15px] font-semibold rounded-lg transition-all duration-300 shadow-[0_4px_24px_rgba(16,185,129,0.3)] hover:shadow-[0_8px_32px_rgba(16,185,129,0.4)] hover:-translate-y-0.5"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                       </svg>
-                      Find Car Service Deals Near You
+                      Find Specialists
                     </Link>
                     <Link
                       href="/partner"
-                      className="inline-flex items-center gap-1.5 px-4 py-4 text-[13px] text-[#6b7a94] hover:text-[#4a90d9] transition-colors duration-300"
+                      className="inline-flex items-center px-4 py-3 text-[12px] text-[#4a5568] hover:text-[#6b7a94] transition-colors duration-300"
                     >
-                      Own a shop? Partner with us
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                      </svg>
+                      Own a shop? List your business
                     </Link>
                   </div>
                 </div>
