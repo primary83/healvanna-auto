@@ -16,6 +16,7 @@ import { Provider } from "../lib/types";
 const INDEPENDENT_PROVIDER_IDS = [
   "ChIJpTPgzoYr5ogR5z_c_04cgy4", // Electrified Garage
   "ChIJcxxBL2F754gRE1NXjrfGjrI", // Central Florida Hybrid EV Auto Repair
+  "ChIJVy37_qh754gRuoX6VhRmM6o", // Central Florida Hybrid Auto Repair
 ];
 
 // Not fetched from Places — presented as plainly-labeled static info only,
@@ -186,9 +187,11 @@ export default async function TeslaRepairOrlandoPage() {
               Independent shops near Orlando that service Tesla and other EVs, with real ratings and reviews.
             </p>
             {hasProviders ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="flex flex-wrap gap-5">
                 {providers.map((p) => (
-                  <ProviderCard key={p.id} provider={p} />
+                  <div key={p.id} className="flex-1 min-w-[280px] max-w-[400px]">
+                    <ProviderCard provider={p} />
+                  </div>
                 ))}
               </div>
             ) : (
