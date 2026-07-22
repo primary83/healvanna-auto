@@ -70,49 +70,11 @@ function NewsletterForm() {
 }
 
 export default function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setTimeout(() => setIsLoaded(true), 100);
   }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const heroSlides = [
-    {
-      title: "Find Trusted Tesla & EV Specialists",
-      titleAccent: "in Orlando",
-      subtitle: "Compare local repair shops, ceramic coating installers, PPF experts, tint shops, and collision centers — built for your electric vehicle.",
-      category: "Orlando EV Specialists",
-      image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1920&q=80",
-      exploreLink: "/services",
-      learnMoreLink: "/insights",
-    },
-    {
-      title: "Tesla Repair & Collision",
-      titleAccent: "Done Right in Orlando",
-      subtitle: "EV-certified body shops and collision centers with the training and equipment to handle high-voltage systems — right here in Orlando.",
-      category: "Orlando EV Specialists",
-      image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1920&q=80",
-      exploreLink: "/services",
-      learnMoreLink: "/insights",
-    },
-    {
-      title: "Ceramic, PPF & Tint",
-      titleAccent: "for Your EV in Orlando",
-      subtitle: "Protect your Tesla or EV with local ceramic coating installers, paint protection film experts, and window tint shops built for electric vehicles.",
-      category: "Orlando EV Specialists",
-      image: "/images/hero/tesla-hero-slide-3.webp",
-      exploreLink: "/services",
-      learnMoreLink: "/insights",
-    },
-  ];
 
   const careServices = [
     { id: 1, name: "Precision Auto Spa", category: "Premium Detailing", city: "Austin, TX", specialties: ["EV-Safe", "Ceramic Coating", "Paint Correction"], verified: true, image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80", description: "Austin's premier EV detailing specialists. Factory-trained on Tesla, Rivian, and Lucid vehicles.", link: "/care/precision-auto-spa" },
@@ -133,82 +95,54 @@ export default function Home() {
     { title: "EV Blog", subtitle: "Guides · Reviews · News", image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80", link: "/blog" },
   ];
 
-  const goToSlide = (index: number) => setCurrentSlide(index);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
       <Navigation activeItem="HOME" />
 
       <main id="main-content">
 
-      {/* Hero Slider */}
+      {/* Hero */}
       <section className="min-h-screen relative overflow-hidden">
         <h1 className="sr-only">Find Trusted Tesla &amp; EV Specialists in Orlando</h1>
-        {heroSlides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              currentSlide === index ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
-          >
-            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1a]/95 via-[#0a0f1a]/70 to-transparent" />
-            <div className="absolute inset-0 flex items-center pt-24 pb-20">
-              <div className={`w-full px-6 md:px-16 transition-all duration-1000 ${isLoaded && currentSlide === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-                <div className="max-w-[800px]">
-                  <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">{slide.category}</div>
-                  <h2 className="text-[clamp(36px,5.5vw,60px)] font-extralight leading-[1.05] mb-4 tracking-tight">
-                    {slide.title}<br />
-                    <span className="italic text-[#4a90d9]">{slide.titleAccent}</span>
-                  </h2>
-                  <p className="text-[14px] text-[#6b7a94] leading-relaxed mb-8 max-w-[450px]">{slide.subtitle}</p>
-                  <div className="flex flex-col sm:flex-row items-start gap-4 mb-8">
-                    <Link
-                      href="/directory"
-                      className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#10B981] hover:bg-[#059669] text-white text-[15px] font-semibold rounded-lg transition-all duration-300 shadow-[0_4px_24px_rgba(16,185,129,0.3)] hover:shadow-[0_8px_32px_rgba(16,185,129,0.4)] hover:-translate-y-0.5"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                      </svg>
-                      Find Specialists
-                    </Link>
-                    <Link
-                      href="/partner"
-                      className="inline-flex items-center px-4 py-3 text-[12px] text-[#4a5568] hover:text-[#6b7a94] transition-colors duration-300"
-                    >
-                      Own a shop? List your business
-                    </Link>
-                  </div>
-                </div>
-                <div className="max-w-[800px]">
-                  <ServiceSearchBar />
-                </div>
+        <Image
+          src="/images/hero/healvanna-tesla-hero.webp"
+          alt="Technician applying paint protection film to a white Tesla at an Orlando EV detailing shop"
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1a]/95 via-[#0a0f1a]/70 to-transparent" />
+        <div className="absolute inset-0 flex items-center pt-24 pb-20">
+          <div className={`w-full px-6 md:px-16 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            <div className="max-w-[800px]">
+              <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">Orlando EV Specialists</div>
+              <h2 className="text-[clamp(36px,5.5vw,60px)] font-extralight leading-[1.05] mb-4 tracking-tight">
+                Find Trusted Tesla &amp; EV Specialists<br />
+                <span className="italic text-[#4a90d9]">in Orlando</span>
+              </h2>
+              <p className="text-[14px] text-[#6b7a94] leading-relaxed mb-8 max-w-[450px]">Compare local repair shops, ceramic coating installers, PPF experts, tint shops, and collision centers — built for your electric vehicle.</p>
+              <div className="flex flex-col sm:flex-row items-start gap-4 mb-8">
+                <Link
+                  href="/directory"
+                  className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#10B981] hover:bg-[#059669] text-white text-[15px] font-semibold rounded-lg transition-all duration-300 shadow-[0_4px_24px_rgba(16,185,129,0.3)] hover:shadow-[0_8px_32px_rgba(16,185,129,0.4)] hover:-translate-y-0.5"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                  </svg>
+                  Find Specialists
+                </Link>
+                <Link
+                  href="/partner"
+                  className="inline-flex items-center px-4 py-3 text-[12px] text-[#4a5568] hover:text-[#6b7a94] transition-colors duration-300"
+                >
+                  Own a shop? List your business
+                </Link>
               </div>
             </div>
+            <div className="max-w-[800px]">
+              <ServiceSearchBar />
+            </div>
           </div>
-        ))}
-
-        {/* Slider Controls */}
-        <div className="absolute bottom-10 left-6 md:left-16 flex items-center gap-6">
-          <div className="flex gap-3">
-            {heroSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`h-[3px] transition-all duration-300 rounded-full ${
-                  currentSlide === index ? "w-12 bg-[#4a90d9]" : "w-6 bg-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.5)]"
-                }`}
-              />
-            ))}
-          </div>
-          <span className="text-[11px] tracking-[0.1em] text-[#6b7a94] font-medium">0{currentSlide + 1} / 0{heroSlides.length}</span>
-        </div>
-
-        <div className="absolute bottom-10 right-6 md:right-16 flex gap-3">
-          <button onClick={prevSlide} aria-label="Previous slide" className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">←</button>
-          <button onClick={nextSlide} aria-label="Next slide" className="w-11 h-11 flex items-center justify-center border border-[rgba(232,237,245,0.25)] hover:bg-[rgba(232,237,245,0.1)] transition-all duration-300 text-lg">→</button>
         </div>
       </section>
 
