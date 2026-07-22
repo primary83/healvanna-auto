@@ -230,6 +230,9 @@ export default function TeslaBrand() {
                 <Link href="/blog/ceramic-coating-tesla-model-3" className="inline-flex items-center px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-xl transition-colors">
                   Tesla Ceramic Coating Guide
                 </Link>
+                <Link href="/tesla-repair-orlando" className="inline-flex items-center px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-xl transition-colors">
+                  Tesla Repair in Orlando
+                </Link>
               </div>
             </div>
           </div>

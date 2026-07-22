@@ -177,6 +177,12 @@ export default function TeslaModel3() {
       <ChargingSection brand="Tesla" model="Model 3" slug="tesla/model-3" range={333} theme="slate" />
       <MaintenanceSchedule brand="Tesla" model="Model 3" theme="slate" />
 
+      <div className="max-w-7xl mx-auto px-4 pb-8">
+        <p className="text-sm text-slate-400">
+          Need Tesla repair? <Link href="/tesla-repair-orlando" className="text-emerald-400 hover:text-emerald-300 underline">Find trusted Orlando specialists &rarr;</Link>
+        </p>
+      </div>
+
       <section className="px-4 pb-20">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-8">Key Features</h2>
