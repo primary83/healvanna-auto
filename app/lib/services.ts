@@ -64,6 +64,78 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     keywords: ["car detailing", "auto detailing", "paint correction", "ceramic coating", "interior detailing"],
   },
   {
+    slug: "collision-repair",
+    name: "Collision Repair",
+    shortName: "Collision",
+    description:
+      "Expert collision repair for accident damage, frame straightening, and insurance claim assistance. OEM-quality repairs with lifetime warranties.",
+    seoDescription:
+      "Find certified collision repair centers near you. Expert accident damage repair, frame straightening, and direct insurance billing.",
+    icon: ICONS.collision,
+    searchQuery: "collision repair auto body repair",
+    subcategories: [
+      {
+        slug: "frame-repair",
+        name: "Frame Repair",
+        description:
+          "Precision frame straightening and structural repair using computerized measuring systems. Restore your vehicle's structural integrity.",
+        parentSlug: "collision-repair",
+        keywords: ["frame repair", "frame straightening", "structural repair", "unibody repair"],
+      },
+      {
+        slug: "insurance-claims",
+        name: "Insurance Claims",
+        description:
+          "Shops that work directly with all major insurance providers. Streamlined claim process with no out-of-pocket hassle.",
+        parentSlug: "collision-repair",
+        keywords: ["insurance claims", "accident repair", "insurance billing", "claim assistance"],
+      },
+    ],
+    trustSignals: [
+      "Direct Repair Program (DRP)",
+      "I-CAR Gold Class Certified",
+      "OEM Parts Guaranteed",
+      "Lifetime Repair Warranty",
+    ],
+    keywords: ["collision repair", "accident repair", "frame repair", "insurance claims", "body damage"],
+  },
+  {
+    slug: "body-shops",
+    name: "Body Shops",
+    shortName: "Body Shops",
+    description:
+      "Trusted body shops specializing in cosmetic repairs, dent removal, and paint correction. Restore your vehicle to its original condition.",
+    seoDescription:
+      "Find certified body shops near you. Expert cosmetic repair, paintless dent removal, and paint correction by local professionals.",
+    icon: ICONS.bodyShop,
+    searchQuery: "auto body shop",
+    subcategories: [
+      {
+        slug: "dent-repair",
+        name: "Dent Repair",
+        description:
+          "Paintless dent removal and traditional dent repair. Fix hail damage, door dings, and minor dents without repainting.",
+        parentSlug: "body-shops",
+        keywords: ["dent repair", "paintless dent removal", "PDR", "hail damage repair", "door ding repair"],
+      },
+      {
+        slug: "paint-correction",
+        name: "Paint Correction",
+        description:
+          "Multi-stage paint correction to remove swirl marks, scratches, and oxidation. Restore factory-fresh clarity to your paint.",
+        parentSlug: "body-shops",
+        keywords: ["paint correction", "swirl removal", "scratch removal", "paint restoration"],
+      },
+    ],
+    trustSignals: [
+      "I-CAR Gold Class",
+      "ASE Certified Technicians",
+      "OEM Certified Repairs",
+      "Lifetime Warranty",
+    ],
+    keywords: ["body shop", "auto body repair", "dent removal", "paint correction", "cosmetic repair"],
+  },
+  {
     slug: "car-wrapping",
     name: "Car Wrapping",
     shortName: "Wrapping",
@@ -106,78 +178,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       "PDCA Members",
     ],
     keywords: ["car wrapping", "vinyl wrap", "vehicle wrap", "color change", "PPF", "paint protection film"],
-  },
-  {
-    slug: "body-shops",
-    name: "Body Shops",
-    shortName: "Body Shops",
-    description:
-      "Trusted body shops specializing in cosmetic repairs, dent removal, and paint correction. Restore your vehicle to its original condition.",
-    seoDescription:
-      "Find certified body shops near you. Expert cosmetic repair, paintless dent removal, and paint correction by local professionals.",
-    icon: ICONS.bodyShop,
-    searchQuery: "auto body shop",
-    subcategories: [
-      {
-        slug: "dent-repair",
-        name: "Dent Repair",
-        description:
-          "Paintless dent removal and traditional dent repair. Fix hail damage, door dings, and minor dents without repainting.",
-        parentSlug: "body-shops",
-        keywords: ["dent repair", "paintless dent removal", "PDR", "hail damage repair", "door ding repair"],
-      },
-      {
-        slug: "paint-correction",
-        name: "Paint Correction",
-        description:
-          "Multi-stage paint correction to remove swirl marks, scratches, and oxidation. Restore factory-fresh clarity to your paint.",
-        parentSlug: "body-shops",
-        keywords: ["paint correction", "swirl removal", "scratch removal", "paint restoration"],
-      },
-    ],
-    trustSignals: [
-      "I-CAR Gold Class",
-      "ASE Certified Technicians",
-      "OEM Certified Repairs",
-      "Lifetime Warranty",
-    ],
-    keywords: ["body shop", "auto body repair", "dent removal", "paint correction", "cosmetic repair"],
-  },
-  {
-    slug: "collision-repair",
-    name: "Collision Repair",
-    shortName: "Collision",
-    description:
-      "Expert collision repair for accident damage, frame straightening, and insurance claim assistance. OEM-quality repairs with lifetime warranties.",
-    seoDescription:
-      "Find certified collision repair centers near you. Expert accident damage repair, frame straightening, and direct insurance billing.",
-    icon: ICONS.collision,
-    searchQuery: "collision repair auto body repair",
-    subcategories: [
-      {
-        slug: "frame-repair",
-        name: "Frame Repair",
-        description:
-          "Precision frame straightening and structural repair using computerized measuring systems. Restore your vehicle's structural integrity.",
-        parentSlug: "collision-repair",
-        keywords: ["frame repair", "frame straightening", "structural repair", "unibody repair"],
-      },
-      {
-        slug: "insurance-claims",
-        name: "Insurance Claims",
-        description:
-          "Shops that work directly with all major insurance providers. Streamlined claim process with no out-of-pocket hassle.",
-        parentSlug: "collision-repair",
-        keywords: ["insurance claims", "accident repair", "insurance billing", "claim assistance"],
-      },
-    ],
-    trustSignals: [
-      "Direct Repair Program (DRP)",
-      "I-CAR Gold Class Certified",
-      "OEM Parts Guaranteed",
-      "Lifetime Repair Warranty",
-    ],
-    keywords: ["collision repair", "accident repair", "frame repair", "insurance claims", "body damage"],
   },
   {
     slug: "auto-glass",

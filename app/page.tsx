@@ -112,7 +112,7 @@ export default function Home() {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1a]/95 via-[#0a0f1a]/70 to-transparent" />
-        <div className="absolute inset-0 flex items-center pt-24 pb-20">
+        <div className="absolute inset-0 flex items-center pt-28 md:pt-24 pb-20">
           <div className={`w-full px-6 md:px-16 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             <div className="max-w-[800px]">
               <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-4 font-medium">Orlando EV Specialists</div>
@@ -151,7 +151,7 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
             { value: "All", label: "Service Categories", href: "/services" },
-            { value: "50+", label: "Cities Nationwide", href: "/car-detailing" },
+            { value: "Orlando", label: "Tesla & EV Focus", href: "/tesla-repair-orlando" },
             { value: "Free", label: "Business Listings", href: "/business" },
             { value: "Live", label: "Business Data", href: "/about" },
           ].map((stat) => (
@@ -228,6 +228,18 @@ export default function Home() {
           <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Find specialists across every automotive service category.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-[1300px] mx-auto">
+          <Link
+            href="/tesla-repair-orlando"
+            className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded-xl p-6 border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block"
+          >
+            <div className="w-12 h-12 rounded-xl bg-[rgba(74,144,217,0.1)] flex items-center justify-center mb-4 group-hover:bg-[rgba(74,144,217,0.2)] transition-colors">
+              <svg className="w-6 h-6 text-[#4a90d9]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-medium text-[#e8edf5] mb-2 group-hover:text-[#4a90d9] transition-colors">Tesla & EV Repair</h3>
+            <p className="text-[13px] text-[#6b7a94] leading-relaxed">Verified independent Tesla specialists in Orlando, plus official service info.</p>
+          </Link>
           {SERVICE_CATEGORIES.map((service) => (
             <Link
               key={service.slug}
@@ -250,7 +262,7 @@ export default function Home() {
       </section>
 
       {/* Browse by Brand Section */}
-      <section className="py-24 px-6 md:px-12 bg-[#0a0f1a]">
+      <section className="py-16 px-6 md:px-12 bg-[#0a0f1a]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">EV Directory</div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Browse by Brand</h2>
@@ -271,7 +283,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-semibold text-white group-hover:text-red-400 transition-colors">Tesla</h3>
+                      <h3 className="text-xl font-semibold text-white group-hover:text-red-400 transition-colors">Tesla</h3>
                       <p className="text-[#6b7a94] text-sm">5 Models Available</p>
                     </div>
                   </div>
@@ -289,9 +301,9 @@ export default function Home() {
                     <div><span className="text-white font-medium">1.99s</span> Fastest 0-60</div>
                   </div>
                 </div>
-                <div className="relative h-[250px] rounded-xl overflow-hidden">
-                  <Image 
-                    src="/cars/tesla/model-s.png" 
+                <div className="relative h-[200px] rounded-xl overflow-hidden">
+                  <Image
+                    src="/cars/tesla/model-s.png"
                     alt="Tesla Model S"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -308,6 +320,15 @@ export default function Home() {
               </div>
             </div>
           </Link>
+
+          <div className="mb-8 -mt-2">
+            <Link
+              href="/tesla-repair-orlando"
+              className="inline-flex items-center gap-1.5 text-[13px] text-[#4a90d9] hover:text-[#6ba8eb] transition-colors"
+            >
+              Own a Tesla in Orlando? Find repair specialists near you &rarr;
+            </Link>
+          </div>
 
           {/* Other Brands */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -353,8 +374,8 @@ export default function Home() {
       <section className="py-24 px-6 md:px-12 bg-[#0d1424]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Care</div>
-          <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Premium Detailing & Protection</h2>
-          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Specialists in detailing, ceramic coating, and paint protection for discerning owners.</p>
+          <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">EV & Tesla-Safe Detailing</h2>
+          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Ceramic coating, PPF, and paint protection from specialists who know electric vehicles inside and out.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-[1300px] mx-auto">
           {careServices.map((service) => (
@@ -387,8 +408,8 @@ export default function Home() {
       <section className="py-24 px-6 md:px-12 bg-[#0a0f1a]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Craft</div>
-          <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Body Shops & Restoration</h2>
-          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Certified collision repair and master restoration craftsmen for every era.</p>
+          <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">EV-Certified Collision Repair</h2>
+          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Body shops trained and equipped for high-voltage systems — from minor dents to major collision repair.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-[1300px] mx-auto">
           {craftServices.map((service) => (
@@ -421,8 +442,8 @@ export default function Home() {
       <section className="py-24 px-6 md:px-12 bg-[#0d1424]">
         <div className="text-center mb-16">
           <div className="text-[10px] tracking-[0.35em] uppercase text-[#4a90d9] mb-3.5 font-medium">Insights</div>
-          <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">Market Intelligence</h2>
-          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Expert analysis, comparisons, and guides for the discerning automotive enthusiast.</p>
+          <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">EV Guides & Insights</h2>
+          <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Expert comparisons, maintenance guides, and buying advice for EV and Tesla owners.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-[1300px] mx-auto">
           {[
@@ -453,8 +474,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-cover bg-center bg-fixed opacity-40" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=80')" }} />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/70 to-[#0a0f1a]/90" />
         <div className="relative text-center max-w-[600px] px-6">
-          <h2 className="text-[clamp(32px,5vw,48px)] font-extralight mb-4 tracking-tight">Your Guide to Premium Auto</h2>
-          <p className="text-base text-[#6b7a94] mb-8 leading-relaxed">Join thousands of enthusiasts who trust Healvanna for expert vehicle guides and local service providers.</p>
+          <h2 className="text-[clamp(32px,5vw,48px)] font-extralight mb-4 tracking-tight">Your Orlando EV & Tesla Resource</h2>
+          <p className="text-base text-[#6b7a94] mb-8 leading-relaxed">Guides, specialist listings, and tools built for Orlando's growing EV and Tesla community.</p>
           <NewsletterForm />
         </div>
       </section>
