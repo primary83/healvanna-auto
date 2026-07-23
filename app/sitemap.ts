@@ -610,16 +610,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Care & Craft showcase pages
   const carePages: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/care`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.5 },
-    { url: `${baseUrl}/care/precision-auto-spa`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.4 },
-    { url: `${baseUrl}/care/elite-ceramic-works`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.4 },
-    { url: `${baseUrl}/care/luxe-interior-studio`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.4 },
   ];
 
   const craftPages: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/craft`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.5 },
-    { url: `${baseUrl}/craft/prestige-auto-body`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.4 },
-    { url: `${baseUrl}/craft/heritage-restoration`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.4 },
-    { url: `${baseUrl}/craft/ev-collision-center`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.4 },
   ];
 
   // Directory pages: /directory, /directory/[state], /directory/[state]/[city]

@@ -76,18 +76,6 @@ export default function Home() {
     setTimeout(() => setIsLoaded(true), 100);
   }, []);
 
-  const careServices = [
-    { id: 1, name: "Precision Auto Spa", category: "Premium Detailing", city: "Austin, TX", specialties: ["EV-Safe", "Ceramic Coating", "Paint Correction"], verified: true, image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80", description: "Austin's premier EV detailing specialists. Factory-trained on Tesla, Rivian, and Lucid vehicles.", link: "/care/precision-auto-spa" },
-    { id: 2, name: "Elite Ceramic Works", category: "Ceramic & PPF", city: "Miami, FL", specialties: ["XPEL PPF", "Ceramic Pro", "Gtechniq"], verified: true, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80", description: "Certified Ceramic Pro installer. Specializing in exotic and luxury vehicle protection.", link: "/care/elite-ceramic-works" },
-    { id: 3, name: "Luxe Interior Studio", category: "Interior Restoration", city: "Los Angeles, CA", specialties: ["Leather Repair", "Custom Upholstery", "Vegan Leather"], verified: true, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80", description: "Bespoke interior restoration for discerning owners. Vegan leather specialists for modern EVs.", link: "/care/luxe-interior-studio" },
-  ];
-
-  const craftServices = [
-    { id: 1, name: "EV Collision Center", category: "EV-Certified Body Shop", city: "Austin, TX", specialties: ["Tesla Certified", "Rivian Trained", "Aluminum Repair"], verified: true, image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80", description: "Factory-certified collision repair for electric vehicles. Specialized equipment for high-voltage systems.", link: "/craft/ev-collision-center" },
-    { id: 2, name: "Prestige Auto Body", category: "Luxury Body Shop", city: "Miami, FL", specialties: ["Porsche Certified", "Ferrari Approved", "Concours Finish"], verified: true, image: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80", description: "OEM-certified repairs for European luxury brands. Show-quality paint and finishing.", link: "/craft/prestige-auto-body" },
-    { id: 3, name: "Heritage Restoration", category: "Classic Restoration", city: "Scottsdale, AZ", specialties: ["Full Frame-Off", "Concours Prep", "Matching Numbers"], verified: true, image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=800&q=80", description: "Award-winning classic car restoration. From barn finds to concours winners.", link: "/craft/heritage-restoration" },
-  ];
-
   const categoryCards = [
     { title: "Electric Vehicles", subtitle: "Tesla · Rivian · Lucid · Porsche", image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&q=80", link: "/cars" },
     { title: "Premium Care", subtitle: "Detailing · Ceramic · PPF", image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=600&q=80", link: "/care" },
@@ -377,29 +365,7 @@ export default function Home() {
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">EV & Tesla-Safe Detailing</h2>
           <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Ceramic coating, PPF, and paint protection from specialists who know electric vehicles inside and out.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-[1300px] mx-auto">
-          {careServices.map((service) => (
-            <Link key={service.id} href={service.link} className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block">
-              <div className="h-44 overflow-hidden">
-                <img src={service.image} alt={service.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105" />
-              </div>
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2.5">
-                  <div className="text-[9px] tracking-[0.2em] uppercase text-[#4a90d9] font-medium">{service.category}</div>
-                  {service.verified && <span className="text-[8px] tracking-[0.1em] uppercase px-2 py-1 bg-[rgba(74,144,217,0.15)] text-[#4a90d9] rounded-sm font-semibold">✓ In Business</span>}
-                </div>
-                <div className="text-lg font-medium mb-1">{service.name}</div>
-                <div className="text-xs text-[#6b7a94] mb-3.5">{service.city}</div>
-                <div className="text-[13px] text-[#6b7a94] leading-relaxed mb-4">{service.description}</div>
-                <div className="flex gap-1.5 flex-wrap mb-5">
-                  {service.specialties.map((s) => <span key={s} className="text-[9px] tracking-[0.1em] uppercase px-2.5 py-1.5 bg-[rgba(232,237,245,0.05)] text-[#6b7a94] rounded-sm">{s}</span>)}
-                </div>
-                <span className="w-full py-3 text-[11px] tracking-[0.1em] uppercase font-medium border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded block text-center">View Profile</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className="text-center mt-12">
+        <div className="text-center">
           <Link href="/care" className="inline-block px-12 py-3.5 text-[13px] font-medium bg-transparent text-[#e8edf5] border border-[rgba(74,144,217,0.15)] hover:border-[#4a90d9] hover:text-[#4a90d9] transition-all duration-300">Browse All Care Services</Link>
         </div>
       </section>
@@ -411,29 +377,7 @@ export default function Home() {
           <h2 className="text-[clamp(32px,4vw,48px)] font-extralight tracking-tight mb-4">EV-Certified Collision Repair</h2>
           <p className="text-[15px] text-[#6b7a94] max-w-[500px] mx-auto leading-relaxed">Body shops trained and equipped for high-voltage systems — from minor dents to major collision repair.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 max-w-[1300px] mx-auto">
-          {craftServices.map((service) => (
-            <Link key={service.id} href={service.link} className="bg-gradient-to-b from-[rgba(15,22,40,1)] to-[rgba(10,15,26,1)] rounded overflow-hidden cursor-pointer border border-[rgba(74,144,217,0.15)] hover:border-[rgba(74,144,217,0.4)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] group block">
-              <div className="h-44 overflow-hidden">
-                <img src={service.image} alt={service.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105" />
-              </div>
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2.5">
-                  <div className="text-[9px] tracking-[0.2em] uppercase text-[#4a90d9] font-medium">{service.category}</div>
-                  {service.verified && <span className="text-[8px] tracking-[0.1em] uppercase px-2 py-1 bg-[rgba(74,144,217,0.15)] text-[#4a90d9] rounded-sm font-semibold">✓ In Business</span>}
-                </div>
-                <div className="text-lg font-medium mb-1">{service.name}</div>
-                <div className="text-xs text-[#6b7a94] mb-3.5">{service.city}</div>
-                <div className="text-[13px] text-[#6b7a94] leading-relaxed mb-4">{service.description}</div>
-                <div className="flex gap-1.5 flex-wrap mb-5">
-                  {service.specialties.map((s) => <span key={s} className="text-[9px] tracking-[0.1em] uppercase px-2.5 py-1.5 bg-[rgba(232,237,245,0.05)] text-[#6b7a94] rounded-sm">{s}</span>)}
-                </div>
-                <span className="w-full py-3 text-[11px] tracking-[0.1em] uppercase font-medium border border-[rgba(74,144,217,0.3)] text-[#4a90d9] hover:bg-[rgba(74,144,217,0.1)] transition-all duration-300 rounded block text-center">View Profile</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className="text-center mt-12">
+        <div className="text-center">
           <Link href="/craft" className="inline-block px-12 py-3.5 text-[13px] font-medium bg-transparent text-[#e8edf5] border border-[rgba(74,144,217,0.15)] hover:border-[#4a90d9] hover:text-[#4a90d9] transition-all duration-300">Browse All Craft Services</Link>
         </div>
       </section>
