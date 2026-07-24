@@ -12,6 +12,16 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
+  // July 24, 2026 — Tesla Model Y home charger guide (Orlando local)
+  "best-home-ev-charger-tesla-model-y-orlando": {
+    title: "The Best Home EV Chargers for a Tesla Model Y in Orlando (2026 Guide)",
+    excerpt: "Real NACS compatibility, hardwired vs. NEMA 14-50, Florida-heat considerations, Orlando permitting, current 2026 incentive status, and how to choose a trusted local installer for your Tesla Model Y.",
+    datePublished: "2026-07-24",
+    dateModified: "2026-07-24",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/best-home-ev-charger-tesla-model-y-orlando-hero.png",
+    category: "Guides",
+  },
   // May 11, 2026 — Family EV buyer's guide (evergreen, sub-$50K)
   "best-family-evs-under-50000-2026": {
     title: "Best Family EVs Under $50,000 in 2026: A Practical Buyer's Guide",

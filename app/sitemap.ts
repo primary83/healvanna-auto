@@ -187,6 +187,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Blog posts (all 268 articles)
   const blogSlugs = [
+    "best-home-ev-charger-tesla-model-y-orlando",
     "best-family-evs-under-50000-2026",
     "nio-es9-luxury-features-beijing-2026",
     "future-of-intelligence-auto-china-2026",
