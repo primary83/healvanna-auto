@@ -36,13 +36,10 @@ const locationCoordinates: Record<string, { lat: number; lon: number }> = {
   "Jacksonville, FL": { lat: 30.3322, lon: -81.6557 },
   "Miami, FL": { lat: 25.7617, lon: -80.1918 },
   "Kissimmee, FL": { lat: 28.2920, lon: -81.4076 },
-  "Austin, TX": { lat: 30.2672, lon: -97.7431 },
-  "Los Angeles, CA": { lat: 34.0522, lon: -118.2437 },
-  "New York, NY": { lat: 40.7128, lon: -74.006 },
 };
 
 const categories = ["All", "Auto Detailing", "Car Wash", "Auto Customization", "Paint Protection"];
-const locations = ["My Location", "Orlando, FL", "Winter Garden, FL", "Kissimmee, FL", "Tampa, FL", "Jacksonville, FL", "Miami, FL", "Austin, TX", "Los Angeles, CA", "New York, NY"];
+const locations = ["My Location", "Orlando, FL", "Winter Garden, FL", "Kissimmee, FL", "Tampa, FL", "Jacksonville, FL", "Miami, FL"];
 const sortOptions = [
   { label: "Nearest", value: "distance" },
   { label: "Highest Rated", value: "rating" },
@@ -52,7 +49,7 @@ const sortOptions = [
 export default function CarePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedLocation, setSelectedLocation] = useState("My Location");
+  const [selectedLocation, setSelectedLocation] = useState("Orlando, FL");
   const [sortBy, setSortBy] = useState("distance");
   const [providers, setProviders] = useState<Provider[]>([]);
   const [isLoadingProviders, setIsLoadingProviders] = useState(true);
@@ -169,7 +166,7 @@ export default function CarePage() {
     return result;
   }, [providers, selectedCategory, sortBy, centerLat, centerLon]);
 
-  const isLoading = isLoadingLocation || isLoadingProviders;
+  const isLoading = (isLoadingLocation && selectedLocation === "My Location") || isLoadingProviders;
 
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-[#e8edf5]">
