@@ -191,8 +191,7 @@ function ServiceListingContent({ service, subcategorySlug }: ServiceListingPageP
 
   // EV-related filter definitions
   const EV_FILTERS = [
-    { label: "EV Friendly", value: "ev", keywords: ["ev", "electric", "tesla", "rivian", "lucid", "hybrid", "electric vehicle"] },
-    { label: "Tesla Certified", value: "tesla", keywords: ["tesla"] },
+    { label: "Mentions EV/Tesla", value: "ev", keywords: ["ev", "electric", "tesla", "rivian", "lucid", "hybrid", "electric vehicle"] },
     { label: "High Rated (4.5+)", value: "highrated", keywords: [] },
   ];
 
@@ -517,7 +516,7 @@ function ServiceListingContent({ service, subcategorySlug }: ServiceListingPageP
         <div className="max-w-[1400px] mx-auto">
           <TrustSignals
             signals={service.trustSignals}
-            title={`Why Trust Our ${service.name} Providers?`}
+            title={`What to Look For in ${service.name}`}
           />
         </div>
       </section>
