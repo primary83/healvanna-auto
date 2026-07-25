@@ -17,6 +17,11 @@ export default function ProviderCard({ provider, onCompareToggle, isCompareSelec
   const [showQuoteModal, setShowQuoteModal] = useState(false);
   const [imgError, setImgError] = useState(false);
 
+  const normalizedCategory = provider.category.trim().toLowerCase();
+  const displaySpecialties = provider.specialties.filter(
+    (specialty) => specialty.trim().toLowerCase() !== normalizedCategory
+  );
+
   return (
     <div className={`bg-[rgba(15,22,40,0.6)] rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 group ${isCompareSelected ? "border-[#4a90d9] ring-1 ring-[#4a90d9]/30" : "border-[rgba(74,144,217,0.12)] hover:border-[rgba(74,144,217,0.35)]"}`}>
       {/* Hero Image */}
@@ -159,9 +164,9 @@ export default function ProviderCard({ provider, onCompareToggle, isCompareSelec
         </div>
 
         {/* Specialties */}
-        {provider.specialties.length > 0 && (
+        {displaySpecialties.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-4">
-            {provider.specialties.slice(0, 3).map((specialty) => (
+            {displaySpecialties.slice(0, 3).map((specialty) => (
               <span
                 key={specialty}
                 className="text-[9px] tracking-[0.05em] px-2 py-1 bg-[rgba(232,237,245,0.05)] text-[#6b7a94] rounded-sm"
