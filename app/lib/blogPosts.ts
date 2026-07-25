@@ -11,6 +11,9 @@ export interface BlogPost {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
+  // July 25, 2026 — EV-safe detailing guide (Orlando local)
+  { id: 406, title: "EV-Safe Car Detailing in Orlando: What's Actually Different About Washing a Tesla", excerpt: "Car Wash Mode, touchless-only washing, sensor care, and Florida love bug season — what Orlando Tesla and EV owners need to know before booking a detail.", category: "Guides", image: "/images/blog/ev-safe-detailing-orlando-hero.png", date: "July 25, 2026", readTime: "7 min read", slug: "ev-safe-detailing-orlando" },
+
   // July 24, 2026 — Tesla Model Y home charger guide (Orlando local)
   { id: 405, title: "The Best Home EV Chargers for a Tesla Model Y in Orlando (2026 Guide)", excerpt: "Real NACS compatibility, hardwired vs. NEMA 14-50, Florida-heat considerations, Orlando permitting, current 2026 incentive status, and how to choose a trusted local installer for your Tesla Model Y.", category: "Guides", image: "/images/blog/best-home-ev-charger-tesla-model-y-orlando-hero.png", date: "July 24, 2026", readTime: "10 min read", slug: "best-home-ev-charger-tesla-model-y-orlando" },
 

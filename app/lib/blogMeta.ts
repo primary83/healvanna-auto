@@ -12,6 +12,16 @@ export interface BlogMetaEntry {
 }
 
 export const blogMeta: Record<string, BlogMetaEntry> = {
+  // July 25, 2026 — EV-safe detailing guide (Orlando local)
+  "ev-safe-detailing-orlando": {
+    title: "EV-Safe Car Detailing in Orlando: What's Actually Different About Washing a Tesla",
+    excerpt: "Car Wash Mode, touchless-only washing, sensor care, and Florida love bug season — what Orlando Tesla and EV owners need to know before booking a detail.",
+    datePublished: "2026-07-25",
+    dateModified: "2026-07-25",
+    author: "Healvanna Auto Editorial",
+    image: "/images/blog/ev-safe-detailing-orlando-hero.png",
+    category: "Guides",
+  },
   // July 24, 2026 — Tesla Model Y home charger guide (Orlando local)
   "best-home-ev-charger-tesla-model-y-orlando": {
     title: "The Best Home EV Chargers for a Tesla Model Y in Orlando (2026 Guide)",
