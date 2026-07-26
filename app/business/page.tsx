@@ -142,7 +142,7 @@ export default function ForBusinessPage() {
               href="#pricing"
               className="inline-block bg-[#4a90d9] text-white px-8 py-3 rounded-lg hover:bg-[#3a7bc8] transition-colors"
             >
-              View Pricing
+              See What&apos;s Included
             </a>
             <Link 
               href="/contact"
@@ -173,7 +173,7 @@ export default function ForBusinessPage() {
             Who Can <span className="italic text-[#4a90d9]">Partner</span>
           </h2>
           <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
-            We work with premium automotive service providers who share our commitment to excellence.
+            We&apos;re looking for premium automotive service providers across Orlando and Central Florida.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {businessTypes.map((type) => (
@@ -206,7 +206,7 @@ export default function ForBusinessPage() {
                 </div>
                 <div>
                   <h3 className="text-lg text-white mb-1">Targeted Audience</h3>
-                  <p className="text-gray-400 text-sm">Our visitors are premium vehicle owners actively seeking quality services — not tire-kickers.</p>
+                  <p className="text-gray-400 text-sm">Our pages target specific services and locations. Someone landing on an Orlando ceramic coating page is looking for exactly that.</p>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -215,7 +215,7 @@ export default function ForBusinessPage() {
                 </div>
                 <div>
                   <h3 className="text-lg text-white mb-1">Trust & Credibility</h3>
-                  <p className="text-gray-400 text-sm">Our verification process ensures only quality providers are listed, building trust with customers.</p>
+                  <p className="text-gray-400 text-sm">Listings show real Google ratings and reviews, so customers can judge your track record before they get in touch.</p>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -223,8 +223,8 @@ export default function ForBusinessPage() {
                   3
                 </div>
                 <div>
-                  <h3 className="text-lg text-white mb-1">SEO Benefits</h3>
-                  <p className="text-gray-400 text-sm">Your listing on our high-authority domain helps you rank better in local search results.</p>
+                  <h3 className="text-lg text-white mb-1">Local Search Presence</h3>
+                  <p className="text-gray-400 text-sm">Your shop appears on pages built around specific services and Orlando neighborhoods — the searches people actually make when they need work done.</p>
                 </div>
               </div>
             </div>
@@ -257,7 +257,7 @@ export default function ForBusinessPage() {
                 </div>
                 <div>
                   <h3 className="text-lg text-white mb-1">Community Exposure</h3>
-                  <p className="text-gray-400 text-sm">Get featured in our newsletter, social media, and community content.</p>
+                  <p className="text-gray-400 text-sm">Get discovered through our Orlando guides, city pages, and service directories.</p>
                 </div>
               </div>
             </div>
@@ -383,8 +383,7 @@ export default function ForBusinessPage() {
             <div className="border-b border-white/10 pb-6">
               <h3 className="text-lg text-white mb-2">What markets do you cover?</h3>
               <p className="text-gray-400 text-sm">
-                We currently focus on Florida markets including Miami, Orlando, Tampa, Fort Lauderdale, and Jacksonville. 
-                We&apos;re expanding to additional US markets soon.
+                We&apos;re focused on Orlando and Central Florida while we build our first group of local partners. Other Florida markets are next.
               </p>
             </div>
           </div>

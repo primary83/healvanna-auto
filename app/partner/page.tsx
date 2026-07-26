@@ -151,7 +151,7 @@ export default function PartnerPage() {
                   </svg>
                 ),
                 title: "Grow Your Business",
-                desc: "Feature your deals and promotions to targeted audiences who are ready to book services — not just browsing.",
+                desc: "Feature your deals and promotions on the pages where Orlando drivers are already looking for your service.",
               },
               {
                 icon: (
@@ -204,13 +204,13 @@ export default function PartnerPage() {
               },
               {
                 step: "2",
-                title: "We Review & Verify",
-                desc: "Our team reviews your application and verifies your business to ensure quality for our users.",
+                title: "We Get in Touch",
+                desc: "We'll reach out to learn about your shop, what you specialize in, and the work you do.",
               },
               {
                 step: "3",
-                title: "Go Live on Deal Hunter",
-                desc: "Once approved, your shop appears in our Deal Hunter directory with your deals and promotions.",
+                title: "You Go Live",
+                desc: "Your shop appears in the Healvanna Orlando directory with your services and any deals you're running.",
               },
             ].map((item) => (
               <div
@@ -243,8 +243,8 @@ export default function PartnerPage() {
               <span className="italic text-[#4a90d9]">Now</span>
             </h2>
             <p className="text-[14px] text-[#6b7a94]">
-              Fill out the form below and we&rsquo;ll be in touch within 2
-              business days.
+              We&rsquo;ll get back to you within a couple of days &mdash;
+              we read every application personally.
             </p>
           </div>
 
@@ -270,9 +270,9 @@ export default function PartnerPage() {
                   Application Submitted!
                 </h3>
                 <p className="text-[#6b7a94] mb-6 max-w-md">
-                  Thank you for your interest in partnering with Healvanna.
-                  We&rsquo;ll review your application and get back to you within
-                  2 business days.
+                  Thanks for getting in touch. We read every application
+                  personally and we&rsquo;ll get back to you within a couple
+                  of days.
                 </p>
                 <button
                   onClick={() => setStatus("idle")}
@@ -575,8 +575,7 @@ export default function PartnerPage() {
                 </button>
 
                 <p className="text-[11px] text-[#3d4a61] text-center leading-relaxed">
-                  By submitting, you agree to our review process. We&rsquo;ll
-                  never share your information with third parties.
+                  We&rsquo;ll never share your information with third parties.
                 </p>
               </form>
             )}
