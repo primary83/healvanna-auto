@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   keywords: ["automotive business listing", "car detailing business", "body shop listing", "dealership partner", "automotive marketing", "premium car services"],
 };
 
+// Paid tiers are hidden until there is real lead volume, a payment
+// processor, and a working partner dashboard. Flip to true to restore.
+const SHOW_PAID_TIERS = false;
+
 const partnershipTiers = [
   {
     name: "Basic Listing",
@@ -117,13 +121,6 @@ const businessTypes = [
   }
 ];
 
-const stats = [
-  { value: "50K+", label: "Monthly Visitors" },
-  { value: "85%", label: "Premium Vehicle Owners" },
-  { value: "4.8", label: "Average Partner Rating" },
-  { value: "200+", label: "Partner Listings" }
-];
-
 export default function ForBusinessPage() {
   return (
     <div className="min-h-screen bg-[#0a0f1a]">
@@ -157,17 +154,15 @@ export default function ForBusinessPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Positioning Section */}
       <section className="px-6 py-16 bg-[#0d1420]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <p className="text-4xl font-extralight text-[#4a90d9] mb-2">{stat.value}</p>
-                <p className="text-gray-400">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl font-extralight text-white mb-4">
+            Built for <span className="italic text-[#4a90d9]">Orlando</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Healvanna is a new directory focused on EV and premium vehicle care in Central Florida. We&apos;re assembling our first group of verified local partners — shops that specialize in the work Orlando drivers actually need.
+          </p>
         </div>
       </section>
 
@@ -203,7 +198,7 @@ export default function ForBusinessPage() {
           <h2 className="text-3xl font-extralight text-white text-center mb-12">
             Why Partner With <span className="italic text-[#4a90d9]">Healvanna</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className={`grid grid-cols-1 gap-8 ${SHOW_PAID_TIERS ? "md:grid-cols-2" : "max-w-2xl mx-auto"}`}>
             <div className="space-y-6">
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-[#4a90d9]/10 rounded-full flex items-center justify-center text-[#4a90d9]">
@@ -234,27 +229,31 @@ export default function ForBusinessPage() {
               </div>
             </div>
             <div className="space-y-6">
+              {SHOW_PAID_TIERS && (
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 bg-[#4a90d9]/10 rounded-full flex items-center justify-center text-[#4a90d9]">
+                    4
+                  </div>
+                  <div>
+                    <h3 className="text-lg text-white mb-1">Lead Generation</h3>
+                    <p className="text-gray-400 text-sm">Premium partners receive direct lead notifications and booking integration options.</p>
+                  </div>
+                </div>
+              )}
+              {SHOW_PAID_TIERS && (
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 bg-[#4a90d9]/10 rounded-full flex items-center justify-center text-[#4a90d9]">
+                    5
+                  </div>
+                  <div>
+                    <h3 className="text-lg text-white mb-1">Analytics & Insights</h3>
+                    <p className="text-gray-400 text-sm">Track profile views, click-throughs, and customer engagement with detailed reports.</p>
+                  </div>
+                </div>
+              )}
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-[#4a90d9]/10 rounded-full flex items-center justify-center text-[#4a90d9]">
-                  4
-                </div>
-                <div>
-                  <h3 className="text-lg text-white mb-1">Lead Generation</h3>
-                  <p className="text-gray-400 text-sm">Premium partners receive direct lead notifications and booking integration options.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-[#4a90d9]/10 rounded-full flex items-center justify-center text-[#4a90d9]">
-                  5
-                </div>
-                <div>
-                  <h3 className="text-lg text-white mb-1">Analytics & Insights</h3>
-                  <p className="text-gray-400 text-sm">Track profile views, click-throughs, and customer engagement with detailed reports.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-[#4a90d9]/10 rounded-full flex items-center justify-center text-[#4a90d9]">
-                  6
+                  {SHOW_PAID_TIERS ? 6 : 4}
                 </div>
                 <div>
                   <h3 className="text-lg text-white mb-1">Community Exposure</h3>
@@ -273,10 +272,12 @@ export default function ForBusinessPage() {
             Partnership <span className="italic text-[#4a90d9]">Tiers</span>
           </h2>
           <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
-            Choose the plan that fits your business goals. Start free and upgrade as you grow.
+            {SHOW_PAID_TIERS
+              ? "Choose the plan that fits your business goals. Start free and upgrade as you grow."
+              : "Get listed for free — no cost, no cards, no contracts."}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {partnershipTiers.map((tier) => (
+          <div className={`grid grid-cols-1 gap-8 ${SHOW_PAID_TIERS ? "md:grid-cols-3" : "max-w-md mx-auto"}`}>
+            {(SHOW_PAID_TIERS ? partnershipTiers : partnershipTiers.filter((tier) => tier.price === "Free")).map((tier) => (
               <div 
                 key={tier.name}
                 className={`rounded-xl p-6 md:p-8 border ${
@@ -314,23 +315,11 @@ export default function ForBusinessPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Testimonial Section */}
-      <section className="px-6 py-20 bg-[#0d1420]">
-        <div className="max-w-4xl mx-auto text-center">
-          <svg className="w-12 h-12 text-[#4a90d9]/30 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-          </svg>
-          <blockquote className="text-2xl font-extralight text-white mb-6">
-            &ldquo;Since joining Healvanna as a Verified Partner, we&apos;ve seen a 40% increase in premium vehicle inquiries. 
-            The quality of leads is exceptional — these are serious owners who value quality work.&rdquo;
-          </blockquote>
-          <div>
-            <p className="text-white">Michael Torres</p>
-            <p className="text-gray-400 text-sm">Owner, Precision Auto Spa — Austin, TX</p>
-          </div>
+          {!SHOW_PAID_TIERS && (
+            <p className="text-gray-400 text-sm text-center max-w-md mx-auto mt-8">
+              Additional placement options are coming as we grow our Orlando network. Get in touch if you&apos;d like to be among the first partners.
+            </p>
+          )}
         </div>
       </section>
 
@@ -341,8 +330,7 @@ export default function ForBusinessPage() {
             Ready to Grow Your Business?
           </h2>
           <p className="text-gray-400 mb-8">
-            Join hundreds of premium automotive service providers already benefiting from the Healvanna network. 
-            Get started with a free listing today.
+            Get started with a free listing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact" className="inline-block bg-[#4a90d9] text-white px-8 py-3 rounded-lg hover:bg-[#3a7bc8] transition-colors">
@@ -365,27 +353,33 @@ export default function ForBusinessPage() {
             Frequently Asked <span className="italic text-[#4a90d9]">Questions</span>
           </h2>
           <div className="space-y-6">
-            <div className="border-b border-white/10 pb-6">
-              <h3 className="text-lg text-white mb-2">How does the verification process work?</h3>
-              <p className="text-gray-400 text-sm">
-                We verify your business license, insurance, and review customer feedback. The process typically takes 3-5 business days. 
-                Once verified, you&apos;ll receive the trusted badge on your profile.
-              </p>
-            </div>
-            <div className="border-b border-white/10 pb-6">
-              <h3 className="text-lg text-white mb-2">Can I cancel my subscription anytime?</h3>
-              <p className="text-gray-400 text-sm">
-                Yes, you can cancel or downgrade your subscription at any time. There are no long-term contracts. 
-                Your listing will revert to the free tier if you cancel a paid plan.
-              </p>
-            </div>
-            <div className="border-b border-white/10 pb-6">
-              <h3 className="text-lg text-white mb-2">How do I receive leads?</h3>
-              <p className="text-gray-400 text-sm">
-                Premium partners receive lead notifications via email and dashboard. You can also integrate with your 
-                existing booking system through our API or use our built-in booking feature.
-              </p>
-            </div>
+            {SHOW_PAID_TIERS && (
+              <div className="border-b border-white/10 pb-6">
+                <h3 className="text-lg text-white mb-2">How does the verification process work?</h3>
+                <p className="text-gray-400 text-sm">
+                  We verify your business license, insurance, and review customer feedback. The process typically takes 3-5 business days.
+                  Once verified, you&apos;ll receive the trusted badge on your profile.
+                </p>
+              </div>
+            )}
+            {SHOW_PAID_TIERS && (
+              <div className="border-b border-white/10 pb-6">
+                <h3 className="text-lg text-white mb-2">Can I cancel my subscription anytime?</h3>
+                <p className="text-gray-400 text-sm">
+                  Yes, you can cancel or downgrade your subscription at any time. There are no long-term contracts.
+                  Your listing will revert to the free tier if you cancel a paid plan.
+                </p>
+              </div>
+            )}
+            {SHOW_PAID_TIERS && (
+              <div className="border-b border-white/10 pb-6">
+                <h3 className="text-lg text-white mb-2">How do I receive leads?</h3>
+                <p className="text-gray-400 text-sm">
+                  Premium partners receive lead notifications via email and dashboard. You can also integrate with your
+                  existing booking system through our API or use our built-in booking feature.
+                </p>
+              </div>
+            )}
             <div className="border-b border-white/10 pb-6">
               <h3 className="text-lg text-white mb-2">What markets do you cover?</h3>
               <p className="text-gray-400 text-sm">

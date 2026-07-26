@@ -105,9 +105,8 @@ export default function PartnerPage() {
             <span className="italic text-[#4a90d9]">Healvanna</span>
           </h1>
           <p className="text-[17px] text-[#6b7a94] max-w-[600px] mx-auto leading-relaxed">
-            Get your shop in front of thousands of car owners looking for
-            trusted services. List your business on our Deal Hunter directory
-            &mdash; completely free.
+            List your shop on Healvanna&apos;s Orlando directory. Free to get
+            listed, and free to stay listed.
           </p>
         </div>
       </section>
@@ -143,7 +142,7 @@ export default function PartnerPage() {
                   </svg>
                 ),
                 title: "Build Trust",
-                desc: "Earn a \"Verified by Healvanna\" badge on your listing, giving customers confidence in your shop before they walk through the door.",
+                desc: "Your listing shows real Google ratings and reviews, so customers can see your track record before they walk through the door.",
               },
               {
                 icon: (
