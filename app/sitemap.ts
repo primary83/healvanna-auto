@@ -4,6 +4,7 @@ import { BLOG_CATEGORIES } from "./lib/blogCategories";
 import { getAllStates, getCitiesByState } from "./lib/directoryData";
 import { DEAL_CITIES, DEAL_SERVICE_CATEGORIES, getDealsForCityService } from "./lib/dealCities";
 import { ALL_SLUGS } from "./lib/evDetailData";
+import { SHOW_SHOP } from "./lib/featureFlags";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://healvanna.com";
@@ -46,12 +47,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    {
-      url: `${baseUrl}/shop`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
+    ...(SHOW_SHOP
+      ? [
+          {
+            url: `${baseUrl}/shop`,
+            lastModified: new Date(),
+            changeFrequency: "weekly" as const,
+            priority: 0.7,
+          },
+        ]
+      : []),
     {
       url: `${baseUrl}/get-quote`,
       lastModified: new Date(),

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SERVICE_CATEGORIES } from "../lib/services";
+import { SHOW_SHOP } from "../lib/featureFlags";
 
 export default function Footer() {
   return (
@@ -138,9 +139,11 @@ export default function Footer() {
           <Link href="/shop-dashboard" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
             Shop Dashboard
           </Link>
-          <Link href="/shop" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
-            Shop
-          </Link>
+          {SHOW_SHOP && (
+            <Link href="/shop" className="block text-[13px] text-[#6b7a94] mb-2.5 hover:text-[#e8edf5] transition-colors duration-300">
+              Shop
+            </Link>
+          )}
         </div>
       </div>
 

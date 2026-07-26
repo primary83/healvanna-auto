@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { SHOW_SHOP } from "../lib/featureFlags";
 
 export const metadata: Metadata = {
   title: "Shop - EV Accessories & Premium Car Products",
@@ -23,5 +25,6 @@ export default function ShopLayout({
 }: {
   children: React.ReactNode;
 }) {
+  if (!SHOW_SHOP) notFound();
   return children;
 }
