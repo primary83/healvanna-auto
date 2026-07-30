@@ -5,6 +5,7 @@ import { getAllStates, getCitiesByState } from "./lib/directoryData";
 import { DEAL_CITIES, DEAL_SERVICE_CATEGORIES, getDealsForCityService } from "./lib/dealCities";
 import { ALL_SLUGS } from "./lib/evDetailData";
 import { SHOW_SHOP } from "./lib/featureFlags";
+import { OBD_CODES } from "./lib/obdCodes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://healvanna.com";
@@ -513,6 +514,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     xiaomi: ["su7", "su7-pro", "su7-max"],
     vinfast: ["vf6", "vf7", "vf8", "vf9"],
     zeekr: ["001", "007", "009", "x"],
+    acura: ["zdx"],
+    dodge: ["charger-daytona"],
+    fiat: ["500e"],
+    gmc: ["hummer-ev-pickup", "hummer-ev-suv", "sierra-ev"],
+    honda: ["prologue"],
+    lexus: ["rz-450e"],
+    mini: ["cooper-se", "countryman-se"],
+    nissan: ["ariya", "leaf"],
+    subaru: ["solterra"],
+    toyota: ["bz4x"],
   };
 
   const carBrandModelPages: MetadataRoute.Sitemap = Object.entries(carBrandModels).flatMap(
@@ -669,6 +680,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Diagnose code pages: /diagnose/p0420, etc.
+  const diagnoseCodePages: MetadataRoute.Sitemap = OBD_CODES.map((c) => ({
+    url: `${baseUrl}/diagnose/${c.code.toLowerCase()}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   return [
     ...staticPages,
     ...servicePages,
@@ -688,5 +707,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...dealCityPages,
     ...dealCityServicePages,
     ...evDealDetailPages,
+    ...diagnoseCodePages,
   ];
 }
